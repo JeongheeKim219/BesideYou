@@ -20,7 +20,7 @@ class BesideYouApplicationTests {
 
 	@Test
 	void insert() {
-		testRep.save(new TestJPA(2, "확인2"));
+		testRep.save(new TestJPA(1, "확인1"));
 	}
 
 }
