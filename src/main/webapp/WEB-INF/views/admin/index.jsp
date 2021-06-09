@@ -25,7 +25,6 @@
 
 </head>
 <body>
-${pageContext.request.contextPath}
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -1374,5 +1373,5 @@ ${pageContext.request.contextPath}
                 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
-<script type="text/javascript" src="./assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script></body>
 </html>
