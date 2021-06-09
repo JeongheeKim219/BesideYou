@@ -21,9 +21,11 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
-<link href="../../../resources/static/adminCss/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/adminCss/main.css" rel="stylesheet">
+
 </head>
 <body>
+${pageContext.request.contextPath}
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
