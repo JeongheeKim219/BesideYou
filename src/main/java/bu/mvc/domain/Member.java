@@ -1,5 +1,6 @@
 package bu.mvc.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -32,18 +33,33 @@ public class Member {
 	private String email; 
 	
 	@Column(name = "date_of_birth")
-	@Temporal(TemporalType.DATE)
-	private Date dateOfBirth; 
+	/* @Temporal(TemporalType.DATE) */
+	private LocalDateTime dateOfBirth; 
 	
 	@Column(name = "date_of_reg")
-	@Temporal(TemporalType.DATE)
-	private Date dateOfReg = new Date();
+	/* @Temporal(TemporalType.DATE) */
+	private LocalDateTime dateOfReg;
 	
 	private int  state;
+	
+	
+	
 	private int  memberType;
-	
-	
-	
+	public Member(String memberCode, String id, String password, String name, String alias, String addr, String phone,
+			String email, LocalDateTime dateOfBirth, LocalDateTime dateOfReg, int state, int memberType) {
+		this.memberCode = memberCode;
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.alias = alias;
+		this.addr = addr;
+		this.phone = phone;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.dateOfReg = dateOfReg;
+		this.state = state;
+		this.memberType = memberType;
+	}
 	
 	
 	

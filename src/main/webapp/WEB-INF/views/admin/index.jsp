@@ -441,32 +441,14 @@
                                         Dashboard Example 1
                                     </a>
                                 </li>
-                                <li class="app-sidebar__heading">UI Components</li>
-                                <li
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                >
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-diamond"></i>
-                                        Elements
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                <li class="app-sidebar__heading">회원관리</li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/admin/memberView">
+                                        <i class="metismenu-icon pe-7s-users"></i>
+                                        전체 회원 조회
+                                        <i class="metismenu-state-icon pe-7s-users-down caret-left"></i>
                                     </a>
-                                    <ul
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                    >
+                                    <ul>
                                         <li>
                                             <a href="elements-buttons-standard.html">
                                                 <i class="metismenu-icon"></i>
@@ -736,11 +718,11 @@
                                 <div class="card mb-3 widget-content bg-midnight-bloom">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
-                                            <div class="widget-heading">Total Orders</div>
-                                            <div class="widget-subheading">Last year expenses</div>
+                                            <div class="widget-heading">신규 회원 수</div>
+                                            <div class="widget-subheading">${now}</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>1896</span></div>
+                                            <div class="widget-numbers text-white"><span>${newMemberCount}</span></div>
                                         </div>
                                     </div>
                                 </div>

@@ -1,7 +1,8 @@
 package bu.mvc;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -34,8 +35,10 @@ class BesideYouApplicationTests {
 	
 	@Test
 	void newMember() {
-
-		List<Member> newMemeberList =  adminRep.findNewMembers();
+		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
+		LocalDateTime end = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
+		
+		List<Member> newMemeberList =  adminRep.findByDateOfRegBetween(start, end);
 		newMemeberList.forEach(m -> System.out.println(m));
 	
 	}
