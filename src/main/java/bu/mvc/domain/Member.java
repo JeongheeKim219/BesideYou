@@ -41,10 +41,8 @@ public class Member {
 	private LocalDateTime dateOfReg;
 	
 	private int  state;
-	
-	
-	
 	private int  memberType;
+
 	public Member(String memberCode, String id, String password, String name, String alias, String addr, String phone,
 			String email, LocalDateTime dateOfBirth, LocalDateTime dateOfReg, int state, int memberType) {
 		this.memberCode = memberCode;

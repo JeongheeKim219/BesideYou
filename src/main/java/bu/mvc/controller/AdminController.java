@@ -1,6 +1,8 @@
 package bu.mvc.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,11 @@ public class AdminController {
 	 */
 	@RequestMapping("/index")
 	public String index(Model model) {
-		LocalDateTime now = LocalDateTime.now();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
+		String now = formatter.format(date);
 		int newMemberCount = selectNewMemberList().size();
 		
 		model.addAttribute("now", now);
@@ -50,14 +56,22 @@ public class AdminController {
 	 * 1) 전체 회원 조회
 	 * 2) 페이징
 	 */
-	@RequestMapping("memberView")
+	@RequestMapping("/memberView")
 	public String select(Model model, @RequestParam(defaultValue = "0") int currentPage) {
 		
 		Pageable pageable = PageRequest.of(currentPage, 15, Direction.DESC, "dateOfReg");
-		Page<Member> memberList = adminService.selectAll(pageable);		
+		Page<Member> pageList = adminService.selectAll(pageable);		
+		model.addAttribute("pageList", pageList);
 		
-		model.addAttribute("memberList", memberList);
 		return "admin/memberView";
 	}
 	
+	/**
+	 * header.jsp
+	 */
+	@RequestMapping("/header")
+	public String header() {
+		return "admin/header";
+	}
+
 }
