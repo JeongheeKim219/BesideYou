@@ -13,9 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
 import bu.mvc.domain.Member;
-import bu.mvc.domain.TestJPA;
 import bu.mvc.respsitory.AdminRepository;
-import bu.mvc.respsitory.TestRepository;
 
 @SpringBootTest
 @Transactional

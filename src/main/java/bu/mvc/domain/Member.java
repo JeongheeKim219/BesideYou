@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -33,8 +34,33 @@ public class Member {
 	private String email;
 	private int memberState;
 	private int memberType;
-	
 	private LocalDate dateOfBirth;//생년월일
-	
 	private LocalDateTime dateOfReg;//가입일
 	
+
+	
+	public Member(Long memberCode, String id, String password, String name, String alias, String memberAddr,
+			String phone, String email, int memberState, int memberType, LocalDate dateOfBirth,
+			LocalDateTime dateOfReg) {
+		this.memberCode = memberCode;
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.alias = alias;
+		this.memberAddr = memberAddr;
+		this.phone = phone;
+		this.email = email;
+		this.memberState = memberState;
+		this.memberType = memberType;
+		this.dateOfBirth = dateOfBirth;
+		this.dateOfReg = dateOfReg;
+	}
+	
+	
+	
+	
+	
+	
+	
+
+}

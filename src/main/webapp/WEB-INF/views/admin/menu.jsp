@@ -47,18 +47,17 @@
 				<li><a href="index.html" class="mm-active"> <i
 						class="metismenu-icon pe-7s-rocket"></i> Dashboard Example 1
 				</a></li>
-				<li class="app-sidebar__heading">회원관리</li>
 				<li><a
 					href="${pageContext.request.contextPath}/admin/memberView"> <i
-						class="metismenu-icon pe-7s-users"></i> 전체 회원 조회 <i
+						class="metismenu-icon pe-7s-users"></i> 회원 관리 <i
 						class="metismenu-state-icon pe-7s-users-down caret-left"></i>
 				</a>
 					<ul>
-						<li><a href="elements-buttons-standard.html"> <i
-								class="metismenu-icon"></i> Buttons
+						<li><a href=""> <i
+								class="metismenu-icon"></i> 회원 통계
 						</a></li>
 						<li><a href="elements-dropdowns.html"> <i
-								class="metismenu-icon"> </i>Dropdowns
+								class="metismenu-icon"> </i> 회원목록
 						</a></li>
 						<li><a href="elements-icons.html"> <i
 								class="metismenu-icon"> </i>Icons

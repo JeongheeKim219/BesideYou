@@ -1,7 +1,6 @@
 package bu.mvc.controller;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +51,17 @@ public class AdminController {
 	
 	
 	/**
-	 * 3. 회원 전체 보기 페이지로 이동
+	 * 3. 회원 통계 페이지로 이동
+	 */
+	
+	@RequestMapping("/memberSummary")
+	public String summary() {
+		return "admin/memberSummary";
+	}
+	
+	
+	/**
+	 * 4. 회원 전체 보기 페이지로 이동
 	 * 1) 전체 회원 조회
 	 * 2) 페이징
 	 */
@@ -66,12 +75,7 @@ public class AdminController {
 		return "admin/memberView";
 	}
 	
-	/**
-	 * header.jsp
-	 */
-	@RequestMapping("/header")
-	public String header() {
-		return "admin/header";
-	}
-
+	
+	
+	
 }
