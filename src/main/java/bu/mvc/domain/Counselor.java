@@ -24,7 +24,7 @@ public class Counselor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "counselor_seq")
 	@SequenceGenerator(sequenceName = "counselor_seq",allocationSize = 1,name = "counselor_seq")
-	private int counselorCode;
+	private Long counselorCode;
 	private double latitude;
 	private double longitude;
 	private String career; //경력
