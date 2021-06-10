@@ -1,12 +1,17 @@
 package bu.mvc.domain;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,14 +30,26 @@ public class Counsel {
 	@SequenceGenerator(sequenceName = "counsel_seq",allocationSize = 1, name = "counsel_seq")
 	private Long counselCode;
 	
+	@ManyToOne
+	@JoinColumn(name = "member_code")
+	private Member member;
 	
-	private Long memberCode;
-	
-	private Long counselorCode;
+	@ManyToOne
+	@JoinColumn(name = "COUNSELOR_CODE")
+	private Counselor counselor;
 	
 	private int counselCategory;
 	private int counselState;
-	private LocalDateTime counselReqDate;
-	private LocalDateTime counselDate;
+	
+	@CreationTimestamp
+	private Date counselReqDate;
+	
+	private Date counselDate;
+
+	public Counsel(Long counselCode) {
+		this.counselCode = counselCode;
+	}
+	
+	
 	
 }
