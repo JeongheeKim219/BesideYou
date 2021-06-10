@@ -30,14 +30,15 @@ public class Member {
 	private String password;
 	private String name;
 	private String alias; //가명
-	private String addr;
+	private String member_addr;
 	private String phone;
 	private String email;
 	private int state;
+	private int member_type;
 	
 	private LocalDate dateOfBirth;//생년월일
 	
 	
-	private Date dateOfSign;//가입일
+	private Date dateOfRegDate;//가입일
 	
 }
