@@ -28,30 +28,13 @@ public class Member {
 	private String password;
 	private String name;
 	private String alias; //가명
-	private String addr;
+	private String memberAddr;
 	private String phone;
 	private String email;
-	private int state;
+	private int memberState;
+	private int memberType;
 	
 	private LocalDate dateOfBirth;//생년월일
 	
-	private LocalDateTime dateOfSign;//가입일
-
+	private LocalDateTime dateOfReg;//가입일
 	
-	public Member(Long memberCode, String id, String password, String name, String alias, String addr, String phone,
-			String email, int state, LocalDate dateOfBirth, Date dateOfSign) {
-		this.memberCode = memberCode;
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.alias = alias;
-		this.addr = addr;
-		this.phone = phone;
-		this.email = email;
-		this.state = state;
-		this.dateOfBirth = dateOfBirth;
-		this.dateOfSign = dateOfSign;
-	}
-
-
-}
