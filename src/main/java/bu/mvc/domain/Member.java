@@ -1,14 +1,14 @@
 package bu.mvc.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +22,15 @@ import lombok.ToString;
 @Entity
 public class Member {
 	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_ID_SEQ")
+	@SequenceGenerator(sequenceName = "MEMBER_ID_SEQ", allocationSize = 1, name = "MEMBER_ID_SEQ")
+	private Long memberSequence;
+	
+	private String code = "M";
+	
 	@Id
-	private String memberCode; 
+	private String memberCode = code + memberSequence;
+	
 	private String id; 
 	private String password; 
 	private String name; 
@@ -34,7 +41,7 @@ public class Member {
 	
 	@Column(name = "date_of_birth")
 	/* @Temporal(TemporalType.DATE) */
-	private LocalDateTime dateOfBirth; 
+	private LocalDate dateOfBirth; 
 	
 	@Column(name = "date_of_reg")
 	/* @Temporal(TemporalType.DATE) */
@@ -44,7 +51,7 @@ public class Member {
 	private int  memberType;
 
 	public Member(String memberCode, String id, String password, String name, String alias, String addr, String phone,
-			String email, LocalDateTime dateOfBirth, LocalDateTime dateOfReg, int state, int memberType) {
+			String email, LocalDate dateOfBirth, LocalDateTime dateOfReg, int state, int memberType) {
 		this.memberCode = memberCode;
 		this.id = id;
 		this.password = password;

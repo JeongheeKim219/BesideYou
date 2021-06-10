@@ -28,10 +28,7 @@ class BesideYouApplicationTests {
 	@Autowired
 	private AdminRepository adminRep;
 
-	@Test
-	void insert() {
-		testRep.save(new TestJPA(1, "확인1"));
-	}
+
 	
 	@Test
 	void newMember() {
@@ -41,6 +38,12 @@ class BesideYouApplicationTests {
 		List<Member> newMemeberList =  adminRep.findByDateOfRegBetween(start, end);
 		newMemeberList.forEach(m -> System.out.println(m));
 	
+	}
+	
+	@Test
+	void memberInsert() {
+		testRep.save(new TestJPA(null, "hanna", "test", "김민경", "장군", "서울시 마포구 동교동", "010-3882-6789",
+				"strong@gmail.com", LocalDate.of(2001, 2, 3), LocalDateTime.of(2001, 2, 3, 23, 3, 12), 0, 0));
 	}
 
 }
