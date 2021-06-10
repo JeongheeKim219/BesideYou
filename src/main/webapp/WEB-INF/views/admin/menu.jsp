@@ -49,14 +49,14 @@
 				</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/admin/memberView"> <i
-						class="metismenu-icon pe-7s-users"></i> 회원 관리 <i
+						class="metismenu-icon pe-7s-users"></i> 회원관리 <i
 						class="metismenu-state-icon pe-7s-users-down caret-left"></i>
 				</a>
 					<ul>
-						<li><a href=""> <i
-								class="metismenu-icon"></i> 회원 통계
+						<li><a href="${pageContext.request.contextPath}/admin/memberSummary"> <i
+								class="metismenu-icon"></i> 회원통계
 						</a></li>
-						<li><a href="elements-dropdowns.html"> <i
+						<li><a href="${pageContext.request.contextPath}/admin/memberView"> <i
 								class="metismenu-icon"> </i> 회원목록
 						</a></li>
 						<li><a href="elements-icons.html"> <i

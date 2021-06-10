@@ -30,14 +30,9 @@ public class AdminController {
 	@RequestMapping("/index")
 	public String index(Model model) {
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
 		
-		String now = formatter.format(date);
-		int newMemberCount = selectNewMemberList().size();
 		
-		model.addAttribute("now", now);
-		model.addAttribute("newMemberCount", newMemberCount);
+		
 		
 		return "admin/index";
 	}
@@ -52,10 +47,19 @@ public class AdminController {
 	
 	/**
 	 * 3. 회원 통계 페이지로 이동
+	 * 1) 당일 신규 회원 수 조회 기능
 	 */
 	
 	@RequestMapping("/memberSummary")
-	public String summary() {
+	public String summary(Model model) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		String now = formatter.format(date);
+		int newMemberCount = selectNewMemberList().size();
+		
+		model.addAttribute("now", now);
+		model.addAttribute("newMemberCount", newMemberCount);
+		
 		return "admin/memberSummary";
 	}
 	
