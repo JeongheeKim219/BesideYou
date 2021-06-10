@@ -1,6 +1,7 @@
 package bu.mvc.respsitory;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +18,7 @@ public interface AdminRepository extends JpaRepository<Member, String> {
 	//@Query("select m from Member m where m.dateOfReg = CURRENT_DATE")
 	//List<Member> findNewMembers();
 	
-	List<Member> findByDateOfRegBetween(LocalDateTime start, LocalDateTime end);
+	List<Member> findByDateOfRegBetween(Date. start, LocalDateTime end);
 	
 	
 }
