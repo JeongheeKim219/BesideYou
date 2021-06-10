@@ -18,7 +18,7 @@ public interface AdminRepository extends JpaRepository<Member, String> {
 	//@Query("select m from Member m where m.dateOfReg = CURRENT_DATE")
 	//List<Member> findNewMembers();
 	
-	List<Member> findByDateOfRegBetween(Date. start, LocalDateTime end);
+	List<Member> findByDateOfRegBetween(LocalDateTime start, LocalDateTime end);
 	
 	
 }
