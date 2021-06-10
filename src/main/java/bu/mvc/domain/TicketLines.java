@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -32,5 +33,6 @@ public class TicketLines {
 	private LocalDateTime ticketLinesDate; //상담권 사용 일자
 	
 	@OneToOne
-	private Ticket ticketCode; //상담권 코드
+	@JoinColumn(name="ticket_code") //상담권 코드
+	private Ticket ticket;
 }

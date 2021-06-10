@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -36,12 +37,15 @@ public class Ticket {
 	private int ticketPrice; //상담권 총 가격
 
 	@ManyToOne
-	private Counselor counselorCode; //상담사 코드
+	@JoinColumn(name = "counselor_code") //상담사 코드
+	private Counselor counselor;
 	
 	@ManyToOne
-	private Member memberCode; //회원 코드
+	@JoinColumn(name = "member_code") //회원 코드
+	private Member member;
 	
 	@ManyToOne
-	private Discount discountCode; //할인코드
+	@JoinColumn(name = "discount_code") //할인코드
+	private Discount discount;
 	
 }
