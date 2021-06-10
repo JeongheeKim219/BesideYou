@@ -36,6 +36,11 @@ public class Counselor {
 	
 	@ManyToOne
 	private Member memberCode; // 회원코드
+
+	public Counselor(Long counselorCode) {
+		super();
+		this.counselorCode = counselorCode;
+	}
 	
 	
 	

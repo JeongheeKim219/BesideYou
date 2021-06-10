@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,9 +39,17 @@ public class Member {
 	private int memberState;
 	private int memberType;
 	
+	
 	private LocalDate dateOfBirth;//생년월일
 	
-	
+	@CreationTimestamp
 	private LocalDateTime dateOfReg;//가입일
+
+	public Member(Long memberCode) {
+		super();
+		this.memberCode = memberCode;
+	}
+	
+	
 	
 }
