@@ -1,5 +1,7 @@
 package bu.mvc.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -21,5 +23,7 @@ public class Counsel {
 	private Long counselorCode;
 	private int counselCategory;
 	private int counselState;
+	private LocalDateTime counselReqDate;
+	private LocalDateTime counselDate;
 	
 }
