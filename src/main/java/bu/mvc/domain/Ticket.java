@@ -47,5 +47,10 @@ public class Ticket {
 	@ManyToOne
 	@JoinColumn(name = "discount_code") //할인코드
 	private Discount discount;
+
+	
+	public Ticket(Long ticketCode) {
+		this.ticketCode = ticketCode;
+	}
 	
 }

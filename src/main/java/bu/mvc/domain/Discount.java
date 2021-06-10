@@ -23,4 +23,8 @@ public class Discount {
 	@SequenceGenerator(sequenceName = "discount_code_seq", allocationSize = 1, name = "discount_code_seq")
 	private Long discountCode;
 	private int discountRate;
+	
+	public Discount(Long discountCode) {
+		this.discountCode = discountCode;
+	}
 }
