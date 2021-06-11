@@ -137,17 +137,14 @@
                     <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
                     <!--/.background-holder-->
-                    <div class="container">
-                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
-                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                    <div class="container ">
+                        <div class="row pt-6 " data-inertia='{"weight":1.5}'>
+                            <div class="col-md-12 px-md-0 color-white text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Self Test</li>
-                                        </ol>
-                                    </div>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity mb-3" data-zanim='{"delay":0}'>우울증 검사</h1>
+                                    <div class="overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+		                                <h4 data-zanim='{"delay":0.1}'>나의 우울증 지수는 몇 점일까?</h4>
+                            		</div>
                                 </div>
                             </div>
                         </div>
@@ -156,57 +153,165 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-11 text-center">
+            <section class="background-11 ">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep.jpg" alt="Depression Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>우울증 검사</h5>
+                        <div class="col-12 mb-4">
+                            <div class="overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                <div data-zanim='{"delay":0}'><a class="d-inline-block color-7" href="#">Thomas Been</a>, &nbsp;<a class="d-inline-block color-7" href="#">May 15, 2017</a></div>
+                                <h4 data-zanim='{"delay":0.1}'>Tax impacts of lease accounting change</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-12"><img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/news-1.jpg" alt=""></div>
+                                <div class="col-12">
+                                    <div class="background-white p-5 radius-secondary">
+                                        <p class="dropcap">On 9 August 2016, HMRC released a consultation document to flag some potential tax impacts that a forthcoming change in lease accounting may have on the funding of plant and machinery. From 2019, lessees using IFRS (including FRS 101), as opposed to FRS 102 (UK GAAP), will no longer have to distinguish between finance and operating leases. All leases (except some small value leases or very short leases) will be capitalized on the lesseeâs balance sheet at the NPV of the future payments from the day the lease starts. This accounting change will not affect lessors. At the moment, the tax treatment typically depends on whether a lease is a âlong funding leaseâ or not. If it is, then it is the lessee who gets capital allowances (CAs). However, much anti-avoidance legislation is focused on the concept of finance leases and the IFRS change will interfere with that. In its consultation, HMRC has floated four options for addressing the issue. The first is broadly the status quo, with some tinkering. The others contain the more radical suggestion to move towards an accounts-based regime for taxing leases, using a system of debits and credits somewhat akin to the loan relationship regime and which would similarly eliminate the capital/revenue divide. ith such a proposal, including:</p><a class="d-block my-3 ml-4" href="#">gust-2016/tax-impacts-of-lease-accunting-changes#sthash.J6Ddydx2.dpuf</a>
+                                        <p>HMRC has identified several issues which should be addressed in conjunction with such a proposal, including: <ol>
+                                                <li>
+                                                    <p class="mb-2">Can HMRC trust companies to use âsensibleâ depreciation policies or will there need to be legislation for it?</p>
+                                                </li>
+                                                <li>
+                                                    <p class="mb-2">In order to avoid distorting the âlease or buyâ decision, the government may be willing to offer an enhanced deduction to lessees that would otherwise have qualified for the AIA.</p>
+                                                </li>
+                                                <li>
+                                                    <p class="mb-2">Could HMRC combine an accounts-based regime with giving the lessee an option to claim CAs on the âright of useâ asset?</p>
+                                                </li>
+                                            </ol>
+                                        </p>
+                                        <p>Inevitably, there is a long way to go on these issues. But the eventual outcome is potentially quite far-reaching for UK corporates â for example if HMRC can become comfortable on the issue of âsensibleâ depreciation policies without a lot of new anti-avoidance legislation.</p>
+                                        <p>If you have any questions on the tax implications of lease accounting please contact David Porter.</p>
                                     </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Depression</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="#" class="btn btn-info">시작하기</a>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row mt-6">
+                                        <div class="col-12">
+                                            <div class="background-white p-5 radius-tl-secondary radius-tr-secondary">
+                                                <h4>Top Comments</h4>
+                                                <div class="row my-5">
+                                                    <div class="col-2 text-center"><img class="radius-round" src="/assets/images/portrait-8.jpg" style="min-width: 35px; widht: 75px;" alt=""></div>
+                                                    <div class="col-10">
+                                                        <h5 class="mb-1">Post Heading</h5>
+                                                        <p class="fs--1 color-7">May 15, 2017 at 9:33 am</p>
+                                                        <p>Their work on our website and Internet marketing has made a significant different to our business. Weâve seen a 425% increase in quote requests from the website which has been pretty remarkable â but Iâd always like to see more!</p><a class="d-block my-3 text-right mr-4" href="#">Reply</a>
+                                                        <hr class="muted">
+                                                        <div class="row my-4">
+                                                            <div class="col-2 text-center"><img class="radius-round" src="/assets/images/square-1.jpg" style="min-width: 35px; widht: 75px;" alt=""></div>
+                                                            <div class="col-10">
+                                                                <h5 class="mb-1">Post Heading</h5>
+                                                                <p class="fs--1 color-7">May 15, 2017 at 9:33 am</p>
+                                                                <p>Writing case studies was a daunting task for us. We didnât know where to begin or what questions to ask, and clients never seemed to follow through when we asked. Elixir team did everything â with almost no time or effort for me!</p><a class="d-block my-3 text-right mr-4" href="#">Reply</a>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="muted">
+                                                    </div>
+                                                </div>
+                                                <div class="row my-4">
+                                                    <div class="col-2 text-center"><img class="radius-round" src="/assets/images/square-2.jpg" style="min-width: 35px; widht: 75px;" alt=""></div>
+                                                    <div class="col-10">
+                                                        <h5 class="mb-1">Post Heading</h5>
+                                                        <p class="fs--1 color-7">May 15, 2017 at 9:33 am</p>
+                                                        <p>As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails, but Elixir was highly recommended by many other Y-Combinator startups we knew. Elixir helped us run a ~6 week email campaign that brought us more leads than we had ever seen for a single effort.</p><a class="d-block my-3 text-right mr-4" href="#">Reply</a>
+                                                        <hr class="muted">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+                                                <h4>Leave A Comment</h4>
+                                                <form class="mt-4">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <input class="form-control background-white" type="text" placeholder="Your Name" aria-label="Text input with dropdown button">
+                                                        </div>
+                                                        <div class="col-12 mt-4">
+                                                            <input class="form-control background-white" type="email" placeholder="Email" aria-label="Text input with dropdown button">
+                                                        </div>
+                                                        <div class="col-12 mt-4">
+                                                            <textarea class="form-control background-white" rows="10" placeholder="Leave your comment here..." aria-label="Text input with dropdown button"></textarea>
+                                                        </div>
+                                                        <div class="col-12 mt-4">
+                                                            <button class="btn btn-primary" type="Submit"> <span class="color-white fw-600">Submit Comment</span></button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                   		<div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress.jpg" alt="Stress Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>스트레스 검사</h5>
+                        <div class="col-lg-4 text-center ml-auto mt-5 mt-lg-0">
+                            <div class="row px-2">
+                                <div class="col">
+                                    <div class="background-white p-5 radius-secondary">
+                                        <div class="overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll"><img class="radius-round" data-zanim='{"delay":0}' src="/assets/images/portrait-8.jpg" alt="">
+                                            <h5 class="text-capitalize mt-3 mb-0" data-zanim='{"delay":0.1}'>thomas been</h5>
+                                            <p class="mb-0 mt-3" data-zanim='{"delay":0.2}'>Flattering high rise easy care flared fit - cut straight leg that flares at the ankle comfy tight. Regular fit viscose elastane leather black wool.</p>
+                                            <div class="pt-4" data-zanim='{"delay":0.3}'><a class="d-inline-block" href="#"><span class="fa fa-linkedin-square fs-2 mx-2 color-8"></span></a><a class="d-inline-block" href="#"><span class="fa fa-twitter-square fs-2 mx-2 color-8"></span></a><a class="d-inline-block" href="#"><span class="fa fa-facebook-square fs-2 mx-2 color-8"></span></a></div>
+                                        </div>
                                     </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Stress</h6>
+                                </div>
+                            </div>
+                            <div class="row mt-5 px-2">
+                                <div class="col">
+                                    <h5 class="mb-3">Related Articles</h5>
+                                    <div class="background-white pb-7 radius-secondary">
+                                        <div class="owl-carousel owl-theme owl-nav-outer owl-dot-round mt-4" data-options='{"items":1}'>
+                                            <div class="item">
+                                                <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/9.jpg" alt="Featured Image">
+                                                    <div class="px-4 pt-4"><a href="news.html">
+                                                            <h5>Tax impacts of lease mean accounting change</h5>
+                                                        </a>
+                                                        <p class="color-7">By Paul O'Sullivan</p>
+                                                        <p class="mt-3">HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...</p><a href="#">Learn More &xrarr;</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/10.jpg" alt="Featured Image">
+                                                    <div class="px-4 pt-4"><a href="news.html">
+                                                            <h5>What brexit means for data protection law</h5>
+                                                        </a>
+                                                        <p class="color-7">By Enrico Ambrosi</p>
+                                                        <p class="mt-3">Assuming that the referendum is not ignored completely, there are two possible futures for the UK...</p><a href="#">Learn More &xrarr;</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/11.jpg" alt="Featured Image">
+                                                    <div class="px-4 pt-4"><a href="news.html">
+                                                            <h5>The growing meanace of social engineering fraud</h5>
+                                                        </a>
+                                                        <p class="color-7">By Robson</p>
+                                                        <p class="mt-3">Social engineering involves the collection of information from various sources about a target...</p><a href="#">Learn More &xrarr;</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="#" class="btn btn-info">시작하기</a>
+                                </div>
+                            </div>
+                            <div class="row px-2 mt-5">
+                                <div class="col">
+                                    <div class="background-white p-5 radius-secondary">
+                                        <h5>Tags</h5>
+                                        <ul class="nav tags mt-3 fs--1">
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Advisory</a></li>
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Finance</a></li>
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Ideas</a></li>
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Data</a></li>
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Market</a></li>
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Tax</a></li>
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Consulting</a></li>
+                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Accounting</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
                     </div>
                     <!--/.row-->
                 </div>
@@ -317,6 +422,7 @@
         <script src="/assets/js/config.js"></script>
         <script src="/assets/js/zanimation.js"></script>
         <script src="/assets/js/inertia.js"></script>
+        <script src="/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
         <script src="/assets/js/core.js"></script>
         <script src="/assets/js/main.js"></script>
     </body>
