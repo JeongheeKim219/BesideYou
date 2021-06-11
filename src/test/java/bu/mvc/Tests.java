@@ -33,6 +33,12 @@ class Tests {
 			rep.save(new Contact(null, 0, "제목_"+i, "내용_"+i, 0, new Member(4L)));
 		}
 	}
+	
+	@Test
+	void selectById() {
+		Contact contact = rep.findById(21L).orElse(null);
+		System.out.println("Contact : " + contact);
+	}
 
 }
 

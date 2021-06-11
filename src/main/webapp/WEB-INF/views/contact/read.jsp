@@ -81,7 +81,6 @@
 			<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
 			<form name="requestForm" method="post" id="requestForm">
 				<input type=hidden name="contactCode" value="${contact.contactCode}">
-				<input type=hidden name="password" value="" id="password">
 				<input type=button value="수정하기" >
 				<input type=button value="삭제하기" >
 				<input type=button value="답변하기" >
