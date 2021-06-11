@@ -16,5 +16,15 @@ public interface ContactService {
 	 * 문의글 등록하기
 	 * */
 	void insert(Contact contact);
+	
+	/**
+	 * 상세보기
+	 * */
+	Contact selectById(Long contactCode);
+	
+	/**
+	 * 삭제하기
+	 * */
+	void delete(Long contactCode);
 
 }

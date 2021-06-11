@@ -7,8 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Contact;
 import bu.mvc.hs.service.ContactService;
@@ -42,9 +44,33 @@ public class ContactController {
 	 * 문의글 작성하기
 	 * */
 	@RequestMapping("/insert")
-	public void insert(Contact contact) {
+	public String insert(Contact contact) {
 		contactService.insert(contact);
+		return "redirect:/contact/list";
 	}
+	
+	/**
+	 * 상세보기
+	 * */
+	@RequestMapping("/read/{contactCode}")
+	public ModelAndView selectById(@PathVariable Long contactCode) {
+		Contact contact = contactService.selectById(contactCode);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("contact/read");
+		mv.addObject("contact", contact);
+		return mv;
+	}
+	
+	/**
+	 * 삭제하기
+	 * */
+	@RequestMapping("/delete")
+	public String delete(Long contactCode) {
+		contactService.delete(contactCode);
+		return "redirect:/contact/list";
+	}
+	
 
 }
 

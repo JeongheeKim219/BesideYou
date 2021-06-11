@@ -33,6 +33,22 @@ public class ContactServiceImpl implements ContactService {
 		contactRepository.save(contact);
 	}
 
+	/**
+	 * 상세보기
+	 * */
+	@Override
+	public Contact selectById(Long contactCode) {
+		return contactRepository.findById(contactCode).orElse(null);
+	}
+
+	/**
+	 * 삭제하기
+	 * */
+	@Override
+	public void delete(Long contactCode) {
+		contactRepository.deleteById(contactCode);
+	}
+
 }
 
 
