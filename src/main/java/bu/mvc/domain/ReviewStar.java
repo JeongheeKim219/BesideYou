@@ -41,6 +41,9 @@ public class ReviewStar {
 	
 	private double star; // 별점
 	private String reviewContent; // 리뷰 내용
+	
+	
+
 	public ReviewStar(Long reviewCode, Member memberCode, Counselor counselorCode, Counsel counselCode, double star,
 			String reviewContent) {
 		super();
@@ -51,6 +54,9 @@ public class ReviewStar {
 		this.star = star;
 		this.reviewContent = reviewContent;
 	}
+
+
+
 	public ReviewStar(Long reviewCode) {
 
 		this.reviewCode = reviewCode;
