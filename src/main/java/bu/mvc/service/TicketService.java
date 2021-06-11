@@ -2,6 +2,7 @@ package bu.mvc.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import bu.mvc.domain.Ticket;
@@ -11,16 +12,16 @@ public interface TicketService {
 	/**
 	 * 상담권 구매 목록 전체 보기
 	 * */
-	List<Ticket> selectAll(Pageable pageable);
+	Page<Ticket> selectAll(Pageable pageable);
 
 	/**
-	 * id로 상담권 구매 목록 검색하기
+	 * 회원 id로 상담권 구매 목록 검색하기
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 * */
-	List<Ticket> selectBy(Pageable pageable, String memberId);
+	List<Ticket> searchBy(String id, Pageable pageable);
 	
 	/**
-	 * 상담권 코드로 상담권 검색하기(상세보기 등에 필요)
+	 * 상담권 코드로 상담권 검색하기(상세보기, 환불, 삭제시)
 	 * */
 	Ticket selectBy(Long ticketCode);
 
@@ -30,17 +31,18 @@ public interface TicketService {
 	void insert(Ticket ticket);
 	
 	/**
-	 * 상담권 사용하기(잔여량 감소)
-	 *  - 사용할 때마다 잔여량 -1 (잔여량이 남아있을 때만 : state true)
+	 * 상담권 사용하기
+	 *  - 잔여량이 남아있을 때만 사용 가능.
+	 *  - 사용할 때마다 잔여량 -1
 	 * */
-	void update(Ticket ticket, boolean state);
+	void useTicket(Long ticketCode);
 	
 	/**
 	 * 상담권 환불하기
 	 *  - 잔여량이 남아있을 때만 환불 가능.
 	 *  - 잔여량이 남아있을 경우 잔여량을 0으로 만든다.
 	 * */
-	void update(Long tickKetCode, int ticketRemain, boolean state);
+	void refundTicket(Long ticketCode);
 	
 	/**
 	 * 상담권 삭제하기
