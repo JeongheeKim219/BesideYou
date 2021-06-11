@@ -51,136 +51,136 @@ $(function(){
     </tr>
     <tr>
       <td>나는 갑자기 울거나, 울고 싶을 때가 있다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques3"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques3"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques3"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques3"> </td>
     </tr>
     <tr>
-      <td id="ques1">나는 잠을 잘 못자거나 아침에 일찍 깬다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      <td >나는 잠을 잘 못자거나 아침에 일찍 깬다.</td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques4"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques4"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques4"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques4"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 평상시와 같이 잘 먹는다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques5"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques5"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques5"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques5"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 이성과 이야기하고 함께 있기를 좋아한다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques6"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques6"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques6"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques6"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 체중이 준 것 같다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques7"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques7"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques7"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques7"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 변비가 있다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques8"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques8"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques8"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques8"> </td>
     </tr>
     <tr>
       <td id="ques1">심장이 평상시보다 빨리 뛰거나 두근거린다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques9"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques9"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques9"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques9"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 별 이유없이 몸이 나른하고 피곤하다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques10"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques10"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques10"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques10"> </td>
     </tr>
     <tr>
       <td id="ques1">내 정신은 이전처럼 맑다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques11"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques11"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques11"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques11"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 어떤 일이든지 전처럼 쉽게 처리한다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques12"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques12"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques12"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques12"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 안절부절해서 가만히 있을 수가 없다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques13"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques13"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques13"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques13"> </td>
     </tr>
     <tr>
       <td id="ques1">나의 장래는 희망적이라고 느낀다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques14"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques14"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques14"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques14"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 평소보다 짜증이 많아졌다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques15"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques15"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques15"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques15"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 매사에 결단력이 있다고 생각한다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques16"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques16"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques16"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques16"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 유익하고 필요한 사람이라고 생각한다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques17"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques17"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques17"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques17"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 내 삶이 충만하고 의의가 있다고 느낀다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques18"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques18"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques18"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques18"> </td>
     </tr>
     <tr>
       <td id="ques1">내가 죽어야 남들이 편할 것 같다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques19"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques19"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques19"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques19"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 전과 같이 즐겁게 일한다.</td>
-      	<td><input class="form-check-input" type="radio" value="4" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="1" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="4" name="ques20"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques20"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques20"> </td>
+		<td><input class="form-check-input"  type="radio" value="1" name="ques20"> </td>
     </tr>
     <tr>
       <td id="ques1">나는 평소보다 짜증이 많아졌다.</td>
-      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
-		<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+      	<td><input class="form-check-input" type="radio" value="1" name="ques21"> </td>
+		<td><input class="form-check-input"  type="radio" value="2" name="ques21"> </td>
+		<td><input class="form-check-input"  type="radio" value="3" name="ques21"> </td>
+		<td><input class="form-check-input"  type="radio" value="4" name="ques21"> </td>
     </tr>
     
     
