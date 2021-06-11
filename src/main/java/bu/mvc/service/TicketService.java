@@ -26,7 +26,7 @@ public interface TicketService {
 	Ticket selectByCode(Long ticketCode);
 
 	/**
-	 * 상담권 추가하기(구매)
+	 * 상담권 구매하기
 	 * */
 	void insert(Ticket ticket);
 	

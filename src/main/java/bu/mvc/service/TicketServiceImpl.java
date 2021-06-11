@@ -61,6 +61,11 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void delete(Long ticketCode) {
+		Ticket ticket = ticketRepository.findById(ticketCode).orElse(null);
+		
+		if(ticket==null || ticket.getTicketRemain()>0) {
+			throw new RuntimeException("존재하지 않는 상담권이거나 잔여량이 남은 상담권입니다.");
+		}
 		ticketRepository.deleteById(ticketCode);
 	}
 
