@@ -41,7 +41,6 @@ public class Member {
 	private int memberType;
 
 	private LocalDate dateOfBirth;//생년월일
-	private LocalDateTime dateOfReg;//가입일
 	
 
 	@CreationTimestamp
@@ -50,12 +49,12 @@ public class Member {
 	public Member(Long memberCode) {
 		super();
 		this.memberCode = memberCode;
+	}
 
 
 	
 	public Member(Long memberCode, String id, String password, String name, String alias, String memberAddr,
-			String phone, String email, int memberState, int memberType, LocalDate dateOfBirth,
-			LocalDateTime dateOfReg) {
+			String phone, String email, int memberState, int memberType, LocalDate dateOfBirth) {
 		this.memberCode = memberCode;
 		this.id = id;
 		this.password = password;
@@ -67,7 +66,6 @@ public class Member {
 		this.memberState = memberState;
 		this.memberType = memberType;
 		this.dateOfBirth = dateOfBirth;
-		this.dateOfReg = dateOfReg;
 
 	}
 	
