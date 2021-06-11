@@ -25,11 +25,13 @@ import bu.mvc.respsitory.NoticeRepository;
 class Tests {
 	
 	@Autowired
-	private ContactReplyRepository rep;
+	private ContactRepository rep;
 	
 	@Test
 	void insert() {
-		rep.save(new ContactReply(null, "내용입니다.", new Contact(9L)));
+		for(int i=0; i<=100; i++) {
+			rep.save(new Contact(null, 0, "제목_"+i, "내용_"+i, 0, new Member(4L)));
+		}
 	}
 
 }
