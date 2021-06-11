@@ -49,6 +49,17 @@ public class Counsel {
 	public Counsel(Long counselCode) {
 		this.counselCode = counselCode;
 	}
+
+	public Counsel(Long counselCode, Member member, Counselor counselor, int counselCategory, int counselState,
+			Date counselDate) {
+		this.counselCode = counselCode;
+		this.member = member;
+		this.counselor = counselor;
+		this.counselCategory = counselCategory;
+		this.counselState = counselState;
+		this.counselDate = counselDate;
+	}
+	
 	
 	
 	

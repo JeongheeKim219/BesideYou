@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -26,5 +27,6 @@ public class Speciality {
 	private String specialityName;
 	
 	@ManyToOne
+	@JoinColumn(name = "counselor_code")
 	private Counselor counselorCode;
 }

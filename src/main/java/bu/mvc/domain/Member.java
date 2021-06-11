@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,16 +38,17 @@ public class Member {
 	private String email;
 	private int memberState;
 	private int memberType;
-
+	
+	
 	private LocalDate dateOfBirth;//생년월일
 	
-
 	@CreationTimestamp
 	private LocalDateTime dateOfReg;//가입일
 
 	public Member(Long memberCode) {
 		super();
 		this.memberCode = memberCode;
+
 	}
 
 
@@ -67,9 +67,9 @@ public class Member {
 		this.memberType = memberType;
 		this.dateOfBirth = dateOfBirth;
 
+
 	}
 	
 	
 	
-
 }
