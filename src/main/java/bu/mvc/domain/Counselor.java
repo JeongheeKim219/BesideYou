@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -35,15 +36,13 @@ public class Counselor {
 	private int counselorState;
 	
 	@ManyToOne
-	private Member memberCode; // 회원코드
-<<<<<<< HEAD
+	@JoinColumn(name="member_code")
+	private Member member; // 회원코드
 
 	public Counselor(Long counselorCode) {
 		super();
 		this.counselorCode = counselorCode;
 	}
-=======
->>>>>>> main
 	
 	
 	
