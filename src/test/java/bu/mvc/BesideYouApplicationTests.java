@@ -23,4 +23,5 @@ class BesideYouApplicationTests {
 		testRep.save(new TestJPA(1, "확인1"));
 	}
 
+	
 }
