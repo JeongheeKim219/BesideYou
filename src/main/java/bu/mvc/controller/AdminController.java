@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Member;
 import bu.mvc.service.AdminService;
 
@@ -30,11 +31,24 @@ public class AdminController {
 	 */
 	@RequestMapping("/index")
 	public String index(Model model) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		String now = formatter.format(date);
+		
+		int newRegularCount = selectNewByType(0).size();
+		int newCounselorCount = selectNewByType(1).size();
+		int newCounselCount = countCounselByState(0).size();
+		
+		model.addAttribute("now", now); 
+		model.addAttribute("newRegularCount", newRegularCount);
+		model.addAttribute("newCounselorCount", newCounselorCount);
+		model.addAttribute("newCounselCount", newCounselCount);
+		
 		return "admin/index";
 	}
 	
 	/**
-	 * 2. 신규 회원 타입별 가입자 인원 조회
+	 * 2. 신규 회원 타입별 가입자 인원수 조회
 	 */
 	public List<Member> selectNewByType(int memberType) {
 		return adminService.selectNewByType(memberType);
@@ -48,15 +62,7 @@ public class AdminController {
 	
 	@RequestMapping("/memberSummary")
 	public String summary(Model model) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		String now = formatter.format(date);
-		/*
-		 * int newMemberCount = selectNewMemberList().size();
-		 * 
-		 * model.addAttribute("now", now); model.addAttribute("newMemberCount",
-		 * newMemberCount);
-		 */
+	
 		
 		return "admin/memberSummary";
 	}
@@ -77,7 +83,12 @@ public class AdminController {
 		return "admin/memberView";
 	}
 	
-	
+	/**
+	 * 5. 상담 타입별 조회
+	 */
+	public List<Counsel> countCounselByState(int state){
+		return adminService.countCounselByState(state);
+	}
 	
 	
 }
