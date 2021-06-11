@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.Ticket;
 import bu.mvc.domain.TicketLines;
+import bu.mvc.respsitory.RefundRepository;
 import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.TicketRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,12 +29,12 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Ticket> searchBy(String id, Pageable pageable) {
-		return ticketRepository.findByMemberIdContaining(id, pageable);
+	public List<Ticket> searchById(String id, Pageable pageable) {
+		return ticketRepository.findByMemberIdLike(id, pageable);
 	}
 
 	@Override
-	public Ticket selectBy(Long ticketCode) {
+	public Ticket selectByCode(Long ticketCode) {
 		return ticketRepository.findById(ticketCode).orElse(null);
 	}
 
@@ -47,21 +48,15 @@ public class TicketServiceImpl implements TicketService {
 	public void useTicket(Long ticketCode) {
 		Ticket ticket = ticketRepository.findById(ticketCode).orElse(null);
 		int remain = ticket.getTicketRemain(); //검색된 상담권의 현재 잔여량
-		if(ticket.getTicketRemain()<=0) { //잔여량이 없을 경우
+		
+		//상담권 잔여량이 없을 경우
+		if(ticket.getTicketRemain()<=0) {
 			throw new RuntimeException("잔여량이 없어 사용할 수 없습니다.");
 		}
-		ticket.setTicketRemain(remain-1); //잔여량이 있을 경우 잔여량 감소
-		ticketLinesRepository.save(new TicketLines(new Ticket(ticketCode))); //상담권 사용 내역에 저장
-	}
-
-	//상담권 환불하기(잔여량을 '0'으로)
-	@Override
-	public void refundTicket(Long ticketCode) {
-		Ticket ticket = ticketRepository.findById(ticketCode).orElse(null);
-		if(ticket.getTicketRemain()<=0) { //잔여량이 없을 경우
-			throw new RuntimeException("소진된 상담권은 환불할 수 없습니다.");
-		}
-		ticket.setTicketRemain(0); //잔여량이 있을 경우 잔여량을 '0'으로
+		
+		//상담권 잔여량이 있을 경우 잔여량 감소
+		ticket.setTicketRemain(remain-1);
+		ticketLinesRepository.save(new TicketLines(ticket)); //상담권 사용 내역에 저장
 	}
 
 	@Override

@@ -23,17 +23,29 @@ public interface RefundService {
 	/**
 	 * 환불 신청 내역 상세보기
 	 * */
-	Refund selectBy(Long refundCode);
+	Refund selectByCode(Long refundCode);
 	
 	/**
-	 * 환불 신청 내역 수정하기
-	 *  - 환불 완료 후 상태 변경 등
+	 * 환불 신청하기
 	 * */
+	void insert(Refund refund);
 	
+	/**
+	 * 환불 처리하기
+	 *  1. 상담권 잔여량이 남아있을 때만 환불 가능.
+	 *  2. 상담권 잔여량이 남아있을 경우 잔여량을 0으로 만든다.
+	 *  3. 환불 불가 결정 or 환불 완료시 신청 내역의 진행 상태를 변경한다.
+	 * */
+	void refundTicket(Long ticketCode);
+	
+	/**
+	 * 환불 신청 내역 상태 변경하기 (0:처리중 / 1:환불불가 / 2:환불완료)
+	 * */
+	void updateState(Long refundCode, int refundState);
 	
 	/**
 	 * 환불 신청 내역 삭제하기
 	 * */
-	
+	void delete(Long refundCode);
 	
 }

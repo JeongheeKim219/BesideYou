@@ -9,8 +9,8 @@ import bu.mvc.domain.TicketLines;
 
 public interface TicketLinesRepository extends JpaRepository<TicketLines, Long>{
 	
-	List<TicketLines> findByTicketMemberIdContaining(String id, Pageable pageable);
+	List<TicketLines> findByTicketMemberIdLike(String id, Pageable pageable);
 	
-	List<TicketLines> findByTicketCounselorCounselorCodeContaining(Long counselorCode, Pageable pageable);
+	List<TicketLines> findByTicketCounselorCounselorCodeLike(Long counselorCode, Pageable pageable);
 
 }

@@ -25,13 +25,13 @@ public class TicketLinesServiceImpl implements TicketLinesService {
 	}
 
 	@Override
-	public List<TicketLines> searchBy(String id, Pageable pageable) {
-		return ticketLinesRepository.findByTicketMemberIdContaining(id, pageable);
+	public List<TicketLines> searchById(String id, Pageable pageable) {
+		return ticketLinesRepository.findByTicketMemberIdLike(id, pageable);
 	}
 	
 	@Override
-	public List<TicketLines> searchBy(Long counselorCode, Pageable pageable) {
-		return ticketLinesRepository.findByTicketCounselorCounselorCodeContaining(counselorCode, pageable);
+	public List<TicketLines> searchByCsrCode(Long counselorCode, Pageable pageable) {
+		return ticketLinesRepository.findByTicketCounselorCounselorCodeLike(counselorCode, pageable);
 	}
 
 	@Override

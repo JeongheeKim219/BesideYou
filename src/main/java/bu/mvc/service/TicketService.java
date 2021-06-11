@@ -18,12 +18,12 @@ public interface TicketService {
 	 * 회원 id로 상담권 구매 목록 검색하기
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 * */
-	List<Ticket> searchBy(String id, Pageable pageable);
+	List<Ticket> searchById(String id, Pageable pageable);
 	
 	/**
 	 * 상담권 코드로 상담권 검색하기(상세보기, 환불, 삭제시)
 	 * */
-	Ticket selectBy(Long ticketCode);
+	Ticket selectByCode(Long ticketCode);
 
 	/**
 	 * 상담권 추가하기(구매)
@@ -36,13 +36,6 @@ public interface TicketService {
 	 *  - 사용할 때마다 잔여량 -1
 	 * */
 	void useTicket(Long ticketCode);
-	
-	/**
-	 * 상담권 환불하기
-	 *  - 잔여량이 남아있을 때만 환불 가능.
-	 *  - 잔여량이 남아있을 경우 잔여량을 0으로 만든다.
-	 * */
-	void refundTicket(Long ticketCode);
 	
 	/**
 	 * 상담권 삭제하기
