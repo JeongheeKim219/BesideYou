@@ -30,19 +30,14 @@ public class AdminController {
 	 */
 	@RequestMapping("/index")
 	public String index(Model model) {
-		
-		
-		
-		
-		
 		return "admin/index";
 	}
 	
 	/**
-	 * 2. 신규 회원 수 조회
+	 * 2. 신규 회원 타입별 가입자 인원 조회
 	 */
-	public List<Member> selectNewMemberList() {
-		return adminService.selectNewMemberList();
+	public List<Member> selectNewByType(int memberType) {
+		return adminService.selectNewByType(memberType);
 	}
 	
 	
@@ -56,10 +51,12 @@ public class AdminController {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String now = formatter.format(date);
-		int newMemberCount = selectNewMemberList().size();
-		
-		model.addAttribute("now", now);
-		model.addAttribute("newMemberCount", newMemberCount);
+		/*
+		 * int newMemberCount = selectNewMemberList().size();
+		 * 
+		 * model.addAttribute("now", now); model.addAttribute("newMemberCount",
+		 * newMemberCount);
+		 */
 		
 		return "admin/memberSummary";
 	}
