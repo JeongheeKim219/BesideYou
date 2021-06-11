@@ -11,16 +11,10 @@ import org.springframework.test.annotation.Commit;
 
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
-import bu.mvc.domain.Price;
-import bu.mvc.domain.Speciality;
-import bu.mvc.domain.Tag;
-import bu.mvc.domain.TestJPA;
-import bu.mvc.respsitory.MemberRepository;
-import bu.mvc.respsitory.PriceRepository;
-import bu.mvc.respsitory.SpecialityRepository;
-import bu.mvc.respsitory.TagRepository;
-import javassist.compiler.MemberCodeGen;
-import bu.mvc.respsitory.CounselorRepository;
+
+
+
+import bu.mvc.respsitory.AdminRepository;
 
 
 @SpringBootTest
