@@ -26,7 +26,6 @@ public class Notice { //공지사항
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_code_seq")
 	@SequenceGenerator(sequenceName = "notice_code_seq", allocationSize = 1, name = "notice_code_seq")
 	private Long noticeCode; //공지사항 번호
-	private String noticeType; //공지사항 종류
 	private String noticeTitle; //공지사항 제목
 	private String noticeContent; //공지사항 내용
 	
@@ -34,10 +33,9 @@ public class Notice { //공지사항
 	private Date noticeDate; //공지사항 등록일
 	private int noticeNum; //공지사항 조회수
 	
-	public Notice(Long noticeCode, String noticeType, String noticeTitle, String noticeContent, int noticeNum) {
+	public Notice(Long noticeCode, String noticeTitle, String noticeContent, int noticeNum) {
 		super();
 		this.noticeCode = noticeCode;
-		this.noticeType = noticeType;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
 		this.noticeNum = noticeNum;
