@@ -31,10 +31,9 @@
 	rel="stylesheet">
 <style>
 
-#rowWidjet{
-
-	
-
+#rowWidget{
+	display: flex;
+    flex-direction: row;
 }
 </style>
 </head>
@@ -165,10 +164,10 @@
 				<!--  상태 내역 위젯 시작 -->
 				<div class="row">
 				<div class="col-md-12">
-					<div class="main-card mb-3 card" id="rowWidget">
-					<div class="card-header"><h4>상담 신청 상황</h4></div>
+					<div class="main-card mb-3 card">
+					<div class="card-header"><h5>상담 신청 상황</h5></div>
 						<div class="card-body">
-							<ul class="list-group">
+							<ul class="list-group" id="rowWidget">
 								<li class="list-group-item">
 									<div class="widget-content p-0">
 										<div class="widget-content-outer">
