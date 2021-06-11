@@ -140,12 +140,12 @@
 							<div class="card mb-3 widget-content bg-premium-dark">
 								<div class="widget-content-wrapper text-white">
 									<div class="widget-content-left">
-										<div class="widget-heading">Products Sold</div>
+										<div class="widget-heading">당일 매출액</div>
 										<div class="widget-subheading">Revenue streams</div>
 									</div>
 									<div class="widget-content-right">
 										<div class="widget-numbers text-warning">
-											<span>$14M</span>
+											<span><fmt:formatNumber currencyCode="KRW" currencySymbol="원" value="${dayIncome}"/></span>
 										</div>
 									</div>
 								</div>

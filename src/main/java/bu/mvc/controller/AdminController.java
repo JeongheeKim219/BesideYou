@@ -43,6 +43,7 @@ public class AdminController {
 		model.addAttribute("newRegularCount", newRegularCount);
 		model.addAttribute("newCounselorCount", newCounselorCount);
 		model.addAttribute("newCounselCount", newCounselCount);
+		model.addAttribute("dayIncome", incomeToday());
 		
 		return "admin/index";
 	}
@@ -88,6 +89,15 @@ public class AdminController {
 	 */
 	public List<Counsel> countCounselByState(int state){
 		return adminService.countCounselByState(state);
+	}
+	
+	
+	/**
+	 * 6. 당일 상담권 매출 조회
+	 */
+	
+	public int incomeToday() {
+		return adminService.incomeToday();
 	}
 	
 	
