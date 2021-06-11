@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -33,12 +35,14 @@ public class AdminService {
 	@Autowired 
 	private TicketRepository ticketRep;
 	
+	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23,59,59));
+	private LocalDateTime end = LocalDateTime.now();
+
+	
 	/**
 	 * 1. 신규 상담사와 일반회원 모두 조회
 	 */
-	public List<Member> selectNewMemberList(){
-		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
-		LocalDateTime end = LocalDateTime.now();
+	public List<Member> selectNewMemberList(){;
 		return adminRep.findByDateOfRegBetween(start, end);
 	}
 	
@@ -66,19 +70,19 @@ public class AdminService {
 		return adminRep.findAll(pageable);
 	}
 	
+	
 	/**
 	 * 3. 당일 새로운 상담 신청 조회
 	 */
-	public List<Counsel> countCounselByState(int state){
-		return counselRep.findByCounselStateIs(state);
+	public List<Counsel> countNewCounsel(){ 
+		return counselRep.findAllByCounselReqDateBetween(start, end);
 	}
+	 
 	
 	/**
 	 * 4. 당일 상품권 구매 조회
 	 */
 	public List<Ticket> salesToday(){
-		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
-		LocalDateTime end = LocalDateTime.now();
 		return ticketRep.findByTicketDateBetween(start, end);
 	}
 
@@ -93,9 +97,31 @@ public class AdminService {
 		for(Ticket ticket : ticketList) {
 			income += (ticket.getTicketAmount() * ticket.getTicketPrice()) * (1 - ticket.getDiscount().getDiscountRate() * 0.01);
 		}
-		
 		return income;
 	}
 	
+	
+	/**
+	 * 6. 상담 신청 현황 조회 
+	 */
+	public Map<String, List<Counsel>> counselByState(){
+		Map<String, List<Counsel>> map = new HashMap<>();
+	  	int month = LocalDate.now().getMonthValue();
+		
+		map.put("pending", counselRep.findAllByCounselState(0));
+		map.put("denied", counselRep.findAllByCounselState(1));
+		map.put("approval", counselRep.findAllByCounselState(2));
+		
+		//상태가 완료인 경우
+		List<Counsel> doneList = counselRep.findAllByCounselState(3);
+		for (Counsel counsel : doneList) {
+			if (month == counsel.getCounselDate().getMonthValue()) {
+				doneList.add(counsel);
+			}
+		}
+		map.put("done", doneList);
+		
+		return map;
+	}
 	
 }

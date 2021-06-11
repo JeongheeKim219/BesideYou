@@ -3,6 +3,7 @@ package bu.mvc.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,15 +36,12 @@ public class AdminController {
 		Date date = new Date();
 		String now = formatter.format(date);
 		
-		int newRegularCount = selectNewByType(0).size();
-		int newCounselorCount = selectNewByType(1).size();
-		int newCounselCount = countCounselByState(0).size();
-		
 		model.addAttribute("now", now); 
-		model.addAttribute("newRegularCount", newRegularCount);
-		model.addAttribute("newCounselorCount", newCounselorCount);
-		model.addAttribute("newCounselCount", newCounselCount);
+		model.addAttribute("newRegularCount", selectNewByType(0).size());
+		model.addAttribute("newCounselorCount", selectNewByType(1).size());
+		model.addAttribute("newCounselCount", countNewCounsel().size());
 		model.addAttribute("dayIncome", incomeToday());
+		model.addAttribute("stateMap", countCounselByState());
 		
 		return "admin/index";
 	}
@@ -85,20 +83,27 @@ public class AdminController {
 	}
 	
 	/**
-	 * 5. 상담 타입별 조회
+	 * 5. 해당 월 상담상태별 조회
 	 */
-	public List<Counsel> countCounselByState(int state){
-		return adminService.countCounselByState(state);
+	public Map<String, List<Counsel>> countCounselByState(){
+		return adminService.counselByState();
 	}
+	 
 	
 	
 	/**
 	 * 6. 당일 상담권 매출 조회
 	 */
-	
 	public int incomeToday() {
 		return adminService.incomeToday();
 	}
 	
+	
+	/**
+	 * 7. 당일 상담 신청 내역 조회
+	 */
+	public List<Counsel> countNewCounsel() {
+		return adminService.countNewCounsel();
+	}
 	
 }
