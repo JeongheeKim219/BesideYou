@@ -35,6 +35,13 @@
 	display: flex;
 	flex-direction: row;
 }
+#rowWidgetContainer{
+	flex-wrap: wrap;
+}
+.direction{
+	display : flex;
+	flex-direction: column;
+}
 </style>
 </head>
 <body>
@@ -153,7 +160,7 @@
 								<div class="widget-content-right">
 									<div class="widget-numbers text-warning">
 										<span><fmt:formatNumber currencyCode="KRW"
-												currencySymbol="원" value="${dayIncome}" /></span>
+												currencySymbol="원" value="${dayIncome}"/></span>
 									</div>
 								</div>
 							</div>
@@ -161,10 +168,10 @@
 					</div>
 				</div>
 				<!-- 요약카드 끝 -->
-				<!--  상태 내역 위젯 시작 -->
+				<!-- 상담상태 내역 위젯 시작 -->
 				<div class="row">
 					<div class="col-md-6">
-						<div class="main-card mb-3 card">
+						<div class="main-card mb-3 card" id="rowWidgetContainer">
 							<div class="card-header">
 								<h5>상담 신청 상황</h5>
 							</div>
@@ -174,30 +181,17 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
+			
+												<div class="direction">
 													<div class="widget-content-left">
 														<c:set var="pending" value="${stateMap.pending}" />
 														<div class="widget-heading">신청</div>
-														<div class="widget-subheading">승인/반려 전</div>
+														<div class="widget-subheading">확정 전</div>
 													</div>
 													<div class="widget-content-right">
 														<div class="widget-numbers text-success">${fn:length(pending)}</div>
 													</div>
 												</div>
-											</div>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="widget-content p-0">
-											<div class="widget-content-outer">
-												<div class="widget-content-wrapper">
-													<div class="widget-content-left">
-														<c:set var="denied" value="${stateMap.denied}" />
-														<div class="widget-heading">반려</div>
-														<div class="widget-subheading">승인 거절</div>
-													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-primary">${fn:length(denied)}</div>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -206,6 +200,25 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
+												<div class="direction">
+													<div class="widget-content-left">
+														<c:set var="denied" value="${stateMap.denied}" />
+														<div class="widget-heading">반려</div>
+														<div class="widget-subheading">예약거절</div>
+													</div>
+													<div class="widget-content-right">
+														<div class="widget-numbers text-primary">${fn:length(denied)}</div>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="widget-content p-0">
+											<div class="widget-content-outer">
+												<div class="widget-content-wrapper">
+												<div class="direction">
 													<div class="widget-content-left">
 														<c:set var="approval" value="${stateMap.approval}" />
 														<div class="widget-heading">승인</div>
@@ -216,12 +229,14 @@
 													</div>
 												</div>
 											</div>
+											</div>
 										</div>
 									</li>
 									<li class="list-group-item">
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
+												<div class="direction">
 													<div class="widget-content-left">
 														<c:set var="done" value="${stateMap.done}" />
 														<div class="widget-heading">완료</div>
@@ -229,6 +244,92 @@
 													</div>
 													<div class="widget-content-right">
 														<div class="widget-numbers text-warning">${fn:length(done)}</div>
+													</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				<!-- 상담상태 내역 위젯 끝 -->
+				<!-- 상담사 등록 상태 위젯 시작 -->
+					<div class="col-md-6">
+						<div class="main-card mb-3 card" id="rowWidgetContainer">
+							<div class="card-header">
+								<h5>상담사 등록 상황</h5>
+							</div>
+							<div class="card-body">
+								<ul class="list-group" id="rowWidget">
+									<li class="list-group-item">
+										<div class="widget-content p-0">
+											<div class="widget-content-outer">
+												<div class="widget-content-wrapper">
+												<div class="direction">
+													<div class="widget-content-left">
+														<c:set var="registerPending" value="${registerStateMap.counselorPending}" />
+														<div class="widget-heading">신청</div>
+														<div class="widget-subheading">검토대기</div>
+													</div>
+													<div class="widget-content-right">
+														<div class="widget-numbers text-success">${fn:length(registerPending)}</div>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="widget-content p-0">
+											<div class="widget-content-outer">
+												<div class="widget-content-wrapper">
+												<div class="direction">
+													<div class="widget-content-left">
+														<c:set var="registerDenied" value="${registerStateMap.counselorDenied}" />
+														<div class="widget-heading">반려</div>
+														<div class="widget-subheading">승인거절</div>
+													</div>
+													<div class="widget-content-right">
+														<div class="widget-numbers text-primary">${fn:length(registerDenied)}</div>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="widget-content p-0">
+											<div class="widget-content-outer">
+												<div class="widget-content-wrapper">
+												<div class="direction">
+													<div class="widget-content-left">
+														<c:set var="registerApproval" value="${registerStateMap.counselorApproval}" />
+														<div class="widget-heading">승인</div>
+														<div class="widget-subheading">등록완료</div>
+													</div>
+													<div class="widget-content-right">
+														<div class="widget-numbers text-danger">${fn:length(registerApproval)}</div>
+													</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="widget-content p-0">
+											<div class="widget-content-outer">
+												<div class="widget-content-wrapper">
+												<div class="direction">
+													<div class="widget-content-left">
+														<c:set var="registerRevoked" value="${registerStateMap.counselorRevoked}" />
+														<div class="widget-heading">자격취소</div>
+														<div class="widget-subheading">등록해제</div>
+													</div>
+													<div class="widget-content-right">
+														<div class="widget-numbers text-warning">${fn:length(registerRevoked)}</div>
+													</div>
 													</div>
 												</div>
 											</div>
@@ -239,7 +340,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- 상태 내역 위젯 끝 -->
+				<!-- 상담사 등록 상태 위젯 끝 -->
 				<div class="row">
 					<div class="col-md-12 col-lg-6">
 						<div class="mb-3 card">

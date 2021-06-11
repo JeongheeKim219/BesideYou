@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bu.mvc.domain.Counsel;
+import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.service.AdminService;
 
@@ -42,6 +43,7 @@ public class AdminController {
 		model.addAttribute("newCounselCount", countNewCounsel().size());
 		model.addAttribute("dayIncome", incomeToday());
 		model.addAttribute("stateMap", countCounselByState());
+		model.addAttribute("registerStateMap", counselorByState());
 		
 		return "admin/index";
 	}
@@ -58,7 +60,6 @@ public class AdminController {
 	 * 3. 회원 통계 페이지로 이동
 	 * 1) 당일 신규 회원 수 조회 기능
 	 */
-	
 	@RequestMapping("/memberSummary")
 	public String summary(Model model) {
 	
@@ -82,6 +83,7 @@ public class AdminController {
 		return "admin/memberView";
 	}
 	
+	
 	/**
 	 * 5. 해당 월 상담상태별 조회
 	 */
@@ -89,7 +91,6 @@ public class AdminController {
 		return adminService.counselByState();
 	}
 	 
-	
 	
 	/**
 	 * 6. 당일 상담권 매출 조회
@@ -106,4 +107,14 @@ public class AdminController {
 		return adminService.countNewCounsel();
 	}
 	
+	
+	/**
+	 * 8. 상담사 등록 현황 조회(누적되므로 의논 필요)
+	 * 의논 필요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	 */
+	public Map<String, List<Counselor>> counselorByState(){
+		return adminService.counselorByState();
+	}
+
+
 }
