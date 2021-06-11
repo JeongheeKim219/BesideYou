@@ -27,9 +27,4 @@ public class MemberController {
 	@RequestMapping("/loginForm")
 	public void loginForm() {	}
 	
-	/**
-	 * 로그인
-	 * */	
-	@RequestMapping("/l")
-	
 }
