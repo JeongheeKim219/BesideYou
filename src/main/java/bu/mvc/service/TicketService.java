@@ -18,9 +18,9 @@ public interface TicketService {
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 * */
 	List<Ticket> selectBy(Pageable pageable, String memberId);
-
+	
 	/**
-	 * 상담권 상세보기
+	 * 상담권 코드로 상담권 검색하기(상세보기 등에 필요)
 	 * */
 	Ticket selectBy(Long ticketCode);
 
