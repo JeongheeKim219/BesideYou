@@ -39,7 +39,8 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 		
 		String userId = authentication.getName();
 		
-		Member member = memberRep.selectMemberById(userId);
+//		Member member = memberRep.selectMemberById(userId);
+		Member member = memberRep.getOne(1L);
 		if(member == null) throw new UsernameNotFoundException(userId + "는 존재하지 않아 인증에 실패했습니다");
 		
 	
@@ -48,9 +49,7 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 		if(!passwordEncoder.matches(pass, member.getPassword())) {	
 			throw new UsernameNotFoundException("비밀번호 오류 입니다..");
 		}
-		
-		
-		
+		return null;
 	}
 
 	

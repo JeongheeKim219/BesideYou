@@ -87,7 +87,7 @@ class BesideYouApplicationTests {
 	@Test
 	void insert() {
 		specialityRep.save(new Speciality(null, "청소년전문상담사", new Counselor(17L)));
-
+	}
 
 
 
