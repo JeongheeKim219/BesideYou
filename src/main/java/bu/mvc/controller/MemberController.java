@@ -13,10 +13,19 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	/**
+	 * 회원가입 폼
+	 * */
 	@RequestMapping("/join")
 	public void join() {		
 	}
 	
+	
+	/**
+	 * 로그인 폼
+	 * */
+	@RequestMapping("/loginForm")
+	public void loginForm() {	}
 	
 	
 }

@@ -46,24 +46,17 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 		String pass = authentication.getCredentials().toString();	
 		
 		if(!passwordEncoder.matches(pass, member.getPassword())) {	
-			throw new UsernameNotFoundException("��й�ȣ ���� �Դϴ�.");
+			throw new UsernameNotFoundException("비밀번호 오류 입니다..");
 		}
 		
 		
-		List<Authority> authList = authoritiesDAO.selectAuthorityByUserName(userId);
 		
-		List<SimpleGrantedAuthority> simpleAuthList = new ArrayList<SimpleGrantedAuthority>();
-		for(Authority au : authList) {
-			simpleAuthList.add(new SimpleGrantedAuthority(au.getRole()));	
-		}
-		
-		return new UsernamePasswordAuthenticationToken(member, null, simpleAuthList);	
 	}
 
 	
 	@Override
 	public boolean supports(Class<?> authentication) {
-		System.out.println("MemberAuthenticationProvider�� Class<?> authentication call.....");
+		
 		
 		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 	}
