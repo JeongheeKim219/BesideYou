@@ -49,9 +49,9 @@ public class TicketServiceImpl implements TicketService {
 		Ticket ticket = ticketRepository.findById(ticketCode).orElse(null);
 		int remain = ticket.getTicketRemain(); //검색된 상담권의 현재 잔여량
 		
-		//상담권 잔여량이 없을 경우
-		if(ticket.getTicketRemain()<=0) {
-			throw new RuntimeException("잔여량이 없어 사용할 수 없습니다.");
+		//해당하는 상담권이 없거나 잔여량이 없을 경우
+		if(ticket==null || ticket.getTicketRemain()<=0) {
+			throw new RuntimeException("사용할 수 없는 상담권입니다.");
 		}
 		
 		//상담권 잔여량이 있을 경우 잔여량 감소
