@@ -34,7 +34,9 @@ public class RefundServiceImpl implements RefundService {
 
 	@Override
 	public Refund selectByCode(Long refundCode) {
-		return refundRepository.findById(refundCode).orElse(null);
+		Refund refund = refundRepository.findById(refundCode).orElse(null);
+		if(refund==null) throw new RuntimeException(refundCode+"번 코드에 해당하는 환불 신청 내역이 존재하지 않습니다.");
+		return refund;
 	}
 
 	@Override

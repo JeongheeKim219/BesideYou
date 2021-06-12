@@ -24,32 +24,50 @@ public class RefundController {
 	
 	/**
 	 * 환불 신청 목록 전체 보기 : 관리자용
+	 *  - 전체 리스트 페이징 처리
 	 * */
 	@RequestMapping("/list")
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		Page<Refund> rfList = refundService.selectAll(pageable);
-		return new ModelAndView("ticket/refundListAdmin", "rfList", rfList);
+		return new ModelAndView("refund/listAdmin", "rfList", rfList);
 	}
 	
 	/**
 	 * 회원 id로 환불 신청 내역 검색하기 : 로그인한 사용자용
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
+	 *  - 검색 결과 페이징 처리
 	 * */
-	@RequestMapping("/mylist")
+	@RequestMapping("/myList")
 	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		List<Refund> myList = refundService.searchBy(id, pageable);
-		return new ModelAndView("ticket/refundList", "myList", myList);
+		return new ModelAndView("refund/list", "myList", myList);
+	}
+	
+	/**
+	 * 환불 신청 폼
+	 * */
+	@RequestMapping("/application")
+	public void application() {}
+	
+	/**
+	 * 환불 신청 완료
+	 * */
+	@RequestMapping("/request")
+	public String request(Refund refund) {
+		refundService.insert(refund);
+		return "redirect:/refund/myList";
 	}
 	
 	/**
 	 * 환불 신청 내역 상세보기
 	 * */
-	
-	/**
-	 * 환불 신청하기
-	 * */
+	@RequestMapping("/read")
+	public ModelAndView refundDetail(Long refundCode) {
+		Refund refund = refundService.selectByCode(refundCode);
+		return new ModelAndView("refund/detail", "refund", refund);
+	}
 	
 	/**
 	 * 환불 처리하기
@@ -58,12 +76,15 @@ public class RefundController {
 	 *  3. 환불 불가 결정 or 환불 완료시 신청 내역의 진행 상태를 변경한다.
 	 * */
 	
+	
 	/**
 	 * 환불 신청 내역 상태 변경하기 (0:처리중 / 1:환불불가 / 2:환불완료)
 	 * */
 	
+	
 	/**
 	 * 환불 신청 내역 삭제하기
 	 * */
+	
 	
 }

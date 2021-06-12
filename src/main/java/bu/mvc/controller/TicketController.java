@@ -30,18 +30,19 @@ public class TicketController {
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		Page<Ticket> tkList = ticketService.selectAll(pageable);
-		return new ModelAndView("ticket/ticketListAdmin", "tkList", tkList);
+		return new ModelAndView("ticket/listAdmin", "tkList", tkList);
 	}
 	
 	/**
 	 * 나의 상담권 구매 목록 : 로그인한 사용자용
+	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 *  - 검색 결과 페이징 처리
 	 * */
-	@RequestMapping("/mylist")
+	@RequestMapping("/myList")
 	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		List<Ticket> myList = ticketService.searchById(id, pageable);
-		return new ModelAndView("ticket/ticketList", "myList", myList);
+		return new ModelAndView("ticket/list", "myList", myList);
 	}
 	
 	/**
@@ -51,14 +52,14 @@ public class TicketController {
 	@RequestMapping("/read")
 	public ModelAndView ticketDetail(Long ticketCode) {
 		Ticket ticket = ticketService.selectByCode(ticketCode);
-		return new ModelAndView("ticket/ticketDetail", "ticket", ticket);
+		return new ModelAndView("ticket/detail", "ticket", ticket);
 	}
 	
 	/**
 	 * 상담권 구매 폼으로
 	 * */
-	@RequestMapping("/payment")
-	public void ticketBuy() {}
+	@RequestMapping("/application")
+	public void payment() {}
 	
 	/**
 	 * 상담권 구매 완료 (결제 성공시)
@@ -66,7 +67,7 @@ public class TicketController {
 	@RequestMapping("/buy")
 	public String ticketBuy(Ticket ticket) {
 		ticketService.insert(ticket);
-		return null;
+		return "redirect:/ticket/myList";
 	}
 	
 	/**
