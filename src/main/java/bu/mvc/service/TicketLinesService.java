@@ -22,12 +22,6 @@ public interface TicketLinesService {
 	List<TicketLines> searchById(String id, Pageable pageable);
 	
 	/**
-	 * 상담사코드로 상담권 사용 내역 검색하기
-	 *  - 각 상담사 실적 확인
-	 * */
-	List<TicketLines> searchByCsrCode(Long counselorCode, Pageable pageable);
-	
-	/**
 	 * 상담권 사용 내역 삭제하기
 	 * */
 	void delete(Long ticketLinesCode);

@@ -28,11 +28,6 @@ public class TicketLinesServiceImpl implements TicketLinesService {
 	public List<TicketLines> searchById(String id, Pageable pageable) {
 		return ticketLinesRepository.findByTicketMemberIdLike(id, pageable);
 	}
-	
-	@Override
-	public List<TicketLines> searchByCsrCode(Long counselorCode, Pageable pageable) {
-		return ticketLinesRepository.findByTicketCounselorCounselorCodeLike(counselorCode, pageable);
-	}
 
 	@Override
 	public void delete(Long ticketLinesCode) {

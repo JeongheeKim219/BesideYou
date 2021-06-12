@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.Ticket;
 import bu.mvc.domain.TicketLines;
+import bu.mvc.respsitory.DiscountRepository;
 import bu.mvc.respsitory.RefundRepository;
 import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.TicketRepository;
@@ -35,7 +36,9 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Ticket selectByCode(Long ticketCode) {
-		return ticketRepository.findById(ticketCode).orElse(null);
+		Ticket ticket = ticketRepository.findById(ticketCode).orElse(null);
+		if(ticket==null) throw new RuntimeException(ticketCode+"번 코드에 해당하는 상담권 정보를 찾을 수 없습니다.");
+		return ticket;
 	}
 
 	@Override
@@ -50,7 +53,7 @@ public class TicketServiceImpl implements TicketService {
 		int remain = ticket.getTicketRemain(); //검색된 상담권의 현재 잔여량
 		
 		//해당하는 상담권이 없거나 잔여량이 없을 경우
-		if(ticket==null || ticket.getTicketRemain()<=0) {
+		if(ticket==null || remain<=0) {
 			throw new RuntimeException("사용할 수 없는 상담권입니다.");
 		}
 		
