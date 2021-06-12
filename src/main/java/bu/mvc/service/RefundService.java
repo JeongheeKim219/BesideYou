@@ -36,12 +36,7 @@ public interface RefundService {
 	 *  2. 상담권 잔여량이 남아있을 경우 잔여량을 0으로 만든다.
 	 *  3. 환불 불가 결정 or 환불 완료시 신청 내역의 진행 상태를 변경한다.
 	 * */
-	void refundTicket(Long ticketCode);
-	
-	/**
-	 * 환불 신청 내역 상태 변경하기 (0:처리중 / 1:환불불가 / 2:환불완료)
-	 * */
-	void updateState(Long refundCode, int refundState);
+	void refundTicket(Refund refund);
 	
 	/**
 	 * 환불 신청 내역 삭제하기

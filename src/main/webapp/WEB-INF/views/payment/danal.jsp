@@ -13,19 +13,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
     <script>
     $(function(){
         var IMP = window.IMP;
-        IMP.init('imp75728843'); //가맹점 식별코드
+        IMP.init('imp75728843'); // 가맹점 식별코드
         var msg;
         
         IMP.request_pay({
             
-            pg : 'html5_inicis', //다수의 PG 사용시 필수
+            pg : 'danal', //다수의 PG 사용시 필수
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
     		name : 'Beside-You 상담권',
@@ -68,7 +68,7 @@
                 <%-- location.href="<%=request.getContextPath()%>/front?key=sucBid&methodName=changeState&sucBidCode="+sucBidCode; --%>
 
                 <%-- var code = <%=sucBidCode%>;
-                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
+                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code; --%>
                 
                 location.href="${pageContext.request.contextPath}/payment/success.jsp"
                 

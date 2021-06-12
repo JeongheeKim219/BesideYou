@@ -13,8 +13,8 @@ public interface RefundRepository extends JpaRepository<Refund, Long>{
 
 	List<Refund> findByTicketMemberIdLike(String id, Pageable pageable);
 	
-	@Query("update Refund r set r.refundState = ?2 where r.refundCode = ?1")
+	/*@Query("update Refund r set r.refundState = ?2 where r.refundCode = ?1")
 	@Modifying
-	void updateState(Long code, int state);
+	void updateState(Long code, int state);*/
 	
 }
