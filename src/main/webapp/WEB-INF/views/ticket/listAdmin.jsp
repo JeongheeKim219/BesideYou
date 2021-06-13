@@ -138,11 +138,12 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>News Room</h1>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Counseling Tickets</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
                                             <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">News Room</li>
+                                            <li class="breadcrumb-item active" aria-current="page">MyPage</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Tickets</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -159,27 +160,26 @@
                     <c:choose>
 					    <c:when test="${empty requestScope.tkList}">
 							<div>
-					            <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
+					            <p align="center"><b><span style="font-size:9pt;">등록된 상담권이 없습니다.</span></b></p>
 					        </div>
 					    </c:when>
 					    <c:otherwise>
 						<c:forEach items="${requestScope.tkList.content}" var="ticket"><!-- tkList.getContent() : List<Ticket>를 리턴 -->
-						<div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
+						<div class="col-md-6 col-lg-4 py-0 mt-4">
                             <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" 
-                            	src="${pageContext.request.contextPath}/assets/images/${ticket.counselor.picture}" alt="${ticket.counselor.picture}" />
+                            	src="${pageContext.request.contextPath}/assets/images/9.jpg" alt="${ticket.counselor.picture}" />
                                 <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                     <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>텍스트 상담권</h5>
+                                            <h4 data-zanim='{"delay":0}'>텍스트 상담권</h4>
                                         </a></div>
                                     <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>${ticket.counselor.member.alias} 상담사</p>
+                                        <p class="color-7" data-zanim='{"delay":0.1}'><span style="font-size:15pt;">${ticket.counselor.member.alias}</span>  상담사</p>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>구매량 : 2</p>
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>잔여량 : 2</p>
+                                        <p class="mt-3" data-zanim='{"delay":0.2}'>상담권 잔여량 : ${ticket.ticketRemain}</p>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">상세보기 <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
+                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">상세보기 </a></div>
                                     </div>
                                 </div>
                             </div>
@@ -187,128 +187,9 @@
 					    </c:forEach>
 						</c:otherwise>
 					    </c:choose>
-                        <!-- <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/9.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>Tax impacts of lease mean accounting change</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Paul O'Sullivan</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/10.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>What brexit means for data protection law</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Enrico Ambrosi</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>Assuming that the referendum is not ignored completely, there are two possible futures for the UK...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/11.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>The growing meanace of social engineering fraud</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Robson</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>Social engineering involves the collection of information from various sources about a target...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/12.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>Tax impacts of lease accounting change</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Paul O'Sullivan</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>It is a word that has become used as a shorthand way of saying the UK leaving the EU - merging...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/13.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>What brexit means for data protection law</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Enrico Ambrosi</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>England voted for Brexit, by 53.4% to 46.6%. Wales also voted for Brexit, with Leave getting...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/14.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>The growing meanace of social engineering fraud</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Robson</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>Theresa May was against Brexit during the referendum campaign but is now in favour of it because...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto mx-auto mt-4">
-                            <nav class="font-1 mt-5" aria-label="Page navigation example">
-                                <ul class="pagination pagination justify-content-center">
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                                </ul>
-                            </nav>
-                        </div> -->
-                        
-                        <div style="text-align: center">
+                    </div>
+                    <br><br>
+                    <div style="text-align: center">
 						<!-- 페이징 처리 -->
 						 <c:forEach begin="0" end="${tkList.totalPages-1}" var="i"> <!-- pageList.getTotalPages() : 페이지 수 만큼 반복문 돌기(0부터 시작하기 때문에 -1 해준다.) -->
 						   <c:choose>
@@ -322,8 +203,6 @@
 						   
 						 </c:forEach>
 						</div>
-                        
-                    </div>
                     <!--/.row-->
                 </div>
                 <!--/.container-->
