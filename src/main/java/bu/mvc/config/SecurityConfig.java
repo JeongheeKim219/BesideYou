@@ -36,10 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()	
 		.antMatchers("/member/main").authenticated()
+		.antMatchers("/admin/menu").hasRole("ADMIN")
 		.and()
 		
 		.formLogin()
-		.loginPage("/member/login")
+		.loginPage("/member/loginForm")
 		.usernameParameter("id")
 		.passwordParameter("password")
 		.loginProcessingUrl("/login")	
