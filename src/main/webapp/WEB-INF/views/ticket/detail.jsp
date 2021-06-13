@@ -7,7 +7,7 @@
 </head>
 <body>
 
-
+<h1>상담권 상세보기</h1>
 
 </body>
 </html>

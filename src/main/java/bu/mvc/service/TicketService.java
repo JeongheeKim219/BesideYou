@@ -18,7 +18,7 @@ public interface TicketService {
 	 * 회원 id로 상담권 구매 목록 검색하기
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 * */
-	List<Ticket> searchById(String id, Pageable pageable);
+	List<Ticket> searchByAlias(String alias, Pageable pageable);
 	
 	/**
 	 * 상담권 코드로 상담권 검색하기(상세보기, 환불, 삭제시)

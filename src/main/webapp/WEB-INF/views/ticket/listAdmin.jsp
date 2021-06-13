@@ -169,17 +169,37 @@
                             <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" 
                             	src="${pageContext.request.contextPath}/assets/images/9.jpg" alt="${ticket.counselor.picture}" />
                                 <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h4 data-zanim='{"delay":0}'>텍스트 상담권</h4>
+                                    <div class="overflow-hidden"><a href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}">
+                                            <c:choose>
+                                            	<c:when test="${ticket.ticketField==0}">
+                                           			<h4 data-zanim='{"delay":0}'>대면 상담권</h4>
+                                            	</c:when>
+                                            	<c:when test="${ticket.ticketField==1}">
+                                            		<h4 data-zanim='{"delay":0}'>전화 상담권</h4>
+                                            	</c:when>
+                                            	<c:when test="${ticket.ticketField==2}">
+                                            		<h4 data-zanim='{"delay":0}'>채팅 상담권</h4>
+                                            	</c:when>
+                                            	<c:when test="${ticket.ticketField==3}">
+                                            		<h4 data-zanim='{"delay":0}'>텍스트 상담권</h4>
+                                            	</c:when>
+                                            </c:choose>
                                         </a></div>
                                     <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'><span style="font-size:15pt;">${ticket.counselor.member.alias}</span>  상담사</p>
+                                        <p class="color-7" data-zanim='{"delay":0.1}'><span style="font-size:15pt; font-weight: bold;">${ticket.counselor.member.alias}</span>  상담사</p>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>상담권 잔여량 : ${ticket.ticketRemain}</p>
+                                        <p class="color-7" data-zanim='{"delay":0.2}'>Remain : ${ticket.ticketRemain}</p>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">상세보기 </a></div>
+                                    	<c:choose>
+                                    		<c:when test="${ticket.ticketRemain>0}">
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}">사용하기 </a></div>
+                                    		</c:when>
+                                    		<c:when test="${ticket.ticketRemain<=0}">
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}">삭제하기 </a></div>
+                                    		</c:when>
+                                    	</c:choose>
                                     </div>
                                 </div>
                             </div>

@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.Ticket;
 import bu.mvc.domain.TicketLines;
-import bu.mvc.respsitory.DiscountRepository;
-import bu.mvc.respsitory.RefundRepository;
 import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.TicketRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +28,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Ticket> searchById(String id, Pageable pageable) {
-		return ticketRepository.findByMemberIdLike(id, pageable);
+	public List<Ticket> searchByAlias(String alias, Pageable pageable) {
+		return ticketRepository.findByMemberAlias(alias, pageable);
 	}
 
 	@Override

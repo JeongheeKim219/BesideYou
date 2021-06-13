@@ -9,5 +9,5 @@ import bu.mvc.domain.Ticket;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long>{
 
-	List<Ticket> findByMemberIdLike(String id, Pageable pageable);
+	List<Ticket> findByMemberAlias(String alias, Pageable pageable);
 }

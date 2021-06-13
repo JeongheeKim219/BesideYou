@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -12,29 +13,29 @@
         <!--  -->
         <!--    Favicons-->
         <!--    =============================================-->
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicons/favicon.ico">
-        <link rel="manifest" href="assets/images/favicons/manifest.json">
-        <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileImage" content="assets/images/favicons/mstile-150x150.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/assets/images/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="${pageContext.request.contextPath}/assets/images/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/assets/images/favicons/favicon-16x16.png">
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/images/favicons/favicon.ico">
+        <link rel="manifest" href="${pageContext.request.contextPath}/assets/images/favicons/manifest.json">
+        <link rel="mask-icon" href="${pageContext.request.contextPath}/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileImage" content="${pageContext.request.contextPath}/assets/images/favicons/mstile-150x150.png">
         <meta name="theme-color" content="#ffffff">
         <!--  -->
         <!--    Stylesheets-->
         <!--    =============================================-->
         <!-- Default stylesheets-->
-        <link href="assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Template specific stylesheets-->
-        <link href="assets/lib/loaders.css/loaders.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/lib/loaders.css/loaders.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:300,400,600,700,800" rel="stylesheet">
-        <link href="assets/lib/iconsmind/iconsmind.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/lib/iconsmind/iconsmind.css" rel="stylesheet">
         <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
-        <link href="assets/lib/hamburgers/dist/hamburgers.min.css" rel="stylesheet">
-        <link href="assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/lib/hamburgers/dist/hamburgers.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!-- Main stylesheet and color file-->
-        <link href="assets/css/style.css" rel="stylesheet">
-        <link href="assets/css/custom.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/css/custom.css" rel="stylesheet">
     </head>
     <body data-spy="scroll" data-target=".inner-link" data-offset="60">
         <main>
@@ -137,11 +138,12 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>News Room</h1>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Counseling Tickets</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
                                             <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">News Room</li>
+                                            <li class="breadcrumb-item active" aria-current="page">MyPage</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Tickets</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -155,127 +157,72 @@
             <section class="background-11">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/9.jpg" alt="Featured Image" />
+                    <c:choose>
+					    <c:when test="${empty requestScope.tkList}">
+							<div>
+					            <p align="center"><b><span style="font-size:9pt;">등록된 상담권이 없습니다.</span></b></p>
+					        </div>
+					    </c:when>
+					    <c:otherwise>
+						<c:forEach items="${requestScope.tkList.content}" var="ticket"><!-- tkList.getContent() : List<Ticket>를 리턴 -->
+						<div class="col-md-6 col-lg-4 py-0 mt-4">
+                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" 
+                            	src="${pageContext.request.contextPath}/assets/images/9.jpg" alt="${ticket.counselor.picture}" />
                                 <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>Tax impacts of lease mean accounting change</h5>
+                                    <div class="overflow-hidden"><a href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}">
+                                            <c:choose>
+                                            	<c:when test="${ticket.ticketField==0}">
+                                           			<h4 data-zanim='{"delay":0}'>대면 상담권</h4>
+                                            	</c:when>
+                                            	<c:when test="${ticket.ticketField==1}">
+                                            		<h4 data-zanim='{"delay":0}'>전화 상담권</h4>
+                                            	</c:when>
+                                            	<c:when test="${ticket.ticketField==2}">
+                                            		<h4 data-zanim='{"delay":0}'>채팅 상담권</h4>
+                                            	</c:when>
+                                            	<c:when test="${ticket.ticketField==3}">
+                                            		<h4 data-zanim='{"delay":0}'>텍스트 상담권</h4>
+                                            	</c:when>
+                                            </c:choose>
                                         </a></div>
                                     <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Paul O'Sullivan</p>
+                                        <p class="color-7" data-zanim='{"delay":0.1}'><span style="font-size:15pt; font-weight: bold;">${ticket.counselor.member.alias}</span>  상담사</p>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...</p>
+                                        <p class="color-7" data-zanim='{"delay":0.2}'>Remain : ${ticket.ticketRemain}</p>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
+                                    	<c:choose>
+                                    		<c:when test="${ticket.ticketRemain>0}">
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}">사용하기 </a></div>
+                                    		</c:when>
+                                    		<c:when test="${ticket.ticketRemain<=0}">
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}">삭제하기 </a></div>
+                                    		</c:when>
+                                    	</c:choose>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/10.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>What brexit means for data protection law</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Enrico Ambrosi</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>Assuming that the referendum is not ignored completely, there are two possible futures for the UK...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/11.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>The growing meanace of social engineering fraud</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Robson</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>Social engineering involves the collection of information from various sources about a target...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/12.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>Tax impacts of lease accounting change</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Paul O'Sullivan</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>It is a word that has become used as a shorthand way of saying the UK leaving the EU - merging...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/13.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>What brexit means for data protection law</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Enrico Ambrosi</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>England voted for Brexit, by 53.4% to 46.6%. Wales also voted for Brexit, with Leave getting...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 py-0 mt-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="assets/images/14.jpg" alt="Featured Image" />
-                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="news.html">
-                                            <h5 data-zanim='{"delay":0}'>The growing meanace of social engineering fraud</h5>
-                                        </a></div>
-                                    <div class="overflow-hidden">
-                                        <p class="color-7" data-zanim='{"delay":0.1}'>By Robson</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="mt-3" data-zanim='{"delay":0.2}'>Theresa May was against Brexit during the referendum campaign but is now in favour of it because...</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="#">Learn More <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto mx-auto mt-4">
-                            <nav class="font-1 mt-5" aria-label="Page navigation example">
-                                <ul class="pagination pagination justify-content-center">
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                                </ul>
-                            </nav>
-                        </div>
+					    </c:forEach>
+						</c:otherwise>
+					    </c:choose>
                     </div>
+                    <br><br>
+                    <div style="text-align: center">
+						<!-- 페이징 처리 -->
+						 <c:forEach begin="0" end="${tkList.totalPages-1}" var="i"> <!-- pageList.getTotalPages() : 페이지 수 만큼 반복문 돌기(0부터 시작하기 때문에 -1 해준다.) -->
+						   <c:choose>
+						     <c:when test="${tkList.number==i}"> <!-- tkList.getNumber() 호출 : 현재 페이지 번호 -->
+						       <a href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${i}" style="color:red"> [ ${i+1} ] </a> <!-- 현재 페이지만 빨간색으로 표시 -->
+						     </c:when>
+						     <c:otherwise>
+						       <a href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${i}"> [ ${i+1} ] </a>
+						     </c:otherwise>
+						   </c:choose>
+						   
+						 </c:forEach>
+						</div>
                     <!--/.row-->
                 </div>
                 <!--/.container-->
@@ -375,17 +322,17 @@
         <!--    JavaScripts-->
         <!--    =============================================-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-        <script src="assets/lib/jquery/dist/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/lib/jquery/dist/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="assets/lib/imagesloaded/imagesloaded.pkgd.min.js"></script>
-        <script src="assets/lib/gsap/src/minified/TweenMax.min.js"></script>
-        <script src="assets/lib/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
-        <script src="assets/lib/CustomEase.min.js"></script>
-        <script src="assets/js/config.js"></script>
-        <script src="assets/js/zanimation.js"></script>
-        <script src="assets/js/inertia.js"></script>
-        <script src="assets/js/core.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/lib/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/lib/gsap/src/minified/TweenMax.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/lib/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/lib/CustomEase.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/config.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/zanimation.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/inertia.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
     </body>
 </html>

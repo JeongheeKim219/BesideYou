@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,23 +36,23 @@ public class TicketController {
 	
 	/**
 	 * 나의 상담권 구매 목록 : 로그인한 사용자용
-	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
+	 *  - 회원 code로 검색하여 사용자 마이페이지에서 출력
 	 *  - 검색 결과 페이징 처리
 	 * */
 	@RequestMapping("/mylist")
-	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
+	public ModelAndView myList(@RequestParam String alias, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "ticketCode");
-		List<Ticket> myList = ticketService.searchById(id, pageable);
-		return new ModelAndView("ticket/listUser", "myList", myList);
+		List<Ticket> tkList = ticketService.searchByAlias(alias, pageable);
+		return new ModelAndView("ticket/listUser", "tkList", tkList);
 	}
 	
 	/**
 	 * 구매한 상담권 상세보기
 	 *  - 연결되는 페이지에 구매한 금액, 상담권 잔여량, 상담권 사용 버튼, 환불 신청 버튼 있음
 	 * */
-	@RequestMapping("/read")
-	public ModelAndView ticketDetail(Long ticketCode) {
-		Ticket ticket = ticketService.selectByCode(ticketCode);
+	@RequestMapping("/read/{code}")
+	public ModelAndView ticketDetail(@PathVariable Long code) {
+		Ticket ticket = ticketService.selectByCode(code);
 		return new ModelAndView("ticket/detail", "ticket", ticket);
 	}
 	
@@ -73,19 +74,19 @@ public class TicketController {
 	/**
 	 * 상담권 사용하기
 	 * */
-	@RequestMapping("/use")
-	public String useTicket(Long ticketCode) {
-		ticketService.useTicket(ticketCode);
-		return "redirect:/ticket/read";
+	@RequestMapping("/use/{code}")
+	public String useTicket(@PathVariable Long code) {
+		ticketService.useTicket(code);
+		return "redirect:/ticket/list";
 	}
 	
 	/**
 	 * 소진된 상담권 삭제하기
 	 * */
-	@RequestMapping("/delete")
-	public String deleteTicket(Long ticketCode) {
-		ticketService.delete(ticketCode);
-		return "redirect:/ticket/mylist";
+	@RequestMapping("/delete/{code}")
+	public String deleteTicket(@PathVariable Long code) {
+		ticketService.delete(code);
+		return "redirect:/ticket/list";
 	}
 	
 }
