@@ -24,8 +24,7 @@ public class MemberController {
 	/**
 	 * 로그인 폼
 	 * */
-	@RequestMapping("/loginForm")
+	@RequestMapping("/login")
 	public void loginForm() {	}
-	
 	
 }
