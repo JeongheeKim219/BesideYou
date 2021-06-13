@@ -38,26 +38,26 @@ public class RefundController {
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 *  - 검색 결과 페이징 처리
 	 * */
-	@RequestMapping("/myList")
+	@RequestMapping("/mylist")
 	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		List<Refund> myList = refundService.searchBy(id, pageable);
-		return new ModelAndView("refund/list", "myList", myList);
+		return new ModelAndView("refund/listUser", "myList", myList);
 	}
 	
 	/**
-	 * 환불 신청 폼
+	 * 환불 신청 폼으로
 	 * */
-	@RequestMapping("/application")
-	public void application() {}
+	@RequestMapping("/app")
+	public void refundApp() {}
 	
 	/**
-	 * 환불 신청 완료
+	 * 환불 신청하기
 	 * */
 	@RequestMapping("/request")
-	public String request(Refund refund) {
+	public String refundRequest(Refund refund) {
 		refundService.insert(refund);
-		return "redirect:/refund/myList";
+		return "redirect:/refund/mylist";
 	}
 	
 	/**
@@ -76,18 +76,18 @@ public class RefundController {
 	 *  3. 환불 불가 결정 or 환불 완료시 신청 내역의 진행 상태를 변경한다.
 	 * */
 	@RequestMapping("/process")
-	public String refundTicket(Refund refund) {
+	public String refundProcess(Refund refund) {
 		refundService.refundTicket(refund);
-		return "redirect:/refund/myList";
+		return "redirect:/refund/mylist";
 	}
 	
 	/**
 	 * 환불 신청 내역 삭제하기
 	 * */
 	@RequestMapping("/delete")
-	public String delete(Long refundCode) {
+	public String deleteRefundReq(Long refundCode) {
 		refundService.delete(refundCode);
-		return "redirect:/refund/myList";
+		return "redirect:/refund/mylist";
 	}
 	
 }

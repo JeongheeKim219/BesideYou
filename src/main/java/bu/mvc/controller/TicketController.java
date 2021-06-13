@@ -28,7 +28,7 @@ public class TicketController {
 	 * */
 	@RequestMapping("/list")
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
+		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "ticketCode");
 		Page<Ticket> tkList = ticketService.selectAll(pageable);
 		return new ModelAndView("ticket/listAdmin", "tkList", tkList);
 	}
@@ -38,16 +38,16 @@ public class TicketController {
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 *  - 검색 결과 페이징 처리
 	 * */
-	@RequestMapping("/myList")
+	@RequestMapping("/mylist")
 	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
+		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "ticketCode");
 		List<Ticket> myList = ticketService.searchById(id, pageable);
-		return new ModelAndView("ticket/list", "myList", myList);
+		return new ModelAndView("ticket/listUser", "myList", myList);
 	}
 	
 	/**
 	 * 구매한 상담권 상세보기
-	 *  - 연결되는 페이지에 구매한 금액, 상담권 잔여량, 환불 신청 버튼 있음
+	 *  - 연결되는 페이지에 구매한 금액, 상담권 잔여량, 상담권 사용 버튼, 환불 신청 버튼 있음
 	 * */
 	@RequestMapping("/read")
 	public ModelAndView ticketDetail(Long ticketCode) {
@@ -58,25 +58,34 @@ public class TicketController {
 	/**
 	 * 상담권 구매 폼으로
 	 * */
-	@RequestMapping("/application")
-	public void payment() {}
+	@RequestMapping("/app")
+	public void paymentApp() {}
 	
 	/**
 	 * 상담권 구매 완료 (결제 성공시)
 	 * */
 	@RequestMapping("/buy")
-	public String ticketBuy(Ticket ticket) {
+	public String buyTicket(Ticket ticket) {
 		ticketService.insert(ticket);
-		return "redirect:/ticket/myList";
+		return "redirect:/ticket/mylist";
+	}
+	
+	/**
+	 * 상담권 사용하기
+	 * */
+	@RequestMapping("/use")
+	public String useTicket(Long ticketCode) {
+		ticketService.useTicket(ticketCode);
+		return "redirect:/ticket/read";
 	}
 	
 	/**
 	 * 소진된 상담권 삭제하기
 	 * */
 	@RequestMapping("/delete")
-	public String delete(Long ticketCode) {
+	public String deleteTicket(Long ticketCode) {
 		ticketService.delete(ticketCode);
-		return "redirect:/ticket/myList";
+		return "redirect:/ticket/mylist";
 	}
 	
 }

@@ -35,7 +35,7 @@ public class TicketLinesController {
 	/**
 	 * 회원 id로 상담권 사용 내역 검색하기 : 로그인한 사용자
 	 * */
-	@RequestMapping("/myList")
+	@RequestMapping("/mylist")
 	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		List<TicketLines> myList = ticketLinesService.searchById(id, pageable);
@@ -48,7 +48,7 @@ public class TicketLinesController {
 	@RequestMapping("/delete")
 	public String delete(Long ticketLinesCode) {
 		ticketLinesService.delete(ticketLinesCode);
-		return "redirect:/ticketLines/myList";
+		return "redirect:/ticketLines/mylist";
 	}
 	
 }
