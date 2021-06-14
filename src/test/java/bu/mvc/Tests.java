@@ -27,6 +27,9 @@ class Tests {
 	@Autowired
 	private ContactRepository rep;
 	
+	@Autowired
+	private NoticeRepository notRep;
+	
 	@Test
 	void insert() {
 		for(int i=0; i<=100; i++) {
@@ -35,9 +38,10 @@ class Tests {
 	}
 	
 	@Test
-	void selectById() {
-		Contact contact = rep.findById(21L).orElse(null);
-		System.out.println("Contact : " + contact);
+	void noticeInsert() {
+		for(int i=0; i<=20; i++) {
+			notRep.save(new Notice(null, "제목_"+i, "내용_"+i, 0));
+		}
 	}
 
 }

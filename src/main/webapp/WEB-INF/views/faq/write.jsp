@@ -158,13 +158,13 @@
 \r\n
 <p>
 <br>
-<form name="writeForm" method="post" action="${pageContext.request.contextPath}/contact/insert"  >
+<form name="writeForm" method="post" action="${pageContext.request.contextPath}/faq/insert"  >
 
 <table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
 
     <tr>
         <td width="1220" height="20" colspan="2" bgcolor="#3680B3">
-            <p align="center"><font color="white" size="3"><b> 문의글 등록 </b></font></p>
+            <p align="center"><font color="white" size="3"><b> FAQ 등록 </b></font></p>
         </td>
     </tr>
     <tr>
@@ -172,18 +172,20 @@
             <p align="right"><b><span style="font-size:9pt;">제목</span></b></p>
         </td>
         <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="contactTitle" size="30"></span></b></td>
+		<input type=text name="faqTitle" size="30"></span></b></td>
     </tr>
     <tr>
         <td width="150" height="20" >
             <p align="right"><b><span style="font-size:9pt;">카테고리</span></b></p>
         </td>
         <td width="450" height="20"><b><span style="font-size:9pt;">
-		<select id="contactCategory" name="contactCategory">
-			<option value="0">상담</option>
-			<option value="1">결제</option>
-			<option value="2">환불</option>
-			<option value="3">기타</option>
+		<select id="faqCategory" name="faqCategory">
+			<option value="0">주문, 결제</option>
+			<option value="1">상담기록</option>
+			<option value="2">상담사문의</option>
+			<option value="3">로그인</option>
+			<option value="4">서비스문의</option>
+			<option value="5">기타</option>
 		</select>
 		</span></b></td>
     </tr>
@@ -192,14 +194,13 @@
             <p align="right"><b><span style="font-size:9pt;">내용</span></b></p>
         </td>
         <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<textarea name="contactContent"  rows="20" cols="60"></textarea></span></b></td>
+		<textarea name="faqContent"  rows="20" cols="60"></textarea></span></b></td>
     </tr>
    
     <tr>
         <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;">
 	        <input type=submit value=글쓰기> 
 	        <input type=reset value=다시쓰기>
-			<input type="hidden" name="member.memberCode" value="4">
 	        </span></b>
         </td>
     </tr>
@@ -208,7 +209,7 @@
 </form>
 
 <hr>
-<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/list">리스트로 돌아가기</a>&gt;</span></div>
+<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/faq/list">리스트로 돌아가기</a>&gt;</span></div>
 </BODY>
 </HTML>
 

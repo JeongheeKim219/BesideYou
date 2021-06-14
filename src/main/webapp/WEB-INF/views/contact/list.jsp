@@ -226,7 +226,21 @@
 		        
 		        <td bgcolor="">
 		            <p align="center"><span style="font-size:9pt;">
-		            ${contact.contactCategory}</span></p>
+		            <c:choose>
+		            	<c:when test="${contact.contactCategory == 0}">
+		            		상담
+		            	</c:when>
+		            	<c:when test="${contact.contactCategory == 1}">
+		            		결제
+		            	</c:when>
+		            	<c:when test="${contact.contactCategory == 2}">
+		            		환불
+		            	</c:when>
+		            	<c:when test="${contact.contactCategory == 3}">
+		            		기타
+		            	</c:when>
+		            </c:choose>
+		            </span></p>
 		        </td>
 		        
 		        <td bgcolor="">
@@ -249,7 +263,15 @@
 		        
 		         <td bgcolor="">
 		            <p align="center"><span style="font-size:9pt;">
-		            ${contact.contactState}</span></p>
+				    <c:choose>
+				    	<c:when test="${contact.contactReply.contactReplyContent != null}">
+				    		<span style="color:black">답변완료</span>
+				    	</c:when>
+				    	<c:otherwise>
+				    		<span style="color: red">답변예정</span>
+				    	</c:otherwise>
+				    </c:choose>
+		            </span></p>
 		        </td>
 		    </tr>
     </c:forEach>

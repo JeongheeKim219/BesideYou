@@ -26,5 +26,10 @@ public interface ContactService {
 	 * 삭제하기
 	 * */
 	void delete(Long contactCode);
+	
+	/**
+	 * 수정하기
+	 * */
+	Contact update(Contact contact);
 
 }

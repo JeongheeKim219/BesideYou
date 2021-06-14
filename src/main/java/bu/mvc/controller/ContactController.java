@@ -71,6 +71,25 @@ public class ContactController {
 		return "redirect:/contact/list";
 	}
 	
+	/**
+	 * 수정하기 폼
+	 * */
+	@RequestMapping("/updateForm")
+	public String updateForm(Long contactCode, Model model) {
+		Contact contact = contactService.selectById(contactCode);
+		model.addAttribute("contact", contact);
+		return "contact/update";
+	}
+	
+	/**
+	 * 수정하기
+	 * */
+	@RequestMapping("/update")
+	public ModelAndView update(Contact contact) {
+		Contact dbContact = contactService.update(contact);
+		return new ModelAndView("contact/read", "contact", dbContact);
+	}
+	
 
 }
 

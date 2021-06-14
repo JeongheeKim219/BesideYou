@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<HEAD>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<meta charset="utf-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+	<head>
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--  -->
@@ -129,7 +129,30 @@
                     </nav>
                 </div>
             </div>
-
+            <section>
+                <div>
+                    <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
+                    </div>
+                    <!--/.background-holder-->
+                    <div class="container">
+                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
+                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                <div class="overflow-hidden">
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>FAQ</h1>
+                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
+                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
+                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+                <!--/.container-->
+            </section>
             
         <!--    JavaScripts-->
         <!--    =============================================-->
@@ -147,70 +170,78 @@
         <script src="/assets/js/core.js"></script>
         <script src="/assets/js/main.js"></script>
     
+    
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<style>
+ a {text-decoration: none}
+ #faqUl li {list-style-type: none; float: left; outline: 1px dotted red; margin-left: 160px;}
+</style>
 
-
-
-</HEAD>
-<BODY>
-\r\n
-<p>
-<br>
-<form name="writeForm" method="post" action="${pageContext.request.contextPath}/contact/insert"  >
-
-<table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
-
-    <tr>
-        <td width="1220" height="20" colspan="2" bgcolor="#3680B3">
-            <p align="center"><font color="white" size="3"><b> 문의글 등록 </b></font></p>
+<ul id="faqUl">
+	<li><a href="${pageContext.request.contextPath}/faq/list0">주문, 결제</a></li>
+	<li><a href="${pageContext.request.contextPath}/faq/list1">상담기록</a></li>
+	<li><a href="${pageContext.request.contextPath}/faq/list2">상담사문의</a></li>
+	<li><a href="${pageContext.request.contextPath}/faq/list3">로그인</a></li>
+	<li><a href="${pageContext.request.contextPath}/faq/list4">서비스문의</a></li>
+	<li><a href="${pageContext.request.contextPath}/faq/list5">기타</a></li>
+</ul>
+<table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
+	<colgroup>
+		<col width="5%"/>
+		<col width="20%"/>
+	</colgroup>
+	<tr>
+        <td bgcolor="#3680B3">
+            <p align="center">
+            <font color="white"><b><span style="font-size:9pt;">번호</span></b></font></p>
+        </td>
+        <td bgcolor="#3680B3">
+            <p align="center"><font color="white"><b><span style="font-size:9pt;">제목</span></b></font></p>
         </td>
     </tr>
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">제목</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="contactTitle" size="30"></span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">카테고리</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<select id="contactCategory" name="contactCategory">
-			<option value="0">상담</option>
-			<option value="1">결제</option>
-			<option value="2">환불</option>
-			<option value="3">기타</option>
-		</select>
-		</span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">내용</span></b></p>
-        </td>
-        <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<textarea name="contactContent"  rows="20" cols="60"></textarea></span></b></td>
-    </tr>
-   
-    <tr>
-        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;">
-	        <input type=submit value=글쓰기> 
-	        <input type=reset value=다시쓰기>
-			<input type="hidden" name="member.memberCode" value="4">
-	        </span></b>
+    <c:choose>
+    <c:when test="${empty requestScope.list}">
+	<tr>
+        <td colspan="5">
+            <p align="center"><b><span style="font-size:9pt;">등록된 FAQ가 없습니다.</span></b></p>
         </td>
     </tr>
+    </c:when>
+    <c:otherwise>
+	<c:forEach items="${requestScope.list}" var="list"> <!-- pageList.getContent() -->
+		    <tr onmouseover="this.style.background='#eaeaea'" onmouseout="this.style.background='white'">
+		        <td bgcolor="">
+		            <p align="center"><span style="font-size:9pt;">
+		            ${list.faqCode}</span></p>
+		        </td>
+		        <td bgcolor="">
+					<p><span style="font-size:9pt;">
+					<a href="${pageContext.request.contextPath}/faq/read/${list.faqCode}">
+					  ${list.faqTitle}
+					</a>
+					</span></p>
+		        </td>
+		    </tr>
+    </c:forEach>
+	</c:otherwise>
+    </c:choose>
 </table>
-
-</form>
-
 <hr>
-<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/list">리스트로 돌아가기</a>&gt;</span></div>
-</BODY>
-</HTML>
+
+<div align=right>
+<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/faq/write">글쓰기</a>&gt;</span></div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

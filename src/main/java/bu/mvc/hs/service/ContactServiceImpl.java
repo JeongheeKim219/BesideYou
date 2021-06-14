@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.Contact;
+import bu.mvc.domain.Notice;
 import bu.mvc.respsitory.ContactRepository;
 
 @Service
@@ -48,6 +49,20 @@ public class ContactServiceImpl implements ContactService {
 	public void delete(Long contactCode) {
 		contactRepository.deleteById(contactCode);
 	}
+
+	/**
+	 * 수정하기
+	 * */
+	@Override
+	public Contact update(Contact contact) {
+		Contact dbContact = contactRepository.findById(contact.getContactCode()).orElse(null);
+		dbContact.setContactTitle(contact.getContactTitle());
+		dbContact.setContactCategory(contact.getContactCategory());
+		dbContact.setContactContent(contact.getContactContent());
+		return dbContact;
+	}
+
+
 
 }
 
