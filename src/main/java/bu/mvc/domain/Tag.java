@@ -1,5 +1,6 @@
 package bu.mvc.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,9 @@ public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "tag_seq")
 	@SequenceGenerator(sequenceName = "tag_seq",allocationSize = 1,name = "tag_seq")
+	@Column(name="tag_Code")
 	private Long tagCode;
+	@Column(name="tag_name")
 	private String tagName;
 	
 	@ManyToOne

@@ -1,0 +1,212 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="UTF-8">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       	<script src="/assets/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+        
+        $(document).ready(function(){
+        	//alert(1)
+        	 var checkResultId="";		
+        		$("#registerForm").submit(function(){			
+        		if($("#registerForm :input[name=id]").val().trim()==""){
+        			alert("아이디를 입력하세요");				
+        			return false;
+        		}
+        		if($("#registerForm :input[name=password]").val().trim()==""){
+        			alert("패스워드를 입력하세요");				
+        			return false;
+        		}
+        		if($("#registerForm :input[name=name]").val().trim()==""){
+        			alert("이름을 입력하세요");				
+        			return false;
+        		}
+        		if($("#registerForm :input[name=email]").val().trim()==""){
+        			alert("이메일 입력하세요");				
+        			return false;
+        		}
+        		if($("#registerForm :input[name=memberAddr]").val().trim()==""){
+        			alert("주소를 입력하세요");				
+        			return false;
+        		}	
+        		if($("#registerForm :input[name=alias]").val().trim()==""){
+        			alert("닉네임를 입력하세요");				
+        			return false;
+        		}	
+        		if($("#registerForm :input[name=phone]").val().trim()==""){
+        			alert("핸드폰 번호를 입력하세요");				
+        			return false;
+        		}	
+        		if($("#registerForm :input[name=beforeDateOfBirth]").val().trim()==""){
+        			alert("생년월일 입력하세요");				
+        			return false;
+        		}	
+        		 if(checkResultId==""){
+        			alert("아이디 중복확인을 하세요");
+        			return false;
+        		}	 
+        		
+        	});//submit
+        	
+        	
+        	//아이디 체크...
+        	$("#registerForm :input[name=id]").keyup(function(){
+        		var id=$(this).val().trim();
+        		//alert(id);
+        		if(id.length<2 || id.length>10){
+        			$("#idCheckView").html("2~10글자만 입력해주세요.").css("background","pink");
+        			checkResultId="";
+        			return;
+        		}
+        		
+        		$.ajax({
+        			type:"post",
+        			url:"${pageContext.request.contextPath}/member/idcheckAjax",				
+        			data:"${_csrf.parameterName}=${_csrf.token}&id="+id,	
+        			success:function(data){						
+        				if(data=="fail"){
+        					console.log("중복 :"+id)
+        					$("#idCheckView").html("  "+id+" 중복입니다 ").css("background","red");
+        					checkResultId="";
+        				}else{		
+        					console.log(id)
+        					$("#idCheckView").html("  "+id+" 사용 할 수 있습니다 ").css("background","yellow");		
+        					checkResultId=id;
+        				}					
+        			}//callback			
+        		});//ajax
+        	});//keyup
+        	 
+        	
+        	
+        })
+        
+        </script>
+        <!--  -->
+        <!--    Document Title-->
+        <!-- =============================================-->
+        <title>Elixir | Beautiful Site Template for Agencies &amp; Professionals</title>
+        <!--  -->
+        <!--    Favicons-->
+        <!--    =============================================-->
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+        <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicons/favicon.ico">
+        <link rel="manifest" href="/assets/images/favicons/manifest.json">
+        <link rel="mask-icon" href="/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileImage" content="/assets/images/favicons/mstile-150x150.png">
+        <meta name="theme-color" content="#ffffff">
+        <!--  -->
+        <!--    Stylesheets-->
+        <!--    =============================================-->
+        <!-- Default stylesheets-->
+        <link href="/assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Template specific stylesheets-->
+        <link href="/assets/lib/loaders.css/loaders.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="/assets/lib/iconsmind/iconsmind.css" rel="stylesheet">
+        <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+        <link href="/assets/lib/hamburgers/dist/hamburgers.min.css" rel="stylesheet">
+        <link href="/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Main stylesheet and color file-->
+        <link href="/assets/css/style.css" rel="stylesheet">
+        <link href="/assets/css/custom.css" rel="stylesheet">
+    </head>
+    <body data-spy="scroll" data-target=".inner-link" data-offset="60">
+        <main>
+            <div class="loading" id="preloader">
+                <div class="loader h-100 d-flex align-items-center justify-content-center">
+                    <div class="line-scale">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <section class="text-center py-0">
+                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/background-1.jpg);">
+                </div>
+                <!--/.background-holder-->
+                <div class="container">
+                    <div class="row h-100vh align-items-center">
+                        <div class="col-md-9 col-lg-6 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                            <div data-zanim='{"delay":0}'><a href="index.html"><img src="/assets/images/logo-light.png" alt=""></a></div>
+                            <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
+                                <h4 class="text-uppercase fs-0 fs-md-1">Create your elixir account</h4>
+                                <form class="mt-4 text-left" method="post" action="${pageContext.request.contextPath}/member/join" id="registerForm">
+                             
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+                                    <div class="row align-items-center">
+                                   		
+                                        <div class="col-12 mt-4">        
+                                            <input class="form-control" type="text" placeholder="ID" name = "id" aria-label="Text input with dropdown button"><span id="idCheckView"></span>
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <input class="form-control" type="password" placeholder="Password" name = "password" aria-label="Text input with dropdown button">
+                                        </div>
+                                        
+                                        <div class="col-12 mt-4">        
+                                            <input class="form-control" type="text" placeholder="NAME" name = "name" aria-label="Text input with dropdown button">
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <input class="form-control" type="text" placeholder="Email Address" name = "email" aria-label="Text input with dropdown button">
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <input class="form-control" type="text" placeholder="Address" name = "memberAddr" aria-label="Text input with dropdown button">
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <input class="form-control" type="text" placeholder="Alias(닉네임)" name = "alias"aria-label="Text input with dropdown button">
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <input class="form-control" type="text" placeholder="Phone" name = "phone"aria-label="Text input with dropdown button">
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                        	
+                                            <input class="form-control" type="date" placeholder="생년월일" name = "beforeDateOfBirth" aria-label="Text input with dropdown button">
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mt-3">
+                                        <div class="col-md-6 mt-3">
+                                           
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+                                            <button class="btn btn-primary btn-block" type="reset">reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+                <!--/.container-->
+            </section>
+        </main>
+        <!--  -->
+        <!--    JavaScripts-->
+        <!--    =============================================-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/assets/lib/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="/assets/lib/gsap/src/minified/TweenMax.min.js"></script>
+        <script src="/assets/lib/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
+        <script src="/assets/lib/CustomEase.min.js"></script>
+        <script src="/assets/js/config.js"></script>
+        <script src="/assets/js/zanimation.js"></script>
+        <script src="/assets/js/inertia.js"></script>
+        <script src="/assets/js/core.js"></script>
+        <script src="/assets/js/main.js"></script>
+    </body>
+</html>

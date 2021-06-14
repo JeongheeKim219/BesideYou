@@ -11,6 +11,6 @@ import bu.mvc.domain.Authority;
 
 public interface AuthorityRepository extends JpaRepository<Authority, Long>{
 	
-	List<Authority> selectAuthorityByUserName(int memberCode);
+	//List<Authority> selectAuthorityByUserName(int memberCode);
     
 }
