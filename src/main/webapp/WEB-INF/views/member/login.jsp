@@ -1,5 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
-<html lang="en-US">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html lang="UTF-8">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +38,7 @@
         <link href="/assets/css/custom.css" rel="stylesheet">
     </head>
     <body data-spy="scroll" data-target=".inner-link" data-offset="60">
-      ${errorMessage} = ${errorMessage}
+     <%--  ${errorMessage} = ${errorMessage} --%>
         <main>
             <div class="loading" id="preloader">
                 <div class="loader h-100 d-flex align-items-center justify-content-center">
@@ -59,6 +61,10 @@
                             <div data-zanim='{"delay":0}'><a href="index.html"><img src="/assets/images/logo-light.png" alt="" /></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
                                 <h4 class="text-uppercase fs-0 fs-md-1">login with elixir</h4>
+                                <c:if test="${not empty requestScope.errorMessage}">
+									<span style="color:red">${requestScope.errorMessage}</span>
+								</c:if>
+                                
                                 <form class="text-left mt-4" method="post" action="${pageContext.request.contextPath}/login">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
                                     <div class="row align-items-center">
@@ -77,9 +83,9 @@
                                     </div>
                                     <div class="row align-items-center mt-3">
                                         <div class="col-6">
-                                            <label class="form-check-label">
+                                            <!-- <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" /><span class="color-7">Remember Me</span>
-                                            </label>
+                                            </label> -->
                                         </div>
                                         <div class="col-6 mt-2 mt-sm-3">
                                             <button class="btn btn-primary btn-block" type="submit">Login</button>

@@ -194,19 +194,26 @@
 							</sec:authorize>
 
 							<!-- 인증 됐으면 -->
-							<sec:authorize access="isAuthenticated()">							
+							<sec:authorize access="isAuthenticated()">
 
 								<!-- 일반회원이거나 관리자인 경우. 두개 이상의 role을 비교할 때 hasAnyRole() -->
-								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">								
+								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
 								</sec:authorize>
+								<li>
+									<p>
+										<sec:authentication property="principal.name" />
+										님 환영합니다.
+										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+								</li>
 								<li><a href="javascript:logout();">로그아웃</a></li>
 							</sec:authorize>
 						</ul>
-						<form id="logoutForm" action="${pageContext.request.contextPath}/member/logout"
-		method="post" style="display: none">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-	</form>
+						<form id="logoutForm"
+							action="${pageContext.request.contextPath}/member/logout"
+							method="post" style="display: none">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
 					</div>
 				</nav>
 			</div>

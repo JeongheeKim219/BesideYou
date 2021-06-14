@@ -173,7 +173,7 @@
 		
 	</table><br>
 	
-	<a href="${pageContext.request.contextPath}/">메인으로</a>
+	<a href="${pageContext.request.contextPath}/member/login">로그인하러 가기</a>
                         </div>
                     </div>
                     <!--/.row-->
