@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.ContactReply;
 import bu.mvc.respsitory.ContactReplyRepository;
+import bu.mvc.respsitory.ContactRepository;
 
 @Service
 @Transactional
@@ -14,6 +15,9 @@ public class ContactReplyServiceImpl implements ContactReplyService {
 	
 	@Autowired
 	private ContactReplyRepository contactReplyRepository;
+	
+	@Autowired
+	private ContactRepository contactRepository;
 
 	/**
 	 * 답변 등록 하기
@@ -21,6 +25,7 @@ public class ContactReplyServiceImpl implements ContactReplyService {
 	@Override
 	public void insert(ContactReply contactReply) {
 		contactReplyRepository.save(contactReply);
+		contactRepository.stateUpdate();
 	}
 
 	/**
