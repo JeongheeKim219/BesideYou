@@ -1,7 +1,6 @@
 package bu.mvc.domain;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,10 +46,15 @@ public class Counsel {
 	private LocalDateTime counselReqDate;
 	
 	private LocalDateTime counselDate;
+	
+	
+	
 
 	public Counsel(Long counselCode) {
 		this.counselCode = counselCode;
 	}
+	
+
 
 	public Counsel(Long counselCode, Member member, Counselor counselor, int counselCategory, int counselState,
 			LocalDateTime counselDate) {

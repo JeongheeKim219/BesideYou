@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -13,15 +14,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
 import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Member;
 import bu.mvc.domain.Speciality;
+import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.PriceRepository;
 import bu.mvc.respsitory.SpecialityRepository;
 import bu.mvc.respsitory.TagRepository;
-
-import bu.mvc.domain.Member;
-import bu.mvc.respsitory.AdminRepository;
 
 @SpringBootTest
 @Transactional
@@ -90,9 +90,16 @@ class BesideYouApplicationTests {
 		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0, 0, 0));
 		LocalDateTime end = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
 
-		List<Member> newMemeberList = adminRep.findByDateOfRegBetween(start, end);
+		List<Member> newMemeberList = adminRep.findByMemberStateAndDateOfRegBetween(0, start, end);
 		newMemeberList.forEach(m -> System.out.println(m));
-
 	}
-
+	
+	/*
+	 * @Test void countMember() { List<Map<String, Integer>> list =
+	 * adminRep.countJoinMember();
+	 * 
+	 * for (Map<String, Integer> map : list) { for(String key : map.keySet()) {
+	 * System.out.println(key + ", " + map.get(key)); } } }
+	 */
+	
 }

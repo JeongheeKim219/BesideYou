@@ -38,7 +38,7 @@ public class Contact { //1:1문의
 	
 	@ManyToOne
 	@JoinColumn(name = "member_code")
-	private Member member; //회원 코드를 가져와야	한다.
+	private Member member; //회원 코드를 가져와야 한다.
 
 	
 	public Contact(Long contactCode, int contactCategory, String contactTitle, String contactContent, int contactState,

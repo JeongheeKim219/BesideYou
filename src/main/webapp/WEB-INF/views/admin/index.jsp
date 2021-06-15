@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <title>Analytics Dashboard - This is an example dashboard
 	created using build-in elements and components.</title>
 <meta name="viewport"
@@ -35,11 +35,13 @@
 	display: flex;
 	flex-direction: row;
 }
-#rowWidgetContainer{
+
+#rowWidgetContainer {
 	flex-wrap: wrap;
 }
-.direction{
-	display : flex;
+
+.direction {
+	display: flex;
 	flex-direction: column;
 }
 </style>
@@ -69,7 +71,7 @@
 								<i class="fa fa-star"></i>
 							</button>
 							<div class="d-inline-block dropdown">
-								<button type="button" data-toggle="dropdown"
+								<button type="button" id="ajaxTest" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"
 									class="btn-shadow dropdown-toggle btn btn-info">
 									<span class="btn-icon-wrapper pr-2 opacity-7"> <i
@@ -155,12 +157,27 @@
 							<div class="widget-content-wrapper text-white">
 								<div class="widget-content-left">
 									<div class="widget-heading">당일 매출액</div>
-									<div class="widget-subheading">Revenue streams</div>
+									<div class="widget-subheading">상담권 매출액</div>
 								</div>
 								<div class="widget-content-right">
 									<div class="widget-numbers text-warning">
 										<span><fmt:formatNumber currencyCode="KRW"
-												currencySymbol="원" value="${dayIncome}"/></span>
+												currencySymbol="원" value="${dayIncome}" />원</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-xl-4">
+						<div class="card mb-3 widget-content bg-tempting-azure">
+							<div class="widget-content-wrapper text-gray">
+								<div class="widget-content-left">
+									<div class="widget-heading">미처리 문의 건수</div>
+									<div class="widget-subheading">처리대기 문의</div>
+								</div>
+								<div class="widget-content-right">
+									<div class="widget-numbers text-primary">
+										<span>${pendingContactCount}</span>
 									</div>
 								</div>
 							</div>
@@ -181,17 +198,17 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
-			
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="pending" value="${stateMap.pending}" />
-														<div class="widget-heading">신청</div>
-														<div class="widget-subheading">확정 전</div>
+
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="pending" value="${stateMap.pending}" />
+															<div class="widget-heading">신청</div>
+															<div class="widget-subheading">확정 전</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-success">${fn:length(pending)}</div>
+														</div>
 													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-success">${fn:length(pending)}</div>
-													</div>
-												</div>
 												</div>
 											</div>
 										</div>
@@ -200,16 +217,16 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="denied" value="${stateMap.denied}" />
-														<div class="widget-heading">반려</div>
-														<div class="widget-subheading">예약거절</div>
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="denied" value="${stateMap.denied}" />
+															<div class="widget-heading">반려</div>
+															<div class="widget-subheading">예약거절</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-primary">${fn:length(denied)}</div>
+														</div>
 													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-primary">${fn:length(denied)}</div>
-													</div>
-												</div>
 												</div>
 											</div>
 										</div>
@@ -218,17 +235,17 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="approval" value="${stateMap.approval}" />
-														<div class="widget-heading">승인</div>
-														<div class="widget-subheading">예약완료</div>
-													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-danger">${fn:length(approval)}</div>
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="approval" value="${stateMap.approval}" />
+															<div class="widget-heading">승인</div>
+															<div class="widget-subheading">예약완료</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-danger">${fn:length(approval)}</div>
+														</div>
 													</div>
 												</div>
-											</div>
 											</div>
 										</div>
 									</li>
@@ -236,15 +253,15 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="done" value="${stateMap.done}" />
-														<div class="widget-heading">완료</div>
-														<div class="widget-subheading">이번 달 누적</div>
-													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-warning">${fn:length(done)}</div>
-													</div>
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="done" value="${stateMap.done}" />
+															<div class="widget-heading">완료</div>
+															<div class="widget-subheading">이번 달 누적</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-warning">${fn:length(done)}</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -254,8 +271,8 @@
 							</div>
 						</div>
 					</div>
-				<!-- 상담상태 내역 위젯 끝 -->
-				<!-- 상담사 등록 상태 위젯 시작 -->
+					<!-- 상담상태 내역 위젯 끝 -->
+					<!-- 상담사 등록 상태 위젯 시작 -->
 					<div class="col-md-6">
 						<div class="main-card mb-3 card" id="rowWidgetContainer">
 							<div class="card-header">
@@ -267,51 +284,16 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="registerPending" value="${registerStateMap.counselorPending}" />
-														<div class="widget-heading">신청</div>
-														<div class="widget-subheading">검토대기</div>
-													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-success">${fn:length(registerPending)}</div>
-													</div>
-												</div>
-												</div>
-											</div>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="widget-content p-0">
-											<div class="widget-content-outer">
-												<div class="widget-content-wrapper">
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="registerDenied" value="${registerStateMap.counselorDenied}" />
-														<div class="widget-heading">반려</div>
-														<div class="widget-subheading">승인거절</div>
-													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-primary">${fn:length(registerDenied)}</div>
-													</div>
-												</div>
-												</div>
-											</div>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="widget-content p-0">
-											<div class="widget-content-outer">
-												<div class="widget-content-wrapper">
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="registerApproval" value="${registerStateMap.counselorApproval}" />
-														<div class="widget-heading">승인</div>
-														<div class="widget-subheading">등록완료</div>
-													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-danger">${fn:length(registerApproval)}</div>
-													</div>
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="registerPending"
+																value="${registerStateMap.counselorPending}" />
+															<div class="widget-heading">신청</div>
+															<div class="widget-subheading">검토대기</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-success">${fn:length(registerPending)}</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -321,15 +303,54 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-outer">
 												<div class="widget-content-wrapper">
-												<div class="direction">
-													<div class="widget-content-left">
-														<c:set var="registerRevoked" value="${registerStateMap.counselorRevoked}" />
-														<div class="widget-heading">자격취소</div>
-														<div class="widget-subheading">등록해제</div>
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="registerDenied"
+																value="${registerStateMap.counselorDenied}" />
+															<div class="widget-heading">반려</div>
+															<div class="widget-subheading">승인거절</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-primary">${fn:length(registerDenied)}</div>
+														</div>
 													</div>
-													<div class="widget-content-right">
-														<div class="widget-numbers text-warning">${fn:length(registerRevoked)}</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="widget-content p-0">
+											<div class="widget-content-outer">
+												<div class="widget-content-wrapper">
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="registerApproval"
+																value="${registerStateMap.counselorApproval}" />
+															<div class="widget-heading">승인</div>
+															<div class="widget-subheading">등록완료</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-danger">${fn:length(registerApproval)}</div>
+														</div>
 													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="widget-content p-0">
+											<div class="widget-content-outer">
+												<div class="widget-content-wrapper">
+													<div class="direction">
+														<div class="widget-content-left">
+															<c:set var="registerRevoked"
+																value="${registerStateMap.counselorRevoked}" />
+															<div class="widget-heading">자격취소</div>
+															<div class="widget-subheading">등록해제</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-numbers text-warning">${fn:length(registerRevoked)}</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -361,11 +382,11 @@
 								<div class="tab-content">
 									<div class="tab-pane fade show active" id="tabs-eg-77">
 										<div
-											class="card mb-3 widget-chart widget-chart2 text-left w-100">
+											class="card mb-12 widget-chart widget-chart2 text-left w-100">
 											<div class="widget-chat-wrapper-outer">
 												<div
 													class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
-													<canvas id="canvas"></canvas>
+													 <canvas id="newMemebrChart"></canvas>
 												</div>
 											</div>
 										</div>
@@ -947,37 +968,90 @@
 					</div>
 				</div>
 			</div>
-			<div class="app-wrapper-footer">
-				<div class="app-footer">
-					<div class="app-footer__inner">
-						<div class="app-footer-left">
-							<ul class="nav">
-								<li class="nav-item"><a href="javascript:void(0);"
-									class="nav-link"> Footer Link 1 </a></li>
-								<li class="nav-item"><a href="javascript:void(0);"
-									class="nav-link"> Footer Link 2 </a></li>
-							</ul>
-						</div>
-						<div class="app-footer-right">
-							<ul class="nav">
-								<li class="nav-item"><a href="javascript:void(0);"
-									class="nav-link"> Footer Link 3 </a></li>
-								<li class="nav-item"><a href="javascript:void(0);"
-									class="nav-link">
-										<div class="badge badge-success mr-1 ml-0">
-											<small>NEW</small>
-										</div> Footer Link 4
-								</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
-		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-	</div>
 	</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
+	<!-- Chart.js -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+
+			var weekList = [];
+			var today = new Date();
+			var newJoinMember = new Array();
+
+			//날짜구하기
+			var v = 1;
+			for (var i = 0; i <= 6; i++) {
+				var year = today.getFullYear().toString().substring(2);
+				var month = today.getMonth() + 1;
+				if (month < 10) {
+					month = "0" + month;
+				}
+				var day = today.getDate();
+				if (day < 10) {
+					day = "0" + day;
+				}
+
+				var dateString = year + '/' + month + '/' + day;
+				weekList.unshift(dateString);
+				today.setDate(today.getDate() - v);
+			}
+
+			function countNewMember() {
+				$.ajax({
+							url : "${pageContext.request.contextPath}/admin/countNewMember",
+							type : "POST",
+							data : JSON.stringify({
+								weekList : weekList
+							}),
+							dataType : 'json',
+							contentType : 'application/json',
+							success : function(result) {
+
+								$.each(result, function(index, item) {
+									newJoinMember.push(item);
+								});
+								
+								drawNewMemberChart();
+
+							},
+							error : function(err) {
+								alert("error");
+							}
+						});
+			}
+
+			//차트 그리기
+			function drawNewMemberChart() {
+				var newMemebrChart = $("#newMemebrChart");
+				var barChart = new Chart(newMemebrChart, {
+					type : 'bar',
+					data : {
+						labels : weekList,
+						datasets : [ {
+							label : '당일 신규 회원 수',
+							data : newJoinMember,
+							backgroundColor : [ 
+									'rgba(255, 99, 132, 0.6)',
+									'rgba(54, 162, 235, 0.6)',
+									'rgba(255, 206, 86, 0.6)',
+									'rgba(75, 192, 192, 0.6)',
+									'rgba(153, 102, 255, 0.6)',
+									'rgba(255, 159, 64, 0.6)',
+									'rgba(255, 99, 132, 0.6)' ]
+						} ]
+					}
+				});
+			}
+
+			countNewMember();
+			
+
+		})//JQuery Ready 끝
+	</script>
 </body>
 </html>

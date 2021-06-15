@@ -19,4 +19,10 @@ public interface CounselRepository extends JpaRepository<Counsel, Long> {
 	 */
 	List<Counsel> findAllByCounselState(int state);
 
+	
+	/**
+	 * 3. 상담신청된 상담의 유형 조회
+	 */
+	List<Counsel> findByCounselCategory(int category);
+	
 }
