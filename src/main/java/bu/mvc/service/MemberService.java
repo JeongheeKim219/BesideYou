@@ -10,5 +10,8 @@ public interface MemberService {
 	 * */
 	int joinMember(Member member);
 	
-	
+	/**
+	 * 아이디 체크
+	 * */
+	String idcheck(String id);
 }

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
-
+import bu.mvc.domain.Authority;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Speciality;
 import bu.mvc.respsitory.CounselorRepository;
@@ -24,6 +24,7 @@ import bu.mvc.respsitory.TagRepository;
 
 import bu.mvc.domain.Member;
 import bu.mvc.respsitory.AdminRepository;
+import bu.mvc.respsitory.AuthorityRepository;
 
 
 @SpringBootTest
@@ -47,6 +48,8 @@ class BesideYouApplicationTests {
 	@Autowired
 	private SpecialityRepository specialityRep;
 
+	@Autowired
+	private AuthorityRepository authorityRep;
 	/*@Test
 	void insert() {
 		testRep.save(new Member(null, "admin2", "1234", "관리자", null, "테스트", "11-111", "qo10@na", 0, 3, LocalDate.of(1998, 8, 20), null));
@@ -54,7 +57,7 @@ class BesideYouApplicationTests {
 	
 	@Test
 	void delete() {
-		testRep2.deleteById(16L);
+		testRep.deleteById(81L);
 	}
 	
 	/*@Test
@@ -86,13 +89,13 @@ class BesideYouApplicationTests {
 	}*/
 	@Test
 	void insert() {
-		specialityRep.save(new Speciality(null, "청소년전문상담사", new Counselor(17L)));
+		authorityRep.save(new Authority(null, new Member(3L), "MEMBER"));
 	}
 
 
 
 	
-	@Test
+	/*@Test
 	void newMember() {
 		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
 		LocalDateTime end = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
@@ -101,7 +104,7 @@ class BesideYouApplicationTests {
 		newMemeberList.forEach(m -> System.out.println(m));
 	
 
-	}
+	}*/
 	
 	
 
