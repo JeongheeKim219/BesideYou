@@ -18,6 +18,8 @@ import bu.mvc.domain.Psychology;
 import bu.mvc.respsitory.ArtAnswerRepository;
 import bu.mvc.respsitory.ArtCounselorRepository;
 import bu.mvc.respsitory.ArtRepository;
+import bu.mvc.respsitory.CounselorRepository;
+import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.PsychologyRepository;
 
 @SpringBootTest
@@ -37,6 +39,12 @@ public class ArtTest {
 	@Autowired
 	private ArtAnswerRepository ansRep;
 	
+	@Autowired
+	private MemberRepository memRep;
+	
+	@Autowired
+	private CounselorRepository cRep;
+	
 	@Test
 	void test() {
 		System.out.println("artRep : "+artRep);
@@ -46,14 +54,15 @@ public class ArtTest {
 	@Test
 	void testInsert() {
 		//psyRep.save(new Psychology(null, 0, null, new Member(4L)));
-		psyRep.save(new Psychology(null, 0, null, new Member(3L)));
+		//psyRep.save(new Psychology(null, 0, null, new Member(3L)));
+		psyRep.save(new Psychology(null, 10, 0, null, new Member(4L)));
 	}
 
 	//그림상담사 등록
 	@Test
 	void artCounselor() {
 		//acRep.save(new ArtCounselor(null, "q", "d", new Counselor(1L)));
-		acRep.save(new ArtCounselor(null, "지시사항", "검사항목", new Counselor(17L)));
+		acRep.save(new ArtCounselor(null, "준비물은 연필과 지우개입니다. 오래 생각하지 말고 그려주세요.", "1.비오는 날의 그림을 그려주세요. 2. 나무를 그려주세요.", new Counselor(25L)));
 	}
 	
 	//그림테스트 요청
@@ -110,6 +119,13 @@ public class ArtTest {
 		List<Psychology> list = psyRep.seacrchPsyByMember(new Member(3L));
 		System.out.println("개수 : "+list.size());
 		list.forEach(a->System.out.println(a));
+	}
+	
+	//멤버코드에 해당하는 카운슬러코드 검색
+	@Test
+	void select() {
+		//memRep.
+		//cRep.findById(new Member(4L));
 	}
 	
 	

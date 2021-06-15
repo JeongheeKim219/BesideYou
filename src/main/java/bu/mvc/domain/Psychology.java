@@ -30,7 +30,7 @@ public class Psychology {
 	private Long testCode;
 	
 	private int total;
-	
+	private int testName;
 	@CreationTimestamp
 	private LocalDateTime testDate;
 	

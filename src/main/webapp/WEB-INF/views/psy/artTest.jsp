@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#form").submit(function(){
+		alert("그림테스트 요청이 완료되었습니다.");
+	});
+	
+})
+</script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -132,156 +141,37 @@
                     </nav>
                 </div>
             </div>
-            <section>
-                <div>
-                    <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
-                    </div>
-                    <!--/.background-holder-->
-                    <div class="container">
-                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
-                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Self Test</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class="background-11 text-center">
+            <section class="background-11">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep.jpg" alt="Depression Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>우울증 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Depression</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                    	<a href="${pageContext.request.contextPath}/psy/depression" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
+                	<div class="col">
+                            <h3 class="text-center fs-2 fs-md-3">ART TEST</h3>
+                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
                         </div>
-                   		<div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress.jpg" alt="Stress Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>스트레스 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Stress</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="${pageContext.request.contextPath}/psy/stress" class="btn btn-outline-primary">START</a>
-                                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-lg-12 px-5 py-6 my-lg-0 background-white radius-tr-lg-secondary radius-br-secondary radius-bl-secondary radius-bl-lg-0">
+                            <div class="d-flex align-items-center h-100">
+                                <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                    <h5 data-zanim='{"delay":0}'>그림테스트 지시사항</h5>
+                                    <p class="my-4" data-zanim='{"delay":0.1}'>${ac.question}</p>
+                                    <h5 class="text-uppercase mt-3 fw-500 mb-3" data-zanim='{"delay":0.3}'>그림테스트 검사항목</h5>
+                                    <h6 class="color-7 fw-600" data-zanim='{"delay":0.4}'>${ac.detail}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section style="background-color: #3D4C6F">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="background-primary color-white p-5 p-lg-6 radius-secondary">
-                                <h4 class="color-white fs-1 fs-lg-2 mb-1">Sign up for email alerts</h4>
-                                <p class="color-white">Stay current with our latest insights</p>
-                                <form class="mt-4">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-7 pr-md-0">
-                                            <div class="input-group">
-                                                <input class="form-control" type="email" placeholder="Enter Email Here" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mt-3 mt-md-0">
-                                            <button class="btn btn-warning btn-block" type="submit"><span class="color-primary fw-600">Submit</span></button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mt-4 mt-lg-0">
-                            <div class="row">
-                                <div class="col-6 col-lg-4 color-white ml-lg-auto">
-                                    <ul class="list-unstyled">
-                                        <li class="mb-3"><a class="color-white" href="#">Contact Us</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">FAQ</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Privacy Policy</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Terms of Use</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Global Office</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Local Office</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-6 col-sm-5 ml-sm-auto"><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-linkedin color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Linkedin</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-twitter color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Twitter</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-facebook color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Facebook</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-google-plus color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Google+</h5>
-                                            </div>
-                                        </div>
-                                    </a></div>
+                    
+                    <div class="row mt-6">
+                        <div class="col-12">
+                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
+                                <h5>파일 첨부하기</h5>
+                                <form id="form" action="${pageContext.request.contextPath}/psy/upload" method="post" enctype="multipart/form-data">
+                                	<input type="hidden" name="name" value="${ac.counselor.member.name}">
+                                	<input type="hidden" name="code" value="${ac.artCounselorCode}">
+									<p class="mt-3">그림을 (회원ID).zip 형식으로 첨부해주세요.</p>
+									<input type="file" name="file" accept=".zip" required="required"/>
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+									<input type="submit" class="btn btn-primary" value="완료"/>
+								</form>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,56 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	var sum = 0;
+	
+	$('input:radio[name^="ques"]').on('click', function() {
+	    //alert(1)
+		var valueCheck = Number($('input:radio[name^="ques"]:checked').val()); // 체크된 Radio 버튼의 값을 가져옵니다.
+	   	//alert(valueCheck);
+		sum += valueCheck;
+	    $("#test").html(sum);
+	    $("#total").val(sum);
+	    //$("#aa").val(sum);
+	});
+	
+	 /*$('input:radio[name^="ques"]').click(function(){
+		 //alert(1)
+		 var valueCheck = Number($('input:radio[name^="ques"]:checked').val());
+		 alert(valueCheck)
+		 sum += valueCheck;
+		 }).change(function(){
+		  $('#test').trigger("blur");
+		  $('#test').append(sum);
+		 });*/
+	
+	/* $('input:radio[name^="ques"]').click( function(){
+		  aa = Number($(this).val());
+		  sum += aa
+		 }).change(function(){
+		  $('#test').append( "before value : "+ aa +"<br>" +"sum value :" +sum +"<br>"+"sum에서 변경되면 이전 값 빼기 : "+(sum-aa)+"<br>");
+		 });*/
+	
+		 
+		 
+		$("#btn").on("click", function(){
+			 var length = $('input:radio[name^="ques"]').length;
+			 var len = length/4;
+			 if(len != $('input:radio[name^="ques"]:checked').length){
+				 alert("선택되지 않은 값이 있습니다.")
+				 return false;
+			 }
+			})
+			.prop("onclick", null);
+	
+	
+})
+</script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -137,13 +186,13 @@
                     <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
                     <!--/.background-holder-->
-                    <div class="container ">
-                        <div class="row pt-6 " data-inertia='{"weight":1.5}'>
-                            <div class="col-md-12 px-md-0 color-white text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                    <div class="container">
+                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
+                            <div class="col-md-12 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity mb-3" data-zanim='{"delay":0}'>우울증 검사</h1>
-                                    <div class="overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-		                                <h4 data-zanim='{"delay":0.1}'>나의 우울증 지수는 몇 점일까?</h4>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-5 zopacity text-center" data-zanim='{"delay":0}'>우울증 검사</h1>
+                                    <div class="overflow-hidden text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                		<h5 data-zanim='{"delay":0.1}'>나의 우울증 지수는 몇 점일까?</h5>
                             		</div>
                                 </div>
                             </div>
@@ -153,165 +202,190 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-11 ">
+            <section class="background-11 text-center">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-12 mb-4">
-                            <div class="overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div data-zanim='{"delay":0}'><a class="d-inline-block color-7" href="#">Thomas Been</a>, &nbsp;<a class="d-inline-block color-7" href="#">May 15, 2017</a></div>
-                                <h4 data-zanim='{"delay":0.1}'>Tax impacts of lease accounting change</h4>
-                            </div>
+                  <div>
+					<table class="table table-hover align-middle">
+					  <thead>
+					    <tr>
+					      <th>질문</th>
+					      <th>아니다 또는 거의 그렇지 않다.</th>
+					      <th>때때로 그렇다.</th>
+					      <th>자주 그렇다.</th>
+					      <th>거의 항상 그렇다.</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>나는 의욕이 없고, 우울하고 슬프다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+					    </tr>
+					    <tr>
+					      <td>나는 하루 중 아침에 가장 기분이 좋다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques2"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques2"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques2"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques2"> </td>
+					    </tr>
+					    <tr>
+					      <td>나는 갑자기 울거나, 울고 싶을 때가 있다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques3"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques3"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques3"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques3"> </td>
+					    </tr>
+					    <tr>
+					      <td >나는 잠을 잘 못자거나 아침에 일찍 깬다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques4"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques4"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques4"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques4"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 평상시와 같이 잘 먹는다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques5"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques5"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques5"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques5"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 이성과 이야기하고 함께 있기를 좋아한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques6"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques6"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques6"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques6"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 체중이 준 것 같다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques7"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques7"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques7"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques7"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 변비가 있다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques8"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques8"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques8"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques8"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">심장이 평상시보다 빨리 뛰거나 두근거린다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques9"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques9"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques9"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques9"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 별 이유없이 몸이 나른하고 피곤하다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques10"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques10"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques10"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques10"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">내 정신은 이전처럼 맑다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques11"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques11"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques11"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques11"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 어떤 일이든지 전처럼 쉽게 처리한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques12"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques12"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques12"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques12"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 안절부절해서 가만히 있을 수가 없다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques13"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques13"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques13"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques13"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나의 장래는 희망적이라고 느낀다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques14"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques14"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques14"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques14"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 평소보다 짜증이 많아졌다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques15"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques15"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques15"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques15"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 매사에 결단력이 있다고 생각한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques16"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques16"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques16"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques16"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 유익하고 필요한 사람이라고 생각한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques17"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques17"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques17"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques17"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 내 삶이 충만하고 의의가 있다고 느낀다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques18"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques18"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques18"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques18"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">내가 죽어야 남들이 편할 것 같다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques19"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques19"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques19"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques19"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 전과 같이 즐겁게 일한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques20"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques20"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques20"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques20"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 평소보다 짜증이 많아졌다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques21"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques21"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques21"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques21"> </td>
+					    </tr>
+					    
+					    
+					  </tbody>
+					</table>
+					<div id="test"></div>
+					<form name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/depInsert">
+					<input type="hidden" name="testName" value="0">
+					<input type="text" name="total" id="total" value="">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+					<input type="submit" id="btn" class="btn btn-outline-primary" value="결과보기">
+					</form>
+					
+					</div>  
+                </div>
+                <!--/.container-->
+            </section>
+            <section class=" background-primary py-6">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md">
+                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
                         </div>
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="col-12"><img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/news-1.jpg" alt=""></div>
-                                <div class="col-12">
-                                    <div class="background-white p-5 radius-secondary">
-                                        <p class="dropcap">On 9 August 2016, HMRC released a consultation document to flag some potential tax impacts that a forthcoming change in lease accounting may have on the funding of plant and machinery. From 2019, lessees using IFRS (including FRS 101), as opposed to FRS 102 (UK GAAP), will no longer have to distinguish between finance and operating leases. All leases (except some small value leases or very short leases) will be capitalized on the lesseeâs balance sheet at the NPV of the future payments from the day the lease starts. This accounting change will not affect lessors. At the moment, the tax treatment typically depends on whether a lease is a âlong funding leaseâ or not. If it is, then it is the lessee who gets capital allowances (CAs). However, much anti-avoidance legislation is focused on the concept of finance leases and the IFRS change will interfere with that. In its consultation, HMRC has floated four options for addressing the issue. The first is broadly the status quo, with some tinkering. The others contain the more radical suggestion to move towards an accounts-based regime for taxing leases, using a system of debits and credits somewhat akin to the loan relationship regime and which would similarly eliminate the capital/revenue divide. ith such a proposal, including:</p><a class="d-block my-3 ml-4" href="#">gust-2016/tax-impacts-of-lease-accunting-changes#sthash.J6Ddydx2.dpuf</a>
-                                        <p>HMRC has identified several issues which should be addressed in conjunction with such a proposal, including: <ol>
-                                                <li>
-                                                    <p class="mb-2">Can HMRC trust companies to use âsensibleâ depreciation policies or will there need to be legislation for it?</p>
-                                                </li>
-                                                <li>
-                                                    <p class="mb-2">In order to avoid distorting the âlease or buyâ decision, the government may be willing to offer an enhanced deduction to lessees that would otherwise have qualified for the AIA.</p>
-                                                </li>
-                                                <li>
-                                                    <p class="mb-2">Could HMRC combine an accounts-based regime with giving the lessee an option to claim CAs on the âright of useâ asset?</p>
-                                                </li>
-                                            </ol>
-                                        </p>
-                                        <p>Inevitably, there is a long way to go on these issues. But the eventual outcome is potentially quite far-reaching for UK corporates â for example if HMRC can become comfortable on the issue of âsensibleâ depreciation policies without a lot of new anti-avoidance legislation.</p>
-                                        <p>If you have any questions on the tax implications of lease accounting please contact David Porter.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row mt-6">
-                                        <div class="col-12">
-                                            <div class="background-white p-5 radius-tl-secondary radius-tr-secondary">
-                                                <h4>Top Comments</h4>
-                                                <div class="row my-5">
-                                                    <div class="col-2 text-center"><img class="radius-round" src="/assets/images/portrait-8.jpg" style="min-width: 35px; widht: 75px;" alt=""></div>
-                                                    <div class="col-10">
-                                                        <h5 class="mb-1">Post Heading</h5>
-                                                        <p class="fs--1 color-7">May 15, 2017 at 9:33 am</p>
-                                                        <p>Their work on our website and Internet marketing has made a significant different to our business. Weâve seen a 425% increase in quote requests from the website which has been pretty remarkable â but Iâd always like to see more!</p><a class="d-block my-3 text-right mr-4" href="#">Reply</a>
-                                                        <hr class="muted">
-                                                        <div class="row my-4">
-                                                            <div class="col-2 text-center"><img class="radius-round" src="/assets/images/square-1.jpg" style="min-width: 35px; widht: 75px;" alt=""></div>
-                                                            <div class="col-10">
-                                                                <h5 class="mb-1">Post Heading</h5>
-                                                                <p class="fs--1 color-7">May 15, 2017 at 9:33 am</p>
-                                                                <p>Writing case studies was a daunting task for us. We didnât know where to begin or what questions to ask, and clients never seemed to follow through when we asked. Elixir team did everything â with almost no time or effort for me!</p><a class="d-block my-3 text-right mr-4" href="#">Reply</a>
-                                                            </div>
-                                                        </div>
-                                                        <hr class="muted">
-                                                    </div>
-                                                </div>
-                                                <div class="row my-4">
-                                                    <div class="col-2 text-center"><img class="radius-round" src="/assets/images/square-2.jpg" style="min-width: 35px; widht: 75px;" alt=""></div>
-                                                    <div class="col-10">
-                                                        <h5 class="mb-1">Post Heading</h5>
-                                                        <p class="fs--1 color-7">May 15, 2017 at 9:33 am</p>
-                                                        <p>As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails, but Elixir was highly recommended by many other Y-Combinator startups we knew. Elixir helped us run a ~6 week email campaign that brought us more leads than we had ever seen for a single effort.</p><a class="d-block my-3 text-right mr-4" href="#">Reply</a>
-                                                        <hr class="muted">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
-                                                <h4>Leave A Comment</h4>
-                                                <form class="mt-4">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <input class="form-control background-white" type="text" placeholder="Your Name" aria-label="Text input with dropdown button">
-                                                        </div>
-                                                        <div class="col-12 mt-4">
-                                                            <input class="form-control background-white" type="email" placeholder="Email" aria-label="Text input with dropdown button">
-                                                        </div>
-                                                        <div class="col-12 mt-4">
-                                                            <textarea class="form-control background-white" rows="10" placeholder="Leave your comment here..." aria-label="Text input with dropdown button"></textarea>
-                                                        </div>
-                                                        <div class="col-12 mt-4">
-                                                            <button class="btn btn-primary" type="Submit"> <span class="color-white fw-600">Submit Comment</span></button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 text-center ml-auto mt-5 mt-lg-0">
-                            <div class="row px-2">
-                                <div class="col">
-                                    <div class="background-white p-5 radius-secondary">
-                                        <div class="overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll"><img class="radius-round" data-zanim='{"delay":0}' src="/assets/images/portrait-8.jpg" alt="">
-                                            <h5 class="text-capitalize mt-3 mb-0" data-zanim='{"delay":0.1}'>thomas been</h5>
-                                            <p class="mb-0 mt-3" data-zanim='{"delay":0.2}'>Flattering high rise easy care flared fit - cut straight leg that flares at the ankle comfy tight. Regular fit viscose elastane leather black wool.</p>
-                                            <div class="pt-4" data-zanim='{"delay":0.3}'><a class="d-inline-block" href="#"><span class="fa fa-linkedin-square fs-2 mx-2 color-8"></span></a><a class="d-inline-block" href="#"><span class="fa fa-twitter-square fs-2 mx-2 color-8"></span></a><a class="d-inline-block" href="#"><span class="fa fa-facebook-square fs-2 mx-2 color-8"></span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-5 px-2">
-                                <div class="col">
-                                    <h5 class="mb-3">Related Articles</h5>
-                                    <div class="background-white pb-7 radius-secondary">
-                                        <div class="owl-carousel owl-theme owl-nav-outer owl-dot-round mt-4" data-options='{"items":1}'>
-                                            <div class="item">
-                                                <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/9.jpg" alt="Featured Image">
-                                                    <div class="px-4 pt-4"><a href="news.html">
-                                                            <h5>Tax impacts of lease mean accounting change</h5>
-                                                        </a>
-                                                        <p class="color-7">By Paul O'Sullivan</p>
-                                                        <p class="mt-3">HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...</p><a href="#">Learn More &xrarr;</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/10.jpg" alt="Featured Image">
-                                                    <div class="px-4 pt-4"><a href="news.html">
-                                                            <h5>What brexit means for data protection law</h5>
-                                                        </a>
-                                                        <p class="color-7">By Enrico Ambrosi</p>
-                                                        <p class="mt-3">Assuming that the referendum is not ignored completely, there are two possible futures for the UK...</p><a href="#">Learn More &xrarr;</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/11.jpg" alt="Featured Image">
-                                                    <div class="px-4 pt-4"><a href="news.html">
-                                                            <h5>The growing meanace of social engineering fraud</h5>
-                                                        </a>
-                                                        <p class="color-7">By Robson</p>
-                                                        <p class="mt-3">Social engineering involves the collection of information from various sources about a target...</p><a href="#">Learn More &xrarr;</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row px-2 mt-5">
-                                <div class="col">
-                                    <div class="background-white p-5 radius-secondary">
-                                        <h5>Tags</h5>
-                                        <ul class="nav tags mt-3 fs--1">
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Advisory</a></li>
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Finance</a></li>
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Ideas</a></li>
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Data</a></li>
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Market</a></li>
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Tax</a></li>
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Consulting</a></li>
-                                            <li><a class="btn btn-sm btn-outline-primary m-1 p-2" href="#">Accounting</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
                     </div>
                     <!--/.row-->
                 </div>
@@ -422,7 +496,6 @@
         <script src="/assets/js/config.js"></script>
         <script src="/assets/js/zanimation.js"></script>
         <script src="/assets/js/inertia.js"></script>
-        <script src="/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
         <script src="/assets/js/core.js"></script>
         <script src="/assets/js/main.js"></script>
     </body>
