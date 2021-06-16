@@ -34,7 +34,7 @@ class CounselTest {
 
 	@Test
 	void insertCounsel() {
-		counselRep.save(new Counsel(null, new Member(4L), new Counselor(1L), 3, 1, new Date()));
+		//counselRep.save(new Counsel(null, new Member(4L), new Counselor(1L), 3, 1, new Date()));
 	}
 	
 	@Test

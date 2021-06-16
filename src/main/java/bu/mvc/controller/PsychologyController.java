@@ -222,7 +222,7 @@ public class PsychologyController {
 		//회원정보를 가져와서 그림상담사 등록되어있는지
 		Counselor co = psyService.selectByMem(44L);  //그림상담사 등록된 ㅐㅇ
 		Counselor c = psyService.selectByMem(21L);//등록 안된애
-		ArtCounselor ac = psyService.selectByCounselorCode(co);
+		ArtCounselor ac = psyService.selectByCounselorCode(c);
 		model.addAttribute("info", ac);
 	}
 	
