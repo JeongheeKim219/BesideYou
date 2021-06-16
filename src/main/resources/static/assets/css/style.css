@@ -3031,7 +3031,7 @@ label, input, textarea, legend {
 }
 
 input[type='file'] {
-  display: none;
+  /*display: none;*/
 }
 
 .inputfile + label svg {
