@@ -116,9 +116,9 @@ public class ArtTest {
 	//멤버코드에 해당하는 테스트 검색
 	@Test
 	void selectPsyByMember() {
-		List<Psychology> list = psyRep.seacrchPsyByMember(new Member(3L));
-		System.out.println("개수 : "+list.size());
-		list.forEach(a->System.out.println(a));
+		//List<Psychology> list = psyRep.seacrchPsyByMember(new Member(3L));
+		//System.out.println("개수 : "+list.size());
+		//list.forEach(a->System.out.println(a));
 	}
 	
 	//멤버코드에 해당하는 카운슬러코드 검색
