@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import bu.mvc.domain.Contact;
 import bu.mvc.domain.Member;
 
 @Repository
@@ -30,23 +29,38 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 	Page<Member> findAllByMemberType(int type, Pageable pageable);
 	
 	
-	/**
-	 * 3. 일반 회원 증가 추이 검색
-	 */
-	@Query(value = "SELECT TO_CHAR(DATE_OF_REG, 'yy/mm/dd') AS DAY, COUNT (*) AS COUNT FROM MEMBER GROUP BY TO_CHAR(DATE_OF_REG, 'yy/mm/dd') ORDER BY DAY", nativeQuery = true)
-	List<Map<String, Object>> countJoinMember();
-
 	
 	/**
-	 * 4. 테스트 쿼리
+	 * 3. 신규 일반 회원 인원수 일자별 검색
+	 * @param string
+	 * @return
 	 */
-	@Query(value = "SELECT TO_CHAR(DATE_OF_REG, 'yy/mm/dd') AS DAY, COUNT (*) AS COUNT FROM MEMBER GROUP BY TO_CHAR(DATE_OF_REG, 'yy/mm/dd') ORDER BY DAY DESC", nativeQuery = true)
-	List<Integer> countJoinMember2(String dateString);
-
-	
-	
-	@Query("SELECT TO_CHAR(m.dateOfReg, 'yy/mm/dd') AS DAY, COUNT (*) AS COUNT FROM Member m "
+	@Query("SELECT TO_CHAR(m.dateOfReg, 'yy/mm/dd') AS DAY, COUNT (*) AS COUNT FROM Member m WHERE m.memberType = 0 "
 			+ "GROUP BY TO_CHAR(m.dateOfReg, 'yy/mm/dd') HAVING TO_CHAR(m.dateOfReg, 'yy/mm/dd') =?1 ORDER BY DAY")
-	Map<String, Object> countJoinMember3(String string);
+	Map<String, Object> countJoinMember3(String date);
 	
-}
+	
+	/**
+	 * 4. 월별 상담신청 건수 검색
+	 */
+	@Query("SELECT TO_CHAR(c.counselReqDate, 'yyyy/mm') AS MONTH, COUNT (*) AS COUNT FROM Counsel c GROUP BY TO_CHAR(c.counselReqDate, 'yyyy/mm')" 
+			+ "HAVING TO_CHAR(c.counselReqDate, 'yyyy/mm') = ?1 ORDER BY MONTH")
+	Map<String, Object> countCounselReqByMonth(String date);
+
+
+	/**
+	 * 4. 월별 상담 건수 검색
+	 */
+	@Query("SELECT TO_CHAR(c.counselDate, 'yyyy/mm') AS MONTH, COUNT (*) AS COUNT FROM Counsel c GROUP BY TO_CHAR(c.counselDate, 'yyyy/mm')" 
+			+ "HAVING TO_CHAR(c.counselDate, 'yyyy/mm') = ?1 ORDER BY MONTH")
+	Map<String, Object> countCounselByMonth(String date);
+
+	
+	
+	/**
+	 * 테스트용
+	 */
+	//List<Member> findByPasswordStartsWith(String string);
+	List<Member> findByMemberType(int type);
+
+} 

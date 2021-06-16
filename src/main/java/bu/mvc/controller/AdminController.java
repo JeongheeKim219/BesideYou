@@ -119,19 +119,15 @@ public class AdminController {
 		return adminService.contactByState(state);
 	}
 
-////////////////////////////////////////////////////////////////////////////////////////////	
 	/**
-	 * 10. 해당일 기준 7일간 가입한 신규 회원 수
+	 * 10. (차트)해당일 기준 7일간 가입한 신규 회원 수
 	 */
-	//// 테스트///
-
 	@ResponseBody
 	@RequestMapping(value = "/countNewMember")
 	public List<Integer> test(@RequestBody AjaxData ajaxData) {
 		return adminService.countMemberJoin2(ajaxData.getWeekList());
 	}
 
-////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * 11. 회원 정보 상세보기 페이지로 이동
@@ -141,6 +137,7 @@ public class AdminController {
 		return "admin/memberDetailView";
 	}
 
+	
 	/**
 	 * 12. 문의내역 처리 게시판으로 이동 +) 문의내역 검색
 	 */
@@ -153,6 +150,7 @@ public class AdminController {
 		return "admin/contactView";
 	}
 
+	
 	/**
 	 * 13. 문의 상세보기 페이지로 이동
 	 * 
@@ -166,6 +164,7 @@ public class AdminController {
 		return "admin/contactDetailView";
 	}
 
+	
 	/**
 	 * 14. 답변작성
 	 */
@@ -175,4 +174,18 @@ public class AdminController {
 		return "redirect:/admin/viewContactDetail/{contactCode}";
 	}
 
+
+	/**
+	 * (차트) 15.해당 월 기준 12개월간 상담 건수
+	 */
+	@ResponseBody
+	@RequestMapping("/countCounselByMonth")
+	public AjaxData countCounselByMonth(){
+		return adminService.countCounselByMonth();
+	}
+	
+	
 }
+
+
+

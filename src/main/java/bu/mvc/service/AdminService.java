@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import bu.mvc.domain.AjaxData;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
@@ -104,13 +105,14 @@ public class AdminService {
 		map.put("approval", counselRep.findAllByCounselState(2));// 승인
 
 		// 상태가 완료인 경우(월)
-		List<Counsel> doneList = counselRep.findAllByCounselState(3);
-		for (Counsel counsel : doneList) {
+		List<Counsel> doneAllList = counselRep.findAllByCounselState(3);
+		List<Counsel> doneThisMonth = new ArrayList<Counsel>();
+		for (Counsel counsel : doneAllList) {
 			if (month == counsel.getCounselDate().getMonthValue() && year == counsel.getCounselDate().getYear()) {
-				doneList.add(counsel);
+				doneThisMonth.add(counsel);
 			}
 		}
-		map.put("done", doneList);
+		map.put("done", doneThisMonth);
 		return map;
 	}
 
@@ -134,46 +136,45 @@ public class AdminService {
 		return contactRep.findAllByContactState(state);
 	}
 
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
 	/**
 	 * 9_1. 날짜별 가입한 회원 수 조회 1
 	 */
-	public List<Map<String, Object>> countMemberJoin(List<String> keyList) {
-		List<Map<String, Object>> countList = adminRep.countJoinMember();
-		List<Integer> returnList = new ArrayList<Integer>(7);
-
-		for (int i = 0; i < keyList.size(); i++) {
-
-			String dateString = String.valueOf(countList.get(i).get("DAY"));
-			
-			int count = Integer.parseInt((countList.get(i).get("COUNT").toString()));
-			String key = keyList.get(i);
-
-			System.out.println(dateString + ", " + count + "!!!");
-
-			if (!dateString.equals(key)) {
-				Map<String, Object> newOne = new HashMap<String, Object>();
-				newOne.put("DAY", key);
-				newOne.put("COUNT", 0);
-				countList.add(newOne);
-				System.out.println(i + " : " + returnList);
-				System.out.println(i + " : " + countList.get(i).get("COUNT"));
-
-				returnList.add(i, 0);
-			} else {
-				returnList.add(i, count);
-				System.out.println(i + " : " + returnList);
-				System.out.println(i + " : " + countList.get(i).get("COUNT"));
-
-			}
-
-		}
-		System.out.println("????");
-		returnList.forEach(i -> System.out.println(i));
-		System.out.println("????");
-		return adminRep.countJoinMember();
-
-	}
+	/*
+	 * public List<Map<String, Object>> countMemberJoin(List<String> keyList) {
+	 * List<Map<String, Object>> countList = adminRep.countJoinMember();
+	 * List<Integer> returnList = new ArrayList<Integer>(7);
+	 * 
+	 * for (int i = 0; i < keyList.size(); i++) {
+	 * 
+	 * String dateString = String.valueOf(countList.get(i).get("DAY"));
+	 * 
+	 * int count = Integer.parseInt((countList.get(i).get("COUNT").toString()));
+	 * String key = keyList.get(i);
+	 * 
+	 * System.out.println(dateString + ", " + count + "!!!");
+	 * 
+	 * if (!dateString.equals(key)) { Map<String, Object> newOne = new
+	 * HashMap<String, Object>(); newOne.put("DAY", key); newOne.put("COUNT", 0);
+	 * countList.add(newOne); System.out.println(i + " : " + returnList);
+	 * System.out.println(i + " : " + countList.get(i).get("COUNT"));
+	 * 
+	 * returnList.add(i, 0); } else { returnList.add(i, count); System.out.println(i
+	 * + " : " + returnList); System.out.println(i + " : " +
+	 * countList.get(i).get("COUNT"));
+	 * 
+	 * }
+	 * 
+	 * } System.out.println("????"); returnList.forEach(i -> System.out.println(i));
+	 * System.out.println("????"); return adminRep.countJoinMember();
+	 * 
+	 * }
+	 */
 //////////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * 9_2. 날짜별 가입한 회원 수 조회 2
 	 */
@@ -197,7 +198,6 @@ public class AdminService {
 		return returnList;
 	
 	}
-/////////////////////////////////////////////////////////////////////////////////	
 	
 	
 	/**
@@ -207,6 +207,7 @@ public class AdminService {
 		return contactRep.findAll(pageable);
 	}
 
+	
 	/**
 	 * 11. 문의 내역 상세 조회
 	 * 
@@ -217,7 +218,8 @@ public class AdminService {
 		return contactRep.findById(contactCode).orElse(null);
 	}
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+/////////////////////////////////////////////////////////////////////////////////////////	
 	/**
 	 * 12. 월별 상담 타입 조회(상담신청일 기준)
 	 */
@@ -245,4 +247,58 @@ public class AdminService {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
+	/**
+	 * 10. 월별 상담/상담신청 건수 조회
+	 */
+	public AjaxData countCounselByMonth() {
+		LocalDate now = LocalDate.now();
+		List<String> dateList = new ArrayList<String>();
+		List<Integer> counselReqList = new ArrayList<Integer>();
+		List<Integer> counselList = new ArrayList<Integer>();
+		
+		AjaxData ajaxData = new AjaxData();
+		
+		for(int i = 0; i < 12; i++) {
+			
+			LocalDate lastMonth = now.minusMonths(i);
+			int year = lastMonth.getYear();
+			int monthValue = lastMonth.getMonthValue();
+			String monthStr = (monthValue < 10)? "0" + monthValue : "" + monthValue;
+			String dateStr = year + "/" + monthStr;
+			
+			dateList.add(0, dateStr);
+		}
+		
+		for(String key : dateList) {
+			Map<String, Object> newMap = new HashMap<String, Object>();
+			Map<String, Object> reqMap =  Optional.ofNullable((Map<String, Object>)adminRep.countCounselReqByMonth(key)).orElse(newMap);			
+			Map<String, Object> counselMap =  Optional.ofNullable((Map<String, Object>)adminRep.countCounselByMonth(key)).orElse(newMap);			
+			
+			if(reqMap.get("COUNT") == null) {
+				newMap.put("MONTH", key);
+				newMap.put("COUNT", 0);
+				counselReqList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
+			} else {
+				counselReqList.add(Integer.parseInt(String.valueOf(reqMap.get("COUNT"))));
+			}
+		
+			if(counselMap.get("COUNT") == null) {
+				newMap.put("MONTH", key);
+				newMap.put("COUNT", 0
+						);
+				counselList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
+			} else {
+				counselList.add(Integer.parseInt(String.valueOf(counselMap.get("COUNT"))));
+			}
+		
+		}
+	
+		ajaxData.setYearMonthList(dateList);
+		ajaxData.setCounselCountList(counselList);
+		ajaxData.setCounselReqList(counselReqList);
+		return ajaxData;
+	
+	}
+	
+	
 }
