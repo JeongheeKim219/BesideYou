@@ -26,7 +26,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@ToString
 public class Member {
 	
 	@Id
@@ -37,9 +37,9 @@ public class Member {
 	@Column(name= "id",unique = true )
 	private String id;
 	private String password;
-	@Transient 
-	private String passwordConfirm;//비밀번호 확인
-	
+	/*
+	 * @Transient private String passwordConfirm;//비밀번호 확인
+	 */	
 	private String name;
 	private String alias; //가명
 	@Column(name = "member_addr")

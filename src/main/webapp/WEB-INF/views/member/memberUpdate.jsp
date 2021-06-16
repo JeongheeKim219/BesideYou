@@ -41,7 +41,7 @@
         	});//submit
         	
         	//수정페이지 들어가기 전 인증절차
-        	var goodURL  = "#"  
+        	/* var goodURL  = "#"  
         	    alert("패스워드를 입력하셔야 합니다.")
 
         	var password =  prompt("패스워드 입력","")
@@ -63,7 +63,7 @@
         	        location  = "${pageContext.request.contextPath}/" 
         	    }
         	}
-        	
+        	 */
     	
         	
         })
@@ -123,7 +123,7 @@
                 <div class="container">
                     <div class="row h-100vh align-items-center">
                         <div class="col-md-12 col-lg-8 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div data-zanim='{"delay":0}'><a href="index.html"><img src="/assets/images/logo-light.png" alt=""></a></div>
+                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt=""></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
                                 <h4 class="text-uppercase fs-0 fs-md-1">Update your elixir account</h4>
                                 <c:if test="${not empty requestScope.errorMessage}">

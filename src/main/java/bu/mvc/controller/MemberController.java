@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -119,10 +120,18 @@ public class MemberController {
 	 * 회원정보 수정폼(회원)
 	 * */
 	@RequestMapping("/memberUpdate")
-	public void memberUpdate(String pass) {
+	public ModelAndView memberUpdate(String password, Long memberCode) {
 		//
-		//Member me =(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//me.
+		Member member = memberService.selectByMember(memberCode);
+		if(!passwordEncoder.matches(password, member.getPassword())) {	
+			throw new RuntimeException("비밀번호 오류 입니다..");
+		}
+		
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberUpdate");
+		return mv;
+		
 	}
 	/**
 	 * 회원정보 수정하기(회원)
@@ -154,12 +163,12 @@ public class MemberController {
 	/**
 	 * 탈퇴하기
 	 * */
-	/*@RequestMapping("/delete")
+	@RequestMapping("/delete")
 	public String delete(Long memberCode, String password) {
 		memberService.delete(memberCode, password);
 		
 		return "redirect:/";
-	}*/
+	}
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ModelAndView error(RuntimeException e) {

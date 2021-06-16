@@ -3,6 +3,7 @@ package bu.mvc.service;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -128,15 +129,13 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 회원탈퇴
 	 * */
-	/*@Override
+	@Override
 	public void delete(Long memberCode, String password) {
 		Member member=memberRep.findById(memberCode).orElse(null);
 		
-		if(member==null || member.getPassword().equals(password)) {
-			throw new RuntimeException("멤버 코드 or 비밀번호 오류로 삭제할수 없습니다...^^");
-		}
+		
 		memberRep.deleteById(memberCode);
-	}*/
+	}
 	
 	
 	}

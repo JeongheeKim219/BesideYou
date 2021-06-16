@@ -34,5 +34,5 @@ public interface MemberService {
 	/**
 	 * 회원탈퇴
 	 * */
-	//void delete(Long memberCode,String password);
+	void delete(Long memberCode,String password);
 }

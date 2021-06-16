@@ -78,7 +78,7 @@
                             <ul class="navbar-nav fs-0 fw-700">
                                 <li><a href="JavaScript:void(0)">Home</a>
                                     <ul class="dropdown fs--1">
-                                        <li><a href="index.html">Slider Header</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/">Slider Header</a></li>
                                         <li><a href="index--header-slider-classic.html">Slider Classic</a></li>
                                         <li><a href="index--header-static.html">Static Header</a></li>
                                         <li><a href="index--header-static-classic.html">Static Classic</a></li>
@@ -184,7 +184,7 @@
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="/assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>

@@ -208,8 +208,9 @@
 										님 환영합니다.
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
+								<li><a href="javascript:read();">회원정보</a></li>
 								<li><a href="javascript:logout();">로그아웃</a></li>
-								<li><a href="javascript:read();">MY PAGE</a></li>
+								
 								
 								<form id="logoutForm"
 							action="${pageContext.request.contextPath}/member/logout"

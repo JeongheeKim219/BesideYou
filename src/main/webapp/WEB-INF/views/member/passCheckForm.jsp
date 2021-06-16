@@ -59,7 +59,7 @@
                 <div class="container">
                     <div class="row h-full align-items-center">
                         <div class="col-md-8 col-lg-5 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div data-zanim='{"delay":0}'><a href="index.html"><img src="/assets/images/logo-light.png" alt="" /></a></div>
+                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt="" /></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
                                 <h4 class="text-uppercase fs-0 fs-md-1">비밀번호 찾기</h4>
                                <c:if test="${not empty requestScope.errorMessage}">
