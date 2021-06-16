@@ -1,8 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+function reply(code){
+	//alert(1);
+	//code.style.visibility="visible";
+	
+	//document.getElementById("code").style.display  = 'none';
+	/*var style = document.getElementById(code).style.visibility;
+	alert(style);
+	if(style=="visible"){
+		document.getElementById(code).style.visibility = "hidden";
+	}else{
+		document.getElementById(code).style.visibility = "visible";
+	}*/
+	
+	var style = document.getElementById(code).style.display;
+	//alert(style);
+	if(style=="none"){
+		document.getElementById(code).style.display = "inline-block";
+	}else{
+		document.getElementById(code).style.display = "none";
+	}
+}
+
+</script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -141,11 +169,11 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>ART ANSWER</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
                                             <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Self Test</li>
+                                            <li class="breadcrumb-item active" aria-current="page">ART ANSWER</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -156,139 +184,65 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-11 text-center">
+			<section class="background-11 text-center">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep.jpg" alt="Depression Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>우울증 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Depression</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                    	<a href="${pageContext.request.contextPath}/psy/depression" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                   		<div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress.jpg" alt="Stress Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>스트레스 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Stress</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="${pageContext.request.contextPath}/psy/stress" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
+               		<div>
+						<table class="table table-hover">
+						  <thead>
+						    <tr>
+						      <th scope="col">No</th>
+						      <th scope="col">Counselor</th>
+						      <th scope="col">Date</th>
+						      <th scope="col">State</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    
+						    	<c:choose>
+						    		<c:when test="${empty list}">
+						    			<tr>
+						    			<td colspan="4">
+						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담을 시작하지 않았습니다.</h4>
+						    				<a href="${pageContext.request.contextPath}/psy/art">그림 상담 시작하기</a>
+						    			</td>
+						    			</tr>
+						    		</c:when>
+						    		<c:otherwise>
+						    			<c:forEach items="${list}" var="list" varStatus="state">
+						    			<tr>
+							    			<td>${state.count}</td>
+									      	<td>${list.artCounselor.counselor.member.name}</td>
+									      	<td><fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artDate}" type="both"/>
+									      	<fmt:formatDate value="${parseDate}" pattern="yyyy년 MM월 dd일"/></td>
+									      
+									      	<c:choose>
+									      		<c:when test="${list.artState==0}">
+										      			<td>미답변</td>
+										      			</tr>
+										      	</c:when>
+										      	<c:otherwise>
+										      		<td>
+										      		<a href="javascript:reply(${list.artCode});">답변완료</a>
+										      		</td>
+										      		</tr>
+											      		<tr id="${list.artCode}" style="display:none;">
+												      		<td>${list.artCounselor.counselor.member.name}</td>
+												      		<td colspan="2">${list.artAnswer.artAnsContent}</td>
+												      		<td><fmt:parseDate var="answerDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artAnswer.artAnsDate}" type="both"/>
+												      		<fmt:formatDate value="${answerDate}" pattern="yyyy년 MM월 dd일"/></td>
+											      		</tr>
+										      	</c:otherwise>
+									      	</c:choose>
+									      	
+						    			</c:forEach>
+						    		</c:otherwise>
+						    	</c:choose>
+						  </tbody>
+						</table>
+					</div>  
                 </div>
                 <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section style="background-color: #3D4C6F">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="background-primary color-white p-5 p-lg-6 radius-secondary">
-                                <h4 class="color-white fs-1 fs-lg-2 mb-1">Sign up for email alerts</h4>
-                                <p class="color-white">Stay current with our latest insights</p>
-                                <form class="mt-4">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-7 pr-md-0">
-                                            <div class="input-group">
-                                                <input class="form-control" type="email" placeholder="Enter Email Here" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mt-3 mt-md-0">
-                                            <button class="btn btn-warning btn-block" type="submit"><span class="color-primary fw-600">Submit</span></button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mt-4 mt-lg-0">
-                            <div class="row">
-                                <div class="col-6 col-lg-4 color-white ml-lg-auto">
-                                    <ul class="list-unstyled">
-                                        <li class="mb-3"><a class="color-white" href="#">Contact Us</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">FAQ</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Privacy Policy</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Terms of Use</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Global Office</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Local Office</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-6 col-sm-5 ml-sm-auto"><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-linkedin color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Linkedin</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-twitter color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Twitter</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-facebook color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Facebook</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-google-plus color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Google+</h5>
-                                            </div>
-                                        </div>
-                                    </a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
+            </section>            
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">

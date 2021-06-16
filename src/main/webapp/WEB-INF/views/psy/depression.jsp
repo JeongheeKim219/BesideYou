@@ -2,7 +2,38 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$('input:radio[name^="ques"]').on('click', function() {
+		var sum = 0;
+
+		$('input:radio[name^="ques"]:checked').each(function(index, item){
+			sum += Number($(this).val())
+		})
+		
+	    $("#test").html(sum);
+	    $("#total").val(sum);
+	});
+	
+	//////////////////////////////////////////////////////
+		 
+		$("#btn").on("click", function(){
+			 var length = $('input:radio[name^="ques"]').length;
+			 var len = length/4;
+			 if(len != $('input:radio[name^="ques"]:checked').length){
+				 alert("선택되지 않은 값이 있습니다.")
+				 return false;
+			 }
+			})
+			.prop("onclick", null);
+	
+	
+})
+</script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -139,15 +170,12 @@
                     <!--/.background-holder-->
                     <div class="container">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
-                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                            <div class="col-md-12 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Self Test</li>
-                                        </ol>
-                                    </div>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-5 zopacity text-center" data-zanim='{"delay":0}'>우울증 검사</h1>
+                                    <div class="overflow-hidden text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                		<h5 data-zanim='{"delay":0.1}'>나의 우울증 지수는 몇 점일까?</h5>
+                            		</div>
                                 </div>
                             </div>
                         </div>
@@ -158,45 +186,178 @@
             </section>
             <section class="background-11 text-center">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep.jpg" alt="Depression Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>우울증 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Depression</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                    	<a href="${pageContext.request.contextPath}/psy/depression" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                   		<div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress.jpg" alt="Stress Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>스트레스 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Stress</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="${pageContext.request.contextPath}/psy/stress" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
+                  <div>
+					<table class="table table-hover align-middle">
+					  <thead>
+					    <tr>
+					      <th>질문</th>
+					      <th>아니다 또는 거의 그렇지 않다.</th>
+					      <th>때때로 그렇다.</th>
+					      <th>자주 그렇다.</th>
+					      <th>거의 항상 그렇다.</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>나는 의욕이 없고, 우울하고 슬프다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques1"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques1"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques1"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques1"> </td>
+					    </tr>
+					    <tr>
+					      <td>나는 하루 중 아침에 가장 기분이 좋다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques2"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques2"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques2"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques2"> </td>
+					    </tr>
+					    <tr>
+					      <td>나는 갑자기 울거나, 울고 싶을 때가 있다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques3"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques3"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques3"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques3"> </td>
+					    </tr>
+					    <tr>
+					      <td >나는 잠을 잘 못자거나 아침에 일찍 깬다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques4"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques4"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques4"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques4"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 평상시와 같이 잘 먹는다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques5"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques5"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques5"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques5"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 이성과 이야기하고 함께 있기를 좋아한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques6"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques6"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques6"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques6"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 체중이 준 것 같다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques7"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques7"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques7"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques7"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 변비가 있다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques8"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques8"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques8"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques8"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">심장이 평상시보다 빨리 뛰거나 두근거린다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques9"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques9"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques9"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques9"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 별 이유없이 몸이 나른하고 피곤하다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques10"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques10"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques10"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques10"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">내 정신은 이전처럼 맑다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques11"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques11"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques11"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques11"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 어떤 일이든지 전처럼 쉽게 처리한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques12"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques12"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques12"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques12"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 안절부절해서 가만히 있을 수가 없다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques13"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques13"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques13"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques13"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나의 장래는 희망적이라고 느낀다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques14"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques14"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques14"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques14"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 평소보다 짜증이 많아졌다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques15"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques15"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques15"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques15"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 매사에 결단력이 있다고 생각한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques16"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques16"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques16"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques16"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 유익하고 필요한 사람이라고 생각한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques17"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques17"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques17"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques17"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 내 삶이 충만하고 의의가 있다고 느낀다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques18"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques18"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques18"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques18"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">내가 죽어야 남들이 편할 것 같다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques19"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques19"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques19"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques19"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 전과 같이 즐겁게 일한다.</td>
+					      	<td><input class="form-check-input" type="radio" value="4" name="ques20"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques20"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques20"> </td>
+							<td><input class="form-check-input"  type="radio" value="1" name="ques20"> </td>
+					    </tr>
+					    <tr>
+					      <td id="ques1">나는 평소보다 짜증이 많아졌다.</td>
+					      	<td><input class="form-check-input" type="radio" value="1" name="ques21"> </td>
+							<td><input class="form-check-input"  type="radio" value="2" name="ques21"> </td>
+							<td><input class="form-check-input"  type="radio" value="3" name="ques21"> </td>
+							<td><input class="form-check-input"  type="radio" value="4" name="ques21"> </td>
+					    </tr>
+					    
+					    
+					  </tbody>
+					</table>
+					<div id="test"></div>
+					<form name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/depInsert">
+					<input type="hidden" name="testName" value="0">
+					<input type="text" name="total" id="total" value="">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+					<input type="submit" id="btn" class="btn btn-outline-primary" value="결과보기">
+					</form>
+					
+					</div>  
                 </div>
                 <!--/.container-->
             </section>

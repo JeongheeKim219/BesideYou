@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('1bb89eb38bd6e77094446a0ca39ac555');
+
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+        
+        
+</script>
+    
+    
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -134,20 +147,14 @@
             </div>
             <section>
                 <div>
-                    <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
+                    <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
                     <!--/.background-holder-->
                     <div class="container">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Self Test</li>
-                                        </ol>
-                                    </div>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Result</h1>
                                 </div>
                             </div>
                         </div>
@@ -156,139 +163,127 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-11 text-center">
+            <section class="background-11">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep.jpg" alt="Depression Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>우울증 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Depression</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                    	<a href="${pageContext.request.contextPath}/psy/depression" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                   		<div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress.jpg" alt="Stress Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>스트레스 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Stress</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="${pageContext.request.contextPath}/psy/stress" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
+                    
+                    <div class="row mt-6">
+                        <div class="col">
+                            <h3 class="text-center fs-2 fs-md-3">우울증 자가진단 테스트 결과</h3>
+                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
                         </div>
                     </div>
                     <!--/.row-->
                 </div>
+                <section >
+		                <div class="container">
+		                    <div class="row">
+		                        <div class="col-12">
+			                        <c:choose>
+			                        	<c:when test="${total>50}">
+			                        		<div  style="text-align : center;" class="mb-6">
+					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress2.jpg" alt="70gratethan" width=400 height=300>
+					                        </div>
+					                        <h5 class="text-center">우울증 증세가 있는 편이에요.</h5>	
+			                        		<div class="media pt-5"><span class="icon-Battery-50 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
+			                        	</c:when>
+			                        	<c:when test="${total>60}">
+			                        		<div  style="text-align : center;" class="mb-6">
+					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress2.jpg" alt="70gratethan" width=400 height=300>
+					                        </div>
+					                        <h5 class="text-center">중증 우울증 증세가 나타나고 있어요.</h5>	
+			                        		<div class="media pt-5"><span class="icon-Battery-25 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
+			                        	</c:when>
+			                        	<c:when test="${total>70}">
+			                        		<div  style="text-align : center;" class="mb-6">
+					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep70.jpg" alt="70gratethan" width=400 height=300>
+					                        </div>
+					                        <h5 class="text-center">즉시 병원에 가서 약물치료를 받아야 해요.</h5>	
+			                        		<div class="media pt-5"><span class="icon-Battery-0 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
+			                        	</c:when>
+			                        	<c:otherwise>
+			                        		<div  style="text-align : center;" class="mb-6">
+					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress0.jpg" alt="70gratethan" width=400 height=300>
+					                        </div>
+					                        <h5 class="text-center">우울증 증세는 없어요~!</h5>	
+			                        		<div class="media pt-5"><span class="icon-Battery-100 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
+			                        	</c:otherwise>
+			                        </c:choose>
+									<div class="media-body">
+				                    	<h2 class="color-primary fs-3 fs-lg-4">나의 우울증 지수는<br /><span class="color-warning">${total} 점</span></h2>
+				                    </div></div>	
+		                        
+		                        </div>
+		                    </div>
+		                    <!--/.row-->
+		                    
+		                </div>
+		                <!--/.container-->
+		            </section>
                 <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
+               
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section style="background-color: #3D4C6F">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="background-primary color-white p-5 p-lg-6 radius-secondary">
-                                <h4 class="color-white fs-1 fs-lg-2 mb-1">Sign up for email alerts</h4>
-                                <p class="color-white">Stay current with our latest insights</p>
-                                <form class="mt-4">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-7 pr-md-0">
-                                            <div class="input-group">
-                                                <input class="form-control" type="email" placeholder="Enter Email Here" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mt-3 mt-md-0">
-                                            <button class="btn btn-warning btn-block" type="submit"><span class="color-primary fw-600">Submit</span></button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mt-4 mt-lg-0">
-                            <div class="row">
-                                <div class="col-6 col-lg-4 color-white ml-lg-auto">
-                                    <ul class="list-unstyled">
-                                        <li class="mb-3"><a class="color-white" href="#">Contact Us</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">FAQ</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Privacy Policy</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Terms of Use</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Global Office</a></li>
-                                        <li class="mb-3"><a class="color-white" href="#">Local Office</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-6 col-sm-5 ml-sm-auto"><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-linkedin color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Linkedin</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-twitter color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Twitter</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-facebook color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Facebook</h5>
-                                            </div>
-                                        </div>
-                                    </a><a href="#">
-                                        <div class="row mb-3 align-items-center no-gutters">
-                                            <div class="col-auto">
-                                                <div class="background-primary text-center d-flex align-items-center radius-primary" style="height: 40px; width: 40px;"><span class="w-100 fa fa-google-plus color-white"></span></div>
-                                            </div>
-                                            <div class="col-6 pl-3">
-                                                <h5 class="fs-0 color-white mb-0 d-inline-block">Google+</h5>
-                                            </div>
-                                        </div>
-                                    </a></div>
+                	<div style="text-align:center;">
+	                	<a id="create-kakao-link-btn" href="javascript:;">
+						  <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
+						</a>
+						<p class="fw-lighter mt-3">심리검사 공유하기</p>
+                	</div>
+					<script type="text/javascript">
+					  Kakao.Link.createDefaultButton({
+					    container: '#create-kakao-link-btn',
+					    objectType: 'feed',
+					    content: {
+					      title: 'BU_당신의 우울증 점수는 몇 점?',
+					      description: '간단한 심리검사로 알아보는 지금 나의 우울증 점수는 몇 점?',
+					      imageUrl:
+					        'https://ifh.cc/g/hyeUgx.jpg',
+					      link: {
+					        mobileWebUrl: 'https://developers.kakao.com',
+					        webUrl: 'http://localhost:9000/psy/depResult?no='+${code},
+					      },
+					    },
+					    social: {
+					      likeCount: 286,
+					      commentCount: 45,
+					      sharedCount: 845,
+					    },
+					    buttons: [
+					      {
+					        title: '웹으로 보기',
+					        link: {
+					          mobileWebUrl: 'https://developers.kakao.com',
+					          webUrl: 'http://localhost:9000/psy/depResult?no='+${code},
+					        },
+					      },
+					      /*{
+					        title: '앱으로 보기',
+					        link: {
+					          mobileWebUrl: 'https://developers.kakao.com',
+					          webUrl: 'https://developers.kakao.com',
+					        },
+					      },*/
+					    ],
+					  })
+					</script>
+                    <div class="row mt-6">
+                        <div class="col-12">
+                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
+                                
+                                <blockquote class="blockquote my-5 ml-lg-6" style="max-width: 700px;">
+                                <h5 class="ml-3">현대인에게 가장 무서운 마음의 병 우울증</h5>
+                                    <h5 class="fw-500 ml-3 mb-0">혹시 우울증일까? 걱정된다면 BU 에서 전문가에게 상담받으세요!</h5><br>
+                                	<div style="text-align:center;" >
+                                		<a href="${pageContext.request.contextPath}/psy/index" class="btn btn-outline-primary btn-capsule">심리상담 알아보기</a>
+                                	</div>
+                                </blockquote>
                             </div>
                         </div>
                     </div>
                     <!--/.row-->
                 </div>
-                <!--/.container-->
+               
             </section>
+          
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,20 +135,14 @@
             </div>
             <section>
                 <div>
-                    <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
+                    <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
                     <!--/.background-holder-->
                     <div class="container">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Self Test</li>
-                                        </ol>
-                                    </div>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>상담사 선택</h1>
                                 </div>
                             </div>
                         </div>
@@ -159,54 +154,50 @@
             <section class="background-11 text-center">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep.jpg" alt="Depression Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>우울증 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Depression</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                    	<a href="${pageContext.request.contextPath}/psy/depression" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
+                    <c:choose>
+                    <c:when test="${not empty list}">
+                    	<c:forEach items="${list}" var="list">
+	                    	<div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
+		                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/${list.counselor.picture}" alt="Profile Image" />
+		                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+		                                    <div class="overflow-hidden"><a href="news.html">
+		                                            <h5 data-zanim='{"delay":0}'>${list.counselor.member.name}</h5>
+		                                        </a></div>
+		                                    <div class="overflow-hidden">
+		                                        <p class="color-7" data-zanim='{"delay":0.1}'>${list.counselor.degree}</p>
+		                                    </div>
+		                                    <div class="overflow-hidden">
+		                                        <p class="mt-3" data-zanim='{"delay":0.2}'>${list.counselor.career}</p>
+		                                    </div>
+		                                    <div class="overflow-hidden">
+		                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/psy/artTest/${list.artCounselorCode}">선택하기 <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                     </div>
+                    	</c:forEach>
+	                    
+                    </c:when>
+                    <c:otherwise>
+                    	<div class="col">
+                            <h3 class="text-center fs-2 fs-md-3">등록된 그림상담사가 없습니다.</h3>
                         </div>
-                   		<div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress.jpg" alt="Stress Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>스트레스 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Stress</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="${pageContext.request.contextPath}/psy/stress" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
+                    </c:otherwise>
+                    </c:choose>
+                        
+                        <!-- 페이징... -->
+                        <!-- <div class="col-auto mx-auto mt-4">
+                            <nav class="font-1 mt-5" aria-label="Page navigation example">
+                                <ul class="pagination pagination justify-content-center">
+                                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">Â«</span><span class="sr-only">Previous</span></a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">Â»</span><span class="sr-only">Next</span></a></li>
+                                </ul>
+                            </nav>
+                        </div> -->
                     </div>
                     <!--/.row-->
                 </div>
@@ -292,7 +283,7 @@
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="/assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>

@@ -1,8 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+  $(function(){
+	 $("#btn").click(function(){
+		 if($("#artAnsContent").val().length==0){
+			 alert("답변을 등록하세요.");
+			$("#artAnsContent").focus();
+			return false;
+		 }
+		 alert("답변이 등록되었습니다.")
+	 })
+	
+  })
+
+	
+	
+  
+  
+</script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -141,13 +162,7 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Self Test</li>
-                                        </ol>
-                                    </div>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>그림 상담 답변하기</h1>
                                 </div>
                             </div>
                         </div>
@@ -156,62 +171,70 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-11 text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep.jpg" alt="Depression Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>우울증 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Depression</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                    	<a href="${pageContext.request.contextPath}/psy/depression" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                   		<div class="col-sm-6 col-lg-4">
-                            <div class="background-white pb-4 h-100 radius-secondary"><img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress.jpg" alt="Stress Img" id="testImg"/>
-                                <div class="px-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h5 data-zanim='{"delay":0}'>스트레스 검사</h5>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <h6 class="fw-400 color-7" data-zanim='{"delay":0.1}'>Stress</h6>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                        <a href="${pageContext.request.contextPath}/psy/stress" class="btn btn-outline-primary">START</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
+            <c:choose>
+            	<c:when test="${art.artState!=0}">
+            		<section class="background-11 ">
+			                <div class="container">
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <div class="row">
+			                                <div class="col-12">
+			                                    <div class="row mt-6">
+			                                        <div class="col-12">
+			                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+			                                                <h4 data-zanim='{"delay":0.1}'>등록된 답변이 있습니다.</h4>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <!--/.row-->
+			                </div>
+			                <!--/.container-->
+			            </section>
+            	</c:when>
+            	<c:otherwise>
+            		<section class="background-11 ">
+			                <div class="container">
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <div class="row">
+			                                <div class="col-12">
+			                                    <div class="row mt-6">
+			                                        <div class="col-12">
+			                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+			                                                <h4 data-zanim='{"delay":0.1}'>답변 등록하기</h4>
+			                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/write">
+			                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+			                                                	<input type="hidden" name="artCode" value="${art.artCode}">
+			                                                    <div class="row">
+			                                                        <div class="col-12">
+			                                                            <h5 data-zanim='{"delay":0.1}'>답변을 등록해주세요.</h5>
+			                                                            <p>1300자 이내로 작성해주세요.</p>
+			                                                            <textarea name="artAnsContent" id="artAnsContent" class="form-control background-white" rows="10" placeholder="ex) 파일을 확인한 후에 답변을 등록해주세요." aria-label="Text input with dropdown button" maxlength="1300"></textarea>
+			                                                        </div>
+			                                                        <div class="col-12 mt-4">
+			                                                            <button class="btn btn-primary" type="Submit" id="btn"> <span class="color-white fw-600">Submit Comment</span></button>
+			                                                        </div>
+			                                                    </div>
+			                                                </form>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <!--/.row-->
+			                </div>
+			                <!--/.container-->
+			            </section>
+            	</c:otherwise>
+            </c:choose>
+            
+            
             <section style="background-color: #3D4C6F">
                 <div class="container">
                     <div class="row align-items-center">
