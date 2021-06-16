@@ -14,22 +14,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+@Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class Speciality {
+public class Authority {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "speciality_seq")
-	@SequenceGenerator(sequenceName = "speciality_seq",allocationSize = 1,name = "speciality_seq")
-	@Column(name = "speciality_Code")
-	private Long specialityCode;
-	@Column(name = "speciality_name")
-	private String specialityName;
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "authority_seq")
+	@SequenceGenerator(sequenceName = "authority_seq",allocationSize = 1,name = "authority_seq")
+	@Column(name="authority_code")
+	private Long AuthorityCode;
 	
 	@ManyToOne
-	@JoinColumn(name = "counselor_code")
-	private Counselor counselorCode;
+	@JoinColumn(name="member_code")
+	private Member member;
+	
+	private String role;
 }

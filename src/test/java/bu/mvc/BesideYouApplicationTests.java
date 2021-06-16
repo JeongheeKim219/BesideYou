@@ -45,15 +45,19 @@ class BesideYouApplicationTests {
 	@Autowired
 	private SpecialityRepository specialityRep;
 
+
 	/*
 	 * @Test void insert() { testRep.save(new Member(null, "admin2", "1234", "관리자",
 	 * null, "테스트", "11-111", "qo10@na", 0, 3, LocalDate.of(1998, 8, 20), null)); }
 	 */
 
-	@Test
-	void delete() {
-		testRep2.deleteById(16L);
-	}
+	@Autowired
+	private AuthorityRepository authorityRep;
+	/*@Test
+	void insert() {
+		testRep.save(new Member(null, "admin2", "1234", "관리자", null, "테스트", "11-111", "qo10@na", 0, 3, LocalDate.of(1998, 8, 20), null));
+	}*/
+	
 
 	/*
 	 * @Test public void update() {
@@ -82,17 +86,25 @@ class BesideYouApplicationTests {
 	 */
 	@Test
 	void insert() {
-		specialityRep.save(new Speciality(null, "청소년전문상담사", new Counselor(17L)));
+		authorityRep.save(new Authority(null, new Member(3L), "MEMBER"));
 	}
 
-	@Test
+
+
+	
+	/*@Test
+
 	void newMember() {
 		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0, 0, 0));
 		LocalDateTime end = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59));
 
+
 		List<Member> newMemeberList = adminRep.findByMemberStateAndDateOfRegBetween(0, start, end);
 		newMemeberList.forEach(m -> System.out.println(m));
 	}
+
+	}*/
+
 	
 	/*
 	 * @Test void countMember() { List<Map<String, Integer>> list =

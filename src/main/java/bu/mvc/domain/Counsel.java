@@ -41,13 +41,11 @@ public class Counsel {
 	
 	private int counselCategory;
 	private int counselState;
-	
-	//@CreationTimestamp
+
+	@CreationTimestamp
 	private LocalDateTime counselReqDate;
 	
 	private LocalDateTime counselDate;
-	
-	
 	
 
 	public Counsel(Long counselCode) {
@@ -65,11 +63,6 @@ public class Counsel {
 		this.counselState = counselState;
 		this.counselDate = counselDate;
 	}
-	
-	
-	//테스트용 추가 생성자
-	
-	
 	
 	
 }
