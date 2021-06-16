@@ -40,6 +40,7 @@ public class ContactController {
 	@RequestMapping("/write")
 	public void writeForm() {}
 	
+	
 	/**
 	 * 문의글 작성하기
 	 * */
