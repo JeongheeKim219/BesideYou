@@ -13,7 +13,14 @@
         <script type="text/javascript">
         
         $(document).ready(function(){
-        	//alert(1)
+        	
+        
+
+
+        	
+        	
+        	
+        	
         	 var checkResultId="";		
         		$("#registerForm").submit(function(){			
         		if($("#registerForm :input[name=id]").val().trim()==""){
@@ -194,9 +201,12 @@
                 <div class="container">
                     <div class="row h-100vh align-items-center">
                         <div class="col-md-12 col-lg-8 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div data-zanim='{"delay":0}'><a href="index.html"><img src="/assets/images/logo-light.png" alt=""></a></div>
+                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt=""></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
                                 <h4 class="text-uppercase fs-0 fs-md-1">Create your elixir account</h4>
+                                <c:if test="${not empty requestScope.errorMessage}">
+									<span style="color:red">${requestScope.errorMessage}</span>
+								</c:if>
                                 <form class="mt-4 text-left" method="post" action="${pageContext.request.contextPath}/member/join" id="registerForm">
                              
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
@@ -206,14 +216,15 @@
                                             <input class="form-control" type="text" placeholder="ID" name = "id" aria-label="Text input with dropdown button"><span id="idCheckView"></span>
                                         </div>
                                         <div class="col-12 mt-4">
-                                            <input class="form-control" type="password" placeholder="Password" name = "password" aria-label="Text input with dropdown button">
+                                            <input class="form-control" type="password" placeholder="Password" name = "password"  aria-label="Text input with dropdown button" >
                                         </div>
                                         
+                                        
                                         <div class="col-12 mt-4">        
-                                            <input class="form-control" type="text" placeholder="NAME" name = "name" aria-label="Text input with dropdown button">
+                                            <input class="form-control" type="text" placeholder="NAME"   name = "name" aria-label="Text input with dropdown button">
                                         </div>
                                         <div class="col-12 mt-4">
-                                            <input class="form-control" type="text" placeholder="Email Address" name = "email" aria-label="Text input with dropdown button">
+                                            <input class="form-control" type="text" placeholder="Email Address"  name = "email" aria-label="Text input with dropdown button">
                                         </div>
                                         <div class="col-12 mt-4">
                                         <input type="text" id="sample6_postcode" name = "postcode" placeholder="우편번호">
@@ -225,9 +236,7 @@
 										<input class="form-control" type="text" id="sample6_detailAddress" name = "detailAddress" placeholder="상세주소">
 										<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목">
 										</div>
-                                        <!-- <div class="col-12 mt-4">
-                                            <input class="form-control" type="text" placeholder="Address" name = "memberAddr" aria-label="Text input with dropdown button">
-                                        </div> -->
+                                        
                                         <div class="col-12 mt-4">
                                             <input class="form-control" type="text" placeholder="Alias(닉네임)" name = "alias"aria-label="Text input with dropdown button">
                                         </div>
