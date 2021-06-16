@@ -15,6 +15,9 @@
 	function logout() {
 		document.getElementById("logoutForm").submit();
 	}
+	function read() {
+		document.getElementById("readForm").submit();
+	}
 </script>
 
 <!--  -->
@@ -205,15 +208,28 @@
 										님 환영합니다.
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
+								<li><a href="javascript:read();">회원정보</a></li>
 								<li><a href="javascript:logout();">로그아웃</a></li>
-							</sec:authorize>
-						</ul>
-						<form id="logoutForm"
+								
+								
+								<form id="logoutForm"
 							action="${pageContext.request.contextPath}/member/logout"
 							method="post" style="display: none">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
+						<form id="readForm"
+							action="${pageContext.request.contextPath}/member/read"
+							method="post" style="display: none">
+							<input type="hidden" name="memberCode"
+								value="<sec:authentication property="principal.memberCode" />" />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
+						
+							</sec:authorize>
+						</ul>
+						
 					</div>
 				</nav>
 			</div>

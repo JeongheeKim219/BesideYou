@@ -1,8 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html lang="UTF-8">
-    <head>
+<html>
+<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,32 +61,27 @@
                         <div class="col-md-8 col-lg-5 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                             <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt="" /></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
-                                <h4 class="text-uppercase fs-0 fs-md-1">login with elixir</h4>
-                                <c:if test="${not empty requestScope.errorMessage}">
-									<span style="color:red">${requestScope.errorMessage}</span>
-								</c:if>
+                                <h4 class="text-uppercase fs-0 fs-md-1">ID 찾기</h4>
+                               
                                 
-                                <form class="text-left mt-4" method="post" action="${pageContext.request.contextPath}/login">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+                                <form class="text-left mt-4" method="post" action="${pageContext.request.contextPath}/member/idCheck">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+
                                     <div class="row align-items-center">
                                         <div class="col-12">
                                             <div class="input-group">
                                                 <div class="input-group-addon background-11 fs-2"><span class="ion-ios-person-outline"></span></div>
-                                                <input class="form-control" type="text" name = "id"placeholder="ID" aria-label="Text input with dropdown button" />
+                                                <input class="form-control" type="text" name = "name"placeholder="name" aria-label="Text input with dropdown button" />
                                             </div>
                                         </div>
                                         <div class="col-12 mt-2 mt-sm-4">
                                             <div class="input-group">
-                                                <div class="input-group-addon background-11 fs-2"><span class="ion-ios-locked-outline"></span></div>
-                                                <input class="form-control" type="Password" name="password" placeholder="Password" aria-label="Text input with dropdown button" />
+                                                <div class="input-group-addon background-11 fs-2"><span class="color-1 fs-1 icon-Email"></span></div>
+                                                <input class="form-control" type="date" name="beforeDateOfBirth" placeholder="생년월일" aria-label="Text input with dropdown button" />
                                             </div>
                                         </div>
-                                        <div class="col-12 mt-2 mt-sm-4" >
-                                         <div OnClick="location.href ='idCheckForm'" style="cursor:pointer;">아이디찾기</button>
-                                         </div>
-                                         <div class="col-14 mt-2 mt-sm-4" >
-                                         <div OnClick="location.href ='passCheckForm'" style="cursor:pointer;">비밀번호찾기</button>
-                                    	</div>
+                                       
                                     </div>
                                     <div class="row align-items-center mt-3">
                                         <div class="col-6">
@@ -94,10 +90,10 @@
                                             </label> -->
                                         </div>
                                   
-                                        <div class="col-6 mt-2 mt-sm-3">
+                                        <div class="col-12 mt-2 mt-sm-3">
                                   
                                       
-                                            <button class="btn btn-primary btn-block" type="submit">Login</button>
+                                            <button class="btn btn-primary btn-block" type="submit">아이디찾기</button>
                                         </div>
                                         
                                     </div>

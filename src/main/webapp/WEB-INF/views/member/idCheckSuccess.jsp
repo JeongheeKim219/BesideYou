@@ -1,7 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="UTF-8">
-    <head>
+<html>
+<head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,45 +136,16 @@
                 <div class="container">
                     <div class="row h-full align-items-center">
                         <div class="col-12 px-0">
-                           
-	<table  align="center" cellpadding="18" cellspacing="8" width="600" >
-							<h2>가입된 정보</h2>
-                            <h5>환영합니다!!</h5>
+                            <h2>회원가입된 아이디 정보</h2>
+                            
+	<table style="width: 600px; border-bottom-width: 1px;" >
 		<tr>
-			<td width="100">ID</td>
-			<td>${requestScope.member.id }</td>
-		</tr>
-		<!-- tr>
-			<td>Password</td>
-			<td>${requestScope.member.password}</td>
-		</tr-->
-		<tr>
-			<td>이름</td>
-			<td>${requestScope.member.name}</td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td>${requestScope.member.email}</td>
-		</tr>
-		<tr>
-			<td>주소</td>
-			<td>${requestScope.member.memberAddr}</td>
-		</tr>
-		<tr>
-			<td>닉네임</td>
-			<td>${requestScope.member.alias}</td>
-		</tr>
-		<tr>
-			<td>Phone</td>
-			<td>${requestScope.member.phone}</td>
-		</tr>
-		<tr>
-			<td>생년월일</td>
-			<td>${requestScope.member.beforeDateOfBirth}</td>
+			<td width="100">ID : </td>
+			<td>${requestScope.searchId}</td>
 		</tr>
 		
 	</table><br>
-	
+	<a href="${pageContext.request.contextPath}/member/passCheckForm">비밀번호 찾기</a>
 	<a href="${pageContext.request.contextPath}/member/login">로그인하러 가기</a>
                         </div>
                     </div>
