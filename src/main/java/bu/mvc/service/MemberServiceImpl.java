@@ -55,11 +55,89 @@ public class MemberServiceImpl implements MemberService {
 				
 				return 1;
 			}
-
+	/**
+	 * 중복체크
+	 * */
 	@Override
 	public String idcheck(String id) {
 		Member member=memberRep.findById(id);
 		return (member==null) ? "ok":"fail"; 	
 	}
+	/**
+	 * 
+	 * 아이디찾기
+		*/
+	@Override
+	public String idFind(Member member) {
+		//String id = member.getId();
+		
+		 //System.out.println("member.beforeDateOfBirth : "+member.getBeforeDateOfBirth());
+		 
+		LocalDate localDate =  LocalDate.parse(member.getBeforeDateOfBirth());		
+		//member.setDateOfBirth(localDate);
+		
+		//System.out.println("member.getName() : " + member.getName());
+		
+		String searchId = memberRep.searchId(member.getName(), localDate);
+		if(searchId==null) {
+			throw new RuntimeException("가입된 정보가 없습니다.");
+			
+		}
+		return searchId;
+	}
+	
+	/**
+	 * 비밀번호 찾기
+	 * */
+	@Override
+	public String passFind(Member member) {
+		
+		LocalDate localDate = LocalDate.parse(member.getBeforeDateOfBirth());
+		
+		//String 
+		String pass=memberRep.searchPass(member.getId(), member.getName(), localDate);
+				
+		if(pass!=null) {//모두 일치했다.
+			 //임시 비번을 생성(id+1234)
+			String encodePass = passwordEncoder.encode(member.getId()+"1234");
+			
+			memberRep.update(encodePass, member.getId());
+			 
+		}else {
+			throw new RuntimeException("가입된 정보가 없습니다.");
+		}
+		return member.getId()+"1234";//임시비번 리턴
+	}
+	
+	/**
+	 * 회원 정보 보기
+	 * */
+	@Override
+	public Member selectByMember(Long memberCode) {
+		
+		return memberRep.findById(memberCode).orElse(null);
+	}
+	/**
+	 * 회원정보 수정하기 (회원)
+	 * */
+	@Override
+	public void updateMember(Member member) {
+		memberRep.updateMember(member.getPassword(),member.getAlias(),member.getEmail(),member.getPhone(),member.getMemberCode());
+		
+	}
+	/**
+	 * 회원탈퇴
+	 * */
+	/*@Override
+	public void delete(Long memberCode, String password) {
+		Member member=memberRep.findById(memberCode).orElse(null);
+		
+		if(member==null || member.getPassword().equals(password)) {
+			throw new RuntimeException("멤버 코드 or 비밀번호 오류로 삭제할수 없습니다...^^");
+		}
+		memberRep.deleteById(memberCode);
+	}*/
+	
+	
 	}
 

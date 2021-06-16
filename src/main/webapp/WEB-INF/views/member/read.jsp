@@ -5,6 +5,31 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+       
+<script>
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+	function update(){
+		document.getElementById("updateForm").submit();
+	}
+	/*function delete1(){
+		document.getElementById("deleteForm").submit();
+	}*/
+	
+		/* function delete().click(function(){
+			   var pwd = prompt("비밀번호를 입력하세요.");
+			   if(pwd){
+		           $("#password").val(pwd);
+				   $("#requestForm").attr("action", "${pageContext.request.contextPath}/member/delete");
+				   $("#requestForm").submit();
+			   }
+		   }) */
+	
+	
+	
+</script>
+       
         <!--  -->
         <!--    Document Title-->
         <!-- =============================================-->
@@ -119,64 +144,157 @@
                                         <li><a href="components-typography.html">Typography</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
+                              <li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
+                            	
+                            
+                            
                             </ul>
                             <ul class="navbar-nav ml-lg-auto">
-                               <li><a
-										href="${pageContext.request.contextPath}/member/login">Login</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/member/joinForm">Join</a></li>
+                               <!-- 인증 안됐으면 -->
+							<sec:authorize access="isAnonymous()">
+								<!-- 또는 !isAuthenticated() 로 비교해도 된다.  로그인을 하지 않은 사용자-->
+
+								
+							</sec:authorize>
+
+							<!-- 인증 됐으면 -->
+							<sec:authorize access="isAuthenticated()">
+
+								<!-- 일반회원이거나 관리자인 경우. 두개 이상의 role을 비교할 때 hasAnyRole() -->
+								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+								</sec:authorize>
+								<li>
+									<p>
+										${requestScope.member.name}님 환영합니다.
+										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+								</li>
+								<li><a href="javascript:logout();">로그아웃</a></li>
+								
+								
+								<form id="logoutForm"
+							action="${pageContext.request.contextPath}/member/logout"
+							method="post" style="display: none">
+							<input type="text" name="memberCode"
+								value="<sec:authentication property="principal.memberCode" />" />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
+						
+							</sec:authorize>
                             </ul>
                         </div>
                     </nav>
                 </div>
+                  
             </div>
+            
             <section class=" background-11 py-0 text-center">
+           					
                 <div class="container">
+                 <br><br><br><br>
                     <div class="row h-full align-items-center">
                         <div class="col-12 px-0">
-                           
+                          
 	<table  align="center" cellpadding="18" cellspacing="8" width="600" >
 							<h2>가입된 정보</h2>
-                            <h5>환영합니다!!</h5>
+                            
 		<tr>
-			<td width="100">ID</td>
-			<td>${requestScope.member.id }</td>
-		</tr>
-		<!-- tr>
-			<td>Password</td>
-			<td>${requestScope.member.password}</td>
-		</tr-->
-		<tr>
-			<td>이름</td>
-			<td>${requestScope.member.name}</td>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">번호</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${member.memberCode}</b></span>
+        </td>
 		</tr>
 		<tr>
-			<td>이메일</td>
-			<td>${requestScope.member.email}</td>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">ID</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${requestScope.member.id }</b></span>
+        </td>
 		</tr>
 		<tr>
-			<td>주소</td>
-			<td>${requestScope.member.memberAddr}</td>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">이름</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${requestScope.member.name}</b></span>
+        </td>
 		</tr>
 		<tr>
-			<td>닉네임</td>
-			<td>${requestScope.member.alias}</td>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">이메일</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${requestScope.member.email}</b></span>
+        </td>
 		</tr>
 		<tr>
-			<td>Phone</td>
-			<td>${requestScope.member.phone}</td>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">주소</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${requestScope.member.memberAddr}</b></span>
+        </td>
 		</tr>
 		<tr>
-			<td>생년월일</td>
-			<td>${requestScope.member.beforeDateOfBirth}</td>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">닉네임</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${requestScope.member.alias}</b></span>
+        </td>
+		</tr>
+		<tr>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">Phone</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${requestScope.member.phone}</b></span>
+        </td>
+		</tr>
+		<tr>
+			<td width="100" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">생년월일</span></b></p>
+        </td>
+        <td width="450" height="20" colspan="3">
+        	<span style="font-size:9pt;"><b>${requestScope.member.beforeDateOfBirth}${requestScope.member.dateOfBirth}</b></span>
+        </td>
 		</tr>
 		
 	</table><br>
+						
+						
+						<form id="updateForm"
+							action="${pageContext.request.contextPath}/member/memberUpdate"
+							method="post" style="display: none">
+							<input type="hidden" name="memberCode"
+								value="<sec:authentication property="principal.memberCode" />" />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
+						
+						
+						<!--  <form id="deleteForm"
+						action="${pageContext.request.contextPath}/member/delete"
+							method="post" style="display: none" >
+							<input type="hidden" name="memberCode"
+								value="<sec:authentication property="principal.memberCode" />" />
+							
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+								<input type="hidden" name="password" 
+								value="<sec:authentication property="principal.password" />" />
+								
+						</form>-->
+										
+							<a href="javascript:update();">수정하기</a>
+						<!--a href ="javascript:delete1();">탈퇴하기</a-->
+					</div>
 	
-	<a href="${pageContext.request.contextPath}/member/login">로그인하러 가기</a>
-                        </div>
                     </div>
+                    
                     <!--/.row-->
                 </div>
                 <!--/.container-->
