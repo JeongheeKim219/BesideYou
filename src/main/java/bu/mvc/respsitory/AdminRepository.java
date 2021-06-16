@@ -63,4 +63,9 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 	//List<Member> findByPasswordStartsWith(String string);
 	List<Member> findByMemberType(int type);
 
+	
+	/**
+	 * 
+	 */
+	
 } 

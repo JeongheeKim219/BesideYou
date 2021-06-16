@@ -30,7 +30,6 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Member {
 	
 	@Id
