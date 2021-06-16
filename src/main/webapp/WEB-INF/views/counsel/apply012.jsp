@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -12,13 +13,13 @@
 <!--    Favicons-->
 <!--    =============================================-->
 <link rel="apple-touch-icon" sizes="180x180"
-	href="${pageContext.request.contextPath}/assets/images/favicons/apple-touch-icon.png">
+	href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-32x32.png">
+	href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
 <link rel="icon" type="image/png" sizes="16x16"
-	href="${pageContext.request.contextPath}/assets/images/favicons/favicon-16x16.png">
+	href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
 <link rel="shortcut icon" type="image/x-icon"
-	href="${pageContext.request.contextPath}/assets/images/favicons/favicon.ico">
+	href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
 <link rel="manifest"
 	href="${pageContext.request.contextPath}/assets/images/favicons/manifest.json">
 <link rel="mask-icon"
@@ -108,8 +109,8 @@
 			<div class="container">
 				<nav class="navbar navbar-expand-lg">
 					<a class="navbar-brand overflow-hidden pr-3" href="index.html"><img
-						src="${pageContext.request.contextPath}/assets/images/logo-dark.png"
-						alt="" /></a>
+						src="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png"
+						alt=""  style="width: 50px; height: 50px"/></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 						aria-expanded="false" aria-label="Toggle navigation">
@@ -191,14 +192,14 @@
 							<div class="overflow-hidden">
 								<h1 class="color-white fs-4 fs-md-5 mb-0 zopacity"
 									data-zanim='{"delay":0}'>상담신청</h1>
-<!-- 								<div class="nav zopacity" aria-label="breadcrumb" -->
-<!-- 									role="navigation" data-zanim='{"delay":0.1}'> -->
-<!-- 									<ol class="breadcrumb fs-1 pl-0 fw-700"> -->
-<!-- 										<li class="breadcrumb-item"><a class="color-white" -->
-<!-- 											href="#">Home</a></li> -->
-<!-- 										<li class="breadcrumb-item active" aria-current="page">About</li> -->
-<!-- 									</ol> -->
-<!-- 								</div> -->
+								<!-- 								<div class="nav zopacity" aria-label="breadcrumb" -->
+								<!-- 									role="navigation" data-zanim='{"delay":0.1}'> -->
+								<!-- 									<ol class="breadcrumb fs-1 pl-0 fw-700"> -->
+								<!-- 										<li class="breadcrumb-item"><a class="color-white" -->
+								<!-- 											href="#">Home</a></li> -->
+								<!-- 										<li class="breadcrumb-item active" aria-current="page">About</li> -->
+								<!-- 									</ol> -->
+								<!-- 								</div> -->
 							</div>
 						</div>
 					</div>
@@ -219,62 +220,117 @@
 						<!--/.background-holder-->
 					</div>
 					<div
-						class="col-lg-8 px-5 py-6 my-lg-0 background-white radius-tr-lg-secondary radius-br-secondary radius-bl-secondary radius-bl-lg-0">
-						<div class="d-flex align-items-center h-100">
-							<div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-								<h5 data-zanim='{"delay":0}'>선택된 상 담 사 : ${counsel.counselor.counselorCode}</h5>
-								<h5 data-zanim='{"delay":0}'>선택한 상담유형 : ${counsel.counselor.counselorCode}</h5>
-								<p class="my-4" data-zanim='{"delay":0.1}'>apply Test :
-									${counsel.counselor.counselorCode}</p>
-								<h5 class="text-uppercase mt-3 fw-500 mb-1"
-									data-zanim='{"delay":0.3}'>renal scott</h5>
-								<h6 class="color-7 fw-600" data-zanim='{"delay":0.4}'>UK
-									office</h6>
-							</div>
+						class="col-lg-8 px-5 py-6 my-lg-0 background-white radius-tr-lg-secondary radius-br-secondary radius-bl-secondary radius-bl-lg-0"
+						style="vertical-align: top;padding-top: 20px !important">
+						<div data-zanim-timeline="{}" data-zanim-trigger="scroll"
+							style="width: 100%; height: 100%;word-break:break-all">
+							<h3 class="text-center fs-2 fs-md-3">상담사 정보</h3>
+							<hr class="short"
+								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
+								data-zanim-trigger="scroll" />
+							<br>
+							
+							<table style="width: 100%">
+								<tr>
+									<td style="width: 180px">
+										<h5 data-zanim='{"delay":0}'>선택한 상담사</h5>
+									</td>
+									<td>
+										<h5 data-zanim='{"delay":0}'>${counselor.member.name}</h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5 data-zanim='{"delay":0}'>선택한 상담유형</h5>
+									</td>
+									<td>
+										<h5 data-zanim='{"delay":0}'>
+											<c:choose>
+												<c:when test="${counselField==0 }">
+													대면상담
+												</c:when>
+												<c:when test="${counselField==1 }">
+													전화상담
+												</c:when>
+												<c:when test="${counselField==1 }">
+													채팅상담
+												</c:when>
+											</c:choose>
+										</h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5 data-zanim='{"delay":0}'>상담사 학위</h5>
+									</td>
+									<td>
+										<h5 data-zanim='{"delay":0}'>${counselor.degree}</h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5 data-zanim='{"delay":0}'>상담센터 주소</h5>
+									</td>
+									<td>
+										<h5 data-zanim='{"delay":0}'>${counselor.counselorAddr}</h5>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="height: 20px">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<h5 data-zanim='{"delay":0}'>상담사 경력</h5>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<h5 data-zanim='{"delay":0}'>${counselor.career}</h5>
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>
-				<div class="row mt-6">
-					<div class="col">
-						<h3 class="text-center fs-2 fs-md-3">상담시간 선택</h3>
-						<hr class="short"
-							data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
-							data-zanim-trigger="scroll" />
-					</div>
+				<div class="row mt-6" style="margin-top: 10px !important">
+					<div class="col"></div>
 					<div class="col-12">
 						<div
-							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
-							<h5>Earning the right</h5>
-							<p class="mt-3">As a first order business consulting firm, we
-								help companies, foundations and individuals make a difference.
-								Our work gets to the heart of the matter. We break silos because
-								it takes more than any one check or policy or letter to tackle
-								big issues like economic security, human rights or climate
-								sustainability. We prescribe a custom formula of advocacy,
-								collaboration, investment, philanthropy, policy and new ways of
-								doing business in order to help you make progress.</p>
-							<blockquote class="blockquote my-5 ml-lg-6"
-								style="max-width: 700px;">
-								<h5 class="fw-500 ml-3 mb-0">But how do we do it? We like
-									to call it earning the right, walking the talk and playing the
-									game &hellip;</h5>
-							</blockquote>
-							<p class="column-lg-2 dropcap">Elixir serves to help people
-								with creative ideas succeed. Our platform empowers millions of
-								people — from individuals and local artists to entrepreneurs
-								shaping the world’s most iconic businesses — to share their
-								stories and create an impactful, stylish, and easy-to-manage
-								online presence. The Cambridge office is the home of the Risk
-								management practice. We work to assure the safe performance of
-								complex critical systems; develop safety leadership and culture;
-								manage safety and risk in high-hazard industries; understand
-								complex project risks, measure and report risk performance. We
-								work across a wide range of industries and public sector
-								organizations that include upstream and downstream oil and gas;
-								rail and road transportation; construction; and gas utilities
-								and distribution. We work worldwide in Europe, Middle East and
-								Asia, Africa and South America based out of our offices in
-								Cambridge, UK and Milan, Italy.</p>
+							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary" style="margin-top: 20px !important">
+							<h3 class="text-center fs-2 fs-md-3">상담일자 선택</h3>
+							<hr class="short"
+								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
+								data-zanim-trigger="scroll" />
+							<form action="${pageContext.request.contextPath}/counsel/submit012" method="get">
+								<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
+								<input type="hidden" name="counselCategory" value="${counselField}"/>
+								<input type="hidden" name="memberCode" value=""/>
+								<table style="width: 100%; vertical-align: middle;">
+									<tr style="height: 150px;">
+										<td>
+											<h5>상담 희망일</h5>
+										</td>
+										<td><input type="date" name="counselDate"></td>
+										<td>
+											<h5>상담 희망시간</h5>
+										</td>
+										<td><select name="counselTime">
+												<option value="10:00:00">10:00 ~ 10:50</option>
+												<option value="11:00:00">11:00 ~ 11:50</option>
+												<option value="12:00:00">12:00 ~ 12:50</option>
+												<option value="14:00:00">14:00 ~ 14:50</option>
+												<option value="15:00:00">15:00 ~ 15:50</option>
+												<option value="16:00:00">16:00 ~ 16:50</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: right;">
+											<input type="submit" class="btn btn-success" value="상담 신청"/>
+										</td>
+									</tr>
+								</table>
+							</form>
 						</div>
 					</div>
 				</div>

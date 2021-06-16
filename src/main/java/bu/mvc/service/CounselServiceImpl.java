@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.respsitory.CounselorRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +21,17 @@ public class CounselServiceImpl implements CounselService {
 	
 	@Override
 	public Counselor getCounselor(Long counselorCode) {
-		
-		return null;
+		return counselorRepository.findById(counselorCode).orElse(null);
 	}
 
 	@Override
 	public int getRemainTicket(Long counselorCode, Long memberCode, int ticketField) {
+		return 0;
+	}
+
+	@Override
+	public int submit012(Counsel counsel) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
