@@ -1,21 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
-        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('1bb89eb38bd6e77094446a0ca39ac555');
-
-        // SDK 초기화 여부를 판단합니다.
-        console.log(Kakao.isInitialized());
-        
-        
-</script>
-    
-    
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -147,14 +137,20 @@
             </div>
             <section>
                 <div>
-                    <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
+                    <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
                     <!--/.background-holder-->
                     <div class="container">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Result</h1>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>ART REQUEST LIST</h1>
+                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
+                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
+                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">ART REQUEST LIST</li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -163,135 +159,51 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-11">
+			<section class="background-11 text-center">
                 <div class="container">
-                    
-                    <div class="row mt-6">
-                        <div class="col">
-                            <h3 class="text-center fs-2 fs-md-3">스트레스 자가진단 테스트 결과</h3>
-                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
-                        </div>
-                    </div>
-                    <!--/.row-->
+               		<div>
+						<table class="table table-hover">
+						  <thead>
+						    <tr>
+						      <th scope="col">No</th>
+						      <th scope="col">Name</th>
+						      <th scope="col">File</th>
+						      <th scope="col">Date</th>
+						      <th scope="col">Answer</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    
+						    	<c:choose>
+						    		<c:when test="${empty list}">
+						    			<tr>
+						    			<td colspan="5">
+						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담 요청이 없습니다.</h4>
+						    			</td>
+						    			</tr>
+						    		</c:when>
+						    		<c:otherwise>
+						    			<c:forEach items="${list}" var="list" varStatus="state">
+						    			<tr>
+							    			<td>${state.count}
+							    			<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artDate}" type="both"/>
+							    			</td>
+									      	<td>${list.member.id}</td>
+									      	<td><a href="${pageContext.request.contextPath}/psy/down/${list.artFile}/${list.artCounselor.counselor.member.name}/<fmt:formatDate value="${parseDate}" pattern="yyyyMMddHHmm"/>">${list.artFile}</a></td>
+									      	<td><fmt:formatDate value="${parseDate}" pattern="yyyy년 MM월 dd일"/></td>
+									      	<td><a href="${pageContext.request.contextPath}/psy/reply/${list.artCode}" class="btn btn-primary btn-capsule btn-sm">답변하기</a></td>
+									      	</tr>
+						    			</c:forEach>
+						    		</c:otherwise>
+						    	</c:choose>
+						      
+						    
+						  </tbody>
+						</table>
+					</div>  
                 </div>
-                <section >
-		                <div class="container">
-		                    <div class="row">
-		                        <div class="col-12">
-			                        <c:choose>
-			                        	<c:when test="${total<13}">
-			                        		<div  style="text-align : center;" class="mb-6">
-					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress0.jpg" alt="70gratethan" width=400 height=300>
-					                        </div>
-					                        <h5 class="text-center">스트레스에 대해 걱정하지 않으셔도 좋아요!</h5>	
-			                        		<div class="media pt-5"><span class="icon-Laughing fs-5 color-warning mr-3 mt-3" style="transform: translateY(-1rem)"></span>
-			                        	</c:when>
-			                        	<c:when test="${total>12 and total<17}">
-			                        		<div  style="text-align : center;" class="mb-6">
-					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress1.jpg" alt="70gratethan" width=400 height=300>
-					                        </div>
-					                        <h5 class="text-center">총점이 높을수록 스트레스가 높아요. 지금 경도 스트레스를 받고 있어요.</h5>	
-			                        		<div class="media pt-5"><span class="icon-Depression fs-5 color-warning mr-3 mt-3" style="transform: translateY(-1rem)"></span>
-			                        	</c:when>
-			                        	<c:when test="${total>16 and total<19}">
-			                        		<div  style="text-align : center;" class="mb-6">
-					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress2.jpg" alt="70gratethan" width=400 height=300>
-					                        </div>
-					                        <h5 class="text-center">총점이 높을수록 스트레스가 높아요. 지금 중등도 스트레스를 받고 있어요. 우울증과 불안증 검사가 필요해요.</h5>	
-			                        		<div class="media pt-5"><span class="icon-Confused fs-5 color-warning mr-3 mt-3" style="transform: translateY(-1rem)"></span>
-			                        	</c:when>
-			                        	<c:when test="${total>18}">
-			                        		<div  style="text-align : center;" class="mb-6">
-					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress3.jpg" alt="70gratethan" width=400 height=300>
-					                        </div>
-					                        <h5 class="text-center">총점이 높을수록 스트레스가 높아요. 지금 심한 스트레스를 받고 있어요.</h5> <h5 class="text-center">우울증과 불안증 검사 및 정신건강 전문가와의 면담이 필요해요.</h5>	
-			                        		<div class="media pt-5"><span class="icon-Crying fs-5 color-warning mr-3 mt-3" style="transform: translateY(-1rem)"></span>
-			                        	</c:when>
-			                        	<c:otherwise>
-			                        		<div  style="text-align : center;" class="mb-6">
-					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress1.jpg" alt="70gratethan" width=400 height=300>
-					                        </div>
-					                        <h5 class="text-center">결과가 없습니다. 다시 시도해주세요.</h5>	
-			                        		<div class="media pt-5"><span class="icon-Cool fs-5 color-warning mr-3 mt-3" style="transform: translateY(-1rem)"></span>
-			                        	</c:otherwise>
-			                        </c:choose>
-									<div class="media-body">
-				                    	<h2 class="color-primary fs-3 fs-lg-4">나의 스트레스 지수는<br /><span class="color-warning">${total} 점입니다.</span></h2>
-				                    </div>
-				                    </div>	
-		                        
-		                        </div>
-		                    </div>
-		                    <!--/.row-->
-		                    
-		                </div>
-		                <!--/.container-->
-		            </section>
                 <!--/.container-->
-               
-                <div class="container">
-                	<div style="text-align:center;">
-	                	<a id="create-kakao-link-btn" href="javascript:;">
-						  <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
-						</a>
-						<p class="fw-lighter mt-3">심리검사 공유하기</p>
-                	</div>
-					<script type="text/javascript">
-					  Kakao.Link.createDefaultButton({
-					    container: '#create-kakao-link-btn',
-					    objectType: 'feed',
-					    content: {
-					      title: 'BU_당신의 스트레스 점수는 몇 점?',
-					      description: '간단한 심리검사로 알아보는 지금 나의 스트레스 점수는 몇 점?',
-					      imageUrl:
-					        'https://ifh.cc/g/PsZ0A6.jpg',
-					      link: {
-					        mobileWebUrl: 'https://developers.kakao.com',
-					        webUrl: 'http://localhost:9000/psy/stressResult?no='+${code},
-					      },
-					    },
-					    social: {
-					      likeCount: 286,
-					      commentCount: 45,
-					      sharedCount: 845,
-					    },
-					    buttons: [
-					      {
-					        title: '웹으로 보기',
-					        link: {
-					          mobileWebUrl: 'https://developers.kakao.com',
-					          webUrl: 'http://localhost:9000/psy/stressResult?no='+${code},
-					        },
-					      },
-					      /*{
-					        title: '앱으로 보기',
-					        link: {
-					          mobileWebUrl: 'https://developers.kakao.com',
-					          webUrl: 'https://developers.kakao.com',
-					        },
-					      },*/
-					    ],
-					  })
-					</script>
-                    <div class="row mt-6">
-                        <div class="col-12">
-                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
-                                
-                                <blockquote class="blockquote my-5 ml-lg-6" style="max-width: 700px;">
-                                <h5 class="ml-3">현대인에게 가장 큰 적, 스트레스</h5>
-                                    <h5 class="fw-500 ml-3 mb-0">스트레스로 위로와 객관적인 조언이 필요하다면 BU 에서 전문가에게 상담받으세요!</h5><br>
-                                	<div style="text-align:center;" >
-                                		<a href="${pageContext.request.contextPath}/psy/index" class="btn btn-outline-primary btn-capsule">심리상담 알아보기</a>
-                                	</div>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-               
-            </section>
-          
+            </section>            
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">

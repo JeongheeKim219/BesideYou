@@ -68,9 +68,9 @@ public class ArtTest {
 	//그림테스트 요청
 	@Test
 	void insert() {
-		//artRep.save(new Art(null, null, "파일", 0, new Member(4L), new ArtCounselor(2L)));
-		//artRep.save(new Art(null, null, "파일", 0, new Member(4L), new ArtCounselor(21L)));
-		artRep.save(new Art(null, null, "파일", 0, new Member(3L), new ArtCounselor(21L)));
+		//artRep.save(new Art(null, null, "파일", 0, new Member(4L), new ArtCounselor(2L), null));
+		//artRep.save(new Art(null, null, "파일", 0, new Member(4L), new ArtCounselor(21L), null));
+		artRep.save(new Art(null, null, "파일", 0, new Member(3L), new ArtCounselor(21L), null));
 	}
 	
 	//그림테스트 답변
@@ -124,8 +124,27 @@ public class ArtTest {
 	//멤버코드에 해당하는 카운슬러코드 검색
 	@Test
 	void select() {
-		//memRep.
+		//Member member = memRep.findById(4L).orElse(null);
+		//System.out.println("member : "+member);
+		//System.out.println("counselor : "+member);
 		//cRep.findById(new Member(4L));
+		Counselor co = cRep.searchBymembercode(4L);
+		System.out.println("co :"+co);
+	}
+	
+	//카운슬러코드에 해당하는 아트카운슬러 검색
+	@Test
+	void select1() {
+		ArtCounselor ac = acRep.selectByCounselorCode(new Counselor(1L));
+		System.out.println("ac : "+ac);
+	}
+	
+	//멤버코드에 해당하는 그림요청 검색
+	@Test
+	void aa() {
+		List<Art> list = artRep.searchByMem(4L);
+		System.out.println("개수 : "+list.size());
+		list.forEach(a->System.out.println(a));
 	}
 	
 	

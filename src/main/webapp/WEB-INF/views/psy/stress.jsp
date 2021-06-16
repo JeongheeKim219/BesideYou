@@ -8,112 +8,19 @@
 <script type="text/javascript">
 $(function(){
 	
-	var sum = 0;
 	
 	$('input:radio[name^="ques"]').on('click', function() {
-	    //alert(1)
-		var valueCheck = Number($('input:radio[name^="ques"]:checked').val()); // 체크된 Radio 버튼의 값을 가져옵니다.
-	   	//alert(valueCheck);
-		sum += valueCheck;
+		var sum = 0;
+
+		$('input:radio[name^="ques"]:checked').each(function(index, item){
+			sum += Number($(this).val())
+		})
+		
 	    $("#test").html(sum);
 	    $("#total").val(sum);
-	    //$("#aa").val(sum);
 	});
 	
-	//이벤트 발생 전 선택된 값 
-	/*var preValue = $('input:radio[name="ques1"]:checked').val(); //클릭 이벤트 발생 
-	$('input:radio[name="ques1"]').click(function() { 
-		//if(confirm("변경하시겠습니까?") == false) { //체크 해제 
-		//$(this).prop('checked', false); //이전 라디오버튼 체크 
-		//$("input[name='radio_like']:radio[value='" + preValue + "']")
-		//.prop('checked', true); 
-		//return;
-		alert(1);
-		alert(Number(preValue)); 
-	preValue = $(this).val(); });*/
-
-
-
-	/*$('input:radio[name^="ques"]').click(function(){
-	 //alert(1)
-	 var valueCheck = Number($('input:radio[name^="ques"]:checked').val());
-	 alert(valueCheck)
-	 sum += valueCheck;
-	 }).change(function(){
-	  $('#test').trigger("blur");
-	  $('#test').append(sum);
-	 });*/
-
-	/*$('input:radio[name^="ques"]').click( function(){
-		  aa = Number($(this).val());
-		  sum += aa
-	}).change(function(){
-		  $('#test').append( "before value : "+ aa +"<br>" +"sum value :" +sum +"<br>"+"sum에서 변경되면 이전 값 빼기 : "+(sum-aa)+"<br>");
-		});*/
-		
-		/*var total = 0;
-		    $('input:radio[name="ques1"]').click(function() {
-			      alert($(this).val());
-			      var q1 = Number($(this).val());
-			});
-		    $('input:radio[name="ques2"]').click(function() {
-			      alert($(this).val());
-			      var q2 = Number($(this).val());
-			});
-		    $('input:radio[name="ques3"]').click(function() {
-			      alert($(this).val());
-			      var q3 = Number($(this).val());
-			});
-		    $('input:radio[name="ques4"]').click(function() {
-			      alert($(this).val());
-			      var q4 = Number($(this).val());
-			});
-		    $('input:radio[name="ques5"]').click(function() {
-			      alert($(this).val());
-			      var q5 = Number($(this).val());
-			});
-		    $('input:radio[name="ques6"]').click(function() {
-			      alert($(this).val());
-			      var q6 = Number($(this).val());
-			});
-		    $('input:radio[name="ques7"]').click(function() {
-			      alert($(this).val());
-			      var q7 = Number($(this).val());
-			});
-		    $('input:radio[name="ques8"]').click(function() {
-			      alert($(this).val());
-			      var q8 = Number($(this).val());
-			});
-		    $('input:radio[name="ques9"]').click(function() {
-			      alert($(this).val());
-			      var q9 = Number($(this).val());
-			});
-		    $('input:radio[name="ques10"]').click(function() {
-			      alert($(this).val());
-			      var q10 = Number($(this).val());
-			});
 	
-		    total = Number(q1)+Number(q2);
-			 alert(total);
-			 $('#test').append(total);*/
-			 
-			 
-			 /*function changeDiv() {
-				  // 변경되기 전 체크된 라디오 버튼 값
-				  var checkedValue = $('input:radio[name="ques10"]:checked').val();
-
-				  $('input:radio[name="ques10"]').on('click', function() {
-				    if ($(this).val() != checkedValue) {
-				      console.log("이전값: " + checkedValue);
-				      checkedValue = $(this).val();
-				      console.log("바뀐값: " + $(this).val());
-
-				      
-				    }
-				  });
-				}*/
-			 
-	 
 	//////////////////////////////////////////////////////
 		 $("#btn").on("click", function(){
 			 var length = $('input:radio[name^="ques"]').length;

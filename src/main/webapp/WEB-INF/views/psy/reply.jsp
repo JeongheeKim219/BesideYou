@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +9,12 @@
 
   $(function(){
 	 $("#btn").click(function(){
-		 if($("#question").val().length==0){
-			 alert("지시사항을 입력하세요");
-			$("#question").focus();
+		 if($("#artAnsContent").val().length==0){
+			 alert("답변을 등록하세요.");
+			$("#artAnsContent").focus();
 			return false;
 		 }
-		 if($("#detail").val().length==0){
-			 alert("검사항목을 입력하세요");
-			$("#detail").focus();
-			return false;
-		 }
-		 alert("그림상담사 등록이 되었습니다.")
+		 alert("답변이 등록되었습니다.")
 	 })
 	
   })
@@ -167,7 +162,7 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>그림 상담사 등록</h1>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>그림 상담 답변하기</h1>
                                 </div>
                             </div>
                         </div>
@@ -177,90 +172,69 @@
                 <!--/.container-->
             </section>
             <c:choose>
-            	<c:when test="${not empty info}">
+            	<c:when test="${art.artState!=0}">
             		<section class="background-11 ">
-		                <div class="container">
-		                    <div class="row">
-		                        <div class="col-lg-12">
-		                            <div class="row">
-		                                <div class="col-12">
-		                                    <div class="row mt-6">
-		                                        <div class="col-12">
-		                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
-		                                                <h4 data-zanim='{"delay":0.1}'>수정하기</h4>
-		                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/update">
-		                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
-		                                                    <div class="row">
-		                                                        <div class="col-12">
-		                                                            <h5 data-zanim='{"delay":0.1}'>피상담자에게 사전에 안내할 지시사항을 입력해주세요.</h5>
-		                                                            <p>1000자 이내로 작성해주세요.</p>
-		                                                            <textarea name="question" id="question" class="form-control background-white" rows="10"  aria-label="Text input with dropdown button" maxlength="1000">${info.question }</textarea>
-		                                                        </div>
-		                                                        <div class="col-12 mt-4">
-		                                                        	<h5 data-zanim='{"delay":0.1}'>검사항목을 입력해주세요.</h5>
-		                                                        	<p>1000자 이내로 작성해주세요.</p>
-		                                                            <textarea name="detail" id="detail" class="form-control background-white" rows="10" aria-label="Text input with dropdown button" maxlength="1000">${info.detail }</textarea>
-		                                                        </div>
-		                                                        <div class="col-12 mt-4">
-		                                                            <button class="btn btn-primary" type="Submit" id="btn"> <span class="color-white fw-600">Submit Comment</span></button>
-		                                                        </div>
-		                                                    </div>
-		                                                </form>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <!--/.row-->
-		                </div>
-		                <!--/.container-->
-		            </section>	
+			                <div class="container">
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <div class="row">
+			                                <div class="col-12">
+			                                    <div class="row mt-6">
+			                                        <div class="col-12">
+			                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+			                                                <h4 data-zanim='{"delay":0.1}'>등록된 답변이 있습니다.</h4>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <!--/.row-->
+			                </div>
+			                <!--/.container-->
+			            </section>
             	</c:when>
             	<c:otherwise>
-            	 <section class="background-11 ">
-		                <div class="container">
-		                    <div class="row">
-		                        <div class="col-lg-12">
-		                            <div class="row">
-		                                <div class="col-12">
-		                                    <div class="row mt-6">
-		                                        <div class="col-12">
-		                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
-		                                                <h4 data-zanim='{"delay":0.1}'>등록하기</h4>
-		                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/signup">
-		                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
-		                                                    <div class="row">
-		                                                        <div class="col-12">
-		                                                            <h5 data-zanim='{"delay":0.1}'>피상담자에게 사전에 안내할 지시사항을 입력해주세요.</h5>
-		                                                            <p>1000자 이내로 작성해주세요.</p>
-		                                                            <textarea name="question" id="question" class="form-control background-white" rows="10" placeholder="ex) 제한시간은 3분이내입니다. 오래 생각하지 말고 그려주세요." aria-label="Text input with dropdown button" maxlength="1000"></textarea>
-		                                                        </div>
-		                                                        <div class="col-12 mt-4">
-		                                                        	<h5 data-zanim='{"delay":0.1}'>검사항목을 입력해주세요.</h5>
-		                                                        	<p>1000자 이내로 작성해주세요.</p>
-		                                                            <textarea name="detail" id="detail" class="form-control background-white" rows="10" placeholder="ex) 1. 비오는 날 그림을 그려주세요. 2. 나무를 그려주세요." aria-label="Text input with dropdown button" maxlength="1000"></textarea>
-		                                                        </div>
-		                                                        <div class="col-12 mt-4">
-		                                                            <button class="btn btn-primary" type="Submit" id="btn"> <span class="color-white fw-600">Submit Comment</span></button>
-		                                                        </div>
-		                                                    </div>
-		                                                </form>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <!--/.row-->
-		                </div>
-		                <!--/.container-->
-		            </section>
+            		<section class="background-11 ">
+			                <div class="container">
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <div class="row">
+			                                <div class="col-12">
+			                                    <div class="row mt-6">
+			                                        <div class="col-12">
+			                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+			                                                <h4 data-zanim='{"delay":0.1}'>답변 등록하기</h4>
+			                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/write">
+			                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+			                                                	<input type="hidden" name="artCode" value="${art.artCode}">
+			                                                    <div class="row">
+			                                                        <div class="col-12">
+			                                                            <h5 data-zanim='{"delay":0.1}'>답변을 등록해주세요.</h5>
+			                                                            <p>1300자 이내로 작성해주세요.</p>
+			                                                            <textarea name="artAnsContent" id="artAnsContent" class="form-control background-white" rows="10" placeholder="ex) 파일을 확인한 후에 답변을 등록해주세요." aria-label="Text input with dropdown button" maxlength="1300"></textarea>
+			                                                        </div>
+			                                                        <div class="col-12 mt-4">
+			                                                            <button class="btn btn-primary" type="Submit" id="btn"> <span class="color-white fw-600">Submit Comment</span></button>
+			                                                        </div>
+			                                                    </div>
+			                                                </form>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <!--/.row-->
+			                </div>
+			                <!--/.container-->
+			            </section>
             	</c:otherwise>
             </c:choose>
-           
+            
+            
             <section style="background-color: #3D4C6F">
                 <div class="container">
                     <div class="row align-items-center">

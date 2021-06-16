@@ -8,36 +8,18 @@
 <script type="text/javascript">
 $(function(){
 	
-	var sum = 0;
-	
 	$('input:radio[name^="ques"]').on('click', function() {
-	    //alert(1)
-		var valueCheck = Number($('input:radio[name^="ques"]:checked').val()); // 체크된 Radio 버튼의 값을 가져옵니다.
-	   	//alert(valueCheck);
-		sum += valueCheck;
+		var sum = 0;
+
+		$('input:radio[name^="ques"]:checked').each(function(index, item){
+			sum += Number($(this).val())
+		})
+		
 	    $("#test").html(sum);
 	    $("#total").val(sum);
-	    //$("#aa").val(sum);
 	});
 	
-	 /*$('input:radio[name^="ques"]').click(function(){
-		 //alert(1)
-		 var valueCheck = Number($('input:radio[name^="ques"]:checked').val());
-		 alert(valueCheck)
-		 sum += valueCheck;
-		 }).change(function(){
-		  $('#test').trigger("blur");
-		  $('#test').append(sum);
-		 });*/
-	
-	/* $('input:radio[name^="ques"]').click( function(){
-		  aa = Number($(this).val());
-		  sum += aa
-		 }).change(function(){
-		  $('#test').append( "before value : "+ aa +"<br>" +"sum value :" +sum +"<br>"+"sum에서 변경되면 이전 값 빼기 : "+(sum-aa)+"<br>");
-		 });*/
-	
-		 
+	//////////////////////////////////////////////////////
 		 
 		$("#btn").on("click", function(){
 			 var length = $('input:radio[name^="ques"]').length;

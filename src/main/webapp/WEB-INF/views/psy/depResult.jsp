@@ -184,38 +184,33 @@
 					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress2.jpg" alt="70gratethan" width=400 height=300>
 					                        </div>
 					                        <h5 class="text-center">우울증 증세가 있는 편이에요.</h5>	
-			                        		<div class="media"><span class="icon-Battery-50 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
-			                            	</div>
+			                        		<div class="media pt-5"><span class="icon-Battery-50 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
 			                        	</c:when>
 			                        	<c:when test="${total>60}">
 			                        		<div  style="text-align : center;" class="mb-6">
 					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress2.jpg" alt="70gratethan" width=400 height=300>
 					                        </div>
 					                        <h5 class="text-center">중증 우울증 증세가 나타나고 있어요.</h5>	
-			                        		<div class="media"><span class="icon-Battery-25 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
-			                            	</div>
+			                        		<div class="media pt-5"><span class="icon-Battery-25 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
 			                        	</c:when>
 			                        	<c:when test="${total>70}">
 			                        		<div  style="text-align : center;" class="mb-6">
 					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/dep70.jpg" alt="70gratethan" width=400 height=300>
 					                        </div>
 					                        <h5 class="text-center">즉시 병원에 가서 약물치료를 받아야 해요.</h5>	
-			                        		<div class="media"><span class="icon-Battery-0 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
-			                            	</div>
+			                        		<div class="media pt-5"><span class="icon-Battery-0 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
 			                        	</c:when>
 			                        	<c:otherwise>
 			                        		<div  style="text-align : center;" class="mb-6">
 					                        	<img class="radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/stress0.jpg" alt="70gratethan" width=400 height=300>
 					                        </div>
 					                        <h5 class="text-center">우울증 증세는 없어요~!</h5>	
-			                        		<div class="media"><span class="icon-Battery-100 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
-			                            	</div>
+			                        		<div class="media pt-5"><span class="icon-Battery-100 fs-5 color-warning mr-3" style="transform: translateY(-1rem)"></span>
 			                        	</c:otherwise>
 			                        </c:choose>
 									<div class="media-body">
 				                    	<h2 class="color-primary fs-3 fs-lg-4">나의 우울증 지수는<br /><span class="color-warning">${total} 점</span></h2>
-				                    	<input type="text" value="${code}">
-				                    </div>	
+				                    </div></div>	
 		                        
 		                        </div>
 		                    </div>

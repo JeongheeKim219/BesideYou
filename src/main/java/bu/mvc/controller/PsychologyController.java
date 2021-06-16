@@ -2,6 +2,7 @@ package bu.mvc.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,15 +11,22 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Art;
+import bu.mvc.domain.ArtAnswer;
 import bu.mvc.domain.ArtCounselor;
+import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Psychology;
 import bu.mvc.service.PsychologyService;
@@ -39,6 +47,18 @@ public class PsychologyController {
 	/**
 	 * 테스트
 	 * */
+	
+	@RequestMapping("/result")
+	public void result(Model model /*, @RequestParam(defaultValue = "0") int nowPage*/) {
+		//로그인정보 가져오기
+		//List<Psychology> list = psyService.selectResult(new Member(41L));
+	//	model.addAttribute("list", list);
+		Pageable pageable = PageRequest.of(0, 5, Direction.DESC, "testDate");
+		Page<Psychology> pageList = psyService.selectResult(new Member(41L),pageable);
+		System.out.println("pageList : "+pageList.getContent().size());
+		model.addAttribute("pageList", pageList);
+		
+	}
 	
 	
 	/**
@@ -183,7 +203,7 @@ public class PsychologyController {
 			file.transferTo(new File(path+"/"+name+"_"+new SimpleDateFormat("yyyyMMddHHmm").format(date)+"_"+fileName));
 			
 			//회원정보 가져오기
-			Art art = new Art(null, null, fileName, 0, new Member(4L), new ArtCounselor(code));
+			Art art = new Art(null, null, fileName, 0, new Member(82L), new ArtCounselor(code), null);
 			psyService.artInsert(art);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -198,17 +218,98 @@ public class PsychologyController {
 	 * 그림상담사 등록화면
 	 * */
 	@RequestMapping("/signupArt")
-	public void signArt() {}
+	public void signArt(Model model) {
+		//회원정보를 가져와서 그림상담사 등록되어있는지
+		Counselor co = psyService.selectByMem(44L);  //그림상담사 등록된 ㅐㅇ
+		Counselor c = psyService.selectByMem(21L);//등록 안된애
+		ArtCounselor ac = psyService.selectByCounselorCode(co);
+		model.addAttribute("info", ac);
+	}
 	
 	/**
 	 * 그림상담사 등록
 	 * */
 	@RequestMapping("/signup")
-	public void signup() {
-		//로그인한 회원정보를...
+	public ModelAndView signup(ArtCounselor artCounselor) {
+		//로그인한 회원정보를...44L이라고 가정
+		Counselor co = psyService.selectByMem(44L);
+		artCounselor.setCounselor(co);
+		psyService.signup(artCounselor);
 		
-		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/psy/index");
+		return mv;
 	}
 	
+	/**
+	 * 그림상담사 수정
+	 * */
+	@RequestMapping("/update")
+	public void update(ArtCounselor artCounselor) {
+		//회원정보 가지고 오기
+		Counselor co = psyService.selectByMem(44L);
+		ArtCounselor ac = psyService.selectByCounselorCode(co);
+		//업데이트해야된다
+	}
 	
+	/**
+	 * 그림상담사 요청조회
+	 * */
+	@RequestMapping("/requestList")
+	public void requestList(Model model, HttpSession session) {
+		//로그인한 정보 가져오기 일단 4L이라고 가정..
+		Counselor co = psyService.selectByMem(4L);
+		ArtCounselor ac = psyService.selectByCounselorCode(co);
+		List<Art> list = psyService.selectByCounselor(ac);
+		
+		model.addAttribute("list", list);
+	}
+	
+	/**
+	 * 다운로드
+	 * */
+	@RequestMapping("/down/{artFile}/{counselor}/{date}")
+	public ModelAndView download(@PathVariable String artFile, @PathVariable String counselor, @PathVariable String date , HttpSession session) {
+		//다운로드 기능을 담당하는 뷰가 실행될 수 있도록 호출한다(뷰로 갈때 다운로드할 파일정보를 전달한다.)
+		String path = session.getServletContext().getRealPath("/WEB-INF/save");
+		File file = new File(path+"/"+counselor+"_"+date+"_"+artFile); //다운로드를 할게될 파일객체
+				
+		return new ModelAndView("downLoadView", "fname", file);  //WEB-INF/views/downLoadView.jsp에서 ${fname}사용한다.
+	}
+	
+	/**
+	 * 그림상담답변등록폼
+	 * */
+	@RequestMapping("/reply/{artCode}")
+	public ModelAndView reply(@PathVariable Long artCode) {
+		//아 아트를 넘겨줘야 얘 스테이트가 0인지 1인지 알수있구나...!
+		Art art = psyService.selectByArtCode(artCode);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("psy/reply");
+		mv.addObject("art", art);
+		return mv;
+	}
+	
+	/**
+	 * 답변등록하기
+	 * 1.answer insert
+	 * 2.art-> state update 
+	 * */
+	@RequestMapping("/write")
+	public String write(Long artCode, String artAnsContent) {
+		psyService.insertAnswer(artCode, artAnsContent);
+		return "redirect:/psy/requestList";
+	}
+	
+	/**
+	 * 답변조회하기
+	 * */
+	@RequestMapping("/answerList")
+	public void answerList(Model model) {
+		//로그인정보 가져오기
+		//List<ArtAnswer> list = psyService.selectAnswer(4L);
+		//model.addAttribute("list", list);
+		List<Art> list = psyService.selectArt(4L);
+		model.addAttribute("list", list);
+	}
 }
