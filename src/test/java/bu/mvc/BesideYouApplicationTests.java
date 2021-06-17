@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
+import bu.mvc.domain.Authority;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Speciality;
 import bu.mvc.respsitory.AdminRepository;
+import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.PriceRepository;
