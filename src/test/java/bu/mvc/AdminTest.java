@@ -115,26 +115,21 @@ public class AdminTest {
 			}
 		list = Arrays.asList(new String[] { "우울", "불안", "섭식장애", "청소년", "강박", "스트레스", "직장", "진로", "중독", "감정조절" });
 		}
-<<<<<<< Updated upstream
 	}
 
 	@Test
 	void test_nine() {
 		Counselor counselor = counselorRep.findById(1L).orElse(null);
+		System.out.println(counselor.getDegree());
 		Member member = counselor.getMember();
 		System.out.println("???");
-		System.out.println(member);
-		
-		
+		System.out.println(member.getId());
 	}
 	
-	
-=======
-	}
 	
 	
 	@Test
-	void test_nine() {
+	void test_ten() {
 		List<Map<String, Object>> rankingMapList =  adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), 5);
 	
 		for(Map <String, Object> map : rankingMapList) {
@@ -144,5 +139,4 @@ public class AdminTest {
 	}
 
 
->>>>>>> Stashed changes
 }

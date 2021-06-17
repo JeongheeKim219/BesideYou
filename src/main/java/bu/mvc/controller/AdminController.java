@@ -191,33 +191,15 @@ public class AdminController {
 	
 	
 	/**
-	 * 16_1. 해당 월 상담사 순위 조회(신청일, 상담건수 기준)
+	 * 16. 해당 월 상담사 순위 조회(신청일, 상담건수 기준)
 	 */
 	@ResponseBody
 	@RequestMapping("/rankCounselor")
 	public AjaxDataTwo rankCouselorAjaxData(Model model) {
 		AjaxDataTwo ajaxDataTwo = adminService.rankCounselor();
-		List<Counselor> counselors = new ArrayList<Counselor>();
-		
-		for (Long counselorCode : ajaxDataTwo.getRankIncounselor()) {
-			counselors.add(counselService.getCounselor(counselorCode));
-		}
-		
-		model.addAttribute("counselorList", counselors);
 		return ajaxDataTwo;
 	}
 
-	/**
-	 * 16_2. 해당 월 상담사 순위 조회(상담사 정보 넘기기)
-	 */
-	@RequestMapping()
-	public String rankCouselorRequest() {
-		
-		
-		return "admin/index";
-	}
-	
-	
 }
 
 

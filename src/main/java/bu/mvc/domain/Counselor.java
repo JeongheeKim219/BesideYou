@@ -15,9 +15,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@ToString
+//@ToString
 @Entity
 @Setter
 @Getter
@@ -44,7 +43,8 @@ public class Counselor {
 	@OneToOne
 	@JoinColumn(name="member_code")
 	private Member member; // 회원코드
-
+	
+	
 	public Counselor(Long counselorCode) {
 		super();
 		this.counselorCode = counselorCode;

@@ -391,40 +391,17 @@
 								<div class="card-header-title">
 									<i class="header-icon lnr-apartment icon-gradient bg-love-kiss">
 									</i> 상담사 별 상담건수
-									<c:out value="${requestScope.counselorList}"/>
 								</div>
 							</div>
 							<div class="card-body">
 								<div class="scroll-area-sm">
 									<div class="scrollbar-container">
-										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
-										<c:forEach  var="counselor" items="${requestScope.counselorList}">
-											<li class="list-group-item">
-												<div class="widget-content p-0">
-													<div class="widget-content-wrapper">
-														<div class="widget-content-left mr-3">
-															<%-- <img width="42" class="rounded-circle"
-																src="${pageContext.request.contextPath}/adminCss/assets/images/avatars/9.jpg"
-																alt=""> --%>
-														</div>
-														</div>
-														<div class="widget-content-right">
-															<div class="widget-content-left">
-															<div class="widget-heading">${counselor.member.name}</div>
-														<c:forEach items="${counselor.speciality}" var="feild">	
-															<div class="widget-subheading">${feild.specialityName}</div>
-														</c:forEach>
-														<div class="font-size-xlg text-muted">
-																<small class="opacity-5 pr-1"></small> <span class="count"></span>
-																<small class="text-danger pl-2"> <i
-																	class="fa fa-angle-down"></i>
-																</small>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											</c:forEach>
+										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush" id="rank-table">
+											
+																
+																
+																
+														
 										</ul>
 									</div>
 								</div>
@@ -846,6 +823,7 @@
 				today.setDate(today.getDate() - v);
 			}
 
+			
 			//현재일로부터 7일간 일자별 가입회원 수 
 			function countNewMember() {
 				$
@@ -869,6 +847,7 @@
 						});
 			}
 
+			
 			//월별 상담/상담신청 건수 데이터 가져오기
 			function countCounselByMonth() {
 				$.ajax({
@@ -902,21 +881,47 @@
 			}
 			
 			
-			//상담사 순위 데이터 가져오기
+			//상담사 순위 데이터 가져오기 + 목록 만들기
 			function rankCounselor() {
 				$.ajax({
 					url : "${pageContext.request.contextPath}/admin/rankCounselor",
 					type : "POST",
-					dataType : 'json',
-					//contentType : 'application/json',
+					dataType : "json",
 					success : function(result) {
-						//alert(result.counselSessions);
-						 $.each(result.counselSessions, function (index, item){
-							//alert(item);
-							 $(".count").each(function(){
-								$(this).text(item);				
-							});
-						 });
+					
+						var str = "";
+						$.each(result.counselorNameList, function (index, item){
+							str += "<li class='list-group-item'><div class='widget-content p-0'>" 
+							str += "<div class='widget-content-wrapper'>"
+							str += "<div class='widget-content-left'><div class='widget-heading'>";
+							str += item + "</div>";
+							str += "<div class='widget-subheading'>" + (index + 1) + "</div></div>";
+							str += "<div class='widget-content-right'>";
+											
+							if(result.gapList[index] < 0){	
+								str += "<div class='widget-subheading>" + " - " + result.gapList[index] +"   "+ "</div></div>";
+								str += "<div class='font-size-xlg text-muted'>";
+								str += "<small class='opacity-5 pr-5'></small> <span>"+ result.sessionList[index] + "</span>";
+								str += "<small class='text-danger pl-2'> <i class='fa fa-angle-down fa-2x'></i></small>"
+							} else if(result.gapList[index] == 0){
+								str += "<div class='widget-subheading'>" + " - " + "</div></div>";
+								str += "<div class='font-size-xlg text-muted'>";
+								str += "<small class='opacity-5 pr-5'></small> <span>"+ result.sessionList[index] + "</span>";
+								str += "<small class='text-warning pl-2'><i class='fa fa-dot-circle'></i></small>"
+							} else if(result.gapList[index] > 0){
+								str += "<div class='widget-subheading'>" + " + " + result.gapList[index] + "</div></div>";
+								str += "<div class='font-size-xlg text-muted'>";
+								str += "<small class='opacity-5 pr-5'></small> <span>"+ result.sessionList[index] + "</span>";
+								str +="<small class='text-success pl-2'><i class='fa fa-angle-up fa-lg' ></i></small>"
+							}
+				
+							str += "</div></div></div></div></li>"	
+						
+						});
+						
+						
+						$("#rank-table").after(str);
+						
 														
 					},
 					error : function(err) {
@@ -948,6 +953,7 @@
 				});
 			}
 
+			
 			// 상담/상담신청 월별 증감 추이 차트 그리기
 			function drawNewCounselByMonth() {
 				var newCounselByMonth = $("#newCounselByMonth");

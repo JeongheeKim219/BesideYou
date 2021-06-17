@@ -302,73 +302,56 @@ public class AdminService {
 		return ajaxData;
 	}
 
+	
+	
 	/**
-	 * 11. 월별 상담사 순위 5위 구하기
+	 * 11. 월별 상담사 순위 구하기
 	 */
 	public AjaxDataTwo rankCounselor(){
-		int counselors = adminRep.findByMemberType(1).size();
-		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 5 );
-		List<Map<String, Object>> listLastMonth = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), counselors);
+		int counselorsNumber = adminRep.findByMemberType(1).size();
+		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 6 );
+		List<Map<String, Object>> listLastMonth = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), counselorsNumber);
 		
 		
-		Map<String, Object> rankMap = new HashMap<String, Object>();
-	
-		
-		//////////////////////////////////////////////////////////////////////////////
 		AjaxDataTwo ajaxDataTwo = new AjaxDataTwo();
-		List<Counselor> counselorList = new ArrayList<Counselor>();
+		List<String> counselorNameList = new ArrayList<String>();
 		List<Integer> sessionList = new ArrayList<Integer>();
 		List<Integer> gapList = new ArrayList<Integer>();
 		
-		
 		for(Map<String, Object> mapThis : listThisMonth) {
+
+			Counselor counselor =  counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR"))))).orElse(null);
+			String name = counselor.getMember().getName();			
+		 	int countThisMonth =  Integer.parseInt(String.valueOf(mapThis.get("COUNT")));
+		 	int gap = 0;
 		 	
-			//Optional<Counselor> counselor =  Optional.ofNullable(counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR")))))).orElse(null);
-			Optional<Counselor> counselor =  Optional.ofNullable(counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR")))))).orElse(null);
-		 	
-			
-<<<<<<< Updated upstream
-		 	counselorList.add(counselor);
-=======
-		 	counselorList.add counselor);
->>>>>>> Stashed changes
-		 	rankMap.put("COUNT",  Integer.parseInt(String.valueOf(mapThis.get("COUNT"))));
-		 	/////////////////////////////////////////////////////////////////
-		 	
-		 	rankIncounselor.add(Long.parseLong(String.valueOf(mapThis.get("COUNSELOR"))));
-		 	counselSessions.add(Integer.parseInt(String.valueOf(mapThis.get("COUNT")))); 
-		 	
+		 	counselorNameList.add(name);
+		 	sessionList.add(countThisMonth); 
 		 	
 			for(Map<String, Object> mapLast : listLastMonth){  
 					
 				if(mapThis.get("COUNSELOR").equals(mapLast.get("COUNSELOR"))) {
-					int gap = Integer.parseInt(String.valueOf(mapThis.get("COUNT"))) - Integer.parseInt(String.valueOf(mapLast.get("COUNT")));
-					rankMap.put("GAP", gap);
-					gapList.add(gap);
-				} else {
-					rankMap.put("GAP", 0);
-					gapList.add(0);
-				}		
+					gap = countThisMonth - Integer.parseInt(String.valueOf(mapLast.get("COUNT")));
+				} 	
 			}
-			rankList.add(rankMap);
-		
+			
+			gapList.add(gap);
 		}
 		
-		for(Map<String, Object> map : rankList) {
-			for(String key : map.keySet()) {
-				System.out.println("키 : " + key + ", " + "값 : " + map.get(key));
-			}
-		}
-		/////////////////////////////////////////////////////////
-		//ajaxData.setCounselorRank(rankList);
-		
-		
-		
-		ajaxDataTwo.setRankIncounselor(rankIncounselor);
-		ajaxDataTwo.setCounselSessions(counselSessions);
+		ajaxDataTwo.setCounselorNameList(counselorNameList);
+		ajaxDataTwo.setSessionList(sessionList);
 		ajaxDataTwo.setGapList(gapList);
-		
+		 
 		return ajaxDataTwo;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 }
+
+

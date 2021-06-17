@@ -11,14 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AjaxDataTwo {
 
-	List<Counselor> counselorList;
-	
-<<<<<<< Updated upstream
-	List<Integer> counselSessions; 
-=======
+	List<String> counselorNameList;
+
 	List<Integer> sessionList; 
->>>>>>> Stashed changes
-	
+
 	List<Integer> gapList;
 
 }
