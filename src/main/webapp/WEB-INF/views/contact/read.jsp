@@ -8,12 +8,12 @@
 <SCRIPT language=javascript>
 	$(function(){
 		//alert(1)
-		$("input[value=수정하기]").click(function(){
+/* 		$("input[value=수정하기]").click(function(){
 			//document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
 		   
 			$("#requestForm").attr("action", "${pageContext.request.contextPath}/contact/updateForm");
 			$("#requestForm").submit();
-		})
+		}) */
 	   
 	   
 		$("input[value=삭제하기]").click(function(){
@@ -27,21 +27,54 @@
 		$("input[value=답변하기]").click(function(){
 			//document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
 		   
-			$("#requestForm").attr("action", "${pageContext.request.contextPath}/contactReply/write");
+			$("#requestForm").attr("action", "${pageContext.request.contextPath}/admin/contactDetailView");
 			$("#requestForm").submit();
 		})
 	   
 	})
 </script>
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Language" content="ko">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Analytics Dashboard - This is an example dashboard
+	created using build-in elements and components.</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+<meta name="description"
+	content="This is an example dashboard created using build-in elements and components.">
+<meta name="msapplication-tap-highlight" content="no">
+<!--
+    =========================================================
+    * ArchitectUI HTML Theme Dashboard - v1.0.0
+    =========================================================
+    * Product Page: https://dashboardpack.com
+    * Copyright 2019 DashboardPack (https://dashboardpack.com)
+    * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
+    =========================================================
+    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
+<link href="${pageContext.request.contextPath}/adminCss/main.css"
+	rel="stylesheet">
+	
+<style type="text/css">
+	input[type=button]{
+		background-color: #50BCDF;
+		border: none;
+		border-radius: 5px;
+		color: #fff;
+		width: 100px;
+	}
+</style>
 
 </HEAD>
-
-
+<body>
+	<%@include file="./header.jsp"%>
+	<%@include file="./menu.jsp"%>
 <table align="center" cellpadding="5" cellspacing="2" width="600" border="1px" style="border-collapse: collapse">
     <tr>
-        <td width="1220" height="20" colspan="4" bgcolor="#3680B3">
-            <p align="center"><font color="white" size="3"><b>
+        <td width="1220" height="20" colspan="4" bgcolor="#FFFFFF">
+            <p align="center"><font color="black" size="3"><b>
              문의글 자세히보기</b></font></p>
         </td>
     </tr>
@@ -99,25 +132,26 @@
 			<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
 			<form name="requestForm" method="post" id="requestForm">
 				<input type=hidden name="contactCode" value="${contact.contactCode}">
-				<input type=button value="수정하기" >
-				<input type=button value="삭제하기" >
+				<!-- <input type=button value="수정하기" > -->
 				<input type=button value="답변하기" >
+				<input type=button value="삭제하기" >
 			</form>
 		</td>
     </tr>
 </table>
-<hr>
 
-<h3> 답변 </h3>
+<br>
+<h5> 답변 </h5>
 
-${contact.contactReply.contactReplyContent} / ${contact.contactReply.contactReplyDate} <a href="${pageContext.request.contextPath}/contactReply/delete/${contact.contactReply.contactReplyCode}/${contact.contactCode}">삭제</a> <p>
-
-
-
-<hr>
-<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/list">리스트로 돌아가기</a>&gt;</span></div>
+${contact.contactReply.contactReplyDate}<br>
+${contact.contactReply.contactReplyContent}<p>
 
 
+
+
+<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/admin/contactView">리스트로 돌아가기</a>&gt;</span></div>
+
+</body>
 
 
 

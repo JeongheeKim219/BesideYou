@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.Notice;
 import bu.mvc.respsitory.ContactRepository;
+import bu.mvc.respsitory.MemberRepository;
 
 @Service
 @Transactional
@@ -17,12 +18,21 @@ public class ContactServiceImpl implements ContactService {
 	
 	@Autowired
 	private ContactRepository contactRepository;
+	
+	@Autowired
+	private MemberRepository memberRepository;
+	
 
 	/**
 	 * 전체 문의글 가져오기
 	 * */
 	@Override
 	public Page<Contact> selectAll(Pageable pageable) {
+		
+		if(memberRepository.findAll() == null) {
+			throw new RuntimeException("로그인후 이용해주세요.");
+		}
+		
 		return contactRepository.findAll(pageable);
 	}
 

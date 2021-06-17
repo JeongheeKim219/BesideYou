@@ -245,7 +245,7 @@
 		        
 		        <td bgcolor="">
 					<p><span style="font-size:9pt;">
-					<a href="${pageContext.request.contextPath}/contact/read/${contact.contactCode}">
+					<a href="${pageContext.request.contextPath}/contact/readUser/${contact.contactCode}">
 					  ${contact.contactTitle} <%-- /  Reply count : <b style="color:red">${contact.replyList.size()} --%></b>
 					</a>
 					</span></p>

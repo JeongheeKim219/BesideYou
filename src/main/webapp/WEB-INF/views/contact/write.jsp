@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
 <HEAD>
@@ -158,55 +159,49 @@
 \r\n
 <p>
 <br>
-<form name="writeForm" method="post" action="${pageContext.request.contextPath}/contact/insert"  >
+<sec:authorize access="isAuthenticated()">
 
-<table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
 
-    <tr>
-        <td width="1220" height="20" colspan="2" bgcolor="#3680B3">
-            <p align="center"><font color="white" size="3"><b> 문의글 등록 </b></font></p>
-        </td>
-    </tr>
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">제목</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="contactTitle" size="30"></span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">카테고리</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<select id="contactCategory" name="contactCategory">
-			<option value="0">상담</option>
-			<option value="1">결제</option>
-			<option value="2">환불</option>
-			<option value="3">기타</option>
-		</select>
-		</span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">내용</span></b></p>
-        </td>
-        <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<textarea name="contactContent"  rows="20" cols="60"></textarea></span></b></td>
-    </tr>
-   
-    <tr>
-        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;">
-	        <input type=submit value=글쓰기> 
-	        <input type=reset value=다시쓰기>
-			<input type="hidden" name="member.memberCode" value="4">
-	        </span></b>
-        </td>
-    </tr>
-</table>
+<div class="col-12 mt-4">
+       <div class="background-white p-5 h-100 radius-secondary">
+           <h5>문의글 등록</h5>
+           <form  id="writeForm" method="post" action="${pageContext.request.contextPath}/contact/insert">
+           	<input type="hidden" name="member.memberCode" value="<sec:authentication property="principal.memberCode" />" />
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+               <div class="row">
+                   <div class="col-12">
+                       <input class="form-control background-white" type="text" name="contactTitle" placeholder="제목">
+                   </div>
+                   <div class="col-12 mt-4">
+                   	<select id="contactCategory" name="contactCategory" >
+						<option value="0">상담</option>
+						<option value="1">결제</option>
+						<option value="2">환불</option>
+						<option value="3">기타</option>
+					</select>
+                   </div>
+                   <div class="col-12 mt-4">
+                       <textarea class="form-control background-white" rows="11" name="contactContent" placeholder="내용"></textarea>
+                   </div>
+                   <div class="col-12 mt-4">
+                       <div class="row">
+                           <div class="col-auto">
+                               <button class="btn btn-md-lg btn-primary" type="submit"> <span class="color-white fw-600">등록하기</span></button>
+                           </div>
+                           <div class="col-auto">
+                               <button class="btn btn-md-lg btn-primary" type="reset"> <span class="color-white fw-600">다시쓰기</span></button>
+                           </div>
+                           <div class="col">
+                               <div class="zform-feedback"></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </form>
+       </div>
+   </div>
 
-</form>
-
+</sec:authorize>
 <hr>
 <div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/list">리스트로 돌아가기</a>&gt;</span></div>
 </BODY>

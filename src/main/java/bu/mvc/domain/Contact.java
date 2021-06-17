@@ -3,6 +3,7 @@ package bu.mvc.domain;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,7 +44,7 @@ public class Contact { //1:1문의
 	@JoinColumn(name = "member_code")
 	private Member member; //회원 코드를 가져와야	한다.
 	
-	@OneToOne(mappedBy = "contact")
+	@OneToOne(mappedBy = "contact", cascade = CascadeType.ALL)
 	@JoinColumn(name = "contact_reply")
 	private ContactReply contactReply;
 	
