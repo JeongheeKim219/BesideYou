@@ -9,7 +9,7 @@
 
 <h1>결제 실패</h1>
 <a href="${pageContext.request.contextPath}/">홈으로</a><br>
-<a href="${pageContext.request.contextPath}/ticket/application">구매폼</a>
+<a href="${pageContext.request.contextPath}/psy//artCounselor">다시 미술치료사 목록으로 돌아가기</a>
 
 </body>
 </html>

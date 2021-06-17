@@ -8,6 +8,8 @@
 <body>
 
 <h1>결제 성공</h1>
+<a href="${pageContext.request.contextPath}/">홈으로</a><br>
+<a href="${pageContext.request.contextPath}/ticket/application">구매폼</a>
 
 </body>
 </html>

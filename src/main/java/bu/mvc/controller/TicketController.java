@@ -77,7 +77,7 @@ public class TicketController {
 	/**
 	 * 상담권 구매 폼으로
 	 * */
-	@RequestMapping("/app")
+	@RequestMapping("/application")
 	public void paymentApp() {}
 	
 	/**

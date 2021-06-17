@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"></script>
 </head>
 <body>
@@ -71,13 +71,13 @@
                 <%-- var code = <%=sucBidCode%>;
                 location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                location.href="${pageContext.request.contextPath}/payment/success.jsp"
+                location.href="${pageContext.request.contextPath}/payment/success";
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
                 <%-- location.href="<%=request.getContextPath()%>/payment/payFail"; --%>
-                location.href="${pageContext.request.contextPath}/payment/fail.jsp";
+                location.href="${pageContext.request.contextPath}/payment/fail";
                 //alert(msg);
             }
         });

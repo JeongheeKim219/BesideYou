@@ -20,12 +20,12 @@
     <script>
     $(function(){
         var IMP = window.IMP;
-        IMP.init('imp75728843'); // 가맹점 식별코드
+        IMP.init('imp75728843'); //가맹점 식별코드
         var msg;
         
         IMP.request_pay({
             
-            pg : 'danal', //다수의 PG 사용시 필수
+            pg : 'html5_inicis', //다수의 PG 사용시 필수
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
     		name : 'Beside-You 상담권',
@@ -68,9 +68,9 @@
                 <%-- location.href="<%=request.getContextPath()%>/front?key=sucBid&methodName=changeState&sucBidCode="+sucBidCode; --%>
 
                 <%-- var code = <%=sucBidCode%>;
-                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code; --%>
+                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                location.href="${pageContext.request.contextPath}/payment/success";
+                location.href="${pageContext.request.contextPath}/psy/art"
                 
             } else {
                 msg = '결제에 실패하였습니다.';

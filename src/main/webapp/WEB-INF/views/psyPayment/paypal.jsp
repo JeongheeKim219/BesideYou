@@ -14,7 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"></script>
 </head>
 <body>
     <script>
@@ -24,19 +24,20 @@
         var msg;
         
         IMP.request_pay({
-            
-            pg : 'danal', //다수의 PG 사용시 필수
+          
+          	pg : 'paypal', //다수의 PG 사용시 필수
+          	popup: true,
           	pay_method : 'card',
-   			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
-    		name : 'Beside-You 상담권',
+   			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목 
+    		name : 'ORI-AUCTION 낙찰 작품 결제',
     		amount : '1000', <%-- <%=totalPrice%>, --%>  //필수항목
     		buyer_email : 'aaa1234@email.com',
     		buyer_name : '김동현',
-    		buyer_tel : '010-1234-5678',  //필수항목
+    		buyer_tel : '010-1234-5678',  //필수항목 
     		//buyer_addr : '서울특별시 강남구 삼성동',
     		//buyer_postcode : '123-456'
     		//m_redirect_url : 'https://shop.yourservice.com/payments/complete'
-            
+          
         }, function(rsp) {
             if ( rsp.success ) {
                 //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
@@ -68,10 +69,9 @@
                 <%-- location.href="<%=request.getContextPath()%>/front?key=sucBid&methodName=changeState&sucBidCode="+sucBidCode; --%>
 
                 <%-- var code = <%=sucBidCode%>;
-                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code; --%>
+                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                location.href="${pageContext.request.contextPath}/payment/success";
-                
+                location.href="${pageContext.request.contextPath}/psy/art";
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;

@@ -42,51 +42,21 @@
 <script type="text/javascript">
 
 	$(function(){
-	   $("#card1").click(function(){
-		   $("#textPay").attr("action", "${pageContext.request.contextPath}/payment/inicis");
+	   $("#card").click(function(){
+		   $("#textPay").attr("action", "${pageContext.request.contextPath}/psyPayment/inicis");
 		   $("#textPay").submit();
 	   })
 	   
-	   $("#phone1").click(function(){
-		   $("#textPay").attr("action", "${pageContext.request.contextPath}/payment/danal");
+	   $("#phone").click(function(){
+		   $("#textPay").attr("action", "${pageContext.request.contextPath}/psyPayment/danal");
 		   $("#textPay").submit();
 	   })
 	   
-	   $("#paypal1").click(function(){
-		   $("#textPay").attr("action", "${pageContext.request.contextPath}/payment/paypal");
+	   $("#paypal").click(function(){
+		   $("#textPay").attr("action", "${pageContext.request.contextPath}/psyPayment/paypal");
 		   $("#textPay").submit();
 	   })
 	   
-	   $("#card2").click(function(){
-		   $("#telephonePay").attr("action", "${pageContext.request.contextPath}/payment/inicis");
-		   $("#telephonePay").submit();
-	   })
-	   
-	   $("#phone2").click(function(){
-		   $("#telephonePay").attr("action", "${pageContext.request.contextPath}/payment/danal");
-		   $("#telephonePay").submit();
-	   })
-	   
-	   $("#paypal2").click(function(){
-		   $("#telephonePay").attr("action", "${pageContext.request.contextPath}/payment/paypal");
-		   $("#telephonePay").submit();
-	   })
-	   
-	   $("#card3").click(function(){
-		   $("#interviewPay").attr("action", "${pageContext.request.contextPath}/payment/inicis");
-		   $("#interviewPay").submit();
-	   })
-	   
-	   $("#phone3").click(function(){
-		   $("#interviewPay").attr("action", "${pageContext.request.contextPath}/payment/danal");
-		   $("#interviewPay").submit();
-	   })
-	   
-	   $("#paypal3").click(function(){
-		   $("#interviewPay").attr("action", "${pageContext.request.contextPath}/payment/paypal");
-		   $("#interviewPay").submit();
-	   })
-		   
 	})	
 
 </script>
@@ -193,7 +163,7 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Ticket Buy</h1>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Art Test Payment</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
                                             <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
@@ -208,7 +178,7 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section>
+            <%-- <section>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 pr-0 pr-lg-3"><img class="radius-secondary" src="${pageContext.request.contextPath}/assets/images/why-choose-us.jpg" alt="" /></div>
@@ -236,13 +206,13 @@
                     <!--/.row-->
                 </div>
                 <!--/.container-->
-            </section>
+            </section> --%>
             <section class="background-11">
                 <div class="container">
                     <div class="row text-center">
                         <div class="col">
-                            <h3 class="fs-2 fs-md-3 fw-600">상담권 구매</h3>
-                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"11.20873rem"},"duration":0.8}' data-zanim-trigger="scroll">
+                            <h3 class="fs-2 fs-md-3 fw-600">그림 심리 검사 결제</h3>
+                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"15.20873rem"},"duration":0.8}' data-zanim-trigger="scroll">
                         </div>
                     </div>
                     <div class="row no-gutters pos-relative mt-6">
@@ -256,134 +226,38 @@
                             <div class="d-flex align-items-center h-100">
                                 <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                     <div class="overflow-hidden">
-                                        <h4 data-zanim='{"delay":0}'>텍스트상담</h4>
+                                        <h4 data-zanim='{"delay":0}'>그림 심리 검사</h4>
                                     </div>
                                     <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>상담권 수량</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>Original Price</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">Discount</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>Purchase Price</h5></div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>Original Price</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}' style="color:red">Discount</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.3}'><h5>Purchase Price</h5></div>
                                     </div>
                                     
                                     <div class="overflow-hidden" align="right" style="margin-right: 20px">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'>5</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>150,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">-50,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>100,000 원</h5></div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>150,000 원</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}' style="color:red">-50,000 원</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.3}'><h5>100,000 원</h5></div>
                                     </div>
                                     <br>
                                     <div class="overflow-hidden">
-                                        <div data-zanim='{"delay":0.5}'>
-                                        	<form name="textPay" id="textPay" method="post" action="">
+                                        <div data-zanim='{"delay":0.4}'>
+                                        	<form name="artTestPay" id="artTestPay" method="post" action="">
 	                                        	<input type="hidden" name="category" value="1"/>
-							            		<input type="hidden" name="counselor" value="1"/>
+							            		<input type="hidden" name="counselor" value="${ac}"/>
 							            		<input type="hidden" name="id" value="aa"/>
 							            		<input type="hidden" name="name" value="aaa"/>
 							            		<input type="hidden" name="phone" value="111"/>
 							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value="10000"/>
+							            		<input type="hidden" name="price" value="100000"/>
             		
-		                                        <input type="button" id="card1" value="카드결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="phone1" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="paypal1" value="PayPal" class="btn btn-info mr-3 mb-3"/>
+		                                        <input type="button" id="card" value="카드결제" class="btn btn-info mr-3 mb-3"/>
+		                                        <input type="button" id="phone" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
+		                                        <input type="button" id="paypal" value="PayPal" class="btn btn-info mr-3 mb-3"/>
 	                                        </form>
                                         </div>
                                     </div>
                                     
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-gutters pos-relative mt-4 mt-lg-0">
-                        <div class="elixir-caret d-none d-lg-block"></div>
-                        <div class="col-lg-6 py-3 py-lg-0 mb-0 order-lg-2" style="min-height:400px;">
-                            <div class="background-holder radius-tl-secondary radius-tl-lg-0 radius-tr-secondary radius-tr-lg-0" style="background-image:url(${pageContext.request.contextPath}/assets/images/7.jpg);">
-                            </div>
-                            <!--/.background-holder-->
-                        </div>
-                        <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0 radius-tr-lg-secondary">
-                            <div class="d-flex align-items-center h-100">
-                                <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h4 data-zanim='{"delay":0}'>전화상담</h4>
-                                    </div>
-                                    <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>상담권 수량</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>Original Price</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">Discount</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>Purchase Price</h5></div>
-                                    </div>
-                                    <div class="overflow-hidden" align="right" style="margin-right: 20px">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'>5</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>150,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">-50,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>100,000 원</h5></div>
-                                    </div>
-                                    <br>
-                                    <div class="overflow-hidden">
-                                        <div data-zanim='{"delay":0.5}'>
-                                        	<form name="telephonePay" id="telephonePay" method="post" action="">
-	                                        	<input type="hidden" name="category" value="${category}"/>
-							            		<input type="hidden" name="counselor" value="${counselor}"/>
-							            		<input type="hidden" name="id" value="${id}"/>
-							            		<input type="hidden" name="name" value="${name}"/>
-							            		<input type="hidden" name="phone" value="${phone}"/>
-							            		<input type="hidden" name="email" value="${email}"/>
-							            		<input type="hidden" name="price" value="${price}"/>
-            		
-		                                        <input type="button" id="card2" value="카드결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="phone2" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="paypal2" value="PayPal" class="btn btn-info mr-3 mb-3"/>
-	                                        </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-gutters pos-relative mt-4 mt-lg-0">
-                        <div class="elixir-caret d-none d-lg-block"></div>
-                        <div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height:400px;">
-                            <div class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0 radius-tl-lg-0 radius-bl-0 radius-bl-lg-secondary" style="background-image:url(${pageContext.request.contextPath}/assets/images/8.jpg);">
-                            </div>
-                            <!--/.background-holder-->
-                        </div>
-                        <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0 radius-tr-lg-secondary">
-                            <div class="d-flex align-items-center h-100">
-                                <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <h4 data-zanim='{"delay":0}'>대면상담</h4>
-                                    </div>
-                                    <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>상담권 수량</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>Original Price</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">Discount</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>Purchase Price</h5></div>
-                                    </div>
-                                    <div class="overflow-hidden" align="right" style="margin-right: 20px">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'>5</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>150,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">-50,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>100,000 원</h5></div>
-                                    </div>
-                                    <br>
-                                    <div class="overflow-hidden">
-                                        <div data-zanim='{"delay":0.5}'>
-                                        	<form name="interviewPay" id="interviewPay" method="post" action="">
-	                                        	<input type="hidden" name="category" value="${category}"/>
-							            		<input type="hidden" name="counselor" value="${counselor}"/>
-							            		<input type="hidden" name="id" value="${id}"/>
-							            		<input type="hidden" name="name" value="${name}"/>
-							            		<input type="hidden" name="phone" value="${phone}"/>
-							            		<input type="hidden" name="email" value="${email}"/>
-							            		<input type="hidden" name="price" value="${price}"/>
-            		
-		                                        <input type="button" id="card3" value="카드결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="phone3" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="paypal3" value="PayPal" class="btn btn-info mr-3 mb-3"/>
-	                                        </form>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
