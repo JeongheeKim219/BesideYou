@@ -94,40 +94,55 @@
 				<div class="col-lg-12">
 					<div class="main-card mb-3 card">
 						<div class="card-body">
-							<h5 class="card-title" align="center">전체 회원 목록</h5>
+							<h5 class="card-title" align="center">전체 문의 목록</h5>
 							<table class="mb-0 table table-hover">
 								<thead>
 									<tr>
-										<th>회원코드</th>
-										<th>ID</th>
-										<th>이름/가명</th>
-										<th>핸드폰 번호</th>
-										<th>상품권 보유 수</th>
+										<th>문의번호</th>
+										<th>문의유형</th>
+										<th>문의제목</th>
+										<th>문의자</th>
+										<th>처리상태</th>
+										<th>작성일</th>
 									</tr>
 								</thead>
 								<c:choose>
-									<c:when test="${empty requestScope.pageList}">
+									<c:when test="${empty requestScope.contactPageList}">
 										<tr>
-											<td colspan="5"><p align="center">조회된 회원이 없습니다.</p></td>
+											<td colspan="5"><p align="center">조회된 문의가 없습니다.</p></td>
 										</tr>
 									</c:when>
 									<c:otherwise>
-										<c:forEach items="${requestScope.pageList.content}"
-											var="member" varStatus="state">
+										<c:forEach items="${requestScope.contactPageList.content}"
+											var="contact" varStatus="state">
 											<tbody>
 												<tr>
-													<th scope="row">${member.memberCode}</th>
-													<td><a href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}">${member.id}</a></td>
+													<th scope="row">${contact.contactCode}</th>
 													<c:choose>
-														<c:when test="${empty member.alias}">
-															<td>${member.name}</td>
+														<c:when test="${contact.contactCategory == 0}">
+															<td>상담문의</td>
+														</c:when>
+														<c:when test="${contact.contactCategory == 1}">
+															<td>결제문의</td>
+														</c:when>
+														<c:when test="${contact.contactCategory == 2}">
+															<td>환불문의</td>
 														</c:when>
 														<c:otherwise>
-															<td>${member.alias}</td>
+															<td>기타문의</td>
 														</c:otherwise>
 													</c:choose>
-													<td>${member.phone}</td>
-													<%-- <td>${member.ticket}</td> --%>
+													<td><a href="${pageContext.request.contextPath}/admin/viewContactDetail/${contact.contactCode}">${contact.contactTitle}</a></td>
+													<td>${contact.member.id}</td>
+													<c:choose>
+														<c:when test="${contact.contactState == 0}">
+															<th>미처리</th>
+														</c:when>
+														<c:when test="${contact.contactState == 1}">
+															<td>처리</td>
+														</c:when>
+													</c:choose>
+													<td>${contact.contactDate}</td>
 												</tr>
 											</tbody>
 										</c:forEach>
@@ -138,16 +153,17 @@
 								<li class="page-item"><a href="javascript:void(0);"
 									class="page-link" aria-label="Previous"><span
 										aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-								<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
+								<c:forEach begin="0" end="${contactPageList.totalPages-1}"
+									var="i">
 									<c:choose>
-										<c:when test="${pageList.number==i}">
+										<c:when test="${contactPageList.number==i}">
 											<li class="page-item active"><a
-												href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
+												href="${pageContext.request.contextPath}/admin/contactView?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
 										</c:when>
 										<c:otherwise>
 											<li class="page-item"><a
-												href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
+												href="${pageContext.request.contextPath}/admin/contactView?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
 										</c:otherwise>
 									</c:choose>

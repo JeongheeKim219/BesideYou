@@ -65,7 +65,7 @@
                             <h1 class="fs-4 fs-sm-6 fs-md-8 color-white" data-zanim='{"delay":0.3}'>${errMsg}  ${exception.message}</h1>
                             <div data-zanim='{"delay":0.4}'><a class="btn btn-lg btn-warning btn-capsule mt-4" href="${pageContext.request.contextPath}/">Take Me Home</a></div>
                             
-                            <a class="btn btn-lg btn-warning btn-capsule mt-4" href="javascript:history.back()">뒤로가기</a>
+                            <!-- <a class="btn btn-lg btn-warning btn-capsule mt-4" href="javascript:history.back()">뒤로가기</a> -->
 							
                         </div>
                     </div>
