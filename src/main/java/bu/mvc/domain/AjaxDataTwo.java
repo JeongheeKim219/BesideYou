@@ -16,5 +16,7 @@ public class AjaxDataTwo {
 	List<Integer> sessionList; 
 
 	List<Integer> gapList;
+	
+	List<Double> starList;
 
 }

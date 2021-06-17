@@ -59,8 +59,8 @@
 						<li><a href="${pageContext.request.contextPath}/admin/memberView"> <i
 								class="metismenu-icon"> </i> 일반회원목록
 						</a></li>
-						<li><a href="elements-icons.html"> <i
-								class="metismenu-icon"> </i>Icons
+						<li><a href="${pageContext.request.contextPath}/admin/viewCounselorState"> 상담사목록 <i
+								class="metismenu-icon"> </i>
 						</a></li>
 						<li><a href="elements-badges-labels.html"> <i
 								class="metismenu-icon"> </i>Badges
@@ -83,10 +83,10 @@
 				</a>
 					<ul>
 						<li><a href="components-tabs.html"> <i
-								class="metismenu-icon"> </i>Tabs
+								class="metismenu-icon"> </i>전체결제통계
 						</a></li>
 						<li><a href="components-accordions.html"> <i
-								class="metismenu-icon"> </i>Accordions
+								class="metismenu-icon"> </i>전체결제목록
 						</a></li>
 						<li><a href="components-notifications.html"> <i
 								class="metismenu-icon"> </i>Notifications

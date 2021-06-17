@@ -28,9 +28,10 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
-<link href="${pageContext.request.contextPath}/adminCss/main.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/adminCss/main.css" rel="stylesheet">
+
 <style>
+
 #rowWidget {
 	display: flex;
 	flex-direction: row;
@@ -48,6 +49,7 @@
 .list-group-item {
 	padding: .75rem 1rem;
 }
+
 </style>
 </head>
 <body>
@@ -792,8 +794,7 @@
 		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
 	<!-- Chart.js -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 
@@ -895,7 +896,7 @@
 							str += "<div class='widget-content-wrapper'>"
 							str += "<div class='widget-content-left'><div class='widget-heading'>";
 							str += item + "</div>";
-							str += "<div class='widget-subheading'>" + (index + 1) + "</div></div>";
+							str += "<div class='widget-subheading'><div class='star'>" + result.starList[index] + "</div></div></div>";
 							str += "<div class='widget-content-right'>";
 											
 							if(result.gapList[index] < 0){	
@@ -917,9 +918,9 @@
 				
 							str += "</div></div></div></div></li>"	
 						
+														
 						});
-						
-						
+		
 						$("#rank-table").after(str);
 						
 														

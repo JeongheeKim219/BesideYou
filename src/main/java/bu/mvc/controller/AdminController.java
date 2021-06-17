@@ -1,7 +1,6 @@
 package bu.mvc.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,6 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.service.AdminService;
-import bu.mvc.service.CounselService;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,8 +34,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	@Autowired
-	private CounselService counselService;
 	
 	/**
 	 * 1. 어드민 인덱스로 이동
@@ -56,7 +52,8 @@ public class AdminController {
 		model.addAttribute("dayIncome", incomeToday());
 		model.addAttribute("stateMap", countCounselByState());
 		model.addAttribute("registerStateMap", counselorByState());
-
+		
+		
 		return "admin/index";
 	}
 
@@ -82,7 +79,7 @@ public class AdminController {
 	@RequestMapping("/memberView")
 	public String select(Model model, @RequestParam(defaultValue = "0") int currentPage) {
 
-		Pageable pageable = PageRequest.of(currentPage, 15, Direction.DESC, "memberCode");
+		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "memberCode");
 		Page<Member> pageList = adminService.selectAllByType(0, pageable);
 		model.addAttribute("pageList", pageList);
 
@@ -198,7 +195,29 @@ public class AdminController {
 	public AjaxDataTwo rankCouselorAjaxData(Model model) {
 		AjaxDataTwo ajaxDataTwo = adminService.rankCounselor();
 		return ajaxDataTwo;
+	
 	}
+	/**
+	 * 17. 상담사 등록용 전체 상담사 조회
+	 */
+	@RequestMapping("/viewCounselorState")
+	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage){
+		
+		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "counselorCode");
+		Page<Counselor> requestList  = adminService.updateByCounselorState(0, pageable);
+		Page<Counselor> deniedList = adminService.updateByCounselorState(1, pageable);
+		Page<Counselor> approvedList  = adminService.updateByCounselorState(2, pageable);
+		Page<Counselor> revokedList  = adminService.updateByCounselorState(3, pageable);
+
+		
+		model.addAttribute("requestList", requestList);
+		model.addAttribute("deniedList", deniedList);
+		model.addAttribute("approvedList", approvedList);
+		model.addAttribute("revokedList", revokedList);
+		
+		return "admin/counselorView";
+	}
+		
 
 }
 

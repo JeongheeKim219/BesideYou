@@ -2,6 +2,7 @@ package bu.mvc;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,10 +19,13 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Speciality;
+import bu.mvc.domain.Ticket;
 import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
+import bu.mvc.respsitory.ReviewRepository;
 import bu.mvc.respsitory.SpecialityRepository;
+import bu.mvc.respsitory.TicketRepository;
 
 @Commit
 @Transactional
@@ -40,6 +44,12 @@ public class AdminTest {
 	@Autowired
 	private SpecialityRepository specialityRep;
 
+	@Autowired
+	private ReviewRepository reviewRep;
+	
+	@Autowired
+	private TicketRepository ticketRep;
+	
 	@Test
 	void test_one() {
 		adminRep.findAll();
@@ -82,8 +92,9 @@ public class AdminTest {
 
 		List<Member> memberList = adminRep.findByMemberType(0);
 		List<Counselor> counselors = counselorRep.findAll();
-
-		for (int i = 0; i <= randomTry; i++) {
+		
+		
+		for (int i = 0; i <= 1; i++) {
 			int randomMonth = (int) (Math.random() * 6) + 6;
 			int randomDay = (int) (Math.random() * 29) + 1;
 			int randomHour = (int) (Math.random() * 24);
@@ -93,10 +104,10 @@ public class AdminTest {
 			int randomMember = (int) (Math.random() * 22);
 			int randomCounselor = (int) (Math.random() * 11);
 
-			LocalDateTime counselReqDate = LocalDateTime.of(2021, 6, randomDay, randomHour, randomMinutes);
+			LocalDateTime counselReqDate = LocalDateTime.of(2021, 6, 17, randomHour, randomMinutes);
 			LocalDateTime counselDate = counselReqDate.plusDays(randomPlusDays);
-			counselRep.save(new Counsel(null, memberList.get(randomMember), counselors.get(randomCounselor),
-					randomCategory, 3, counselReqDate, counselDate));
+			counselRep.save(new Counsel(null, memberList.get(randomMember), counselorRep.findById(47L).orElse(null),
+					randomCategory, 0, counselReqDate, counselDate));
 		}
 
 	}
@@ -138,5 +149,26 @@ public class AdminTest {
 		}
 	}
 
+	
+	
+		@Test
+		void test_eleven () {
+			LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
+			LocalDateTime end = LocalDateTime.now();
+			List<Ticket> ticketList = ticketRep.findByTicketDateBetween(start, end);
+			ticketList.forEach(t -> System.out.println(t));
+			
+		}
+	
+	
+		@Test
+		void test() {
+			
+			System.out.println(reviewRep.selectStarAvg(1L));
+			
+		}	
 
+		
+		
+		
 }

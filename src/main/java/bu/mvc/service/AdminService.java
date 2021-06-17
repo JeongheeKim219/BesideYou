@@ -22,13 +22,11 @@ import bu.mvc.domain.Contact;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
-import bu.mvc.domain.Speciality;
 import bu.mvc.domain.Ticket;
 import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
-import bu.mvc.respsitory.SpecialityRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service
@@ -49,9 +47,10 @@ public class AdminService {
 
 	@Autowired
 	private ContactRepository contactRep;
-
+	
 	@Autowired
-	private SpecialityRepository specialityRep;
+	private ReviewService reviewService;
+	
 
 	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
 	private LocalDateTime end = LocalDateTime.now();
@@ -84,16 +83,19 @@ public class AdminService {
 		return ticketRep.findByTicketDateBetween(start, end);
 	}
 
+	
 	/**
 	 * 5. 당일 상품권 매출 금액 조회
 	 */
 	public int incomeToday() {
-		List<Ticket> ticketList = new ArrayList<Ticket>();
+		List<Ticket> ticketList = ticketRep.findByTicketDateBetween(start, end);
 		int income = 0;
 
 		for (Ticket ticket : ticketList) {
-			income += (ticket.getTicketAmount() * ticket.getTicketPrice())
-					* (1 - ticket.getDiscount().getDiscountRate() * 0.01);
+			
+		  income += (ticket.getTicketAmount() * ticket.getTicketPrice()) * (1 - (ticket.getDiscount().getDiscountRate() * 0.01));
+			 
+			System.out.println(income);
 		}
 		return income;
 	}
@@ -257,7 +259,7 @@ public class AdminService {
 		List<String> dateList = new ArrayList<String>();
 		List<Integer> counselReqList = new ArrayList<Integer>();
 		List<Integer> counselList = new ArrayList<Integer>();
-
+		
 		AjaxData ajaxData = new AjaxData();
 
 		for (int i = 0; i < 12; i++) {
@@ -305,28 +307,34 @@ public class AdminService {
 	
 	
 	/**
-	 * 11. 월별 상담사 순위 구하기
+	 * 11. 월별 상담사 순위 (+별점 평균 가져오기) 구하기
 	 */
 	public AjaxDataTwo rankCounselor(){
 		int counselorsNumber = adminRep.findByMemberType(1).size();
 		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 6 );
 		List<Map<String, Object>> listLastMonth = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), counselorsNumber);
 		
+
 		
 		AjaxDataTwo ajaxDataTwo = new AjaxDataTwo();
 		List<String> counselorNameList = new ArrayList<String>();
 		List<Integer> sessionList = new ArrayList<Integer>();
 		List<Integer> gapList = new ArrayList<Integer>();
+		List<Double> starList= new ArrayList<Double>();
 		
 		for(Map<String, Object> mapThis : listThisMonth) {
 
 			Counselor counselor =  counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR"))))).orElse(null);
 			String name = counselor.getMember().getName();			
 		 	int countThisMonth =  Integer.parseInt(String.valueOf(mapThis.get("COUNT")));
+		 	Double avgStar = reviewService.avgStar(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR")))));
+		 	
+		 	
 		 	int gap = 0;
 		 	
 		 	counselorNameList.add(name);
 		 	sessionList.add(countThisMonth); 
+		 	starList.add(avgStar);
 		 	
 			for(Map<String, Object> mapLast : listLastMonth){  
 					
@@ -341,12 +349,25 @@ public class AdminService {
 		ajaxDataTwo.setCounselorNameList(counselorNameList);
 		ajaxDataTwo.setSessionList(sessionList);
 		ajaxDataTwo.setGapList(gapList);
-		 
+		ajaxDataTwo.setStarList(starList);
+		
 		return ajaxDataTwo;
 	}
 
 	
+	/**
+	 * 12. 상담사 등록용 상담사 상태 조회
+	 */
+	public Page<Counselor> updateByCounselorState(int state, Pageable pageable){
+		return counselorRep.findByCounselorState(state, pageable);
+	}
 	
+	
+	
+	/**
+	 * 12. 전체결제 내역 조회
+	 */
+	//public Page<Ticket> view
 	
 	
 	
