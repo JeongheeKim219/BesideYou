@@ -29,7 +29,7 @@
           	popup: true,
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목 
-    		name : 'ORI-AUCTION 낙찰 작품 결제',
+    		name : 'Beside-You 그림 심리 검사',
     		amount : '1000', <%-- <%=totalPrice%>, --%>  //필수항목
     		buyer_email : 'aaa1234@email.com',
     		buyer_name : '김동현',
@@ -71,13 +71,14 @@
                 <%-- var code = <%=sucBidCode%>;
                 location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                location.href="${pageContext.request.contextPath}/psy/art";
+                location.href="${pageContext.request.contextPath}/psy/artCounselor";
+                
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
                 <%-- location.href="<%=request.getContextPath()%>/payment/payFail"; --%>
-                location.href="${pageContext.request.contextPath}/payment/fail";
+                location.href="${pageContext.request.contextPath}/psyPayment/fail";
                 //alert(msg);
             }
         });

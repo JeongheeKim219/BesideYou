@@ -43,18 +43,18 @@
 
 	$(function(){
 	   $("#card").click(function(){
-		   $("#textPay").attr("action", "${pageContext.request.contextPath}/psyPayment/inicis");
-		   $("#textPay").submit();
+		   $("#artTestPay").attr("action", "${pageContext.request.contextPath}/psyPayment/inicis");
+		   $("#artTestPay").submit();
 	   })
 	   
 	   $("#phone").click(function(){
-		   $("#textPay").attr("action", "${pageContext.request.contextPath}/psyPayment/danal");
-		   $("#textPay").submit();
+		   $("#artTestPay").attr("action", "${pageContext.request.contextPath}/psyPayment/danal");
+		   $("#artTestPay").submit();
 	   })
 	   
 	   $("#paypal").click(function(){
-		   $("#textPay").attr("action", "${pageContext.request.contextPath}/psyPayment/paypal");
-		   $("#textPay").submit();
+		   $("#artTestPay").attr("action", "${pageContext.request.contextPath}/psyPayment/paypal");
+		   $("#artTestPay").submit();
 	   })
 	   
 	})	
@@ -154,11 +154,11 @@
                     </nav>
                 </div>
             </div>
-            <section>
+           <!--  <section>
                 <div>
                     <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
-                    <!--/.background-holder-->
+                    /.background-holder
                     <div class="container">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
@@ -174,10 +174,10 @@
                             </div>
                         </div>
                     </div>
-                    <!--/.row-->
+                    /.row
                 </div>
-                <!--/.container-->
-            </section>
+                /.container
+            </section> -->
             <%-- <section>
                 <div class="container">
                     <div class="row">
@@ -209,12 +209,6 @@
             </section> --%>
             <section class="background-11">
                 <div class="container">
-                    <div class="row text-center">
-                        <div class="col">
-                            <h3 class="fs-2 fs-md-3 fw-600">그림 심리 검사 결제</h3>
-                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"15.20873rem"},"duration":0.8}' data-zanim-trigger="scroll">
-                        </div>
-                    </div>
                     <div class="row no-gutters pos-relative mt-6">
                         <div class="elixir-caret d-none d-lg-block"></div>
                         <div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height:400px;">
@@ -244,12 +238,12 @@
                                         <div data-zanim='{"delay":0.4}'>
                                         	<form name="artTestPay" id="artTestPay" method="post" action="">
 	                                        	<input type="hidden" name="category" value="1"/>
-							            		<input type="hidden" name="counselor" value="${ac}"/>
+							            		<input type="hidden" name="counselor" value="1"/>
 							            		<input type="hidden" name="id" value="aa"/>
 							            		<input type="hidden" name="name" value="aaa"/>
 							            		<input type="hidden" name="phone" value="111"/>
 							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value="100000"/>
+							            		<input type="hidden" name="price" value="1000"/>
             		
 		                                        <input type="button" id="card" value="카드결제" class="btn btn-info mr-3 mb-3"/>
 		                                        <input type="button" id="phone" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
