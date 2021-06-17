@@ -7,6 +7,10 @@
 	String sucBidCode = (String)request.getParameter("sucBidCode");
 	String sucBidCost = (String)request.getParameter("sucBidCost");
 	int totalPrice = Integer.parseInt(sucBidCost); */
+	
+	String totalPrice = (String)request.getParameter("price");
+	int price = Integer.parseInt(totalPrice);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +33,7 @@
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
     		name : 'Beside-You 상담권',
-    		amount : '1000', <%-- <%=totalPrice%>, --%>  //필수항목
+    		amount : <%=price%>,  //필수항목
     		buyer_email : 'aaa1234@email.com',
     		buyer_name : '김동현',
     		buyer_tel : '010-1234-5678',  //필수항목
@@ -70,7 +74,7 @@
                 <%-- var code = <%=sucBidCode%>;
                 location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                location.href="${pageContext.request.contextPath}/payment/success"
+                location.href="${pageContext.request.contextPath}/payment/success";
                 
             } else {
                 msg = '결제에 실패하였습니다.';

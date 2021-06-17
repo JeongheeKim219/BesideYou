@@ -27,7 +27,9 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Page<Ticket> searchById(String id, Pageable pageable) {
-		return ticketRepository.findByMemberId(id, pageable);
+		Page<Ticket> page = ticketRepository.findByMemberId(id, pageable);
+		if(page==null) throw new RuntimeException("상담권 구매 내역이 없습니다.");
+		return page;
 	}
 
 	@Override

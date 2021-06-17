@@ -67,7 +67,7 @@
             </section>
             <div class="znav-white znav-container sticky-top navbar-elixir" id="znav-container">
                 <div class="container">
-                    <nav class="navbar navbar-expand-lg"><a class="navbar-brand overflow-hidden pr-3" href="index.html"><img src="assets/images/logo-dark.png" alt="" /></a>
+                    <nav class="navbar navbar-expand-lg"><a class="navbar-brand overflow-hidden pr-3" href="/"><img src="${pageContext.request.contextPath}/assets/images/logo-dark.png" alt="" /></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <div class="hamburger hamburger--emphatic">
                                 <div class="hamburger-box">
@@ -160,7 +160,7 @@
                     <c:choose>
 					    <c:when test="${empty requestScope.tkList}">
 							<div>
-					            <p align="center"><b><span style="font-size:9pt;">등록된 상담권이 없습니다.</span></b></p>
+					            <p align="center"><b><span style="font-size:9pt;">상담권 구매 내역이 없습니다.</span></b></p>
 					        </div>
 					    </c:when>
 					    <c:otherwise>
@@ -194,10 +194,20 @@
                                     <div class="overflow-hidden">
                                     	<c:choose>
                                     		<c:when test="${ticket.ticketRemain>0}">
-                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}">사용하기 </a></div>
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'>
+                                    				<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
+                                    				href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}">사용하기 </a>
+                                				</div>
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}' align="right">
+                                    				<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
+                                    				href="${pageContext.request.contextPath}/refund/application" style="color:red">환불신청 </a>
+                                    			</div>
                                     		</c:when>
                                     		<c:when test="${ticket.ticketRemain<=0}">
-                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}">삭제하기 </a></div>
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'>
+	                                    			<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
+	                                    			href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}">삭제하기 </a>
+                                    			</div>
                                     		</c:when>
                                     	</c:choose>
                                     </div>
@@ -215,7 +225,7 @@
 							<ul class="pagination pagination justify-content-center">
 								<c:choose>
 									<c:when test="${requestScope.tkList.hasPrevious()==true}">
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?id=${id}&nowPage=${Previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${Previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"><span aria-hidden="true">«</span></a></li>
@@ -225,17 +235,17 @@
 								   <li class="page-item">
 								   <c:choose>
 								     <c:when test="${tkList.number==i}"> <!-- tkList.getNumber() 호출 : 현재 페이지 번호 -->
-								       <a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?id=${id}&nowPage=${i}" style="color:red">${i+1}</a> <!-- 현재 페이지만 빨간색으로 표시 -->
+								       <a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${i}" style="color:red">${i+1}</a> <!-- 현재 페이지만 빨간색으로 표시 -->
 								     </c:when>
 								     <c:otherwise>
-								       <a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?id=${id}&nowPage=${i}">${i+1}</a>
+								       <a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${i}">${i+1}</a>
 								     </c:otherwise>
 								   </c:choose>
 								   </li>
 								</c:forEach>
 								<c:choose>
 									<c:when test="${requestScope.tkList.hasNext()==true}">
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?id=${id}&nowPage=${next}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${next}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"><span aria-hidden="true">»</span></a></li>
@@ -244,7 +254,6 @@
 							 </ul>
 						 </nav>
 						</div>
-						
                     <!--/.row-->
                 </div>
                 <!--/.container-->
@@ -329,7 +338,7 @@
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>

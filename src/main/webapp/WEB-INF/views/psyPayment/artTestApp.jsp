@@ -154,59 +154,6 @@
                     </nav>
                 </div>
             </div>
-           <!--  <section>
-                <div>
-                    <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
-                    </div>
-                    /.background-holder
-                    <div class="container">
-                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
-                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Art Test Payment</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Services</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    /.row
-                </div>
-                /.container
-            </section> -->
-            <%-- <section>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 pr-0 pr-lg-3"><img class="radius-secondary" src="${pageContext.request.contextPath}/assets/images/why-choose-us.jpg" alt="" /></div>
-                        <div class="col-lg-6 px-lg-5 mt-6 mt-lg-0" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div class="overflow-hidden">
-                                <div class="px-4 px-sm-0" data-zanim='{"delay":0}'>
-                                    <h5 class="fs-0 fs-lg-1"><span class="ion-chatbubble-working fs-2 mr-2 icon-position-fix fw-800"></span>We Are Professional</h5>
-                                    <p class="mt-3 px-lg-3">We resource, train, speak, mentor and encourage; marketplace leaders, business owners and career professionals to be effective in the workplace.</p>
-                                </div>
-                            </div>
-                            <div class="overflow-hidden">
-                                <div class="px-4 px-sm-0 mt-5" data-zanim='{"delay":0.1}'>
-                                    <h5 class="fs-0 fs-lg-1"><span class="ion-android-color-palette fs-2 mr-2 icon-position-fix fw-800"></span>We Are Creative</h5>
-                                    <p class="mt-3 px-lg-3">With so many factors to consider when deciding how to characterize your company , wouldn’t it be great to have a group of forward-thinking, well-informed individuals on board who know what they’re doing?</p>
-                                </div>
-                            </div>
-                            <div class="overflow-hidden">
-                                <div class="px-4 px-sm-0 mt-5" data-zanim='{"delay":0.2}'>
-                                    <h5 class="fs-0 fs-lg-1"><span class="ion-ios-timer fs-2 mr-2 icon-position-fix fw-600"></span>24/7 Great Support</h5>
-                                    <p class="mt-3 px-lg-3">Design clever and compelling marketing strategies, improve product positioning, and drive conversion rates, Elixir is all time available to guide you.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section> --%>
             <section class="background-11">
                 <div class="container">
                     <div class="row no-gutters pos-relative mt-6">
@@ -236,7 +183,7 @@
                                     <br>
                                     <div class="overflow-hidden">
                                         <div data-zanim='{"delay":0.4}'>
-                                        	<form name="artTestPay" id="artTestPay" method="post" action="">
+                                        	<form name="artTestPay" id="artTestPay" method="get" action="">
 	                                        	<input type="hidden" name="category" value="1"/>
 							            		<input type="hidden" name="counselor" value="1"/>
 							            		<input type="hidden" name="id" value="aa"/>

@@ -48,7 +48,7 @@ public class RefundController {
 	/**
 	 * 환불 신청 폼으로
 	 * */
-	@RequestMapping("/app")
+	@RequestMapping("/application")
 	public void refundApp() {}
 	
 	/**

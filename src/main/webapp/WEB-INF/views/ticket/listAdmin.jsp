@@ -194,10 +194,20 @@
                                     <div class="overflow-hidden">
                                     	<c:choose>
                                     		<c:when test="${ticket.ticketRemain>0}">
-                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}">사용하기 </a></div>
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'>
+                                    				<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
+                                    				href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}">사용하기 </a>
+                                				</div>
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}' align="right">
+                                    				<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
+                                    				href="${pageContext.request.contextPath}/refund/application" style="color:red">환불신청 </a>
+                                    			</div>
                                     		</c:when>
                                     		<c:when test="${ticket.ticketRemain<=0}">
-                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}">삭제하기 </a></div>
+                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'>
+	                                    			<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
+	                                    			href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}">삭제하기 </a>
+                                    			</div>
                                     		</c:when>
                                     	</c:choose>
                                     </div>
@@ -329,7 +339,7 @@
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>

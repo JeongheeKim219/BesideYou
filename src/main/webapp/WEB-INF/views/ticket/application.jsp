@@ -44,6 +44,7 @@
 	$(function(){
 	   $("#card1").click(function(){
 		   $("#textPay").attr("action", "${pageContext.request.contextPath}/payment/inicis");
+		   $("#textPay").attr("action", "${pageContext.request.contextPath}/payment/inicis");
 		   $("#textPay").submit();
 	   })
 	   
@@ -86,9 +87,73 @@
 		   $("#interviewPay").attr("action", "${pageContext.request.contextPath}/payment/paypal");
 		   $("#interviewPay").submit();
 	   })
-		   
-	})	
+	   
+	   $("#plus").click(function(){
+		   const resultElement = document.getElementById('result');
+		   let number = resultElement.innerText;
+		   let num = parseInt(number);
+		   let total = 30000 * num;
+		   $("#op").text(total);
+		   if(num >= 2 && num <= 5){
+			   $("#dc").text(total * 0.05);
+		   }else if(num > 5 && num <= 10){
+			   $("#dc").text(total * 0.1);
+		   }else if(num >10) {
+			   $("#dc").text(total * 0.2);
+		   }else{
+			   $("#dc").text(0);
+		   }
+		   const discount = document.getElementById('dc');
+		   let dc = discount.innerText;
+		   let price = total-dc;
+		   $("#price").html('<h5>'+price+'&nbsp;원</h5>');
+		   $("input[name=price]").val(price);
+	   })
+	   
+	   $("#minus").click(function(){
+		   const resultElement = document.getElementById('result');
+		   let number = resultElement.innerText;
+		   let num = parseInt(number);
+		   let total = 30000 * num;
+		   $("#op").text(total);
+		   if(num >= 2 && num <= 5){
+			   $("#dc").text(total * 0.05);
+		   }else if(num > 5 && num <= 10){
+			   $("#dc").text(total * 0.1);
+		   }else if(num >10) {
+			   $("#dc").text(total * 0.2);
+		   }else{
+			   $("#dc").text(0);
+		   }
+		   const discount = document.getElementById('dc');
+		   let dc = discount.innerText;
+		   let price = total-dc;
+		   $("#price").html('<h5>'+price+'&nbsp;원</h5>');
+		   $("input[name=price]").val(price);
+	   })
+	   
+	})
+	
 
+	function count(type) {
+		// 결과를 표시할 element
+		const resultElement = document.getElementById('result');
+
+		// 현재 화면에 표시된 값
+		let number = resultElement.innerText;
+
+		// 더하기/빼기
+		if (type === 'plus') {
+			number = parseInt(number) + 1;
+		} else if (type === 'minus') {
+			if (number > 0) number = parseInt(number) - 1;
+		}
+
+		// 결과 출력
+		resultElement.innerText = number;
+	}
+	
+	
 </script>
         
     </head>
@@ -259,29 +324,32 @@
                                         <h4 data-zanim='{"delay":0}'>텍스트상담</h4>
                                     </div>
                                     <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>상담권 수량</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>Ticket Amount</div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>Original Price</div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">Discount</div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>Purchase Price</h5></div>
                                     </div>
                                     
                                     <div class="overflow-hidden" align="right" style="margin-right: 20px">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'>5</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>150,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">-50,000 원</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>100,000 원</h5></div>
+                                    	<div class="mt-3" data-zanim='{"delay":0.1}'>
+                                    	<input type='button' id="plus" onclick='count("plus")' value='+'/>
+                                    	<span id="result" style="padding:0px 10px 0px 10px">0</span>
+                                    	<input type='button' id="minus" onclick='count("minus")' value='-'/></div>
+	                                    <div id="op" class="mt-3" data-zanim='{"delay":0.2}'>0</div>
+	                                    <div id="dc" class="mt-3" data-zanim='{"delay":0.3}' style="color:red">0</div>
+	                                    <div id="price" class="mt-3" data-zanim='{"delay":0.4}'><h5>0</h5></div>
                                     </div>
                                     <br>
                                     <div class="overflow-hidden">
                                         <div data-zanim='{"delay":0.5}'>
-                                        	<form name="textPay" id="textPay" method="post" action="">
+                                        	<form name="textPay" id="textPay" method="get" action="">
 	                                        	<input type="hidden" name="category" value="1"/>
 							            		<input type="hidden" name="counselor" value="1"/>
 							            		<input type="hidden" name="id" value="aa"/>
 							            		<input type="hidden" name="name" value="aaa"/>
 							            		<input type="hidden" name="phone" value="111"/>
 							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value="10000"/>
+							            		<input type="hidden" name="price" value=""/>
             		
 		                                        <input type="button" id="card1" value="카드결제" class="btn btn-info mr-3 mb-3"/>
 		                                        <input type="button" id="phone1" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
@@ -322,7 +390,7 @@
                                     <br>
                                     <div class="overflow-hidden">
                                         <div data-zanim='{"delay":0.5}'>
-                                        	<form name="telephonePay" id="telephonePay" method="post" action="">
+                                        	<form name="telephonePay" id="telephonePay" method="get" action="">
 	                                        	<input type="hidden" name="category" value="${category}"/>
 							            		<input type="hidden" name="counselor" value="${counselor}"/>
 							            		<input type="hidden" name="id" value="${id}"/>
@@ -369,7 +437,7 @@
                                     <br>
                                     <div class="overflow-hidden">
                                         <div data-zanim='{"delay":0.5}'>
-                                        	<form name="interviewPay" id="interviewPay" method="post" action="">
+                                        	<form name="interviewPay" id="interviewPay" method="get" action="">
 	                                        	<input type="hidden" name="category" value="${category}"/>
 							            		<input type="hidden" name="counselor" value="${counselor}"/>
 							            		<input type="hidden" name="id" value="${id}"/>
