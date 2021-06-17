@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -65,6 +66,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
+
 </head>
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
 	<main>
@@ -230,6 +232,7 @@
 								data-zanim-trigger="scroll" />
 							<br>
 							
+							
 							<table style="width: 100%">
 								<tr>
 									<td style="width: 180px">
@@ -289,6 +292,18 @@
 										<h5 data-zanim='{"delay":0}'>${counselor.career}</h5>
 									</td>
 								</tr>
+								<tr>
+									<td colspan="2" style="height: 20px">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5 data-zanim='{"delay":0}' >보유중인 상담권</h5>
+									</td>
+									<td>
+										<h5 data-zanim='{"delay":0}' style="color: red">${remainTicket} 매</h5>
+									</td>
+								</tr>
 							</table>
 						</div>
 					</div>
@@ -305,7 +320,7 @@
 							<form action="${pageContext.request.contextPath}/counsel/submit012" method="get">
 								<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
 								<input type="hidden" name="counselCategory" value="${counselField}"/>
-								<input type="hidden" name="memberCode" value=""/>
+<%-- 								<input type="hidden" name="memberCode" value='<sec:authentication property="principal.memberCode" />'> --%>
 								<table style="width: 100%; vertical-align: middle;">
 									<tr style="height: 150px;">
 										<td>
