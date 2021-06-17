@@ -1,7 +1,5 @@
 package bu.mvc.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,19 +29,32 @@ public class TicketController {
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "ticketCode");
 		Page<Ticket> tkList = ticketService.selectAll(pageable);
-		return new ModelAndView("ticket/listAdmin", "tkList", tkList);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ticket/listAdmin");
+		mv.addObject("tkList", tkList);
+		mv.addObject("previous", pageable.previousOrFirst().getPageNumber());
+		mv.addObject("next", pageable.next().getPageNumber());
+		return mv;
 	}
 	
 	/**
 	 * 나의 상담권 구매 목록 : 로그인한 사용자용
-	 *  - 회원 code로 검색하여 사용자 마이페이지에서 출력
+	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 *  - 검색 결과 페이징 처리
 	 * */
 	@RequestMapping("/mylist")
-	public ModelAndView myList(@RequestParam String alias, @RequestParam(defaultValue = "0") int nowPage) {
+	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "ticketCode");
-		List<Ticket> tkList = ticketService.searchByAlias(alias, pageable);
-		return new ModelAndView("ticket/listUser", "tkList", tkList);
+		Page<Ticket> tkList = ticketService.searchById(id, pageable);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ticket/listUser");
+		mv.addObject("tkList", tkList);
+		mv.addObject("previous", pageable.previousOrFirst().getPageNumber());
+		mv.addObject("next", pageable.next().getPageNumber());
+		mv.addObject("id", id);
+		return mv;
 	}
 	
 	/**

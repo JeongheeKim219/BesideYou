@@ -208,22 +208,44 @@
 						</c:otherwise>
 					    </c:choose>
                     </div>
-                    <br><br>
-                    <div style="text-align: center">
-						<!-- 페이징 처리 -->
-						 <c:forEach begin="0" end="${tkList.totalPages-1}" var="i"> <!-- pageList.getTotalPages() : 페이지 수 만큼 반복문 돌기(0부터 시작하기 때문에 -1 해준다.) -->
-						   <c:choose>
-						     <c:when test="${tkList.number==i}"> <!-- tkList.getNumber() 호출 : 현재 페이지 번호 -->
-						       <a href="${pageContext.request.contextPath}/ticket/list?nowPage=${i}" style="color:red"> [ ${i+1} ] </a> <!-- 현재 페이지만 빨간색으로 표시 -->
-						     </c:when>
-						     <c:otherwise>
-						       <a href="${pageContext.request.contextPath}/ticket/list?nowPage=${i}"> [ ${i+1} ] </a>
-						     </c:otherwise>
-						   </c:choose>
-						   
-						 </c:forEach>
-						</div>
-                    <!--/.row-->
+                    
+	                <!-- 페이징 처리 -->
+					<div class="col-auto mx-auto mt-4">
+						<nav class="font-1 mt-5" aria-label="Page navigation example">
+							<ul class="pagination pagination justify-content-center">
+								<c:choose>
+									<c:when test="${requestScope.tkList.hasPrevious()==true}">
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/list?nowPage=${Previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"><span aria-hidden="true">«</span></a></li>
+									</c:otherwise>
+								</c:choose>
+								<c:forEach begin="0" end="${tkList.totalPages-1}" var="i">
+									<!-- pageList.getTotalPages() : 페이지 수 만큼 반복문 돌기(0부터 시작하기 때문에 -1 해준다.) -->
+									<li class="page-item">
+										<c:choose>
+											<c:when test="${tkList.number==i}"> <!-- tkList.getNumber() 호출 : 현재 페이지 번호 -->
+												<a class="page-link" href="${pageContext.request.contextPath}/ticket/list?nowPage=${i}" style="color: red">${i+1}</a> <!-- 현재 페이지만 빨간색으로 표시 -->
+											</c:when>
+											<c:otherwise>
+												<a class="page-link" href="${pageContext.request.contextPath}/ticket/list?nowPage=${i}">${i+1}</a>
+											</c:otherwise>
+										</c:choose></li>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${requestScope.tkList.hasNext()==true}">
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/list?nowPage=${next}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"><span aria-hidden="true">»</span></a></li>
+									</c:otherwise>
+								</c:choose>
+							</ul>
+						</nav>
+					</div>
+					
+				<!--/.row-->
                 </div>
                 <!--/.container-->
             </section>
