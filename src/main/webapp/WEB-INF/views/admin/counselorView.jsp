@@ -1,3 +1,6 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="org.aspectj.util.GenericSignature.ArrayTypeSignature"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -114,37 +117,45 @@
 							<thead>
 								<tr>
 									<th class="text-center">상담사코드</th>
-									<th>이름</th>
+									<th class="text-center">이름</th>
 									<th class="text-center">전문분야</th>
 									<th class="text-center">자격증</th>								
 									<th class="text-center">상태</th>	
 								</tr>
 							</thead>
-					<c:forEach items="${requestScope.requestList.content}" var="request" varStatus="reqState">
+					<c:forEach items="${requestScope.requestList.content}" var="newCounselor" varStatus="reqState">
 							<tbody>
 								<tr>
-									<td class="text-center text-muted"># ${request.counselorCode}</td>
+									<td class="text-center text-muted"># ${newCounselor.counselorCode}</td>
 									<td>
 										<div class="widget-content p-0">
 											<div class="widget-content-wrapper">
 												<div class="widget-content-left mr-3">
 													<div class="widget-content-left">
 														<img width="40" class="rounded-circle"
-															src="${requestScope.requestList.content}/static/assets/profileSave/${request.picture}" alt="${request.picture}">
+															src="${pageContext.request.contextPath}/assets/profileSave/${newCounselor.picture}" alt="${newCounselor.picture}">
 													</div>
 												</div>
 												<div class="widget-content-left flex2">
-													<div class="widget-heading">${request.member.name}</div>
-													<div class="widget-subheading opacity-7">${request.degree}</div>
+													<div class="widget-heading">${newCounselor.member.name}</div>
+													<div class="widget-subheading opacity-7">${newCounselor.degree}</div>
 												</div>
 											</div>
 										</div>
 									</td>
-									<%-- <c:forEach items="${request.speciality.specialityName}" var="field" varStatus="index">
-										<c:set value="${field}" var="${index}"></c:set>
-									</c:forEach> --%>
-									<td class="text-center"><%-- "${request.speciality.specialityName}" --%></td>
-									
+									<c:set value="${newCounselor.speciality}" var="totalSpec"/>
+									<td class="text-center">
+										<c:forEach items="${totalSpec}" var="spec" varStatus="state">
+											<c:choose>
+												<c:when test="${state.last}">
+													<span>${spec.specialityName}</span>
+												</c:when>
+												<c:otherwise>
+													<span>${spec.specialityName}, </span>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</td>
 									<td class="text-center">
 										<button type="button" id="PopoverCustomT-1"
 											class="btn btn-primary btn-sm">다운로드</button>
@@ -160,16 +171,16 @@
 								<li class="page-item"><a href="javascript:void(0);"
 									class="page-link" aria-label="Previous"><span
 										aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-								<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
+								<c:forEach begin="0" end="${requestList.totalPages-1}" var="i">
 									<c:choose>
-										<c:when test="${pageList.number==i}">
+										<c:when test="${requestList.number==i}">
 											<li class="page-item active"><a
-												href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
+												href="${pageContext.request.contextPath}/admin/counselorView?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
 										</c:when>
 										<c:otherwise>
 											<li class="page-item"><a
-												href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
+												href="${pageContext.request.contextPath}/admin/counselorView?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
 										</c:otherwise>
 									</c:choose>

@@ -1,9 +1,12 @@
 package bu.mvc.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.AjaxData;
 import bu.mvc.domain.AjaxDataTwo;
@@ -146,7 +150,7 @@ public class AdminController {
 	@RequestMapping("/contactView")
 	public String viewContact(Model model, @RequestParam(defaultValue = "0") int currentPage) {
 
-		Pageable pageable = PageRequest.of(currentPage, 15, Direction.DESC, "contactCode");
+		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "contactCode");
 		Page<Contact> contactPageList = adminService.selectAllContact(pageable);
 		model.addAttribute("contactPageList", contactPageList);
 		return "admin/contactView";
@@ -217,8 +221,22 @@ public class AdminController {
 		
 		return "admin/counselorView";
 	}
+	
+	
+	/**
+	 * 18. 자격증 다운로드
+	 */
+	@RequestMapping("/download/{fileName}")
+	public ModelAndView download(@PathVariable String fileName, HttpSession session) {
 		
-
+		String path = session.getServletContext().getRealPath("/WEB-INF/save");
+		File file = new File(path + "/" + fileName); 
+		
+		return new ModelAndView("downLoadView", "filename", file);
+	}
+		
+	
+	
 }
 
 
