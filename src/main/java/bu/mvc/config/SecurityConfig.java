@@ -35,12 +35,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()	
-		.antMatchers("/member/main").authenticated()
-		.antMatchers("/admin/menu").hasRole("ADMIN")
+
+		.antMatchers("/member/**").authenticated()
+
+
+
 		.and()
-		
+		.csrf().disable()
 		.formLogin()
-		.loginPage("/member/loginForm")
+		.loginPage("/member/login")
 		.usernameParameter("id")
 		.passwordParameter("password")
 		.loginProcessingUrl("/login")	

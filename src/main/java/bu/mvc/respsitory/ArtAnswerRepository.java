@@ -13,6 +13,6 @@ public interface ArtAnswerRepository extends JpaRepository<ArtAnswer, Long> {
 	/**
 	 * art에 있는 멤버코드에 해당하는 artanswer 그림테스트답변 검색
 	 * */
-	@Query("select a from ArtAnswer a inner join Art b on a.art.artCode = b.artCode  where b.member.memberCode=?1")
+	@Query("select a from ArtAnswer a inner join Art b on a.art.artCode = b.artCode  where b.member.memberCode=?1 order by b.artDate desc")
 	List<ArtAnswer> searchAnswerByMember(Long member);
 }
