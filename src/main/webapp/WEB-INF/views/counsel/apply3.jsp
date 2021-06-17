@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri = "http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -66,21 +67,39 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
-<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#sub").click(function () {
-			if($("#date").val()==''){
-				alert("상담 희망일을 선택하세요");
+		$("#sub").click(function() {
+			if ($("#requestCategory").val() == 'none') {
+				alert("고민 유형을 선택해주세요.");
 				return;
 			}
-			var d = $("#date").val();
-			if(confirm(d+" 예약이 맞나요?")){
+			if ($("#requestTitle").val() == '') {
+				alert("제목을 입력해주세요.");
+				return;
+			}
+			if ($("#requestContent").val() == '') {
+				alert("내용을 입력해주세요.");
+				return;
+			}
+			
+			if (confirm("등록하시겠습니까?")) {
 				$("#submitForm").submit();
 			}
 		})
-	})
 
+		$('#content').on('keyup', function() {
+			$('#textCnt').html("( " + $(this).val().length + " / 1000 )");
+
+			if ($(this).val().length > 1000) {
+				alert("1000자까지 입력 가능합니다!");
+				$(this).val($(this).val().substring(0, 1000));
+				$('#textCnt').html("( 1000 / 1000 )");
+			}
+		});
+	})
 </script>
 
 </head>
@@ -128,7 +147,7 @@
 				<nav class="navbar navbar-expand-lg">
 					<a class="navbar-brand overflow-hidden pr-3" href="index.html"><img
 						src="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png"
-						alt=""  style="width: 50px; height: 50px"/></a>
+						alt="" style="width: 50px; height: 50px" /></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 						aria-expanded="false" aria-label="Toggle navigation">
@@ -239,16 +258,16 @@
 					</div>
 					<div
 						class="col-lg-8 px-5 py-6 my-lg-0 background-white radius-tr-lg-secondary radius-br-secondary radius-bl-secondary radius-bl-lg-0"
-						style="vertical-align: top;padding-top: 20px !important">
+						style="vertical-align: top; padding-top: 20px !important">
 						<div data-zanim-timeline="{}" data-zanim-trigger="scroll"
-							style="width: 100%; height: 100%;word-break:break-all">
+							style="width: 100%; height: 100%; word-break: break-all">
 							<h3 class="text-center fs-2 fs-md-3">상담사 정보</h3>
 							<hr class="short"
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
 							<br>
-							
-							
+
+
 							<table style="width: 100%">
 								<tr>
 									<td style="width: 180px">
@@ -263,19 +282,7 @@
 										<h5 data-zanim='{"delay":0}'>선택한 상담유형</h5>
 									</td>
 									<td>
-										<h5 data-zanim='{"delay":0}'>
-											<c:choose>
-												<c:when test="${counselField==0 }">
-													대면상담
-												</c:when>
-												<c:when test="${counselField==1 }">
-													전화상담
-												</c:when>
-												<c:when test="${counselField==1 }">
-													채팅상담
-												</c:when>
-											</c:choose>
-										</h5>
+										<h5 data-zanim='{"delay":0}'>간편 텍스트 상담</h5>
 									</td>
 								</tr>
 								<tr>
@@ -295,8 +302,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" style="height: 20px">
-									</td>
+									<td colspan="2" style="height: 20px"></td>
 								</tr>
 								<tr>
 									<td colspan="2">
@@ -309,15 +315,15 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" style="height: 20px">
-									</td>
+									<td colspan="2" style="height: 20px"></td>
 								</tr>
 								<tr>
 									<td>
-										<h5 data-zanim='{"delay":0}' >보유중인 상담권</h5>
+										<h5 data-zanim='{"delay":0}'>보유중인 상담권</h5>
 									</td>
 									<td>
-										<h5 data-zanim='{"delay":0}' style="color: red">${remainTicket} 매</h5>
+										<h5 data-zanim='{"delay":0}' style="color: red">${remainTicket}
+											매</h5>
 									</td>
 								</tr>
 							</table>
@@ -328,36 +334,78 @@
 					<div class="col"></div>
 					<div class="col-12">
 						<div
-							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary" style="margin-top: 20px !important">
-							<h3 class="text-center fs-2 fs-md-3">상담일자 선택</h3>
+							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary"
+							style="margin-top: 20px !important">
+							<h3 class="text-center fs-2 fs-md-3">상담내용 입력</h3>
 							<hr class="short"
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
-							<form action="${pageContext.request.contextPath}/counsel/submit012" method="get" id="submitForm">
-								<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
-								<input type="hidden" name="counselCategory" value="${counselField}"/>
-								<input type="hidden" name="remainTicket" value="${remainTicket}"/>
+							<form action="${pageContext.request.contextPath}/counsel/submit3"
+								method="get" id="submitForm">
+								<input type="hidden" name="counselorCode"
+									value="${counselor.counselorCode}" /> <input type="hidden"
+									name="counselCategory" value="${counselField}" /> <input
+									type="hidden" name="remainTicket" value="${remainTicket}" />
 								<table style="width: 100%; vertical-align: middle;">
-									<tr style="height: 150px;">
-										<td>
-											<h5>상담 희망일</h5>
+									<tr style="height: 100px;">
+										<td style="width: 130px">
+											<h5>고민 유형</h5>
 										</td>
-										<td><input type="date" name="counselDate" min="${tomorrow}" id="date" ></td>
-										<td>
-											<h5>상담 희망시간</h5>
-										</td>
-										<td><select name="counselTime">
-												<option value="10:00:00">10:00 ~ 10:50</option>
-												<option value="11:00:00">11:00 ~ 11:50</option>
-												<option value="12:00:00">12:00 ~ 12:50</option>
-												<option value="14:00:00">14:00 ~ 14:50</option>
-												<option value="15:00:00">15:00 ~ 15:50</option>
-												<option value="16:00:00">16:00 ~ 16:50</option>
+										<td style="width: 250px"><select name="requestCategory"
+											id = "requestCategory" style="width: 200px">
+												<option value="none">----선택----</option>
+												<option value="우울">우울</option>
+												<option value="불안">불안</option>
+												<option value="분노">분노</option>
+												<option value="강박">강박</option>
+												<option value="무기력">무기력</option>
+												<option value="자살">자살</option>
+												<option value="자존감상실">자존감상실</option>
+												<option value="자해">자해</option>
+												<option value="스트레스">스트레스</option>
+												<option value="트라우마">트라우마</option>
+												<option value="공황">공황</option>
+												<option value="콤플렉스">콤플렉스</option>
+												<option value="상실">상실</option>
+												<option value="대인관계">대인관계</option>
+												<option value="친구">친구</option>
+												<option value="부부">부부</option>
+												<option value="연인">연인</option>
+												<option value="가족">가족</option>
+												<option value="직장">직장</option>
+												<option value="진로">진로</option>
+												<option value="취업">취업</option>
+												<option value="육아">육아</option>
+												<option value="해외생활">해외생활</option>
+												<option value="중독">중독</option>
+												<option value="섭식장애">섭식장애</option>
+												<option value="성생활">성생활</option>
+												<option value="성소수자">성소수자</option>
+												<option value="감정조절">감정조절</option>
+												<option value="기타">기타</option>
 										</select></td>
+										<td>
+											<h5>상담글 제목</h5>
+										</td>
+										<td style="width: 520px; text-align: right;"><input
+											type="text" name="requestTitle" id="requestTitle" style="width: 500px">
+										</td>
 									</tr>
 									<tr>
-										<td colspan="4" style="text-align: right;">
-											<input id="sub" type="button" class="btn btn-success" value="상담 신청"/>
+										<td colspan="4">
+											<h5>상담내용</h5>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: right;"><textarea
+												name="requestContent" id="content"
+												style="width: 100%; height: 500px"
+												placeholder="고민에 대해 작성해주세요."></textarea>
+											<div id="textCnt">( 0 / 1000 )</div></td>
+									</tr>
+									<tr style="height: 100px">
+										<td colspan="4" style="text-align: right;"><input
+											id="sub" type="button" class="btn btn-success" value="상담글 등록" />
 										</td>
 									</tr>
 								</table>

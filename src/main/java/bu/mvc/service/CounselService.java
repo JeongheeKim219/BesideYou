@@ -18,7 +18,7 @@ public interface CounselService {
 	/**
 	 * 사용자의 상담 신청(타입 - 0,1,2)
 	 * */
-	int submit012(Counsel counsel);
+	void submit012(Counsel counsel);
 	
 	/**
 	 * 사용자의 상담 신청(타입 - 3)

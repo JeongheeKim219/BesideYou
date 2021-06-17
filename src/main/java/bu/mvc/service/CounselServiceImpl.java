@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Ticket;
+import bu.mvc.domain.TicketLines;
+import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
+import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.TicketRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -20,9 +23,11 @@ public class CounselServiceImpl implements CounselService {
 	
 	private final CounselorRepository counselorRepository;
 	
-	private final CounselorRepository counselRepository;
+	private final CounselRepository counselRepository;
 	
 	private final TicketRepository ticketRepository;
+	
+	private final TicketLinesRepository ticketLinesRepository;
 	
 	@Override
 	public Counselor getCounselor(Long counselorCode) {
@@ -40,9 +45,16 @@ public class CounselServiceImpl implements CounselService {
 	}
 
 	@Override
-	public int submit012(Counsel counsel) {
+	public void submit012(Counsel counsel) {
+		Ticket ticket = ticketRepository.getRemainTicket(counsel.getMember().getMemberCode(), counsel.getCounselor().getCounselorCode(), counsel.getCounselCategory()).get(0);
+		ticket.setTicketRemain(ticket.getTicketRemain()-1);
 		
-		return 0;
+		TicketLines ticketLine = new TicketLines();
+		ticketLine.setTicket(ticket);
+		
+		ticketLinesRepository.save(ticketLine);
+		
+		counselRepository.save(counsel);
 	}
 
 }
