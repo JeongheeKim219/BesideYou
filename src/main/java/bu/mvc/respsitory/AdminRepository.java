@@ -70,9 +70,8 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 	
 	
 	/**
-	 * 테스트용
+	 * 6. 회원 타입별 전체 조회
 	 */
-	//List<Member> findByPasswordStartsWith(String string);
 	List<Member> findByMemberType(int type);
 
 	

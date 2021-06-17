@@ -1,7 +1,7 @@
 package bu.mvc.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bu.mvc.domain.AjaxData;
+import bu.mvc.domain.AjaxDataTwo;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.ContactReply;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.service.AdminService;
+import bu.mvc.service.CounselService;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,6 +36,9 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private CounselService counselService;
+	
 	/**
 	 * 1. 어드민 인덱스로 이동
 	 */
@@ -182,6 +187,34 @@ public class AdminController {
 	@RequestMapping("/countCounselByMonth")
 	public AjaxData countCounselByMonth(){
 		return adminService.countCounselByMonth();
+	}
+	
+	
+	/**
+	 * 16_1. 해당 월 상담사 순위 조회(신청일, 상담건수 기준)
+	 */
+	@ResponseBody
+	@RequestMapping("/rankCounselor")
+	public AjaxDataTwo rankCouselorAjaxData(Model model) {
+		AjaxDataTwo ajaxDataTwo = adminService.rankCounselor();
+		List<Counselor> counselors = new ArrayList<Counselor>();
+		
+		for (Long counselorCode : ajaxDataTwo.getRankIncounselor()) {
+			counselors.add(counselService.getCounselor(counselorCode));
+		}
+		
+		model.addAttribute("counselorList", counselors);
+		return ajaxDataTwo;
+	}
+
+	/**
+	 * 16_2. 해당 월 상담사 순위 조회(상담사 정보 넘기기)
+	 */
+	@RequestMapping()
+	public String rankCouselorRequest() {
+		
+		
+		return "admin/index";
 	}
 	
 	

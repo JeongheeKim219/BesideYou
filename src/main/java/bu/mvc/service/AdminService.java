@@ -327,7 +327,11 @@ public class AdminService {
 			Optional<Counselor> counselor =  Optional.ofNullable(counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR")))))).orElse(null);
 		 	
 			
+<<<<<<< Updated upstream
 		 	counselorList.add(counselor);
+=======
+		 	counselorList.add counselor);
+>>>>>>> Stashed changes
 		 	rankMap.put("COUNT",  Integer.parseInt(String.valueOf(mapThis.get("COUNT"))));
 		 	/////////////////////////////////////////////////////////////////
 		 	

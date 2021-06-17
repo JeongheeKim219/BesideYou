@@ -1,5 +1,6 @@
 package bu.mvc;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -113,8 +114,8 @@ public class AdminTest {
 				list.remove(randomSpec);
 			}
 		list = Arrays.asList(new String[] { "우울", "불안", "섭식장애", "청소년", "강박", "스트레스", "직장", "진로", "중독", "감정조절" });
-		
 		}
+<<<<<<< Updated upstream
 	}
 
 	@Test
@@ -128,4 +129,20 @@ public class AdminTest {
 	}
 	
 	
+=======
+	}
+	
+	
+	@Test
+	void test_nine() {
+		List<Map<String, Object>> rankingMapList =  adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), 5);
+	
+		for(Map <String, Object> map : rankingMapList) {
+			for(String key : map.keySet())
+			System.out.println(key + ", " + String.valueOf(map.get(key)));
+		}
+	}
+
+
+>>>>>>> Stashed changes
 }
