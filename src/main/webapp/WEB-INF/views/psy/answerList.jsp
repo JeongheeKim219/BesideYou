@@ -8,7 +8,7 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-function reply(code){
+/* function reply(code){
 	//alert(1);
 	//code.style.visibility="visible";
 	
@@ -20,15 +20,21 @@ function reply(code){
 	}else{
 		document.getElementById(code).style.visibility = "visible";
 	}*/
-	
-	var style = document.getElementById(code).style.display;
+ 	
+	/*var style = document.getElementById(code).style.display;
 	//alert(style);
 	if(style=="none"){
-		document.getElementById(code).style.display = "inline-block";
+		document.getElementById(code).style.display = "block";
 	}else{
 		document.getElementById(code).style.display = "none";
-	}
-}
+	} 
+} */
+
+$(function(){
+	$("[name=replayDone]").click(function(){
+		$(this).parent().parent().next().slideToggle();
+	})
+})
 
 </script>
 <meta charset="UTF-8">
@@ -190,10 +196,10 @@ function reply(code){
 						<table class="table table-hover">
 						  <thead>
 						    <tr>
-						      <th scope="col">No</th>
-						      <th scope="col">Counselor</th>
-						      <th scope="col">Date</th>
-						      <th scope="col">State</th>
+						      <th>No</th>
+						      <th>Counselor</th>
+						      <th>Date</th>
+						      <th>State</th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -209,30 +215,37 @@ function reply(code){
 						    		</c:when>
 						    		<c:otherwise>
 						    			<c:forEach items="${list}" var="list" varStatus="state">
-						    			<tr>
+						    			  <tr>
 							    			<td>${state.count}</td>
 									      	<td>${list.artCounselor.counselor.member.name}</td>
-									      	<td><fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artDate}" type="both"/>
-									      	<fmt:formatDate value="${parseDate}" pattern="yyyy년 MM월 dd일"/></td>
+									      	<td>
+									      	<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artDate}" type="both"/>
+									      	<fmt:formatDate value="${parseDate}" pattern="yyyy년 MM월 dd일"/>
+									      	</td>
 									      
 									      	<c:choose>
 									      		<c:when test="${list.artState==0}">
 										      			<td>미답변</td>
-										      			</tr>
 										      	</c:when>
 										      	<c:otherwise>
 										      		<td>
-										      		<a href="javascript:reply(${list.artCode});">답변완료</a>
+										      		 <a href="#" name="replayDone" >답변완료</a>
 										      		</td>
-										      		</tr>
-											      		<tr id="${list.artCode}" style="display:none;">
-												      		<td>${list.artCounselor.counselor.member.name}</td>
-												      		<td colspan="2">${list.artAnswer.artAnsContent}</td>
-												      		<td><fmt:parseDate var="answerDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artAnswer.artAnsDate}" type="both"/>
-												      		<fmt:formatDate value="${answerDate}" pattern="yyyy년 MM월 dd일"/></td>
-											      		</tr>
+										      		
 										      	</c:otherwise>
 									      	</c:choose>
+									      	</tr>
+									      	
+									      	<c:if test="${list.artState!=0}">
+									      	 
+								      		<tr id="${list.artCode}" style="display: none">
+									      		<td>${list.artCounselor.counselor.member.name}</td>
+									      		<td colspan="2" >${list.artAnswer.artAnsContent}</td>
+									      		<td ><fmt:parseDate var="answerDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artAnswer.artAnsDate}" type="both"/>
+									      		<fmt:formatDate value="${answerDate}" pattern="yyyy년 MM월 dd일"/></td>
+								      		</tr>
+									      	
+									      	</c:if>
 									      	
 						    			</c:forEach>
 						    		</c:otherwise>

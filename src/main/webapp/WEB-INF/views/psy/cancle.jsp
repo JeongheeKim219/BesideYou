@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		var nowPage = ${nowPage};
-		//alert(nowPage)
-		$("#page"+nowPage).parent().addClass("active");
-		
- 	})
+$(function(){
+	$("#btn").on("click", function(){
+		 if($('#chbox').is(':checked')==false){
+			 alert("해지 안내를 확인하고 동의해 주세요.")
+			 return false;
+		 }
+		})
+		.prop("onclick", null);
+})
 </script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -153,13 +154,7 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>심리테스트 결과목록</h1>
-                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
-                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">My Page</li>
-                                        </ol>
-                                    </div>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>그림상담사 해지</h1>
                                 </div>
                             </div>
                         </div>
@@ -168,86 +163,29 @@
                 </div>
                 <!--/.container-->
             </section>
-			<section class="background-11 text-center">
+            <section class="background-11">
                 <div class="container">
-               		<div>
-						<table class="table table-hover">
-						  <thead>
-						    <tr>
-						      <th scope="col">No</th>
-						      <th scope="col">Test Name</th>
-						      <th scope="col">Result</th>
-						      <th scope="col">Date</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						  	<c:choose>
-						  		<c:when test="${empty pageList}">
-						  			<tr>
-						  				<td colspan="4">
-						  					<h4 data-zanim='{"delay":0.1}' class="mt-3">자가진단 테스트를 실행하지 않았습니다.</h4>
-						    				<a href="${pageContext.request.contextPath}/psy/list">자가진단 하러가기</a>
-						  				</td>
-						  			</tr>
-						  		</c:when>
-						  		<c:otherwise>
-						  			<c:forEach items="${pageList.content}" var="list" varStatus="state">
-							  			<tr>
-									  		<td>${state.count}</td>
-									  			<c:choose>
-										  			<c:when test="${list.testName==0}">
-										  				<td>우울증 검사</td>
-										  				<td><a href="${pageContext.request.contextPath}/psy/depResult?no=${list.testCode}">${list.total}</a></td>
-										  			</c:when>
-													<c:when test="${list.testName==1}">
-														<td>스트레스 검사</td>
-														<td><a href="${pageContext.request.contextPath}/psy/stressResult?no=${list.testCode}">${list.total}</a></td>
-													</c:when>	
-									  			</c:choose>
-									  		<td><fmt:parseDate var="testDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.testDate}" type="both"/>
-									      	<fmt:formatDate value="${testDate}" pattern="yyyy년 MM월 dd일"/></td>
-									  	</tr>
-						  			</c:forEach>
-						  			
-						  		</c:otherwise>
-						  	</c:choose>
-						  </tbody>
-						</table>
-					</div>  
+                    <div class="row mt-6">
+                        <div class="col">
+                            <h3 class="text-center fs-2 fs-md-3">그림상담사 해지안내</h3>
+                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
+                        </div>
+                        <div class="col-12">
+                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
+                                <h5><span class="icon-Speaker-2 color-primary mr-3"></span>해지를 신청하기 전에 안내사항을 꼭 확인해주세요.</h5>
+                                <p class="mt-3">해지 이후에도 고객에게 남긴 답변은 삭제되지 않고 그대로 남아있습니다.<br>이전에 등록한 지시사항과 검사항목은 삭제되지 않습니다.</p>
+                                <div class="form-check">
+                                	<input class="form-check-input" type="checkbox" id="chbox" value="안내 사항을 모두 확인하였으며, 이에 동의합니다.">
+                                	<label class="form-check-label" for="chbox">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label><br>
+                                </div>
+                                <a href="${pageContext.request.contextPath}/psy/stateUpdate" class="btn btn-outline-dark mt-3" id="btn">그림상담사 해지하기</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
                 </div>
-                <!-- ***************************************페이징처리******************************************* -->
-                
-                <div class="col-auto mx-auto mt-4">
-                            <nav class="font-1 mt-5" aria-label="Page navigation example">
-                                <ul class="pagination pagination justify-content-center">
-                                	<c:set var="doneLoop" value="false"/>
-                                	
-                                		<c:if test="${(startPage-blockCount) >0 }">
-                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/result?nowPage=${startPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                		</c:if>
-                                	
-	                                    <c:forEach var="i" begin="${startPage}" end="${(startPage-1)+blockCount}">
-	                                    	<c:if test="${(i-1)>=pageList.getTotalPages()}">
-										       <c:set var="doneLoop" value="true"/>
-										    </c:if>
-										    
-										   
-										    <c:if test="${not doneLoop}">
-										    	<li class="page-item" ><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/psy/result?nowPage=${i}">${i}</a> </li>
-										    </c:if>
-										    
-										    
-	                                    </c:forEach>
-	                                    
-	                                    <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
-	                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/result?nowPage=${startPage+blockCount}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-	                                    </c:if>
-                                    
-                                </ul>
-                            </nav>
-             	</div>
                 <!--/.container-->
-            </section>            
+            </section>
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">

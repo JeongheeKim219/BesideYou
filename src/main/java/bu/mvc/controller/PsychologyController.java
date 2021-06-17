@@ -2,12 +2,12 @@ package bu.mvc.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Art;
-import bu.mvc.domain.ArtAnswer;
 import bu.mvc.domain.ArtCounselor;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
@@ -48,19 +49,6 @@ public class PsychologyController {
 	 * 테스트
 	 * */
 	
-	@RequestMapping("/result")
-	public void result(Model model /*, @RequestParam(defaultValue = "0") int nowPage*/) {
-		//로그인정보 가져오기
-		//List<Psychology> list = psyService.selectResult(new Member(41L));
-	//	model.addAttribute("list", list);
-		Pageable pageable = PageRequest.of(0, 5, Direction.DESC, "testDate");
-		Page<Psychology> pageList = psyService.selectResult(new Member(41L),pageable);
-		System.out.println("pageList : "+pageList.getContent().size());
-		model.addAttribute("pageList", pageList);
-		
-	}
-	
-	
 	/**
 	 * 심리테스트목록
 	 * */
@@ -70,24 +58,29 @@ public class PsychologyController {
 	/**
 	 * 우울증검사지
 	 * */
-	@RequestMapping("/depression")
-	public void depression() {}
+	@RequestMapping("/lo/depression")
+	public String depression() {
+		return "/psy/depression";
+	}
 	
 	/**
 	 * 스트레스검사지
 	 * */
-	@RequestMapping("/stress")
-	public void stress() {}
+	@RequestMapping("/lo/stress")
+	public String stress() {
+		return "/psy/stress";
+	}
 	
 	/**
 	 * 우울증 결과 등록
 	 * */
 	@RequestMapping("/depInsert")
-	public ModelAndView depInsert(Psychology psychology) {
+	public ModelAndView depInsert(HttpServletRequest request, Psychology psychology) {
 		System.out.println(psychology.getTotal());
 		
 		//회원정보가져오기
-		psychology.setMember(new Member(41L));
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		psychology.setMember(new Member(member.getMemberCode()));
 		
 		psyService.testInsert(psychology);
 		
@@ -120,12 +113,13 @@ public class PsychologyController {
 	 * 스트레스 결과 등록
 	 * */
 	@RequestMapping("/stressInsert")
-	public ModelAndView stressInsert(Psychology psychology) {
+	public ModelAndView stressInsert(HttpServletRequest request, Psychology psychology) {
 		System.out.println(psychology.getTotal());
 		System.out.println(psychology.getTestName());
 		
 		//회원정보가져오기
-		psychology.setMember(new Member(41L));
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		psychology.setMember(new Member(member.getMemberCode()));
 		
 		psyService.testInsert(psychology);
 		
@@ -152,22 +146,53 @@ public class PsychologyController {
 	}
 	
 	/**
+	 * 심리테스트 결과목록
+	 * */
+	@RequestMapping("/result")
+	public void result(HttpServletRequest request, Model model , @RequestParam(defaultValue = "1") int nowPage) {
+		//로그인정보 가져오기
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//List<Psychology> list = psyService.selectResult(new Member(41L));
+	//	model.addAttribute("list", list);
+		Pageable pageable = PageRequest.of((nowPage-1), 10, Direction.DESC, "testDate");
+		
+		Page<Psychology> pageList = psyService.selectResult(new Member(member.getMemberCode()),pageable);
+		
+		int blockCount = 5;
+		int temp = (nowPage-1) % blockCount;
+		int startPage = nowPage - temp;
+		
+		//System.out.println("pageList : "+pageList.getContent().size());
+		model.addAttribute("pageList", pageList);
+		model.addAttribute("blockCount", blockCount);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+	}
+	
+	/**
 	 * 그림테스트
 	 * */
-	@RequestMapping("/art")
-	public void art() {}
+	@RequestMapping("/lo/art")
+	public String art() {
+		return "/psy/art";
+	}
 	
 	/**
 	 * 그림상담사 목록
 	 * */
 	@RequestMapping("/artCounselor")
-	public ModelAndView artCounselor() {
-		List<ArtCounselor> list= psyService.selectArtCounselor();
+	public void artCounselor(Model model , @RequestParam(defaultValue = "1") int nowPage) {
+		Pageable pageable = PageRequest.of((nowPage-1), 6, Direction.ASC, "artCounselorCode");
+		Page<ArtCounselor> list= psyService.selectArtCounselor(pageable);
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("psy/artCounselor");
-		mv.addObject("list", list);
-		return mv;
+		int blockCount = 5;
+		int temp = (nowPage-1) % blockCount;
+		int startPage = nowPage - temp;
+		
+		model.addAttribute("list", list);
+		model.addAttribute("blockCount", blockCount);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
 	}
 	
 	/**
@@ -188,7 +213,7 @@ public class PsychologyController {
 	 * 파일업로드
 	 * */
 	@RequestMapping("/upload")
-	public ModelAndView upload(String name, Long code, MultipartFile file, HttpSession session) {
+	public ModelAndView upload(HttpServletRequest request, String name, Long code, MultipartFile file, HttpSession session) {
 		//실제 서버에 올려져 있는 경로 구하기
 		ServletContext application = session.getServletContext();
 		String path = application.getRealPath("/WEB-INF/save"); //저장할 폴더
@@ -203,7 +228,8 @@ public class PsychologyController {
 			file.transferTo(new File(path+"/"+name+"_"+new SimpleDateFormat("yyyyMMddHHmm").format(date)+"_"+fileName));
 			
 			//회원정보 가져오기
-			Art art = new Art(null, null, fileName, 0, new Member(82L), new ArtCounselor(code), null);
+			Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Art art = new Art(null, null, fileName, 0, new Member(member.getMemberCode()), new ArtCounselor(code), null);
 			psyService.artInsert(art);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -218,11 +244,14 @@ public class PsychologyController {
 	 * 그림상담사 등록화면
 	 * */
 	@RequestMapping("/signupArt")
-	public void signArt(Model model) {
+	public void signArt(HttpServletRequest request, Model model) {
 		//회원정보를 가져와서 그림상담사 등록되어있는지
-		Counselor co = psyService.selectByMem(44L);  //그림상담사 등록된 ㅐㅇ
-		Counselor c = psyService.selectByMem(21L);//등록 안된애
-		ArtCounselor ac = psyService.selectByCounselorCode(c);
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		/*Counselor co = psyService.selectByMem(63L);  //그림상담사 등록된 ㅐㅇ
+		Counselor c = psyService.selectByMem(66L);//등록 안된애
+		Counselor ccc = psyService.selectByMem(4L); //등록했다가 해지한 해
+		Counselor error = psyService.selectByMem(1L); // 멤버에 없는애*/
+		ArtCounselor ac = psyService.selectByCounselorCode(psyService.selectByMem(member.getMemberCode()));
 		model.addAttribute("info", ac);
 	}
 	
@@ -230,10 +259,18 @@ public class PsychologyController {
 	 * 그림상담사 등록
 	 * */
 	@RequestMapping("/signup")
-	public ModelAndView signup(ArtCounselor artCounselor) {
-		//로그인한 회원정보를...44L이라고 가정
-		Counselor co = psyService.selectByMem(44L);
+	public ModelAndView signup(HttpServletRequest request, ArtCounselor artCounselor) {
+		//로그인한 회원정보를...66L이라고 가정
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Counselor co = psyService.selectByMem(member.getMemberCode());
 		artCounselor.setCounselor(co);
+		
+		//등록전에 입력한데이터 태그있는지 체크
+		String question = artCounselor.getQuestion().replace("<", "&lt;");
+		artCounselor.setQuestion(question);
+		String detail = artCounselor.getDetail().replace("<", "&lt;");
+		artCounselor.setDetail(detail);
+		
 		psyService.signup(artCounselor);
 		
 		ModelAndView mv = new ModelAndView();
@@ -245,20 +282,24 @@ public class PsychologyController {
 	 * 그림상담사 수정
 	 * */
 	@RequestMapping("/update")
-	public void update(ArtCounselor artCounselor) {
+	public ModelAndView update(HttpServletRequest request, ArtCounselor artCounselor) {
 		//회원정보 가지고 오기
-		Counselor co = psyService.selectByMem(44L);
-		ArtCounselor ac = psyService.selectByCounselorCode(co);
-		//업데이트해야된다
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		psyService.updateQD(member.getMemberCode(), artCounselor);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/psy/index");
+		return mv;
 	}
 	
 	/**
 	 * 그림상담사 요청조회
 	 * */
 	@RequestMapping("/requestList")
-	public void requestList(Model model, HttpSession session) {
+	public void requestList(HttpServletRequest request, Model model, HttpSession session) {
 		//로그인한 정보 가져오기 일단 4L이라고 가정..
-		Counselor co = psyService.selectByMem(4L);
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Counselor co = psyService.selectByMem(member.getMemberCode());
 		ArtCounselor ac = psyService.selectByCounselorCode(co);
 		List<Art> list = psyService.selectByCounselor(ac);
 		
@@ -305,11 +346,37 @@ public class PsychologyController {
 	 * 답변조회하기
 	 * */
 	@RequestMapping("/answerList")
-	public void answerList(Model model) {
+	public void answerList(HttpServletRequest request, Model model) {
 		//로그인정보 가져오기
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//List<ArtAnswer> list = psyService.selectAnswer(4L);
 		//model.addAttribute("list", list);
-		List<Art> list = psyService.selectArt(4L);
+		List<Art> list = psyService.selectArt(member.getMemberCode());
 		model.addAttribute("list", list);
+	}
+	
+	/**
+	 * 그림상담사 해지페이지
+	 * */
+	@RequestMapping("/cancle")
+	public void cancle() {}
+	
+	/**
+	 * 그림상담사 해지
+	 * */
+	@RequestMapping("/stateUpdate")
+	public String stateUpdate(HttpServletRequest request) {
+		//로그인정보 가져오기
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		psyService.updateState(member.getMemberCode());
+		return "/psy/index";
+	}
+	
+	/**
+	 * 에러페이지
+	 * */
+	@ExceptionHandler(RuntimeException.class)
+	public ModelAndView error(RuntimeException e) {
+		return new ModelAndView("member/errorView", "errMsg",e.getMessage());
 	}
 }

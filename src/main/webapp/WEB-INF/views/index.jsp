@@ -18,6 +18,14 @@
 	function read() {
 		document.getElementById("readForm").submit();
 	}
+	function depressionCheck(){
+		var loginId="${sessionName}";
+		if(loginId==""){
+			alert("로그인한 후 이용가능한 서비스입니다.")
+		}
+		//alert(222)
+		location.href="${pageContext.request.contextPath}/psy/lo/depression";
+	}
 </script>
 
 <!--  -->
@@ -181,6 +189,12 @@
 									<li><a href="components-owlcarousal.html">Owl Carousal</a></li>
 									<li><a href="components-slider.html">Slider</a></li>
 									<li><a href="components-typography.html">Typography</a></li>
+								</ul></li>
+								<li><a href="${pageContext.request.contextPath}/psy/list">Self Test</a>
+								<ul class="dropdown fs--1">
+									<li><a href="#" id="startlogin" onclick="depressionCheck()">우울증 검사</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/lo/stress">스트레스 검사</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/lo/art">그림 검사</a></li>
 								</ul></li>
 							<li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
 						</ul>

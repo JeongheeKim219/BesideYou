@@ -23,7 +23,7 @@ public interface PsychologyService {
 	/**
 	 * 그림상담사 조회
 	 * */
-	List<ArtCounselor> selectArtCounselor();
+	Page<ArtCounselor> selectArtCounselor(Pageable pageable);
 	
 	/**
 	 * 그림상담사 pk로 조회
@@ -86,12 +86,13 @@ public interface PsychologyService {
 	Page<Psychology> selectResult(Member member, Pageable pageable);
 	
 	/**
-	 * 심리테스트 결과 조회 - 페이징처리
+	 * 그림상담사 지시사항, 검사항목 수정
 	 * */
-	Page<Psychology> selectPsy(Pageable pageable);
+	void updateQD(Long code, ArtCounselor artCounselor);
 	
 	/**
-	 * 그림상담사 update
+	 * 그림상담사 해지 -> artcounselor에서 state update
 	 * */
+	void updateState(Long code);
 
 }
