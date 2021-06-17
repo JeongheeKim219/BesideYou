@@ -18,7 +18,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	
 	/**중복체크*/
     Member findById(String id);
-    
+   
     /**
      * 아이디찾기
      * */
@@ -44,5 +44,13 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
    @Query("update Member m  set m.password=?1 ,m.alias=?2,m.email=?3  ,m.phone=?4 where m.memberCode=?5")
    @Modifying
    void updateMember(String password,String alias,String emali, String phone,Long memberCode );
+   
+   /**
+    * 회원정보 탈퇴하기 (회원)
+ * @return 
+    * */
+   @Query("update Member m  set m.memberState=3 where m.memberCode=?1")
+   @Modifying
+   void deleteMember(Long memberCode);
 }
 

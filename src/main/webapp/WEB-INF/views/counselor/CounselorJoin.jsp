@@ -8,98 +8,56 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-       	<script src="/assets/lib/jquery/dist/jquery.min.js"></script>
+       	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee2a08e1e6666ba0c1489f7bcaf6d75a&libraries=services"></script>
        	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+       	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
         
         $(document).ready(function(){
-        	
-        
-
-
-        	
-        	
-        	
-        	
-        	 var checkResultId="";		
-        		$("#registerForm").submit(function(){			
-        		if($("#registerForm :input[name=id]").val().trim()==""){
-        			alert("아이디를 입력하세요");				
+        		
+        	// var checkResultId="";		
+        		$("#sub").click(function(){	
+        		if($("#registerForm :input[type=file]").val().trim()==""){
+        			alert("사진을 첨부해주세요");				
         			return false;
         		}
-        		if($("#registerForm :input[name=password]").val().trim()==""){
-        			alert("패스워드를 입력하세요");				
+        		if($("#registerForm :input[name=career]").val().trim()==""){
+        			alert("커리어를 입력하세요");				
         			return false;
         		}
-        		if($("#registerForm :input[name=name]").val().trim()==""){
-        			alert("이름을 입력하세요");				
+        		if($("#registerForm :input[name=degree]").val().trim()==""){
+        			alert("학위를 입력하세요");				
         			return false;
         		}
-        		if($("#registerForm :input[name=email]").val().trim()==""){
-        			alert("이메일 입력하세요");				
+        		if($("#registerForm :input[name=cerificate]").val().trim()==""){
+        			alert("자격증 입력하세요");				
         			return false;
         		}
-        		if($("#registerForm :input[name=postcode]").val().trim()==""){
-        			alert("우편번호를 입력하세요");				
-        			return false;
-        		}	
-        		if($("#registerForm :input[name=address]").val().trim()==""){
+        		/* if($("#registerForm :input[name=counselorAddr]").val().trim()==""){
         			alert("주소를 입력하세요");				
         			return false;
-        		}	
-        		if($("#registerForm :input[name=alias]").val().trim()==""){
-        			alert("닉네임를 입력하세요");				
-        			return false;
-        		}	
-        		if($("#registerForm :input[name=phone]").val().trim()==""){
-        			alert("핸드폰 번호를 입력하세요");				
-        			return false;
-        		}	
-        		if($("#registerForm :input[name=beforeDateOfBirth]").val().trim()==""){
-        			alert("생년월일 입력하세요");				
-        			return false;
-        		}	
-        		 if(checkResultId==""){
-        			alert("아이디 중복확인을 하세요");
-        			return false;
-        		}	 
-        		
+        		}	 */
+        		var addr = "";
+        		addr += $("#sample6_address").val();
+        		addr += " ";
+        		addr += $("#sample6_detailAddress").val();
+        		$("input[name='counselorAddr']").val(addr);
+        		var geocoder = new kakao.maps.services.Geocoder();
+       			var gotY;
+       			var gotX;
+        		geocoder.addressSearch($("#sample6_address").val(), function(result, status) {
+        			    // 정상적으로 검색이 완료됐으면 
+        			     if (status === kakao.maps.services.Status.OK) {
+        			        gotY = result[0].y;
+        			        gotX = result[0].x;
+        			       }
+   			    $("input[name='lat']").val(gotY);
+  			    $("input[name='longi']").val(gotX);
+        		$("#registerForm").submit();
+        			});
         	});//submit
-        	
-        	
-        	//아이디 체크...
-        	$("#registerForm :input[name=id]").keyup(function(){
-        		var id=$(this).val().trim();
-        		//alert(id);
-        		if(id.length<2 || id.length>10){
-        			$("#idCheckView").html("2~10글자만 입력해주세요.").css("background","pink");
-        			checkResultId="";
-        			return;
-        		}
-        		
-        		$.ajax({
-        			type:"post",
-        			url:"${pageContext.request.contextPath}/member/idcheckAjax",				
-        			data:"${_csrf.parameterName}=${_csrf.token}&id="+id,	
-        			success:function(data){						
-        				if(data=="fail"){
-        					console.log("중복 :"+id)
-        					$("#idCheckView").html("  "+id+" 중복입니다 ").css("background","red");
-        					checkResultId="";
-        				}else{		
-        					console.log(id)
-        					$("#idCheckView").html("  "+id+" 사용 할 수 있습니다 ").css("background","yellow");		
-        					checkResultId=id;
-        				}					
-        			}//callback			
-        		});//ajax
-        	});//keyup
-        	
-        
-        	    
-        	
-        	
-        })
+        	      	
+        }) 
         function sample6_execDaumPostcode() {
         	        new daum.Postcode({
         	            oncomplete: function(data) {
@@ -203,57 +161,56 @@
                         <div class="col-md-12 col-lg-8 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                             <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt=""></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
-                                <h4 class="text-uppercase fs-0 fs-md-1">Create your elixir account</h4>
+                                <h4 class="text-uppercase fs-0 fs-md-1">Create Counselor</h4>
                                 <c:if test="${not empty requestScope.errorMessage}">
 									<span style="color:red">${requestScope.errorMessage}</span>
 								</c:if>
-                                <form class="mt-4 text-left" method="post" action="${pageContext.request.contextPath}/member/join" id="registerForm">
+                                <form class="mt-4 text-left" method="post" action="${pageContext.request.contextPath}/counselor/join" id="registerForm" enctype="multipart/form-data">
                              
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+								   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+								   
                                     <div class="row align-items-center">
-                                   		
+                                   		<div class="col-12 mt-4">
+                                            사진<p><input  type="file" placeholder="상담사사진"  name = "file" accept=".zip"aria-label="Text input with dropdown button">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+                                        </div>
                                         <div class="col-12 mt-4">        
-                                            <input class="form-control" type="text" placeholder="ID" name = "id" aria-label="Text input with dropdown button"><span id="idCheckView"></span>
+                                            <input class="form-control" type="text" placeholder="커리어" name = "career" aria-label="Text input with dropdown button">
                                         </div>
                                         <div class="col-12 mt-4">
-                                            <input class="form-control" type="password" placeholder="Password" name = "password"  aria-label="Text input with dropdown button" >
+                                            <input class="form-control" type="text" placeholder="학위" name = "degree"  aria-label="Text input with dropdown button" >
                                         </div>
                                         
                                         
                                         <div class="col-12 mt-4">        
-                                            <input class="form-control" type="text" placeholder="NAME"   name = "name" aria-label="Text input with dropdown button">
+                                            <input class="form-control" type="text" placeholder="자격증"   name = "cerificate" aria-label="Text input with dropdown button">
                                         </div>
-                                        <div class="col-12 mt-4">
-                                            <input class="form-control" type="text" placeholder="Email Address"  name = "email" aria-label="Text input with dropdown button">
-                                        </div>
+                                        
+                                      <!--   <div class="col-12 mt-4">
+                                          <input class="form-control" type="text" placeholder="주소"  name = "counselorAddr" accept=".zip"aria-label="Text input with dropdown button">
+                                        </div> -->
                                         <div class="col-12 mt-4">
                                         <input type="text" id="sample6_postcode" name = "postcode" placeholder="우편번호">
 										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 										</div>
 										
 										<div class="col-12 mt-4">
-										<input class="form-control" type="text" id="sample6_address" name = "memberAddr" placeholder="주소">
+										<input class="form-control" type="text" id="sample6_address" name = "firstAddr" placeholder="주소">
 										<input class="form-control" type="text" id="sample6_detailAddress" name = "detailAddress" placeholder="상세주소">
+										<input type="hidden" name = "counselorAddr">
+										<input type="hidden" name = "lat">
+										<input type="hidden" name = "longi">
 										<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목">
 										</div>
                                         
-                                        <div class="col-12 mt-4">
-                                            <input class="form-control" type="text" placeholder="Alias(닉네임)" name = "alias"aria-label="Text input with dropdown button">
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                            <input class="form-control" type="text" placeholder="Phone" name = "phone"aria-label="Text input with dropdown button">
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                        	
-                                            <input class="form-control" type="date" placeholder="생년월일" name = "beforeDateOfBirth" aria-label="Text input with dropdown button">
-                                        </div>
+                                        
                                     </div>
                                     <div class="row align-items-center mt-3">
                                         <div class="col-md-6 mt-3">
                                            
                                         </div>
                                         <div class="col-md-6 mt-3">
-                                            <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+                                            <input class="btn btn-primary btn-block" type="button" value="Create" id="sub"/>
                                             <!-- <button class="btn btn-primary btn-block" type="reset">reset</button> -->
                                         </div>
                                     </div>
@@ -284,40 +241,3 @@
         <script src="/assets/js/main.js"></script>
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

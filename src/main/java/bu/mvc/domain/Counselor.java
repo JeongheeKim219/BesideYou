@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -41,7 +41,7 @@ public class Counselor {
 	@Column(name="counselor_state")
 	private int counselorState;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="member_code")
 	private Member member; // 회원코드
 

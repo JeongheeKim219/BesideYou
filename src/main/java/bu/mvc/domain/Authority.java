@@ -27,7 +27,7 @@ public class Authority {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "authority_seq")
 	@SequenceGenerator(sequenceName = "authority_seq",allocationSize = 1,name = "authority_seq")
 	@Column(name="authority_code")
-	private Long AuthorityCode;
+	private Long authorityCode;
 	
 	@ManyToOne
 	@JoinColumn(name="member_code")
