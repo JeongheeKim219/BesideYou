@@ -17,15 +17,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.AjaxData;
+import bu.mvc.domain.AjaxDataTwo;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.Speciality;
 import bu.mvc.domain.Ticket;
 import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
+import bu.mvc.respsitory.SpecialityRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service
@@ -46,6 +49,9 @@ public class AdminService {
 
 	@Autowired
 	private ContactRepository contactRep;
+
+	@Autowired
+	private SpecialityRepository specialityRep;
 
 	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
 	private LocalDateTime end = LocalDateTime.now();
@@ -136,10 +142,8 @@ public class AdminService {
 		return contactRep.findAllByContactState(state);
 	}
 
-	
-	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
+
 	/**
 	 * 9_1. 날짜별 가입한 회원 수 조회 1
 	 */
@@ -180,26 +184,26 @@ public class AdminService {
 	 */
 	public List<Integer> countMemberJoin2(List<String> keyList) {
 		List<Integer> returnList = new ArrayList<Integer>();
-				
-		for(String key : keyList) {
+
+		for (String key : keyList) {
 			Map<String, Object> newMap = new HashMap<String, Object>();
-			Map<String, Object> map =  Optional.ofNullable((Map<String, Object>)adminRep.countJoinMember3(key)).orElse(newMap);
+			Map<String, Object> map = Optional.ofNullable((Map<String, Object>) adminRep.countJoinMember3(key))
+					.orElse(newMap);
 			newMap.put("DAY", key);
 			newMap.put("COUNT", 0);
-		
-			if(map.get("COUNT") == null) {
+
+			if (map.get("COUNT") == null) {
 				returnList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
 			} else {
 				returnList.add(Integer.parseInt(String.valueOf(map.get("COUNT"))));
 
 			}
 		}
-		returnList.forEach(i-> System.out.println(i));
+		returnList.forEach(i -> System.out.println(i));
 		return returnList;
-	
+
 	}
-	
-	
+
 	/**
 	 * 10. 전체 문의 내역 조회
 	 */
@@ -207,7 +211,6 @@ public class AdminService {
 		return contactRep.findAll(pageable);
 	}
 
-	
 	/**
 	 * 11. 문의 내역 상세 조회
 	 * 
@@ -218,7 +221,6 @@ public class AdminService {
 		return contactRep.findById(contactCode).orElse(null);
 	}
 
-	
 /////////////////////////////////////////////////////////////////////////////////////////	
 	/**
 	 * 12. 월별 상담 타입 조회(상담신청일 기준)
@@ -255,50 +257,114 @@ public class AdminService {
 		List<String> dateList = new ArrayList<String>();
 		List<Integer> counselReqList = new ArrayList<Integer>();
 		List<Integer> counselList = new ArrayList<Integer>();
-		
+
 		AjaxData ajaxData = new AjaxData();
-		
-		for(int i = 0; i < 12; i++) {
-			
+
+		for (int i = 0; i < 12; i++) {
+
 			LocalDate lastMonth = now.minusMonths(i);
 			int year = lastMonth.getYear();
 			int monthValue = lastMonth.getMonthValue();
-			String monthStr = (monthValue < 10)? "0" + monthValue : "" + monthValue;
+			String monthStr = (monthValue < 10) ? "0" + monthValue : "" + monthValue;
 			String dateStr = year + "/" + monthStr;
-			
+
 			dateList.add(0, dateStr);
 		}
-		
-		for(String key : dateList) {
+
+		for (String key : dateList) {
 			Map<String, Object> newMap = new HashMap<String, Object>();
-			Map<String, Object> reqMap =  Optional.ofNullable((Map<String, Object>)adminRep.countCounselReqByMonth(key)).orElse(newMap);			
-			Map<String, Object> counselMap =  Optional.ofNullable((Map<String, Object>)adminRep.countCounselByMonth(key)).orElse(newMap);			
-			
-			if(reqMap.get("COUNT") == null) {
+			Map<String, Object> reqMap = Optional.ofNullable((Map<String, Object>) adminRep.countCounselReqByMonth(key))
+					.orElse(newMap);
+			Map<String, Object> counselMap = Optional
+					.ofNullable((Map<String, Object>) adminRep.countCounselByMonth(key)).orElse(newMap);
+
+			if (reqMap.get("COUNT") == null) {
 				newMap.put("MONTH", key);
 				newMap.put("COUNT", 0);
 				counselReqList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
 			} else {
 				counselReqList.add(Integer.parseInt(String.valueOf(reqMap.get("COUNT"))));
 			}
-		
-			if(counselMap.get("COUNT") == null) {
+
+			if (counselMap.get("COUNT") == null) {
 				newMap.put("MONTH", key);
-				newMap.put("COUNT", 0
-						);
+				newMap.put("COUNT", 0);
 				counselList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
 			} else {
 				counselList.add(Integer.parseInt(String.valueOf(counselMap.get("COUNT"))));
 			}
-		
+
 		}
-	
+
 		ajaxData.setYearMonthList(dateList);
 		ajaxData.setCounselCountList(counselList);
 		ajaxData.setCounselReqList(counselReqList);
 		return ajaxData;
-	
 	}
+
+	/**
+	 * 11. 월별 상담사 순위 5위 구하기
+	 */
+	public AjaxDataTwo rankCounselor(){
+		int counselors = adminRep.findByMemberType(1).size();
+		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 5 );
+		List<Map<String, Object>> listLastMonth = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), counselors);
+		
+		
+		Map<String, Object> rankMap = new HashMap<String, Object>();
 	
-	
+		
+		//////////////////////////////////////////////////////////////////////////////
+		AjaxDataTwo ajaxDataTwo = new AjaxDataTwo();
+		List<Counselor> counselorList = new ArrayList<Counselor>();
+		List<Integer> sessionList = new ArrayList<Integer>();
+		List<Integer> gapList = new ArrayList<Integer>();
+		
+		
+		for(Map<String, Object> mapThis : listThisMonth) {
+		 	
+			//Optional<Counselor> counselor =  Optional.ofNullable(counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR")))))).orElse(null);
+			Optional<Counselor> counselor =  Optional.ofNullable(counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR")))))).orElse(null);
+		 	
+			
+		 	counselorList.add(counselor);
+		 	rankMap.put("COUNT",  Integer.parseInt(String.valueOf(mapThis.get("COUNT"))));
+		 	/////////////////////////////////////////////////////////////////
+		 	
+		 	rankIncounselor.add(Long.parseLong(String.valueOf(mapThis.get("COUNSELOR"))));
+		 	counselSessions.add(Integer.parseInt(String.valueOf(mapThis.get("COUNT")))); 
+		 	
+		 	
+			for(Map<String, Object> mapLast : listLastMonth){  
+					
+				if(mapThis.get("COUNSELOR").equals(mapLast.get("COUNSELOR"))) {
+					int gap = Integer.parseInt(String.valueOf(mapThis.get("COUNT"))) - Integer.parseInt(String.valueOf(mapLast.get("COUNT")));
+					rankMap.put("GAP", gap);
+					gapList.add(gap);
+				} else {
+					rankMap.put("GAP", 0);
+					gapList.add(0);
+				}		
+			}
+			rankList.add(rankMap);
+		
+		}
+		
+		for(Map<String, Object> map : rankList) {
+			for(String key : map.keySet()) {
+				System.out.println("키 : " + key + ", " + "값 : " + map.get(key));
+			}
+		}
+		/////////////////////////////////////////////////////////
+		//ajaxData.setCounselorRank(rankList);
+		
+		
+		
+		ajaxDataTwo.setRankIncounselor(rankIncounselor);
+		ajaxDataTwo.setCounselSessions(counselSessions);
+		ajaxDataTwo.setGapList(gapList);
+		
+		return ajaxDataTwo;
+	}
+
 }

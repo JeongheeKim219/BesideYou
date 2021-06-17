@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
@@ -57,6 +58,7 @@ public class Member {
 	
 	@Column(name ="DATE_OF_BIRTH")
 	private LocalDate dateOfBirth;//생년월일
+	
 	
 	@Transient 
 	private String beforeDateOfBirth;

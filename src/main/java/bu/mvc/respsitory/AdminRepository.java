@@ -1,13 +1,16 @@
 package bu.mvc.respsitory;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
+import org.aspectj.weaver.tools.Trace;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import bu.mvc.domain.Member;
@@ -55,6 +58,15 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 			+ "HAVING TO_CHAR(c.counselDate, 'yyyy/mm') = ?1 ORDER BY MONTH")
 	Map<String, Object> countCounselByMonth(String date);
 
+
+	/**
+	 * 5. 상담 건수별 상담사 등급 조회
+	 */
+	@Query(value = "SELECT COUNSELOR, COUNT, RANKING FROM ("
+			+ "SELECT COUNSELOR_CODE AS COUNSELOR, COUNT(*) AS COUNT,  RANK () OVER (ORDER BY COUNT(*) DESC) AS RANKING "
+			+ "FROM COUNSEL WHERE TO_CHAR(COUNSEL_REQ_DATE, 'yyyy/mm') = TO_CHAR(:date, 'yyyy/mm') "
+			+ "GROUP BY COUNSELOR_CODE) WHERE RANKING < :rank", nativeQuery = true)
+	public List<Map<String, Object>> selectCounselorByRanking(@Param("date") LocalDate date, @Param("rank")int rank);
 	
 	
 	/**
@@ -63,9 +75,5 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 	//List<Member> findByPasswordStartsWith(String string);
 	List<Member> findByMemberType(int type);
 
-	
-	/**
-	 * 
-	 */
 	
 } 

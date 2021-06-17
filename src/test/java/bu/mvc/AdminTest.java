@@ -3,6 +3,7 @@ package bu.mvc;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -114,7 +115,17 @@ public class AdminTest {
 		list = Arrays.asList(new String[] { "우울", "불안", "섭식장애", "청소년", "강박", "스트레스", "직장", "진로", "중독", "감정조절" });
 		
 		}
-	
 	}
 
+	@Test
+	void test_nine() {
+		Counselor counselor = counselorRep.findById(1L).orElse(null);
+		Member member = counselor.getMember();
+		System.out.println("???");
+		System.out.println(member);
+		
+		
+	}
+	
+	
 }
