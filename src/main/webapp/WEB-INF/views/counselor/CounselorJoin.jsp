@@ -153,7 +153,7 @@
                 </div>
             </div>
             <section class="text-center py">
-                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/background-1.jpg);">
+                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/background-1.jpg); padding-bottom: 0px;padding-top: 0px;height: 1000;height: 1500px;">
                 </div>
                 <!--/.background-holder-->
                 <div class="container">
@@ -195,21 +195,21 @@
 												<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목" readonly="readonly">
                                         </div>
 
-									<div class="col-12 mt-4">
-										태그선택<br>
-										<input type="checkbox" name="tagName" value="우울">우울
-										<input type="checkbox" name="tagName" value="불안">불안
-										<input type="checkbox" name="tagName" value="분노">분노
-										<input type="checkbox" name="tagName" value="직장">직장
-										<input type="checkbox" name="tagName" value="가족">가족
-										<input type="checkbox" name="tagName" value="중독">중독
-										<input type="checkbox" name="tagName" value="감정조절">감정조절
-										<input type="checkbox" name="tagName" value="친구">친구
-										<input type="checkbox" name="tagName" value="스트레스">스트레스
+									<div class="col-12 mt-3">
+										<h6>태그선택</h6>
+										1.<input type="checkbox" name="tagName" value="우울">우울
+										2.<input type="checkbox" name="tagName" value="불안">불안
+										3.<input type="checkbox" name="tagName" value="분노">분노
+										4.<input type="checkbox" name="tagName" value="직장">직장
+										5.<input type="checkbox" name="tagName" value="가족">가족
+										6.<input type="checkbox" name="tagName" value="중독">중독
+										7.<input type="checkbox" name="tagName" value="감정조절">감정조절
+										8.<input type="checkbox" name="tagName" value="친구">친구
+										9.<input type="checkbox" name="tagName" value="스트레스">스트레스
 
 										
 									</div>
-									<div class="col-12 mt-4">
+									<div class="col-12 mt-3">
 										<h6>대면상담 가격 입력해주세요. (권장가격 10000 ~ 20000)</h6>
 										<input type="text"  name = "price0"  ><p>
 										<h6>전화상담 가격 입력해주세요. (권장가격 10000 ~ 15000)</h6>

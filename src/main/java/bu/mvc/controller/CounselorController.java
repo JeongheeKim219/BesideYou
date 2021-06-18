@@ -43,7 +43,7 @@ public class CounselorController {
 	 * */
 	@RequestMapping("/join")
 	public ModelAndView join( Counselor counselor, MultipartFile file, HttpSession session, String lat, String longi, 
-			 HttpServletRequest request) {
+			 HttpServletRequest request,int price0, int price1,int price2, int price3) {
 		
 		String tagNames [] = request.getParameterValues("tagName");
 	     for(String tagName : tagNames) {
@@ -63,6 +63,14 @@ public class CounselorController {
 		ServletContext application = session.getServletContext();
 		String path = application.getRealPath("/WEB-INF/save"); //저장할 폴더
 
+		int[] prices = new int[4];
+		
+		prices[0] = price0;
+		prices[1] = price1;
+		prices[2] = price2;
+		prices[3] = price3;
+				
+		
 		
 		try {
 			//파일을 저장(업로드)
@@ -76,14 +84,10 @@ public class CounselorController {
 			counselor.setPicture(fileName);
 			counselor.setMember(new Member(me.getMemberCode()));	
 			
-			
-			counselorService.joinCounselor(counselor , tagNames);
-			
-			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		counselorService.joinCounselor(counselor , tagNames, prices);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("counselor/joinSuccess");
 		return mv;
