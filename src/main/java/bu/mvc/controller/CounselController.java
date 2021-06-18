@@ -6,15 +6,21 @@ import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.Requests;
 import bu.mvc.service.CounselService;
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +30,10 @@ import lombok.RequiredArgsConstructor;
 public class CounselController {
 
 	private final CounselService counselService;
-
+	
+	/**
+	 * 신청 폼 이동 (* 연결할 때 input param 필요
+	 * */
 	@RequestMapping("/apply")
 	public ModelAndView apply(HttpServletRequest request) {
 		// 보낼 정보 : 상담사객체, 상담유형, 잔여 상담권 개수
@@ -32,7 +41,7 @@ public class CounselController {
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		Counselor counselor = counselService.getCounselor(26L);
-		int counselField = 3;
+		int counselField = 2;
 
 		ModelAndView mv = new ModelAndView();
 		if (counselField == 0 || counselField == 1 || counselField == 2) {
@@ -52,6 +61,9 @@ public class CounselController {
 		return mv;
 	}
 	
+	/**
+	 * 상담 카테고리가 0, 1, 2 일 때 신청
+	 * */
 	@RequestMapping("/submit012")
 	public ModelAndView submit012(HttpServletRequest request, String counselTime, String counselDate, Long counselorCode, int counselCategory, int remainTicket) {
 		ModelAndView mv = new ModelAndView();
@@ -81,6 +93,9 @@ public class CounselController {
 		return mv;
 	}
 	
+	/**
+	 * 상담 카테고리가 3일 때 신청
+	 * */
 	@RequestMapping(value = "/submit3" , method = RequestMethod.POST)
 	public ModelAndView submit3(HttpServletRequest request,  Long counselorCode, int remainTicket, String requestTitle, String requestContent, String requestCategory) {
 		System.out.println("in");
@@ -104,10 +119,40 @@ public class CounselController {
 			return mv;
 		}
 		
-//		counselService.submit012(new Counsel(null, member, new Counselor(counselorCode), counselCategory, 0, dateTime));
+		Requests requests = new Requests();
+		requests.setRequestCategory(requestCategory);
+		requests.setRequestContent(requestContent);
+		requests.setRequestTitle(requestTitle);
+		
+		counselService.submit3(new Counsel(null, member, counselor, 3, 0, LocalDateTime.now()), requests);
 		
 		mv.addObject("message", "상담신청이 완료되었습니다.");
 		
 		return mv;
 	}
+	
+	@RequestMapping("/myCounselList")
+	public ModelAndView myCounselList(HttpServletRequest request, int field, @RequestParam(defaultValue = "0") int nowPage) {
+		ModelAndView mv = new ModelAndView();
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Pageable pageable = PageRequest.of(nowPage, 5, Direction.DESC, "counselCode");
+		
+		
+		if(field==3) {
+			mv.setViewName("/counsel/list3");
+			
+			return mv;
+		}
+		
+		Page<Counsel> pageList = counselService.myList012(pageable, field, member);
+		
+		mv.setViewName("/counsel/list012");
+		mv.addObject("pageList", pageList);
+		mv.addObject("field", field);
+		
+		return mv;
+	}
+	
+	
+	
 }

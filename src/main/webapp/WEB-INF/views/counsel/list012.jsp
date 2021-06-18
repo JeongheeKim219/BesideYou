@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri= "http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -69,23 +70,34 @@
 <script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#sub").click(function () {
-			if($("#date").val()==''){
-				alert("상담 희망일을 선택하세요");
-				return;
-			}
-			var d = $("#date").val();
-			if(confirm(d+" 예약이 맞나요?")){
-				if($("input[name = 'remainTicket'").val() <= 0){
-					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");					
-				}
-				$("#submitForm").submit();
-			}
-		})
+		
 	})
 
 </script>
 
+<style>
+  table {
+    width: 100%;
+    border-top: 1px solid #ffffff;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #ffffff;
+    padding: 10px;
+    text-align: center;
+    height: 50px;
+  }
+  thead tr {
+    background-color: #3680B3;
+    color: #ffffff;
+  }
+  tbody tr:nth-child(2n) {
+    background-color: #F2F2F2;
+  }
+  tbody tr:nth-child(2n+1) {
+    background-color: #E1E1E1;
+  }
+</style>
 </head>
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
 	<main>
@@ -212,7 +224,7 @@
 							data-zanim-trigger="scroll">
 							<div class="overflow-hidden">
 								<h1 class="color-white fs-4 fs-md-5 mb-0 zopacity"
-									data-zanim='{"delay":0}'>상담신청</h1>
+									data-zanim='{"delay":0}'>나의 상담 신청</h1>
 								<!-- 								<div class="nav zopacity" aria-label="breadcrumb" -->
 								<!-- 									role="navigation" data-zanim='{"delay":0.1}'> -->
 								<!-- 									<ol class="breadcrumb fs-1 pl-0 fw-700"> -->
@@ -229,142 +241,81 @@
 			</div>
 			<!--/.container-->
 		</section>
-		<section class="background-11">
+		<section class="background-11" style="padding-top : 50px !important">
 			<div class="container">
-				<div class="row no-gutters">
-					<div class="col-lg-4 py-3 py-lg-0"
-						style="min-height: 400px; background-position: top">
-						<div
-							class="background-holder radius-tl-secondary radius-bl-lg-secondary radius-tr-secondary radius-tr-lg-0"
-							style="background-image:url(${pageContext.request.contextPath}/assets/images/ceo.jpg);">
-						</div>
-						<!--/.background-holder-->
-					</div>
-					<div
-						class="col-lg-8 px-5 py-6 my-lg-0 background-white radius-tr-lg-secondary radius-br-secondary radius-bl-secondary radius-bl-lg-0"
-						style="vertical-align: top;padding-top: 20px !important">
-						<div data-zanim-timeline="{}" data-zanim-trigger="scroll"
-							style="width: 100%; height: 100%;word-break:break-all">
-							<h3 class="text-center fs-2 fs-md-3">상담사 정보</h3>
-							<hr class="short"
-								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
-								data-zanim-trigger="scroll" />
-							<br>
-							
-							
-							<table style="width: 100%">
-								<tr>
-									<td style="width: 180px">
-										<h5 data-zanim='{"delay":0}'>선택한 상담사</h5>
-									</td>
-									<td>
-										<h5 data-zanim='{"delay":0}'>${counselor.member.name}</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5 data-zanim='{"delay":0}'>선택한 상담유형</h5>
-									</td>
-									<td>
-										<h5 data-zanim='{"delay":0}'>
-											<c:choose>
-												<c:when test="${counselField==0 }">
-													대면상담
-												</c:when>
-												<c:when test="${counselField==1 }">
-													전화상담
-												</c:when>
-												<c:when test="${counselField==2 }">
-													채팅상담
-												</c:when>
-											</c:choose>
-										</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5 data-zanim='{"delay":0}'>상담사 학위</h5>
-									</td>
-									<td>
-										<h5 data-zanim='{"delay":0}'>${counselor.degree}</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5 data-zanim='{"delay":0}'>상담센터 주소</h5>
-									</td>
-									<td>
-										<h5 data-zanim='{"delay":0}'>${counselor.counselorAddr}</h5>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2" style="height: 20px">
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<h5 data-zanim='{"delay":0}'>상담사 경력</h5>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<h5 data-zanim='{"delay":0}'>${counselor.career}</h5>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2" style="height: 20px">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5 data-zanim='{"delay":0}' >보유중인 상담권</h5>
-									</td>
-									<td>
-										<h5 data-zanim='{"delay":0}' style="color: red">${remainTicket} 매</h5>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
 				<div class="row mt-6" style="margin-top: 10px !important">
 					<div class="col"></div>
 					<div class="col-12">
 						<div
 							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary" style="margin-top: 20px !important">
-							<h3 class="text-center fs-2 fs-md-3">상담일자 선택</h3>
-							<hr class="short"
-								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
-								data-zanim-trigger="scroll" />
-							<form action="${pageContext.request.contextPath}/counsel/submit012" method="get" id="submitForm">
-								<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
-								<input type="hidden" name="counselCategory" value="${counselField}"/>
-								<input type="hidden" name="remainTicket" value="${remainTicket}"/>
-								<table style="width: 100%; vertical-align: middle;">
-									<tr style="height: 150px;">
-										<td>
-											<h5>상담 희망일</h5>
-										</td>
-										<td><input type="date" name="counselDate" min="${tomorrow}" id="date" ></td>
-										<td>
-											<h5>상담 희망시간</h5>
-										</td>
-										<td><select name="counselTime">
-												<option value="10:00:00">10:00 ~ 10:50</option>
-												<option value="11:00:00">11:00 ~ 11:50</option>
-												<option value="12:00:00">12:00 ~ 12:50</option>
-												<option value="14:00:00">14:00 ~ 14:50</option>
-												<option value="15:00:00">15:00 ~ 15:50</option>
-												<option value="16:00:00">16:00 ~ 16:50</option>
-										</select></td>
-									</tr>
+							<a href="${pageContext.request.contextPath}/counsel/myCounselList?field=-1" class="btn btn-outline-info btn-capsule">전체</a>&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/counsel/myCounselList?field=0" class="btn btn-outline-info btn-capsule">대면</a>&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/counsel/myCounselList?field=1" class="btn btn-outline-info btn-capsule">전화</a>&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/counsel/myCounselList?field=2" class="btn btn-outline-info btn-capsule">채팅</a>
+							<br><br>
+							<table>
+								<thead>
 									<tr>
-										<td colspan="4" style="text-align: right;">
-											<input id="sub" type="button" class="btn btn-success" value="상담 신청"/>
-										</td>
+										<th>상담 유형</th>
+										<th>상담사</th>
+										<th>신청일</th>
+										<th>예약일시</th>
+										<th>진행 상황</th>
 									</tr>
-								</table>
-							</form>
+								</thead>
+								<tbody>
+									<c:forEach items="${pageList.content}" var="counsel" varStatus="status">
+										<tr>
+											<c:choose>
+												<c:when test="${counsel.counselCategory==0}">
+													<td>대면</td>
+												</c:when>
+												<c:when test="${counsel.counselCategory==1}">
+													<td>전화</td>
+												</c:when>
+												<c:when test="${counsel.counselCategory==2}">
+													<td>채팅</td>
+												</c:when>
+											</c:choose>
+											<td>${counsel.counselor.member.name}</td>
+											<td>${fn:substring(counsel.counselReqDate,0,10)}</td>
+											<td>${fn:substring(counsel.counselDate,0,10)} ${fn:substring(counsel.counselDate,11,16)}</td>
+											<c:choose>
+												<c:when test="${counsel.counselState==0}">
+													<td><button class="btn btn-warning btn-xs" disabled="disabled">승인대기</button></td>
+												</c:when>
+												<c:when test="${counsel.counselState==1}">
+													<td><button class="btn btn-danger btn-xs" disabled="disabled">반려</button></td>
+												</c:when>
+												<c:when test="${counsel.counselState==2}">
+													<td><button class="btn btn-success btn-xs" disabled="disabled">승인</button></td>
+												</c:when>
+												<c:when test="${counsel.counselState==3}">
+													<td><button class="btn btn-info btn-xs" disabled="disabled">완료</button></td>
+												</c:when>
+											</c:choose>
+										</tr>		
+									</c:forEach>									
+								</tbody>
+							</table>
+							<nav class="font-1 mt-5" aria-label="Page navigation example">
+								<ul class="pagination pagination justify-content-center">
+									<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
+										<c:choose>
+											<c:when test="${pageList.number==i}">
+												<li class="page-item active">
+													<a class="page-link" href="${pageContext.request.contextPath}/counsel/myCounselList?nowPage=${i}&field=${field}">${i+1}</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item">
+													<a class="page-link" href="${pageContext.request.contextPath}/counsel/myCounselList?nowPage=${i}&field=${field}">${i+1}</a>
+												</li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</ul>
+							</nav>
 						</div>
 					</div>
 				</div>

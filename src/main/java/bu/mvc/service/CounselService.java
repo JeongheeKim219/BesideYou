@@ -1,7 +1,11 @@
 package bu.mvc.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Member;
 import bu.mvc.domain.Requests;
 
 public interface CounselService {
@@ -25,6 +29,13 @@ public interface CounselService {
 	 * 사용자의 상담 신청(타입 - 3)
 	 * */
 	void submit3(Counsel counsel, Requests requests);
+	
+	/**
+	 * 사용자의 상담 신청 리스트 (타입 - -1,0,1,2)
+	 * */
+	Page<Counsel> myList012(Pageable pageable, int field, Member member);
+	
+	
 	
 	
 	/**
