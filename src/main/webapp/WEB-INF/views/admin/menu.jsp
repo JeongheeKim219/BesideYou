@@ -54,10 +54,10 @@
 				</a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/admin/memberSummary"> <i
-								class="metismenu-icon"></i> 회원통계
+								class="metismenu-icon"></i> 전체회원통계
 						</a></li>
 						<li><a href="${pageContext.request.contextPath}/admin/memberView"> <i
-								class="metismenu-icon"> </i> 회원목록
+								class="metismenu-icon"> </i> 일반회원목록
 						</a></li>
 						<li><a href="elements-icons.html"> <i
 								class="metismenu-icon"> </i>Icons
@@ -79,8 +79,7 @@
 						</a></li>
 					</ul></li>
 				<li><a href="#"> <i class="metismenu-icon pe-7s-car"></i>
-						Components <i
-						class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+						매출관리<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul>
 						<li><a href="components-tabs.html"> <i
@@ -117,10 +116,10 @@
 								class="metismenu-icon"> </i>Maps
 						</a></li>
 					</ul></li>
-				<li><a href="tables-regular.html"> <i
-						class="metismenu-icon pe-7s-display2"></i> Tables
+				<li><a href="${pageContext.request.contextPath}/admin/contactView"> <i
+						class="metismenu-icon pe-7s-display2"></i> 문의관리
 				</a></li>
-				<li class="app-sidebar__heading">Widgets</li>
+				<li class="app-sidebar__heading"></li>
 				<li><a href="dashboard-boxes.html"> <i
 						class="metismenu-icon pe-7s-display2"></i> Dashboard Boxes
 				</a></li>

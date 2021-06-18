@@ -212,6 +212,7 @@
 
 								<!-- 일반회원이거나 관리자인 경우. 두개 이상의 role을 비교할 때 hasAnyRole() -->
 								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+								
 								</sec:authorize>
 								<li>
 									<p>
@@ -347,7 +348,7 @@
 							</form>
 							
 							<form id="deleteForm"
-								action="${pageContext.request.contextPath}/member/memberdelete"
+								action="${pageContext.request.contextPath}/member/memberDelete"
 								method="post" style="display: none;">
 
 								<%-- <input type="hidden" name="memberCode"
@@ -356,7 +357,8 @@
 								<input type="hidden" name="memberCode"
 									value='<sec:authentication property="principal.memberCode"/>' />
 								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden" name="password" />
+									value="${_csrf.token}" /> 
+									<input type="hidden" name="password" />
 							</form>
 						</sec:authorize>
 						<!--  <form id="deleteForm"

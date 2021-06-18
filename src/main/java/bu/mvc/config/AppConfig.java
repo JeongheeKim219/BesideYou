@@ -15,7 +15,7 @@ public class AppConfig {
 	 * */
 	//@Bean
 	//public CommonsMultipartResolver multipartResolver() {
-	//	return new CommonsMultipartResolver();
+		//return new CommonsMultipartResolver();
 	//}
 	
 	/**

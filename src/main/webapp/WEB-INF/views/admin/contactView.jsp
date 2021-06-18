@@ -132,7 +132,11 @@
 															<td>기타문의</td>
 														</c:otherwise>
 													</c:choose>
+
 													<td><a href="${pageContext.request.contextPath}/contact/read/${contact.contactCode}">${contact.contactTitle}</a></td>
+
+													<td><a href="${pageContext.request.contextPath}/admin/viewContactDetail/${contact.contactCode}">${contact.contactTitle}</a></td>
+
 													<td>${contact.member.id}</td>
 													<c:choose>
 														<c:when test="${contact.contactState == 0}">
