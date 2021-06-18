@@ -40,7 +40,9 @@ public class RefundServiceImpl implements RefundService {
 	@Override
 	public int selectByTicketCode(Long ticketCode) {
 		Refund refund = refundRepository.findByTicketTicketCode(ticketCode);
-		if(refund==null) throw new RuntimeException("상담권 정보에 해당하는 환불 신청 내역이 존재하지 않습니다.");
+		if(refund==null) {
+			return 3;
+		}
 		return refund.getRefundState();
 	}
 

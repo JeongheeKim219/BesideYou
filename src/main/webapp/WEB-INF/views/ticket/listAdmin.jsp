@@ -133,7 +133,6 @@
                 <div>
                     <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
-                    <!--/.background-holder-->
                     <div class="container">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
@@ -150,9 +149,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--/.row-->
                 </div>
-                <!--/.container-->
             </section>
             <section class="background-11">
                 <div class="container">
@@ -205,7 +202,7 @@
 							<ul class="pagination pagination justify-content-center">
 								<c:choose>
 									<c:when test="${requestScope.tkList.hasPrevious()==true}">
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/list?nowPage=${Previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/list?nowPage=${previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"><span aria-hidden="true">«</span></a></li>

@@ -43,21 +43,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-	function count(type) {
-		const resultElement = document.getElementById('result'); // 결과를 표시할 element
-		let number = resultElement.innerText; // 현재 화면에 표시된 값
-	
-		// 더하기/빼기
-		if (type === 'plus') {
-			number = parseInt(number) + 1;
-		} else if (type === 'minus') {
-			if (number > 0) number = parseInt(number) - 1;
-		}
-	
-		// 결과 출력
-		resultElement.innerText = number;
-	}
-
 	$(function(){
 		// 결제 API 이동
 	   $("#card").click(function(){
@@ -88,38 +73,6 @@
 			   $("#payment").attr("action", "${pageContext.request.contextPath}/payment/paypal");
 			   $("#payment").submit();
 		   }
-	   })
-	   
-	   // 할인가 산출
-	   $("#plus, #minus").click(function(){
-		   
-		   const resultElement = document.getElementById('result');  //수량이 표시되는 Element
-		   let number = resultElement.innerText;  //그 Element의 text 값
-		   let num = parseInt(number);  //그 text값을 정수형으로 변환
-		   let total = 30000 * num;  //원가 계산
-		   $("#op").html(total+'&nbsp;원');  //계산된 원가를 #op Element에 html 형식으로 입력
-		   
-		   // 수량에 따른 할인율 (2~5개:5% / 6~10개:10% / 11개 이상~:20%)
-		   let dc;
-		   if(num >= 2 && num <= 5) {
-			   dc = total * 0.05;
-			   $("#dc").html('- '+dc+'&nbsp;원');
-		   }
-		   else if(num > 5 && num <= 10) {
-			   dc = total * 0.1;
-			   $("#dc").html('- '+dc+'&nbsp;원');
-		   }
-		   else if(num > 10) {
-			   dc = total * 0.2;
-			   $("#dc").html('- '+dc+'&nbsp;원');
-		   }
-		   else {
-			   dc = 0;
-			   $("#dc").html(dc+'&nbsp;원');
-		   }
-		   let price = total-dc;
-		   $("#price").html('<h5>'+price+'&nbsp;원</h5>');
-		   $("input[name=price]").val(price);
 	   })
 	   
 	})
@@ -231,29 +184,27 @@
                         <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0 radius-tr-lg-secondary">
                             <div class="d-flex align-items-center h-100">
                                 <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
+                                    <div class="overflow-hidden" align="right">
                                         <c:choose>
-                                        	<c:when test="0"><h4 data-zanim='{"delay":0}'>대면상담</h4></c:when>
-                                        	<c:when test="1"><h4 data-zanim='{"delay":0}'>전화상담</h4></c:when>
-                                        	<c:when test="2"><h4 data-zanim='{"delay":0}'>채팅상담</h4></c:when>
-                                        	<c:when test="3"><h4 data-zanim='{"delay":0}'>텍스트상담</h4></c:when>
+                                        	<c:when test="${ticket.ticketField==0}"><h3 data-zanim='{"delay":0}'>대면상담권</h3></c:when>
+                                        	<c:when test="${ticket.ticketField==1}"><h3 data-zanim='{"delay":0}'>전화상담권</h3></c:when>
+                                        	<c:when test="${ticket.ticketField==2}"><h3 data-zanim='{"delay":0}'>채팅상담권</h3></c:when>
+                                        	<c:when test="${ticket.ticketField==3}"><h3 data-zanim='{"delay":0}'>간편텍스트상담권</h3></c:when>
                                         </c:choose>
                                     </div>
+                                    <hr>
                                     <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>Ticket Amount</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>Original Price</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">Discount</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>Purchase Price</h5></div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.1}'><h5>담당 상담사</h5></div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>티켓 구매일</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>최초 구매량</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.4}' style="color:red">현재 잔여량</div>
                                     </div>
                                     
-                                    <div class="overflow-hidden" align="right" style="margin-right: 20px">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'>
-                                    	<input type='button' id="plus" onclick='count("plus")' value='+'/>
-                                    	<span id="result" style="padding:0px 10px 0px 10px">0</span>
-                                    	<input type='button' id="minus" onclick='count("minus")' value='-'/></div>
-	                                    <div id="op" class="mt-3" data-zanim='{"delay":0.2}'>0&nbsp;원</div>
-	                                    <div id="dc" class="mt-3" data-zanim='{"delay":0.3}' style="color:red">0&nbsp;원</div>
-	                                    <div id="price" class="mt-3" data-zanim='{"delay":0.4}'><h5>0&nbsp;원</h5></div>
+                                    <div class="overflow-hidden" align="right">
+                                    	<div class="mt-3" data-zanim='{"delay":0.1}'><h5>${counselor.member.name}</h5></div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>${ticket.ticketDate}</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>${ticket.ticketAmount}</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.4}' style="color:red">${ticket.ticketRemain}</div>
                                     </div>
                                     <br>
                                     <div class="overflow-hidden">
@@ -266,10 +217,25 @@
 							            		<input type="hidden" name="phone" value="111"/>
 							            		<input type="hidden" name="email" value="aa@amail.com"/>
 							            		<input type="hidden" name="price" value=""/>
-            		
-		                                        <input type="button" id="card" value="카드결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="phone" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="paypal" value="PayPal" class="btn btn-info mr-3 mb-3"/>
+            									<c:choose>
+            										<c:when test="${refundState==0}">
+            											<input type="button" id="ref" value="환불 처리 진행중" class="btn btn-outline-danger" style="width:450px; font-size: 15px" disabled="disabled"/>
+            										</c:when>
+            										<c:when test="${refundState==1}">
+            											<input type="button" id="notref" value="환불 불가" class="btn btn-outline-danger" style="width:450px; font-size: 15px" disabled="disabled"/>
+            										</c:when>
+            										<c:when test="${refundState==2}">
+            											<input type="button" id="refdone" value="환불 처리 완료" class="btn btn-outline-info" style="width:450px; font-size: 15px" disabled="disabled"/>
+            										</c:when>
+            										<c:when test="${ticket.ticketRemain<=0}">
+            											<input type="button" id="tkempty" value="상담권 소진" class="btn btn-outline-danger" style="width:450px; font-size: 15px" disabled="disabled"/>
+            										</c:when>
+            										<c:otherwise>
+            											<a href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}"><input type="button" id="use" value="사용하기" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
+		                                        		<a href="${pageContext.request.contextPath}/refund/refundApp/${ticket.ticketCode}"><input type="button" id="refund" value="환불신청" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
+		                                        		<a href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
+            										</c:otherwise>
+            									</c:choose>
 	                                        </form>
                                         </div>
                                     </div>

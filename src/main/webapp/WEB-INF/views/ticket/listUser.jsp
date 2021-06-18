@@ -169,7 +169,7 @@
                             <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" 
                             	src="${pageContext.request.contextPath}/assets/images/9.jpg" alt="${ticket.counselor.picture}" />
                                 <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><%-- <a href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}"> --%>
+                                    <div class="overflow-hidden"><a href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}">
                                             <c:choose>
                                             	<c:when test="${ticket.ticketField==0}">
                                            			<h4 data-zanim='{"delay":0}'>대면 상담권</h4>
@@ -184,7 +184,7 @@
                                             		<h4 data-zanim='{"delay":0}'>텍스트 상담권</h4>
                                             	</c:when>
                                             </c:choose>
-                                        <!-- </a> --></div>
+                                        </a></div>
                                     <div class="overflow-hidden">
                                         <p class="color-7" data-zanim='{"delay":0.1}'><span style="font-size:15pt; font-weight: bold;">${ticket.counselor.member.alias}</span>  상담사</p>
                                     </div>
@@ -225,7 +225,7 @@
 							<ul class="pagination pagination justify-content-center">
 								<c:choose>
 									<c:when test="${requestScope.tkList.hasPrevious()==true}">
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${Previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/ticket/mylist?nowPage=${previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"><span aria-hidden="true">«</span></a></li>
