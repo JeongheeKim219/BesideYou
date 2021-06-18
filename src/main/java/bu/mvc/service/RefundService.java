@@ -1,7 +1,5 @@
 package bu.mvc.service;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,7 +16,7 @@ public interface RefundService {
 	 * 회원 id로 환불 신청 내역 검색하기
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 * */
-	List<Refund> searchBy(String id, Pageable pageable);
+	Page<Refund> searchById(String id, Pageable pageable);
 	
 	/**
 	 * 환불 신청 내역 상세보기

@@ -78,7 +78,7 @@ public class TicketController {
 		int refundState = refundService.selectByTicketCode(code);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("ticket/detail");
+		mv.setViewName("ticket/ticketDetail");
 		mv.addObject("counselor", counselor);
 		mv.addObject("ticket", ticket);
 		mv.addObject("refundState", refundState);

@@ -1,7 +1,5 @@
 package bu.mvc.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -28,7 +26,7 @@ public class RefundServiceImpl implements RefundService {
 	}
 
 	@Override
-	public List<Refund> searchBy(String id, Pageable pageable) {
+	public Page<Refund> searchById(String id, Pageable pageable) {
 		return refundRepository.findByTicketMemberId(id, pageable);
 	}
 

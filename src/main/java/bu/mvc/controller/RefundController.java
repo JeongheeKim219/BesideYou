@@ -1,7 +1,5 @@
 package bu.mvc.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +36,7 @@ public class RefundController {
 	 * */
 	@RequestMapping("/list")
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
+		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "refundCode");
 		Page<Refund> rfList = refundService.selectAll(pageable);
 		return new ModelAndView("refund/listAdmin", "rfList", rfList);
 	}
@@ -49,10 +47,17 @@ public class RefundController {
 	 *  - 검색 결과 페이징 처리
 	 * */
 	@RequestMapping("/mylist")
-	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
-		List<Refund> myList = refundService.searchBy(id, pageable);
-		return new ModelAndView("refund/listUser", "myList", myList);
+	public ModelAndView myList(HttpServletRequest request, @RequestParam(defaultValue = "0") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "refundCode");
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Page<Refund> rfList = refundService.searchById(member.getId(), pageable);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("refund/listUser");
+		mv.addObject("rfList", rfList);
+		mv.addObject("previous", pageable.previousOrFirst().getPageNumber());
+		mv.addObject("next", pageable.next().getPageNumber());
+		return mv;
 	}
 	
 	/**
@@ -96,7 +101,7 @@ public class RefundController {
 	@RequestMapping("/read")
 	public ModelAndView refundDetail(Long refundCode) {
 		Refund refund = refundService.selectByCode(refundCode);
-		return new ModelAndView("refund/detail", "refund", refund);
+		return new ModelAndView("refund/refundDetail", "refund", refund);
 	}
 	
 	/**
