@@ -49,6 +49,10 @@ public class CounselorController {
 	     for(String tagName : tagNames) {
             System.out.println(tagName);
 	     }
+	     String spcNames [] = request.getParameterValues("specialityName");
+	     for(String spcName : spcNames) {
+            System.out.println(spcName);
+	     }
 		
 		Member me =(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
@@ -87,7 +91,7 @@ public class CounselorController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		counselorService.joinCounselor(counselor , tagNames, prices);
+		counselorService.joinCounselor(counselor , tagNames, prices, spcNames);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("counselor/joinSuccess");
 		return mv;

@@ -236,7 +236,9 @@
 								</sec:authorize>  
 								
 								
-								
+								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+								   상담사입니다...
+								</sec:authorize>
 								
 								<form id="logoutForm"
 							action="${pageContext.request.contextPath}/member/logout"

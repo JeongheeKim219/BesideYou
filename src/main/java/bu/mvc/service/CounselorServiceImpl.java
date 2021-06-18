@@ -9,9 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Price;
+import bu.mvc.domain.Speciality;
 import bu.mvc.domain.Tag;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.PriceRepository;
+import bu.mvc.respsitory.SpecialityRepository;
 import bu.mvc.respsitory.TagRepository;
 
 @Service
@@ -27,12 +29,24 @@ public class CounselorServiceImpl implements CounselorService {
 	@Autowired
 	private PriceRepository priceRap;
 	
+	@Autowired
+	private SpecialityRepository specialityRap;
+	
 	@Override
-	public void joinCounselor(Counselor counselor , String [] tagNams, int [] prices) {
+	public void joinCounselor(Counselor counselor , String [] tagNams, int [] prices,String [] spcNames) {
 		counselorRep.save(counselor);
 
 		//TAG를 등록하기 위해서 상담의 코드를 가져오고 전달된 tagName만큼 Tag객체를 생성해서 한번에 insert한다.
 		Counselor co = new Counselor(counselor.getCounselorCode());//상담사의 code
+		
+		List<Speciality> spcList = new ArrayList<Speciality>();
+		for(String spcName: spcNames) {
+			Speciality spc = new Speciality(null, spcName, co);
+			spcList.add(spc);
+			
+		}
+		specialityRap.saveAll(spcList);
+		
 		
 		List<Tag> tagList = new ArrayList<Tag>();
 		for(String tagName: tagNams) {

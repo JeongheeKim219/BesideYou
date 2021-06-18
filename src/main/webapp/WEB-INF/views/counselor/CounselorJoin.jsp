@@ -194,18 +194,33 @@
 												<input type="hidden" name = "longi">
 												<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목" readonly="readonly">
                                         </div>
+                                     <div class="col-12 mt-3">
+										<h6>전문분야</h6>
+										1.<input type="checkbox" name="specialityName" value="우울">우울
+										2.<input type="checkbox" name="specialityName" value="불안">불안
+										3.<input type="checkbox" name="specialityName" value="섭식장애">섭식장애
+										4.<input type="checkbox" name="specialityName" value="청소년">청소년
+										5.<input type="checkbox" name="specialityName" value="강박">강박
+										6.<input type="checkbox" name="specialityName" value="스트레스">스트레스
+										7.<input type="checkbox" name="specialityName" value="직장">직장
+										8.<input type="checkbox" name="specialityName" value="진로">진로
+										9.<input type="checkbox" name="specialityName" value="중독">중독
+										9.<input type="checkbox" name="specialityName" value="감정조절">감정조절
+
+										
+									</div>
 
 									<div class="col-12 mt-3">
-										<h6>태그선택</h6>
-										1.<input type="checkbox" name="tagName" value="우울">우울
-										2.<input type="checkbox" name="tagName" value="불안">불안
-										3.<input type="checkbox" name="tagName" value="분노">분노
-										4.<input type="checkbox" name="tagName" value="직장">직장
-										5.<input type="checkbox" name="tagName" value="가족">가족
-										6.<input type="checkbox" name="tagName" value="중독">중독
-										7.<input type="checkbox" name="tagName" value="감정조절">감정조절
+										<h6>상담사 특징,성격 태그선택</h6>
+										1.<input type="checkbox" name="tagName" value="열정">열정
+										2.<input type="checkbox" name="tagName" value="상냥함">상냥함
+										3.<input type="checkbox" name="tagName" value="공감">공감
+										4.<input type="checkbox" name="tagName" value="긍정에너지">긍정에너지
+										5.<input type="checkbox" name="tagName" value="경험">경험
+										6.<input type="checkbox" name="tagName" value="이해">이해
+										7.<input type="checkbox" name="tagName" value="해외생활">해외생활
 										8.<input type="checkbox" name="tagName" value="친구">친구
-										9.<input type="checkbox" name="tagName" value="스트레스">스트레스
+										9.<input type="checkbox" name="tagName" value="따듯함">따듯함
 
 										
 									</div>
