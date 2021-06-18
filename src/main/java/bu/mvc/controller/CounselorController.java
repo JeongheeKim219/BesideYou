@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.Tag;
 import bu.mvc.service.CounselorService;
+import bu.mvc.service.TagService;
 
 @Controller
 @RequestMapping("/counselor")
@@ -25,6 +28,7 @@ public class CounselorController {
 	
 	@Autowired
 	private CounselorService counselorService;
+	
 	
 	/**
 	 * 신청 폼
@@ -38,9 +42,17 @@ public class CounselorController {
 	 * 상담사 신청하기
 	 * */
 	@RequestMapping("/join")
-	public ModelAndView join(Counselor counselor, MultipartFile file, HttpSession session, String lat, String longi) {
+	public ModelAndView join( Counselor counselor, MultipartFile file, HttpSession session, String lat, String longi, 
+			 HttpServletRequest request) {
+		
+		String tagNames [] = request.getParameterValues("tagName");
+	     for(String tagName : tagNames) {
+            System.out.println(tagName);
+	     }
+		
 		Member me =(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("here");
+		
+		//System.out.println("here");
 		
 		double latitude = Double.parseDouble(lat);
 		double longitude = Double.parseDouble(longi);
@@ -60,10 +72,15 @@ public class CounselorController {
 			
 			file.transferTo(new File(path+"/"+fileName));
 		
-			
+			counselor.setCerificate(fileName);
 			counselor.setPicture(fileName);
-			counselor.setMember(new Member(me.getMemberCode()));			
-			counselorService.joinCounselor(counselor);
+			counselor.setMember(new Member(me.getMemberCode()));	
+			
+			
+			counselorService.joinCounselor(counselor , tagNames);
+			
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

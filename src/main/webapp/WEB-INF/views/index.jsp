@@ -185,7 +185,7 @@
 							<li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
 						</ul>
 						
-						<ul class="navbar-nav ml0" style="font-align : right; ">
+						<ul class="navbar-nav ml-0" style="font-align : right; ">
 							<!-- 인증 안됐으면 -->
 							
 							<sec:authorize access="isAnonymous()">

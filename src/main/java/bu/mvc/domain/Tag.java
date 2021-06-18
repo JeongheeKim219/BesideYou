@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +29,7 @@ public class Tag {
 	@Column(name="tag_name")
 	private String tagName;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "counselor_code")
 	private Counselor counselorCode;
 }

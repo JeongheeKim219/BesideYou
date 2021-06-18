@@ -26,7 +26,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+//@ToString
 public class Member {
 	
 	@Id
