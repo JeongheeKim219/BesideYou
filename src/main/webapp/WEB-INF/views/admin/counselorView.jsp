@@ -167,7 +167,7 @@
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                                 <h6 tabindex="-1" class="dropdown-header">자격증 인증</h6>
                                                 <button type="button" tabindex="1" class="dropdown-item" id="approval" value="${newCounselor.member.memberCode}">승인</button>
-                                                <button type="button" tabindex="2" class="dropdown-item" id="denial">반려</button>                                                
+                                                <button type="button" tabindex="2" class="dropdown-item" id="denial" value="${newCounselor.member.memberCode}">반려</button>                                                
                                             </div>
                                         </div>
 									</td>

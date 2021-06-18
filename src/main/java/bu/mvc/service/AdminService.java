@@ -412,6 +412,14 @@ public class AdminService {
 		authorityRep.save(authority);
 	}
 	
+	/**
+	 * 18. 회원 전체 조회(일반 + 상담사)
+	 */
+
+	public Page<Member> selectAll(Pageable pageable){
+		return adminRep.findAll(pageable);
+	}
+
 
 }
 

@@ -91,9 +91,8 @@ public class AdminController {
 	public String select(Model model, @RequestParam(defaultValue = "0") int currentPage) {
 
 		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "memberCode");
-		Page<Member> pageList = adminService.selectAllByType(0, pageable);
+		Page<Member> pageList = adminService.selectAll(pageable);
 		model.addAttribute("pageList", pageList);
-
 		return "admin/memberView";
 	}
 

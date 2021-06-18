@@ -68,12 +68,15 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 	public List<Map<String, Object>> selectCounselorByRanking(@Param("date") LocalDate date, @Param("rank")int rank);
 	
 	
-	/**
+	/** 
 	 * 6. 회원 타입별 전체 조회
 	 */
 	List<Member> findByMemberType(int type);
 
 	
-	
+	/**
+	 * 7. 회원 전체조회
+	 */
+	Page<Member> findAll(Pageable pageable);
 	
 } 
