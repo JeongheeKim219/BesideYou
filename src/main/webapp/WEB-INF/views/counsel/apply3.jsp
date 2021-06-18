@@ -86,6 +86,9 @@
 			}
 			
 			if (confirm("등록하시겠습니까?")) {
+				if($("input[name = 'remainTicket'").val() <= 0){
+					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");					
+				}
 				$("#submitForm").submit();
 			}
 		})
@@ -326,6 +329,11 @@
 											매</h5>
 									</td>
 								</tr>
+								<tr>
+									<td colspan="2">
+										<h6 data-zanim='{"delay":0}' style="color: red">※상담 답변 이후에는 취소가 불가능합니다.</h6>
+									</td>
+								</tr>
 							</table>
 						</div>
 					</div>
@@ -341,18 +349,20 @@
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
 							<form action="${pageContext.request.contextPath}/counsel/submit3"
-								method="get" id="submitForm">
+								method="post" id="submitForm">
 								<input type="hidden" name="counselorCode"
 									value="${counselor.counselorCode}" /> <input type="hidden"
-									name="counselCategory" value="${counselField}" /> <input
+									name="counselCategory" value="${counselField}" /> 
+								<input
 									type="hidden" name="remainTicket" value="${remainTicket}" />
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 								<table style="width: 100%; vertical-align: middle;">
 									<tr style="height: 100px;">
 										<td style="width: 130px">
 											<h5>고민 유형</h5>
 										</td>
-										<td style="width: 250px"><select name="requestCategory"
-											id = "requestCategory" style="width: 200px">
+										<td style="width: 250px">
+											<select name="requestCategory" id = "requestCategory" style="width: 200px">
 												<option value="none">----선택----</option>
 												<option value="우울">우울</option>
 												<option value="불안">불안</option>
@@ -383,12 +393,14 @@
 												<option value="성소수자">성소수자</option>
 												<option value="감정조절">감정조절</option>
 												<option value="기타">기타</option>
-										</select></td>
+											</select>
+										</td>
 										<td>
 											<h5>상담글 제목</h5>
 										</td>
-										<td style="width: 520px; text-align: right;"><input
-											type="text" name="requestTitle" id="requestTitle" style="width: 500px">
+										<td style="width: 520px; text-align: right;">
+											<input
+												type="text" name="requestTitle" id="requestTitle" style="width: 500px">
 										</td>
 									</tr>
 									<tr>

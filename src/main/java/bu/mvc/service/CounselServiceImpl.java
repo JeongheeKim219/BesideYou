@@ -46,15 +46,18 @@ public class CounselServiceImpl implements CounselService {
 
 	@Override
 	public void submit012(Counsel counsel) {
-		Ticket ticket = ticketRepository.getRemainTicket(counsel.getMember().getMemberCode(), counsel.getCounselor().getCounselorCode(), counsel.getCounselCategory()).get(0);
-		ticket.setTicketRemain(ticket.getTicketRemain()-1);
-		
-		TicketLines ticketLine = new TicketLines();
-		ticketLine.setTicket(ticket);
-		
-		ticketLinesRepository.save(ticketLine);
-		
-		counselRepository.save(counsel);
+		List<Ticket> list = ticketRepository.getRemainTicket(counsel.getMember().getMemberCode(), counsel.getCounselor().getCounselorCode(), counsel.getCounselCategory());
+		if(list!=null) {
+			Ticket ticket = list.get(0);
+			ticket.setTicketRemain(ticket.getTicketRemain()-1);
+			
+			TicketLines ticketLine = new TicketLines();
+			ticketLine.setTicket(ticket);
+			
+			ticketLinesRepository.save(ticketLine);
+			
+			counselRepository.save(counsel);
+		}
 	}
 
 }

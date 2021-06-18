@@ -76,6 +76,9 @@
 			}
 			var d = $("#date").val();
 			if(confirm(d+" 예약이 맞나요?")){
+				if($("input[name = 'remainTicket'").val() <= 0){
+					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");					
+				}
 				$("#submitForm").submit();
 			}
 		})

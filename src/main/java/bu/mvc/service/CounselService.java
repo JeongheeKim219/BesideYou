@@ -2,6 +2,7 @@ package bu.mvc.service;
 
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Requests;
 
 public interface CounselService {
 	
@@ -23,6 +24,8 @@ public interface CounselService {
 	/**
 	 * 사용자의 상담 신청(타입 - 3)
 	 * */
+	void submit3(Counsel counsel, Requests requests);
+	
 	
 	/**
 	 * 상담사의 상담 승인 (타입 - 0,1,2)

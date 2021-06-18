@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Counsel;
@@ -66,8 +67,6 @@ public class CounselController {
 		System.out.println("memberCode : " +member.getMemberCode());
 		System.out.println("remainTicket : " + remainTicket);
 		
-		counselService.submit012(new Counsel(null, member, new Counselor(counselorCode), counselCategory, 0, dateTime));
-		
 		if(remainTicket<=0) {
 			mv.setViewName("/counsel/result");
 			mv.addObject("counselor", counselor);
@@ -75,6 +74,37 @@ public class CounselController {
 			mv.addObject("message", "결제화면 연결 예정");
 			return mv;
 		}
+		
+		counselService.submit012(new Counsel(null, member, new Counselor(counselorCode), counselCategory, 0, dateTime));
+		mv.addObject("message", "상담신청이 완료되었습니다.");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/submit3" , method = RequestMethod.POST)
+	public ModelAndView submit3(HttpServletRequest request,  Long counselorCode, int remainTicket, String requestTitle, String requestContent, String requestCategory) {
+		System.out.println("in");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/counsel/result");
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Counselor counselor = counselService.getCounselor(counselorCode);
+		
+		//데이터 확인
+		System.out.println("counselorCode : "+ counselorCode);
+		System.out.println("requestCategory : "+ requestCategory);
+		System.out.println("memberCode : " +member.getMemberCode());
+		System.out.println("remainTicket : " + remainTicket);
+		
+		
+		if(remainTicket<=0) {
+			mv.setViewName("/counsel/result");
+			mv.addObject("counselor", counselor);
+			mv.addObject("counselCategory", 3);
+			mv.addObject("message", "결제화면 연결 예정");
+			return mv;
+		}
+		
+//		counselService.submit012(new Counsel(null, member, new Counselor(counselorCode), counselCategory, 0, dateTime));
 		
 		mv.addObject("message", "상담신청이 완료되었습니다.");
 		
