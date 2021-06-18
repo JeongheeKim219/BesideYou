@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 	<head>
         <meta charset="utf-8">
@@ -242,9 +243,11 @@
 </table>
 <hr>
 
-
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div align=right>
-<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/notice/write">글쓰기</a>&gt;</span></div>
+	<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/notice/write">글쓰기</a>&gt;</span>
+</div>
+</sec:authorize>
 
 
 

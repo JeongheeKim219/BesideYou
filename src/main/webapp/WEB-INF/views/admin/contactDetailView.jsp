@@ -30,6 +30,21 @@
     -->
 <link href="${pageContext.request.contextPath}/adminCss/main.css"
 	rel="stylesheet">
+	
+	<script type="text/javascript">
+	function checkValid(){
+		var f = window.document.writeForm;
+		
+		if ( f.contactReplyContent.value == "") {
+		    alert( "내용을 입력해 주세요." );
+		    f.contactReplyContent.focus();
+			return false;
+	    }
+		return true;
+		
+		
+	}
+</script>
 
 </head>
 <body>
@@ -150,7 +165,7 @@
 						<div class="card-body">
 							<h5 class="card-title"># ${contact.contactCode}에 대한 답변</h5>
 							<%-- <sec:authorize access="isAuthenticated()"> --%>
-							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply" method="post">
+							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply" method="post" onsubmit="return checkValid()" name="writeForm">
 								<div class="position-relative row form-group">
 									<div class="col-sm-10">
 										<textarea  name="contactReplyContent" class="form-control" rows="10"></textarea>

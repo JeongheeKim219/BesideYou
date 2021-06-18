@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 	<head>
         <meta charset="utf-8">
@@ -279,7 +280,6 @@
     </c:choose>
 </table>
 <hr>
-${pageList.hasPrevious()}  /  ${pageList.hasNext()}
 <div style="text-align: center">
 <!-- 페이징 처리 -->
  <c:forEach begin="0" end="${pageList.totalPages-1}" var="i"> <!-- pageList.getTotalPages()호출 (0부터 시작해서 -1) -->
@@ -296,7 +296,8 @@ ${pageList.hasPrevious()}  /  ${pageList.hasNext()}
 </div>
 
 <div align=right>
-<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/write">글쓰기</a>&gt;</span></div>
+	<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/write">글쓰기</a>&gt;</span>
+</div>
 
 
 

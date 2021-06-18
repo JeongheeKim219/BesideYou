@@ -153,6 +153,26 @@
 <link rel="stylesheet" href="css/style.css">
 
 
+<script type="text/javascript">
+	function checkValid(){
+		var f = window.document.writeForm;
+		
+		if ( f.contactTitle.value == "") {
+		    alert( "제목을 입력해 주세요." );
+		    f.contactTitle.focus();
+			return false;
+	    }
+		if ( f.contactContent.value == "") {
+		    alert( "내용을 입력해 주세요." );
+		    f.contactContent.focus();
+			return false;
+	    }
+		return true;
+		
+		
+	}
+</script>
+
 
 </HEAD>
 <BODY>
@@ -165,7 +185,7 @@
 <div class="col-12 mt-4">
        <div class="background-white p-5 h-100 radius-secondary">
            <h5>문의글 등록</h5>
-           <form  id="writeForm" method="post" action="${pageContext.request.contextPath}/contact/insert">
+           <form name="writeForm" id="writeForm" method="post" action="${pageContext.request.contextPath}/contact/insert" onsubmit="return checkValid()">
            	<input type="hidden" name="member.memberCode" value="<sec:authentication property="principal.memberCode" />" />
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                <div class="row">

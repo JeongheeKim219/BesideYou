@@ -19,9 +19,6 @@ public class ContactServiceImpl implements ContactService {
 	@Autowired
 	private ContactRepository contactRepository;
 	
-	@Autowired
-	private MemberRepository memberRepository;
-	
 
 	/**
 	 * 전체 문의글 가져오기
@@ -29,9 +26,7 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public Page<Contact> selectAll(Pageable pageable) {
 		
-		if(memberRepository.findAll() == null) {
-			throw new RuntimeException("로그인후 이용해주세요.");
-		}
+		
 		
 		return contactRepository.findAll(pageable);
 	}
