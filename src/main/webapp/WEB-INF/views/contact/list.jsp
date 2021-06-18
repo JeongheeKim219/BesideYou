@@ -209,7 +209,7 @@
             <p align="center"><font color="white"><b><span style="font-size:9pt;">처리상태</span></b></font></p>
         </td>
     </tr>
-    <c:choose>
+     <c:choose>
     <c:when test="${empty requestScope.pageList}">
 	<tr>
         <td colspan="5">
@@ -278,6 +278,7 @@
     </c:forEach>
 	</c:otherwise>
     </c:choose>
+    
 </table>
 <hr>
 <div style="text-align: center">

@@ -179,15 +179,14 @@
 \r\n
 <p>
 <br>
-<sec:authorize access="isAuthenticated()">
 
 
 <div class="col-12 mt-4">
        <div class="background-white p-5 h-100 radius-secondary">
            <h5>문의글 등록</h5>
            <form name="writeForm" id="writeForm" method="post" action="${pageContext.request.contextPath}/contact/insert" onsubmit="return checkValid()">
-           	<input type="hidden" name="member.memberCode" value="<sec:authentication property="principal.memberCode" />" />
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        	   <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+        	   <input type="hidden" name="member.memberCode" value="<sec:authentication property="principal.memberCode" />" />
                <div class="row">
                    <div class="col-12">
                        <input class="form-control background-white" type="text" name="contactTitle" placeholder="제목">
@@ -221,7 +220,6 @@
        </div>
    </div>
 
-</sec:authorize>
 <hr>
 <div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/list">리스트로 돌아가기</a>&gt;</span></div>
 </BODY>

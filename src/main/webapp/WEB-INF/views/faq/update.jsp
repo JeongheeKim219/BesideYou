@@ -184,6 +184,7 @@ $(function(){
        <div class="background-white p-5 h-100 radius-secondary">
            <h5>${faq.faqCode} FAQ 수정 하기</h5>
            <form  id="updateForm" method="post" action="${pageContext.request.contextPath}/faq/update">
+           		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
         	   <input type=hidden name="faqCode" value="${faq.faqCode}">
                <div class="row">
                    <div class="col-12">

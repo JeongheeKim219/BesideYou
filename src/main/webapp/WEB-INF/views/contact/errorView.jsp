@@ -62,7 +62,7 @@
                     <div class="row h-full align-items-center color-white">
                         <div class="col" data-zanim-timeline="{}" data-zanim-trigger="scroll"><a href="index.html" data-zanim='{"delay":0}'><img src="/assets/images/logo-light.png" alt="" data-zanim='{"delay":0.1}' /></a>
                             <h5 class="text-uppercase mt-5 ls color-white fs-0 fs-md-1" data-zanim='{"delay":0.2}'>oops! page not found</h5>
-                            <h1 class="fs-4 fs-sm-6 fs-md-8 color-white" data-zanim='{"delay":0.3}'>${errMsg}  ${exception.message}</h1>
+                            <h5 class="fs-4 fs-sm-6 fs-md-8 color-white" data-zanim='{"delay":0.3}'><h5>${errMsg}  ${exception.message}</h5></h5>
                             <div data-zanim='{"delay":0.4}'><a class="btn btn-lg btn-warning btn-capsule mt-4" href="${pageContext.request.contextPath}/">Take Me Home</a></div>
                             
                             <a class="btn btn-lg btn-warning btn-capsule mt-4" href="javascript:history.back()">뒤로가기</a>

@@ -183,6 +183,7 @@
        <div class="background-white p-5 h-100 radius-secondary">
            <h5>공지사항 등록</h5>
            <form name="writeForm" id="writeForm" method="post" action="${pageContext.request.contextPath}/notice/insert" onsubmit="return checkValid()">
+        	   <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
                <div class="row">
                    <div class="col-12">
                        <input class="form-control background-white" type="text" name="noticeTitle" placeholder="제목">
