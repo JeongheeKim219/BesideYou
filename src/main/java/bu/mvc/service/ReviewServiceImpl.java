@@ -47,7 +47,6 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public ReviewStar selectByReviewNo(Long reviewCode) {
-		
 		return reviewRepository.findById(reviewCode).orElse(null);
 	}
 

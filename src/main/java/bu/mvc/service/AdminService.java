@@ -14,19 +14,24 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.IncorrectResultSetColumnCountException;
 import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.AjaxData;
 import bu.mvc.domain.AjaxDataTwo;
+import bu.mvc.domain.Authority;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Ticket;
 import bu.mvc.respsitory.AdminRepository;
+import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
+import bu.mvc.respsitory.ReviewRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service
@@ -49,9 +54,12 @@ public class AdminService {
 	private ContactRepository contactRep;
 	
 	@Autowired
-	private ReviewService reviewService;
+	private ReviewRepository reviewRep;
 	
-
+	@Autowired
+	private AuthorityRepository authorityRep;
+	
+	
 	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
 	private LocalDateTime end = LocalDateTime.now();
 
@@ -311,30 +319,31 @@ public class AdminService {
 	 */
 	public AjaxDataTwo rankCounselor(){
 		int counselorsNumber = adminRep.findByMemberType(1).size();
-		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 6 );
+		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 6);
 		List<Map<String, Object>> listLastMonth = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), counselorsNumber);
-		
 
-		
 		AjaxDataTwo ajaxDataTwo = new AjaxDataTwo();
 		List<String> counselorNameList = new ArrayList<String>();
 		List<Integer> sessionList = new ArrayList<Integer>();
 		List<Integer> gapList = new ArrayList<Integer>();
 		List<Double> starList= new ArrayList<Double>();
+		List<Integer> starCountList = new ArrayList<Integer>();
 		
 		for(Map<String, Object> mapThis : listThisMonth) {
-
-			Counselor counselor =  counselorRep.findById(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR"))))).orElse(null);
+			Long counselorCode = Long.valueOf(String.valueOf((mapThis.get("COUNSELOR"))));
+			Counselor counselor =  counselorRep.findById(counselorCode).orElse(null);
 			String name = counselor.getMember().getName();			
 		 	int countThisMonth =  Integer.parseInt(String.valueOf(mapThis.get("COUNT")));
-		 	Double avgStar = reviewService.avgStar(Long.valueOf(String.valueOf((mapThis.get("COUNSELOR")))));
-		 	
+		 	Double avgStar = reviewRep.selectStarAvg(counselorCode);
+		 	List <ReviewStar> starCount= reviewRep.findByCounselorCode(counselor);
+		 	starCountList.add(starCount.size());
 		 	
 		 	int gap = 0;
 		 	
 		 	counselorNameList.add(name);
 		 	sessionList.add(countThisMonth); 
 		 	starList.add(avgStar);
+		 	starCountList.add(starCount.size());
 		 	
 			for(Map<String, Object> mapLast : listLastMonth){  
 					
@@ -350,6 +359,7 @@ public class AdminService {
 		ajaxDataTwo.setSessionList(sessionList);
 		ajaxDataTwo.setGapList(gapList);
 		ajaxDataTwo.setStarList(starList);
+		ajaxDataTwo.setStarCountList(starCountList);
 		
 		return ajaxDataTwo;
 	}
@@ -363,16 +373,46 @@ public class AdminService {
 	}
 	
 	
+	/**
+	 * 13. 상담사 상태 변경
+	 */
+	public void updateCounselorState(Counselor counselor) {
+		counselorRep.save(counselor);
+	}
+	
 	
 	/**
-	 * 12. 전체결제 내역 조회
+	 * 14. 회원 상태 변경
 	 */
-	//public Page<Ticket> view
+	public void updateMemberType(Member member) {
+		adminRep.save(member);
+	}
 	
 	
+	/**
+	 * 15. 회원 조회(1인) 
+	 */
+	public Member findMember(Long memberCode) {
+		return adminRep.findById(memberCode).orElse(null);
+	}
 	
 	
+	/**
+	 * 16. 멤버코드로 상담사 조회(1인)
+	 */
+	public Counselor findCounselorByMemberCode(Long memberCode) {
+		return counselorRep.searchBymembercode(memberCode);
+	}
 	
+	/**
+	 * 17. 회원 권한 추가
+	 */
+	public void addAuthority(Member member) {
+		Authority authority = new Authority(null, member, "ROLE_COUNSELOR"); 
+		authorityRep.save(authority);
+	}
+	
+
 }
 
 

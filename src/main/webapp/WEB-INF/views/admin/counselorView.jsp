@@ -119,7 +119,8 @@
 									<th class="text-center">상담사코드</th>
 									<th class="text-center">이름</th>
 									<th class="text-center">전문분야</th>
-									<th class="text-center">자격증</th>								
+									<th class="text-center">자격증</th>	
+									<th class="text-center">확인/반려</th>																	
 									<th class="text-center">상태</th>	
 								</tr>
 							</thead>
@@ -157,8 +158,18 @@
 										</c:forEach>
 									</td>
 									<td class="text-center">
-										<button type="button" id="PopoverCustomT-1"
-											class="btn btn-primary btn-sm">다운로드</button>
+											<a href="${pageContext.request.contextPath}/admin/download?fileName=${newCounselor.cerificate}" class="btn btn-primary btn-sm">다운로드
+											</a>
+									</td>
+									<td>
+									 <div class="dropdown d-inline-block">
+                                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-focus">인증</button>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                                <h6 tabindex="-1" class="dropdown-header">자격증 인증</h6>
+                                                <button type="button" tabindex="1" class="dropdown-item" id="approval" value="${newCounselor.member.memberCode}">승인</button>
+                                                <button type="button" tabindex="2" class="dropdown-item" id="denial">반려</button>                                                
+                                            </div>
+                                        </div>
 									</td>
 									<td class="text-center">
 										<div class="badge badge-warning">대기</div>
@@ -175,12 +186,12 @@
 									<c:choose>
 										<c:when test="${requestList.number==i}">
 											<li class="page-item active"><a
-												href="${pageContext.request.contextPath}/admin/counselorView?currentPage=${i}"
+												href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
 										</c:when>
 										<c:otherwise>
 											<li class="page-item"><a
-												href="${pageContext.request.contextPath}/admin/counselorView?currentPage=${i}"
+												href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
 										</c:otherwise>
 									</c:choose>
@@ -209,9 +220,25 @@
 	<!-- Chart.js -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript"></script>
+	<script>
 		$(function() {
-
+		
+			$("button[tabindex='1']").click(function (){
+				var answer = confirm("상담사 자격을 승인하시겠습니까?"); 
+				var memberCode = $(this).val();
+				alert(memberCode);
+				if(answer){
+					location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/" + memberCode +"/2";
+					
+				}	
+					
+			});	
+			
+		
+			//$(document).on("click", "#approval", function (){
+				
+				
 			
 		})//JQuery Ready 끝
 	</script>

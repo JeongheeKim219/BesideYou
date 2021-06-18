@@ -18,5 +18,7 @@ public class AjaxDataTwo {
 	List<Integer> gapList;
 	
 	List<Double> starList;
+	
+	List<Integer> starCountList;
 
 }

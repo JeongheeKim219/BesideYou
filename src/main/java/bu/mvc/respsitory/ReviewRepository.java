@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import bu.mvc.domain.Counselor;
 import bu.mvc.domain.ReviewStar;
 
 public interface ReviewRepository extends JpaRepository<ReviewStar, Long> {
@@ -18,6 +19,15 @@ public interface ReviewRepository extends JpaRepository<ReviewStar, Long> {
 	
 	@Query("select round(avg(star),1) from ReviewStar r where r.counselorCode.counselorCode=?1")
 	Double selectStarAvg(Long counselorCode);
+
+/////6월 18일 정희 추가///////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	List<ReviewStar> findByCounselorCode(Counselor counselor);
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 
 }
 

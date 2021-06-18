@@ -3,9 +3,9 @@ package bu.mvc;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -18,6 +18,7 @@ import org.springframework.test.annotation.Commit;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Speciality;
 import bu.mvc.domain.Ticket;
 import bu.mvc.respsitory.AdminRepository;
@@ -46,10 +47,10 @@ public class AdminTest {
 
 	@Autowired
 	private ReviewRepository reviewRep;
-	
+
 	@Autowired
 	private TicketRepository ticketRep;
-	
+
 	@Test
 	void test_one() {
 		adminRep.findAll();
@@ -92,8 +93,7 @@ public class AdminTest {
 
 		List<Member> memberList = adminRep.findByMemberType(0);
 		List<Counselor> counselors = counselorRep.findAll();
-		
-		
+
 		for (int i = 0; i <= 1; i++) {
 			int randomMonth = (int) (Math.random() * 6) + 6;
 			int randomDay = (int) (Math.random() * 29) + 1;
@@ -114,7 +114,8 @@ public class AdminTest {
 
 	@Test
 	void test_eight() {
-		List<Object> list = Arrays.asList(new String[] { "우울", "불안", "섭식장애", "청소년", "강박", "스트레스", "직장", "진로", "중독", "감정조절" });
+		List<Object> list = Arrays
+				.asList(new String[] { "우울", "불안", "섭식장애", "청소년", "강박", "스트레스", "직장", "진로", "중독", "감정조절" });
 		List<Counselor> counselors = counselorRep.findAll();
 
 		for (Counselor counselor : counselors) {
@@ -124,7 +125,7 @@ public class AdminTest {
 				specialityRep.save(new Speciality(null, String.valueOf(list.get(randomSpec)), counselor));
 				list.remove(randomSpec);
 			}
-		list = Arrays.asList(new String[] { "우울", "불안", "섭식장애", "청소년", "강박", "스트레스", "직장", "진로", "중독", "감정조절" });
+			list = Arrays.asList(new String[] { "우울", "불안", "섭식장애", "청소년", "강박", "스트레스", "직장", "진로", "중독", "감정조절" });
 		}
 	}
 
@@ -136,39 +137,49 @@ public class AdminTest {
 		System.out.println("???");
 		System.out.println(member.getId());
 	}
-	
-	
-	
+
 	@Test
 	void test_ten() {
-		List<Map<String, Object>> rankingMapList =  adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), 5);
-	
-		for(Map <String, Object> map : rankingMapList) {
-			for(String key : map.keySet())
-			System.out.println(key + ", " + String.valueOf(map.get(key)));
+		List<Map<String, Object>> rankingMapList = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), 5);
+
+		for (Map<String, Object> map : rankingMapList) {
+			for (String key : map.keySet())
+				System.out.println(key + ", " + String.valueOf(map.get(key)));
 		}
 	}
 
-	
-	
-		@Test
-		void test_eleven () {
-			LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
-			LocalDateTime end = LocalDateTime.now();
-			List<Ticket> ticketList = ticketRep.findByTicketDateBetween(start, end);
-			ticketList.forEach(t -> System.out.println(t));
-			
-		}
-	
-	
-		@Test
-		void test() {
-			
-			System.out.println(reviewRep.selectStarAvg(1L));
-			
-		}	
+	@Test
+	void test_eleven() {
+		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
+		LocalDateTime end = LocalDateTime.now();
+		List<Ticket> ticketList = ticketRep.findByTicketDateBetween(start, end);
+		ticketList.forEach(t -> System.out.println(t));
 
+	}
+
+	@Test
+	void test_12() {
+		System.out.println(reviewRep.selectStarAvg(1L));
+	}
+
+	
+	@Test
+	void test_13() {
+		int randomTry = (int) (Math.random() * 50);
+
+		List<Counsel> counselList = counselRep.findAllByCounselState(3);
 		
 		
-		
+		for (int i = 0; i <= randomTry; i++) {
+	
+			double randomStars =  Math.round((Math.random() * 5)) + 1; 
+			Counsel randonCounsel = counselList.get(i);
+			LocalDateTime reviewDate = randonCounsel.getCounselDate().plusDays(4);
+			
+			reviewRep.save(new ReviewStar(null, randonCounsel.getMember(), randonCounsel.getCounselor(), 
+					randonCounsel, reviewDate,randomStars, null));
+		}
+
+	}
+	
 }

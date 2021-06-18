@@ -399,11 +399,9 @@
 								<div class="scroll-area-sm">
 									<div class="scrollbar-container">
 										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush" id="rank-table">
-											
-																
-																
-																
-														
+											<!-- Ajax로 구현될 역역-->
+										
+											<!-- ----------------- -->
 										</ul>
 									</div>
 								</div>
@@ -889,14 +887,41 @@
 					type : "POST",
 					dataType : "json",
 					success : function(result) {
-					
 						var str = "";
 						$.each(result.counselorNameList, function (index, item){
 							str += "<li class='list-group-item'><div class='widget-content p-0'>" 
 							str += "<div class='widget-content-wrapper'>"
-							str += "<div class='widget-content-left'><div class='widget-heading'>";
+							str += "<div class='widget-content-left' style='width:60%'><div class='widget-heading'>";
 							str += item + "</div>";
-							str += "<div class='widget-subheading'><div class='star'>" + result.starList[index] + "</div></div></div>";
+				
+							if (result.starList[index] == 0){
+								if (result.starCountList[index]  == 0) {
+									str += "<div class='mb-3 progress'>";
+                            		str +=  "<div class='progress-bar bg-danger' role='progressbar' aria-valuenow='" + result.starList[index] +"' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>등록된 별점이 없습니다.</div>";
+                            		str += "</div>";
+								}else {
+									str += "<div class='mb-3 progress'>";
+                            		str +=  "<div class='progress-bar bg-danger' role='progressbar' aria-valuenow='" + result.starList[index] +"' aria-valuemin='0' aria-valuemax='5' style='width: " + 100 + "%;'>" + result.starList[index] + "</div>";
+                            		str += "</div>";
+								}
+							} else if (result.starList[index] < 2){
+   	                            str += "<div class='mb-3 progress'>";
+   	                            str +=  "<div class='progress-bar bg-warning' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + " (" + result.starCountList[index] + ")</div>";
+   	                            str += "</div>";
+	    					} else if (result.starList[index] < 3){
+	                            str += "<div class='mb-3 progress'>";
+		                        str +=  "<div class='progress-bar' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + " (" + result.starCountList[index] + ")</div>";
+		                        str += "</div>";
+		    				} else if (result.starList[index] < 4){
+	                            str += "<div class='mb-3 progress'>";
+			                    str +=  "<div class='progress-bar bg-info' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] +  "(" +  result.starCountList[index] + ")</div>";
+			                    str += "</div>";
+		    				} else if (result.starList[index] >= 4){
+			 	                str += "<div class='mb-3 progress'>";
+		                        str +=  "<div class='progress-bar bg-success' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" +  result.starList[index] + "(" + result.starCountList[index] + ")</div>";
+		                        str += "</div>";
+		    				}
+        					str += "</div>";
 							str += "<div class='widget-content-right'>";
 											
 							if(result.gapList[index] < 0){	

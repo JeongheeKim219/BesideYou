@@ -29,6 +29,8 @@ import bu.mvc.domain.ContactReply;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.respsitory.CounselorRepository;
+import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.service.AdminService;
 
 @Controller
@@ -38,6 +40,12 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private MemberRepository memberRep;
+	
+	@Autowired
+	private CounselorRepository counselorRep;
+	
 	
 	/**
 	 * 1. 어드민 인덱스로 이동
@@ -56,7 +64,6 @@ public class AdminController {
 		model.addAttribute("dayIncome", incomeToday());
 		model.addAttribute("stateMap", countCounselByState());
 		model.addAttribute("registerStateMap", counselorByState());
-		
 		
 		return "admin/index";
 	}
@@ -196,7 +203,7 @@ public class AdminController {
 	 */
 	@ResponseBody
 	@RequestMapping("/rankCounselor")
-	public AjaxDataTwo rankCouselorAjaxData(Model model) {
+	public AjaxDataTwo rankCouselorAjaxData() {
 		AjaxDataTwo ajaxDataTwo = adminService.rankCounselor();
 		return ajaxDataTwo;
 	
@@ -226,15 +233,30 @@ public class AdminController {
 	/**
 	 * 18. 자격증 다운로드
 	 */
-	@RequestMapping("/download/{fileName}")
-	public ModelAndView download(@PathVariable String fileName, HttpSession session) {
+	@RequestMapping("/download")
+	public ModelAndView download(String fileName, HttpSession session) {
 		
-		String path = session.getServletContext().getRealPath("/WEB-INF/save");
+		String path = session.getServletContext().getRealPath("/save");
 		File file = new File(path + "/" + fileName); 
 		
-		return new ModelAndView("downLoadView", "filename", file);
+		return new ModelAndView("downLoadView", "fname", file);
 	}
 		
+	/**
+	 * 19. 상담사 승인/ 반려
+	 */
+	@RequestMapping("/updateCounselorState/{memberCode}/{state}")
+	public String approvalDenial(@PathVariable Long memberCode, @PathVariable int state) {
+		Member member = adminService.findMember(memberCode);
+		Counselor counselor = adminService.findCounselorByMemberCode(memberCode);
+	
+		adminService.updateCounselorState(counselor);
+		adminService.updateMemberType(member);
+		adminService.addAuthority(member);		
+		
+		return "redirect:/admin/viewCounselorState";
+		
+	}
 	
 	
 }

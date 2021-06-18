@@ -74,4 +74,6 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 	List<Member> findByMemberType(int type);
 
 	
+	
+	
 } 
