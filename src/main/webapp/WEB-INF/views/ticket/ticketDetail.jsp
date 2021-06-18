@@ -186,10 +186,10 @@
                                 <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                     <div class="overflow-hidden" align="right">
                                         <c:choose>
-                                        	<c:when test="${ticket.ticketField==0}"><h3 data-zanim='{"delay":0}'>대면상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==1}"><h3 data-zanim='{"delay":0}'>전화상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==2}"><h3 data-zanim='{"delay":0}'>채팅상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==3}"><h3 data-zanim='{"delay":0}'>간편텍스트상담권</h3></c:when>
+                                        	<c:when test="${ticket.ticketField==0}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Business-ManWoman"></span>&nbsp;&nbsp;대면 상담권</h3></c:when>
+                                        	<c:when test="${ticket.ticketField==1}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Phone-2"></span>&nbsp;&nbsp;전화 상담권</h3></c:when>
+                                        	<c:when test="${ticket.ticketField==2}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Phone-SMS"></span>&nbsp;&nbsp;채팅 상담권</h3></c:when>
+                                        	<c:when test="${ticket.ticketField==3}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-File-TXT"></span>&nbsp;&nbsp;간편 텍스트 상담권</h3></c:when>
                                         </c:choose>
                                     </div>
                                     <hr>
@@ -197,14 +197,17 @@
 	                                    <div class="mt-3" data-zanim='{"delay":0.1}'><h5>담당 상담사</h5></div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>티켓 구매일</div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>최초 구매량</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}' style="color:red">현재 잔여량</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.4}'>현재 잔여량</div>
                                     </div>
                                     
                                     <div class="overflow-hidden" align="right">
                                     	<div class="mt-3" data-zanim='{"delay":0.1}'><h5>${counselor.member.name}</h5></div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>${ticket.ticketDate}</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>
+	                                    <fmt:parseDate var="ticketDate" pattern="yyyy-MM-dd'T'HH:mm" value="${ticket.ticketDate}" type="both"/>
+	                                    	<fmt:formatDate value="${ticketDate}" pattern="yyyy년 MM월 dd일"/>
+	                                    </div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>${ticket.ticketAmount}</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}' style="color:red">${ticket.ticketRemain}</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.4}'>${ticket.ticketRemain}</div>
                                     </div>
                                     <br>
                                     <div class="overflow-hidden">
