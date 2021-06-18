@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/member/**").permitAll()
 		.and()
 		
+		
 		.formLogin()
 		.loginPage("/member/login")
 		.usernameParameter("id")
@@ -52,7 +53,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.logoutSuccessUrl("/")
 		.invalidateHttpSession(true)
 		.deleteCookies("JSESSIONID")
-		.and();
+		.and()
+		.cors().and()
+		.csrf().disable();
+
+		
 	}
 
 }

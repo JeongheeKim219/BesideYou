@@ -1,6 +1,7 @@
 package bu.mvc;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -21,16 +22,23 @@ import bu.mvc.respsitory.ReviewRepository;
 @Transactional
 @Commit
 public class TestReview {
+
 	@Autowired
-	//private ReviewTestRepository rep;
-	private ReportRepository rep;
-	
+	private ReviewRepository rr;
+
 	@Test
-	void inset() {
-		//rep.save(new ReviewStar(null, new Member(4L), new Counselor(1L), new Counsel(2L), 4.0, "테스트"));
-		rep.save(new Report(null, new Member(4L), new ReviewStar(1L)));
+	void selectAll() {
+		List<ReviewStar> rs = rr.findAll();
+		System.out.println("RS :" + rs.toString());
+	}
+	
+	/**
+	 * 상담사 코드에 따른 검색
+	 * */
+	@Test
+	void selectByNum() {
+		List<ReviewStar> rs = rr.selectByCounCode(1L);
+		System.out.println("RS ============" + rs.toString());
 	}
 
 }
-
-
