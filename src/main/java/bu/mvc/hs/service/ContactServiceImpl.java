@@ -35,11 +35,7 @@ public class ContactServiceImpl implements ContactService {
 	 * */
 	@Override
 	public Page<Contact> findByMemberMemberCode(Pageable pageable, Long memberCode) {
-		
-		Page<Contact> page = contactRepository.findByMemberMemberCode(pageable, memberCode);
-		if(page == null) throw new RuntimeException("로그인후 이용해주세요.");
-		
-		return page;
+		return contactRepository.findByMemberMemberCode(pageable, memberCode);
 	}
 
 	/**

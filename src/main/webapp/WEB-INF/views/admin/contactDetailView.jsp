@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -131,32 +130,6 @@
 												</c:otherwise>
 											</c:choose>
 										</tr>
-
-											<tr>
-												<th scope="row">문의자</th>
-												<td>${contact.member.id}</td>
-											</tr>
-											<tr>
-												<th scope="row">이메일</th>
-												<td>${contact.member.email}</td>
-											</tr>
-											<tr>
-												<th scope="row">연락처</th>
-												<td>${contact.member.phone}</td>
-											</tr>
-											<tr>
-												<th scope="row">제목</th>
-												<td>${contact.contactTitle}</td>
-											</tr>
-											<tr>
-												<th scope="row">내용</th>
-												<td>${contact.contactContent}</td>
-											</tr>
-											<tr>
-												<th scope="row">작성일자</th>
-												<td>${contact.contactDate}</td>
-											</tr>
-
 										<tr>
 											<th scope="row">문의자</th>
 											<td>${contact.member.id}</td>
@@ -191,8 +164,9 @@
 						<div class="card-body">
 							<h5 class="card-title"># ${contact.contactCode}에 대한 답변</h5>
 
-							<%-- <sec:authorize access="isAuthenticated()"> --%>
+
 							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply" method="post" onsubmit="return checkValid()" name="writeForm">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<div class="position-relative row form-group">
 									<div class="col-sm-10">
 										<textarea  name="contactReplyContent" class="form-control" rows="10"></textarea>
@@ -201,38 +175,9 @@
 								<div class="position-relative row form-check">
 									<div class="col-sm-10 offset-sm-6">
 										<button class="btn btn-primary">답변작성</button>
-										<%-- <input type="hidden" name="${_csrf.parameterName}"
-                      					  value="${_csrf.token}" /> --%>
 									</div>
 								</div>
 								<input type="hidden" name="contactCode" value="${contact.contactCode}"/>
-							</form>
-							<%-- </sec:authorize> --%>
-
-							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply/${contact.contactCode}">
-								<div class="position-relative row form-group">
-									<div class="col-sm-10">
-										<textarea name="text" name="contactReplyContent" class="form-control" rows="10"></textarea>
-									</div>
-								</div>
-								<fieldset class="position-relative row form-group">
-									<legend class="col-form-label col-sm-6">처리상태 변경</legend>
-									<div class="col-sm-10">
-										<div class="position-relative form-check">
-											<label class="form-check-label"><input name="radio2"
-												type="radio" class="form-check-input">미처리</label>
-										</div>
-										<div class="position-relative form-check">
-											<label class="form-check-label"><input name="radio2"
-												type="radio" class="form-check-input"> 처리</label>
-										</div>
-									</div>
-								</fieldset>
-								<div class="position-relative row form-check">
-									<div class="col-sm-10 offset-sm-6">
-										<button class="btn btn-primary">답변작성</button>
-									</div>
-								</div>
 							</form>
 
 						</div>
