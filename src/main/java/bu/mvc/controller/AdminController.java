@@ -133,7 +133,9 @@ public class AdminController {
 	 * 11. 회원 정보 상세보기 페이지로 이동
 	 */
 	@RequestMapping("/memberDetailView/{memberCode}")
-	public String viewMemberDetail(@PathVariable Long memberCode) {
+	public String viewMemberDetail(@PathVariable Long memberCode, Model model) {
+		Member member = adminService.selectMember(memberCode);
+		model.addAttribute("member", member);
 		return "admin/memberDetailView";
 	}
 
@@ -182,6 +184,17 @@ public class AdminController {
 	@RequestMapping("/countCounselByMonth")
 	public AjaxData countCounselByMonth(){
 		return adminService.countCounselByMonth();
+	}
+	
+	/**
+	 * 회원상태, 회원타입 업데이트
+	 * */
+	@RequestMapping("/update/{memberCode}")
+	public String update(@PathVariable Long memberCode, Integer state, Integer type) {
+		//System.out.println(state +", "+type);
+		adminService.updateMember(memberCode, state, type);
+		return "/admin/index";
+		
 	}
 	
 	
