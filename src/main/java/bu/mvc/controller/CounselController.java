@@ -139,7 +139,9 @@ public class CounselController {
 		
 		
 		if(field==3) {
+			Page<Counsel> pageList3 = counselService.myList3(pageable, member);
 			mv.setViewName("/counsel/list3");
+			mv.addObject("pageList", pageList3);
 			
 			return mv;
 		}

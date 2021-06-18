@@ -35,6 +35,10 @@ public interface CounselService {
 	 * */
 	Page<Counsel> myList012(Pageable pageable, int field, Member member);
 	
+	/**
+	 * 사용자의 상담 신청 리스트 (타입 - -1,0,1,2)
+	 * */
+	Page<Counsel> myList3(Pageable pageable, Member member);
 	
 	
 	

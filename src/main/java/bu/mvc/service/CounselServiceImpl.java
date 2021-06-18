@@ -103,8 +103,13 @@ public class CounselServiceImpl implements CounselService {
 			return counselRepository.findForUser(member.getMemberCode(), pageable);
 		} else if (field == 0|| field==1 || field==2) {
 			return counselRepository.findForUserField(member.getMemberCode(), field, pageable);
-		} 		
+		}		
 		return null;
+	}
+
+	@Override
+	public Page<Counsel> myList3(Pageable pageable, Member member) {
+		return counselRepository.findForUserField(member.getMemberCode(), 3, pageable);
 	}
 
 }
