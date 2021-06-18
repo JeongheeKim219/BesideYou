@@ -173,7 +173,7 @@
                                    		<div class="col-12 mt-4">
                                             프로필사진<p><input  type="file" placeholder="상담사사진"  name = "file" accept=".zip"aria-label="Text input with dropdown button"> <br>  <br>  
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
-                                       		<textarea rows="7" cols="70" name="career">커리어 작성해주세요.</textarea><br>
+                                       		<textarea rows="7" cols="70" name="career" placeholder="커리어 작성해주세요."></textarea><br>
                                         	<select name = "degree">
                                             	<option selected>--학사 선택--
                                             	<option value = "석사">석사
@@ -210,6 +210,15 @@
 										
 									</div>
 									<div class="col-12 mt-4">
+										<h6>대면상담 가격 입력해주세요. (권장가격 10000 ~ 20000)</h6>
+										<input type="text"  name = "price0"  ><p>
+										<h6>전화상담 가격 입력해주세요. (권장가격 10000 ~ 15000)</h6>
+										<input type="text"  name = "price1"  ><p>
+										<h6>채팅상담 가격 입력해주세요. (권장가격 5000 ~ 15000)</h6>
+										<input type="text"  name = "price2"  ><p>
+										<h6>간편텍스트상담 가격 입력해주세요. (권장가격 5000 ~ 15000)</h6>
+										<input type="text"  name = "price3"  >
+										
 										</div>
                                         
                                         
