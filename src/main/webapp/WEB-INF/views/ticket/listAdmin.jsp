@@ -160,7 +160,7 @@
                     <c:choose>
 					    <c:when test="${empty requestScope.tkList.content}">
 							<div>
-					            <p align="center"><b><span style="font-size:9pt;">등록된 상담권이 없습니다.</span></b></p>
+					            <p align="center"><b><span style="font-size:15pt;">등록된 상담권이 없습니다.</span></b></p>
 					        </div>
 					    </c:when>
 					    <c:otherwise>
@@ -190,26 +190,6 @@
                                     </div>
                                     <div class="overflow-hidden">
                                         <p class="color-7" data-zanim='{"delay":0.2}'>Remain : ${ticket.ticketRemain}</p>
-                                    </div>
-                                    <div class="overflow-hidden">
-                                    	<c:choose>
-                                    		<c:when test="${ticket.ticketRemain>0}">
-                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'>
-                                    				<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
-                                    				href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}">사용하기 </a>
-                                				</div>
-                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}' align="right">
-                                    				<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
-                                    				href="${pageContext.request.contextPath}/refund/application" style="color:red">환불신청 </a>
-                                    			</div>
-                                    		</c:when>
-                                    		<c:when test="${ticket.ticketRemain<=0}">
-                                    			<div class="d-inline-block" data-zanim='{"delay":0.3}'>
-	                                    			<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
-	                                    			href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}">삭제하기 </a>
-                                    			</div>
-                                    		</c:when>
-                                    	</c:choose>
                                     </div>
                                 </div>
                             </div>

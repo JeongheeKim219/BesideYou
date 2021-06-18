@@ -92,12 +92,14 @@
 	   
 	   // 할인가 산출
 	   $("#plus, #minus").click(function(){
-		   const resultElement = document.getElementById('result');
-		   let number = resultElement.innerText;
-		   let num = parseInt(number);
-		   let total = 30000 * num;
-		   $("#op").html(total+'&nbsp;원');
 		   
+		   const resultElement = document.getElementById('result');  //수량이 표시되는 Element
+		   let number = resultElement.innerText;  //그 Element의 text 값
+		   let num = parseInt(number);  //그 text값을 정수형으로 변환
+		   let total = 30000 * num;  //원가 계산
+		   $("#op").html(total+'&nbsp;원');  //계산된 원가를 #op Element에 html 형식으로 입력
+		   
+		   // 수량에 따른 할인율 (2~5개:5% / 6~10개:10% / 11개 이상~:20%)
 		   let dc;
 		   if(num >= 2 && num <= 5) {
 			   dc = total * 0.05;
