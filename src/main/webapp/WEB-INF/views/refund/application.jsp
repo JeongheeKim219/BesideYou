@@ -66,7 +66,7 @@
             </section>
             <div class="znav-white znav-container sticky-top navbar-elixir" id="znav-container">
                 <div class="container">
-                    <nav class="navbar navbar-expand-lg"><a class="navbar-brand overflow-hidden pr-3" href="index.html"><img src="${pageContext.request.contextPath}/assets/images/logo-dark.png" alt="" /></a>
+                    <nav class="navbar navbar-expand-lg"><a class="navbar-brand overflow-hidden pr-3" href="/"><img src="${pageContext.request.contextPath}/assets/images/logo-dark.png" alt="" /></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <div class="hamburger hamburger--emphatic">
                                 <div class="hamburger-box">
@@ -78,7 +78,7 @@
                             <ul class="navbar-nav fs-0 fw-700">
                                 <li><a href="JavaScript:void(0)">Home</a>
                                     <ul class="dropdown fs--1">
-                                        <li><a href="index.html">Slider Header</a></li>
+                                        <li><a href="/">Slider Header</a></li>
                                         <li><a href="index--header-slider-classic.html">Slider Classic</a></li>
                                         <li><a href="index--header-static.html">Static Header</a></li>
                                         <li><a href="index--header-static-classic.html">Static Classic</a></li>
@@ -137,7 +137,7 @@
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Contact</h1>
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Refund Application</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
                                             <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
@@ -284,7 +284,7 @@
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="/"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>

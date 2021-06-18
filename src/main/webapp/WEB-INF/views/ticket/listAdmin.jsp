@@ -67,7 +67,7 @@
             </section>
             <div class="znav-white znav-container sticky-top navbar-elixir" id="znav-container">
                 <div class="container">
-                    <nav class="navbar navbar-expand-lg"><a class="navbar-brand overflow-hidden pr-3" href="index.html"><img src="assets/images/logo-dark.png" alt="" /></a>
+                    <nav class="navbar navbar-expand-lg"><a class="navbar-brand overflow-hidden pr-3" href="/"><img src="assets/images/logo-dark.png" alt="" /></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <div class="hamburger hamburger--emphatic">
                                 <div class="hamburger-box">
@@ -79,7 +79,7 @@
                             <ul class="navbar-nav fs-0 fw-700">
                                 <li><a href="JavaScript:void(0)">Home</a>
                                     <ul class="dropdown fs--1">
-                                        <li><a href="index.html">Slider Header</a></li>
+                                        <li><a href="/">Slider Header</a></li>
                                         <li><a href="index--header-slider-classic.html">Slider Classic</a></li>
                                         <li><a href="index--header-static.html">Static Header</a></li>
                                         <li><a href="index--header-static-classic.html">Static Classic</a></li>
@@ -169,7 +169,7 @@
                             <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" 
                             	src="${pageContext.request.contextPath}/assets/images/9.jpg" alt="${ticket.counselor.picture}" />
                                 <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden"><a href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}">
+                                    <div class="overflow-hidden"><%-- <a href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}"> --%>
                                             <c:choose>
                                             	<c:when test="${ticket.ticketField==0}">
                                            			<h4 data-zanim='{"delay":0}'>대면 상담권</h4>
@@ -184,7 +184,7 @@
                                             		<h4 data-zanim='{"delay":0}'>텍스트 상담권</h4>
                                             	</c:when>
                                             </c:choose>
-                                        </a></div>
+                                        <!-- </a> --></div>
                                     <div class="overflow-hidden">
                                         <p class="color-7" data-zanim='{"delay":0.1}'><span style="font-size:15pt; font-weight: bold;">${ticket.counselor.member.alias}</span>  상담사</p>
                                     </div>
@@ -339,7 +339,7 @@
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="/"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>
