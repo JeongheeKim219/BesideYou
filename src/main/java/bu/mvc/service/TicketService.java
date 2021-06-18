@@ -19,7 +19,7 @@ public interface TicketService {
 	Page<Ticket> searchById(String id, Pageable pageable);
 	
 	/**
-	 * 상담권 코드로 상담권 검색하기(상세보기, 환불, 삭제시)
+	 * 상담권 코드로 상담권 검색하기
 	 * */
 	Ticket selectByCode(Long ticketCode);
 

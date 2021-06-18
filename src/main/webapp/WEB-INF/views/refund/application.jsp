@@ -172,7 +172,7 @@
                         </div>
                         <div class="col-12 mt-4">
                             <div class="background-white p-5 h-100 radius-secondary">
-                                <h5>Write to us</h5>
+                                <h5>Refund Reason</h5>
                                 <form class="zform mt-3">
                                     <div class="row">
                                         <div class="col-12">

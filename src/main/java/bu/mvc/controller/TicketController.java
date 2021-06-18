@@ -54,19 +54,18 @@ public class TicketController {
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		Page<Ticket> tkList = ticketService.searchById(member.getId(), pageable);
+		System.out.println("tkList : " + tkList);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ticket/listUser");
 		mv.addObject("tkList", tkList);
 		mv.addObject("previous", pageable.previousOrFirst().getPageNumber());
 		mv.addObject("next", pageable.next().getPageNumber());
-		//mv.addObject("id", id);
 		return mv;
 	}
 	
 	/**
 	 * 구매한 상담권 상세보기
-	 *  - 연결되는 페이지에 구매한 금액, 상담권 잔여량, 상담권 사용 버튼, 환불 신청 버튼 있음
 	 * */
 	@RequestMapping("/read/{code}")
 	public ModelAndView ticketDetail(@PathVariable Long code) {

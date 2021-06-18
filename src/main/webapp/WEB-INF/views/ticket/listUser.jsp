@@ -158,9 +158,9 @@
                 <div class="container">
                     <div class="row">
                     <c:choose>
-					    <c:when test="${empty requestScope.tkList}">
+					    <c:when test="${empty requestScope.tkList.content}">
 							<div>
-					            <p align="center"><b><span style="font-size:9pt;">상담권 구매 내역이 없습니다.</span></b></p>
+					            <p align="center"><b><span style="font-size:15pt;">상담권 구매 내역이 없습니다.</span></b></p>
 					        </div>
 					    </c:when>
 					    <c:otherwise>
@@ -218,7 +218,7 @@
 						</c:otherwise>
 					    </c:choose>
                     </div>
-                    
+                    <c:if test="${not empty requestScope.tkList.content}">
                     <!-- 페이징 처리 -->
                     <div class="col-auto mx-auto mt-4">
 						<nav class="font-1 mt-5" aria-label="Page navigation example">
@@ -254,6 +254,7 @@
 							 </ul>
 						 </nav>
 						</div>
+						</c:if>
                     <!--/.row-->
                 </div>
                 <!--/.container-->
