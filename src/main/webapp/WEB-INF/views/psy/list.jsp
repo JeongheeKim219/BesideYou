@@ -168,7 +168,7 @@ function depressionCheck(){
                                     <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item"><a class="color-white" href="${pageContext.request.contextPath}/index">Home</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">Self Test</li>
                                         </ol>
                                     </div>

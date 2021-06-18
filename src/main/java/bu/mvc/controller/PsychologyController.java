@@ -293,11 +293,13 @@ public class PsychologyController {
 		//System.out.println("member : "+member.getMemberCode());
 		//멤버코드로 카운슬러코드 찾기
 		Counselor co = psyService.selectByMem(mem.getMemberCode());
-		//Counselor coo= new Counselor(mem.getMemberCode());
+		//카운슬러코드로 아트카운슬러 찾기
+		ArtCounselor ac = psyService.selectByCounselorCode(co);
 		
 		List<Art> list= psyService.selectByCounselor(co);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("ac", ac);
 		return "/psy/requestList";
 	}
 	

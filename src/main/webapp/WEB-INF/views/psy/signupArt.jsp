@@ -177,7 +177,7 @@
                 <!--/.container-->
             </section>
             <c:choose>
-            	<c:when test="${not empty info}">
+            	<c:when test="${info.counselor.counselorState == 1}">
             		<section class="background-11 ">
 		                <div class="container">
 		                    <div class="row">
@@ -224,6 +224,29 @@
 		                </div>
 		                <!--/.container-->
 		            </section>	
+            	</c:when>
+            	<c:when test="${info.counselor.counselorState != 1}">
+            	<section class="background-11 ">
+		                <div class="container">
+		                    <div class="row">
+		                        <div class="col-lg-12">
+		                            <div class="row">
+		                                <div class="col-12">
+		                                    <div class="row mt-6">
+		                                        <div class="col-12">
+		                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+		                                                <h4 data-zanim='{"delay":0.1}'>상담사 자격이 확인되지 않아 해당 서비스를 이용할 수 없습니다.</h4>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!--/.row-->
+		                </div>
+		                <!--/.container-->
+		            </section>
             	</c:when>
             	<c:otherwise>
             	 <section class="background-11 ">

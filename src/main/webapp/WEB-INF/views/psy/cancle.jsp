@@ -165,12 +165,25 @@ $(function(){
                 <!--/.container-->
             </section>
             <c:choose>
-            	<c:when test="${ac.artCounselorState==1}">
+            	<c:when test="${ac.artCounselorState==1 or empty ac}">
             		<section class="background-11">
 		                <div class="container">
 		                    <div class="row mt-6">
 		                        <div class="col">
 		                            <h3 class="text-center fs-2 fs-md-3">그림상담사로 등록되어 있지 않습니다.</h3>
+		                        </div>
+		                    </div>
+		                    <!--/.row-->
+		                </div>
+		                <!--/.container-->
+		            </section>
+            	</c:when>
+            	<c:when test="${ac.counselor.counselorState != 1}">
+            		<section class="background-11">
+		                <div class="container">
+		                    <div class="row mt-6">
+		                        <div class="col">
+		                            <h3 class="text-center fs-2 fs-md-3">상담사자격이 확인되지 않아 해당 서비스를 이용할 수 없습니다.</h3>
 		                        </div>
 		                    </div>
 		                    <!--/.row-->
