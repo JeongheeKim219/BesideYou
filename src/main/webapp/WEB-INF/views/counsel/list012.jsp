@@ -215,7 +215,7 @@
 		<section>
 			<div>
 				<div class="background-holder overlay"
-					style="background-image:url(${pageContext.request.contextPath}/assets/images/background-2.jpg);background-position: center bottom;">
+					style="background-image:url(${pageContext.request.contextPath}/assets/images/counsel/bggh.jpg);background-position: center bottom;">
 				</div>
 				<!--/.background-holder-->
 				<div class="container">
