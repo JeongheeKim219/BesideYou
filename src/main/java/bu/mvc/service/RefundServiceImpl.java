@@ -29,7 +29,7 @@ public class RefundServiceImpl implements RefundService {
 
 	@Override
 	public List<Refund> searchBy(String id, Pageable pageable) {
-		return refundRepository.findByTicketMemberIdLike(id, pageable);
+		return refundRepository.findByTicketMemberId(id, pageable);
 	}
 
 	@Override
@@ -37,6 +37,13 @@ public class RefundServiceImpl implements RefundService {
 		Refund refund = refundRepository.findById(refundCode).orElse(null);
 		if(refund==null) throw new RuntimeException(refundCode+"번 코드에 해당하는 환불 신청 내역이 존재하지 않습니다.");
 		return refund;
+	}
+	
+	@Override
+	public int selectByTicketCode(Long ticketCode) {
+		Refund refund = refundRepository.findByTicketTicketCode(ticketCode);
+		if(refund==null) throw new RuntimeException("상담권 정보에 해당하는 환불 신청 내역이 존재하지 않습니다.");
+		return refund.getRefundState();
 	}
 
 	@Override
@@ -65,6 +72,5 @@ public class RefundServiceImpl implements RefundService {
 	public void delete(Long refundCode) {
 		refundRepository.deleteById(refundCode);
 	}
-
 
 }

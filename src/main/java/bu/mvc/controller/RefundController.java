@@ -2,18 +2,25 @@ package bu.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import bu.mvc.domain.Member;
 import bu.mvc.domain.Refund;
+import bu.mvc.domain.Ticket;
 import bu.mvc.service.RefundService;
+import bu.mvc.service.TicketService;
 
 @Controller
 @RequestMapping("/refund")
@@ -21,6 +28,9 @@ public class RefundController {
 
 	@Autowired
 	private RefundService refundService;
+	
+	@Autowired
+	private TicketService ticketService;
 	
 	/**
 	 * 환불 신청 목록 전체 보기 : 관리자용
@@ -48,16 +58,36 @@ public class RefundController {
 	/**
 	 * 환불 신청 폼으로
 	 * */
-	@RequestMapping("/application")
-	public void refundApp() {}
+	@RequestMapping("/refundApp/{ticketCode}")
+	public ModelAndView refundApp(HttpServletRequest request, @PathVariable Long ticketCode) {
+		Ticket ticket = ticketService.selectByCode(ticketCode);
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("refund/refundApp");
+		mv.addObject("ticket", ticket);
+		mv.addObject("member", member);
+		
+		return mv;
+	}
 	
 	/**
-	 * 환불 신청하기
+	 * 환불 신청 완료하기
 	 * */
 	@RequestMapping("/request")
-	public String refundRequest(Refund refund) {
+	public ModelAndView refundRequest(String refundReason, Long ticketCode, String id, String name) {
+		Refund refund = new Refund();
+		Ticket ticket = ticketService.selectByCode(ticketCode);
+		refund.setRefundReason(refundReason);
+		refund.setRefundState(0);
+		refund.setTicket(ticket);
+		
 		refundService.insert(refund);
-		return "redirect:/refund/mylist";
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ticket/listUser");
+		
+		return mv;
 	}
 	
 	/**
@@ -67,6 +97,15 @@ public class RefundController {
 	public ModelAndView refundDetail(Long refundCode) {
 		Refund refund = refundService.selectByCode(refundCode);
 		return new ModelAndView("refund/detail", "refund", refund);
+	}
+	
+	/**
+	 * 상담권 코드로 환불 진행 상태 검색하기
+	 * */
+	@RequestMapping("/state/{ticketCode}")
+	public int refundState(@PathVariable Long ticketCode) {
+		int state = refundService.selectByTicketCode(ticketCode);
+		return state;
 	}
 	
 	/**

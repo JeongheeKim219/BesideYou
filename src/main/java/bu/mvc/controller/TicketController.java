@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Ticket;
+import bu.mvc.service.RefundService;
 import bu.mvc.service.TicketService;
 
 @Controller
@@ -24,6 +26,9 @@ public class TicketController {
 
 	@Autowired
 	private TicketService ticketService;
+	
+	@Autowired
+	private RefundService refundService;
 	
 	/**
 	 * 상담권 구매 목록(전체) : 관리자용
@@ -50,11 +55,8 @@ public class TicketController {
 	@RequestMapping("/mylist")
 	public ModelAndView myList(HttpServletRequest request, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "ticketCode");
-		
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
 		Page<Ticket> tkList = ticketService.searchById(member.getId(), pageable);
-		System.out.println("tkList : " + tkList);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ticket/listUser");
@@ -66,17 +68,28 @@ public class TicketController {
 	
 	/**
 	 * 구매한 상담권 상세보기
+	 *  - 상담사 정보, 상담권 종류, 구매일, 잔여량 표시
+	 *  - 사용 / 환불 / 삭제 버튼 존재
 	 * */
 	@RequestMapping("/read/{code}")
 	public ModelAndView ticketDetail(@PathVariable Long code) {
 		Ticket ticket = ticketService.selectByCode(code);
-		return new ModelAndView("ticket/detail", "ticket", ticket);
+		Counselor counselor = ticket.getCounselor();
+		int refundState = refundService.selectByTicketCode(code);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ticket/detail");
+		mv.addObject("counselor", counselor);
+		mv.addObject("ticket", ticket);
+		mv.addObject("refundState", refundState);
+		
+		return mv;
 	}
 	
 	/**
 	 * 상담권 구매 폼으로
 	 * */
-	@RequestMapping("/application")
+	@RequestMapping("/ticketApp")
 	public void paymentApp() {}
 	
 	/**

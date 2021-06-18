@@ -11,7 +11,9 @@ import bu.mvc.domain.Refund;
 
 public interface RefundRepository extends JpaRepository<Refund, Long>{
 
-	List<Refund> findByTicketMemberIdLike(String id, Pageable pageable);
+	List<Refund> findByTicketMemberId(String id, Pageable pageable);
+	
+	Refund findByTicketTicketCode(Long ticketCode);
 	
 	/*@Query("update Refund r set r.refundState = ?2 where r.refundCode = ?1")
 	@Modifying

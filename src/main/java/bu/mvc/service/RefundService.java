@@ -26,6 +26,11 @@ public interface RefundService {
 	Refund selectByCode(Long refundCode);
 	
 	/**
+	 * 상담권 코드로 환불 진행 상태 검색하기
+	 * */
+	int selectByTicketCode(Long ticketCode);
+	
+	/**
 	 * 환불 신청하기
 	 * */
 	void insert(Refund refund);

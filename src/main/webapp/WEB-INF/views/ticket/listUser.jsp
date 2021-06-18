@@ -200,7 +200,7 @@
                                 				</div>
                                     			<div class="d-inline-block" data-zanim='{"delay":0.3}' align="right">
                                     				<a class="btn btn-outline-primary btn-xs mr-3 mb-3" 
-                                    				href="${pageContext.request.contextPath}/refund/application" style="color:red">환불신청 </a>
+                                    				href="${pageContext.request.contextPath}/refund/refundApp/${ticket.ticketCode}" style="color:red">환불신청 </a>
                                     			</div>
                                     		</c:when>
                                     		<c:when test="${ticket.ticketRemain<=0}">

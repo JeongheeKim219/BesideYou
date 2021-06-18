@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -34,96 +32,9 @@
         <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/assets/lib/hamburgers/dist/hamburgers.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
         <!-- Main stylesheet and color file-->
         <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/assets/css/custom.css" rel="stylesheet">
-        
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-
-	function count(type) {
-		const resultElement = document.getElementById('result'); // 결과를 표시할 element
-		let number = resultElement.innerText; // 현재 화면에 표시된 값
-	
-		// 더하기/빼기
-		if (type === 'plus') {
-			number = parseInt(number) + 1;
-		} else if (type === 'minus') {
-			if (number > 0) number = parseInt(number) - 1;
-		}
-	
-		// 결과 출력
-		resultElement.innerText = number;
-	}
-
-	$(function(){
-		// 결제 API 이동
-	   $("#card").click(function(){
-		   if($("input[name=price]").val()==0){
-			   alert("구매 정보가 미입력되었습니다. 상담권 수량을 선택해주세요.");
-			   return;
-		   }else{
-			   $("#payment").attr("action", "${pageContext.request.contextPath}/payment/inicis");
-			   $("#payment").submit();
-		   }
-	   })
-	   
-	   $("#phone").click(function(){
-		   if($("input[name=price]").val()==0){
-			   alert("구매 정보가 미입력되었습니다. 상담권 수량을 선택해주세요.");
-			   return;
-		   }else{
-			   $("#payment").attr("action", "${pageContext.request.contextPath}/payment/danal");
-			   $("#payment").submit();
-		   }
-	   })
-	   
-	   $("#paypal").click(function(){
-		   if($("input[name=price]").val()==0){
-			   alert("구매 정보가 미입력되었습니다. 상담권 수량을 선택해주세요.");
-			   return;
-		   }else{
-			   $("#payment").attr("action", "${pageContext.request.contextPath}/payment/paypal");
-			   $("#payment").submit();
-		   }
-	   })
-	   
-	   // 할인가 산출
-	   $("#plus, #minus").click(function(){
-		   const resultElement = document.getElementById('result');
-		   let number = resultElement.innerText;
-		   let num = parseInt(number);
-		   let total = 30000 * num;
-		   $("#op").html(total+'&nbsp;원');
-		   
-		   let dc;
-		   if(num >= 2 && num <= 5) {
-			   dc = total * 0.05;
-			   $("#dc").html('- '+dc+'&nbsp;원');
-		   }
-		   else if(num > 5 && num <= 10) {
-			   dc = total * 0.1;
-			   $("#dc").html('- '+dc+'&nbsp;원');
-		   }
-		   else if(num > 10) {
-			   dc = total * 0.2;
-			   $("#dc").html('- '+dc+'&nbsp;원');
-		   }
-		   else {
-			   dc = 0;
-			   $("#dc").html(dc+'&nbsp;원');
-		   }
-		   let price = total-dc;
-		   $("#price").html('<h5>'+price+'&nbsp;원</h5>');
-		   $("input[name=price]").val(price);
-	   })
-	   
-	})
-	
-</script>
-        
     </head>
     <body data-spy="scroll" data-target=".inner-link" data-offset="60">
         <main>
@@ -167,7 +78,7 @@
                             <ul class="navbar-nav fs-0 fw-700">
                                 <li><a href="JavaScript:void(0)">Home</a>
                                     <ul class="dropdown fs--1">
-                                        <li><a href="index.html">Slider Header</a></li>
+                                        <li><a href="/">Slider Header</a></li>
                                         <li><a href="index--header-slider-classic.html">Slider Classic</a></li>
                                         <li><a href="index--header-static.html">Static Header</a></li>
                                         <li><a href="index--header-static-classic.html">Static Classic</a></li>
@@ -217,140 +128,74 @@
                     </nav>
                 </div>
             </div>
+            <section>
+                <div>
+                    <div class="background-holder overlay" style="background-image:url(${pageContext.request.contextPath}/assets/images/background-2.jpg);background-position: center bottom;">
+                    </div>
+                    <!--/.background-holder-->
+                    <div class="container">
+                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
+                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                <div class="overflow-hidden">
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Refund Application</h1>
+                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
+                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
+                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+                <!--/.container-->
+            </section>
             <section class="background-11">
                 <div class="container">
-                    <div class="row no-gutters pos-relative mt-6">
-                        <div class="elixir-caret d-none d-lg-block"></div>
-                        <div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height:400px;">
-                            <div class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0" style="background-image:url(${pageContext.request.contextPath}/assets/images/6.jpg);">
+                    <div class="row align-items-stretch justify-content-center">
+                        <div class="col-lg-4 mb-4 mb-lg-0">
+                            <div class="h-100 px-5 py-4 background-white radius-secondary">
+                                <h5 class="mb-3">Melbourne Office</h5>121 King Street,<br>Melbourne 1200,<br>Australia
                             </div>
-                            <!--/.background-holder-->
                         </div>
-                        <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0 radius-tr-lg-secondary">
-                            <div class="d-flex align-items-center h-100">
-                                <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden">
-                                        <c:choose>
-                                        	<c:when test="0"><h4 data-zanim='{"delay":0}'>대면상담</h4></c:when>
-                                        	<c:when test="1"><h4 data-zanim='{"delay":0}'>전화상담</h4></c:when>
-                                        	<c:when test="2"><h4 data-zanim='{"delay":0}'>채팅상담</h4></c:when>
-                                        	<c:when test="3"><h4 data-zanim='{"delay":0}'>텍스트상담</h4></c:when>
-                                        </c:choose>
-                                    </div>
-                                    <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>Ticket Amount</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>Original Price</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}' style="color:red">Discount</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'><h5>Purchase Price</h5></div>
-                                    </div>
-                                    
-                                    <div class="overflow-hidden" align="right" style="margin-right: 20px">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'>
-                                    	<input type='button' id="plus" onclick='count("plus")' value='+'/>
-                                    	<span id="result" style="padding:0px 10px 0px 10px">0</span>
-                                    	<input type='button' id="minus" onclick='count("minus")' value='-'/></div>
-	                                    <div id="op" class="mt-3" data-zanim='{"delay":0.2}'>0</div>
-	                                    <div id="dc" class="mt-3" data-zanim='{"delay":0.3}' style="color:red">0</div>
-	                                    <div id="price" class="mt-3" data-zanim='{"delay":0.4}'><h5>0</h5></div>
-                                    </div>
-                                    <br>
-                                    <div class="overflow-hidden">
-                                        <div data-zanim='{"delay":0.5}'>
-                                        	<form name="payment" id="payment" method="get" action="">
-	                                        	<input type="hidden" name="category" value="1"/>
-							            		<input type="hidden" name="counselor" value="1"/>
-							            		<input type="hidden" name="id" value="aa"/>
-							            		<input type="hidden" name="name" value="aaa"/>
-							            		<input type="hidden" name="phone" value="111"/>
-							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value=""/>
-            		
-		                                        <input type="button" id="card" value="카드결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="phone" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
-		                                        <input type="button" id="paypal" value="PayPal" class="btn btn-info mr-3 mb-3"/>
-	                                        </form>
+                        <div class="col-lg-4 mb-4 mb-lg-0">
+                            <div class="h-100 px-5 py-4 background-white radius-secondary">
+                                <h5 class="mb-3">Sydney Office</h5>62 Collins Street West,<br>Sydney 3000, <br>Australia
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="h-100 px-5 py-4 background-white radius-secondary">
+                                <h5>Socials</h5><a class="d-inline-block mt-2" href="#"><span class="fa fa-linkedin-square fs-2 mr-2 color-primary"></span></a><a class="d-inline-block mt-2" href="#"><span class="fa fa-twitter-square fs-2 mx-2 color-primary"></span></a><a class="d-inline-block mt-2" href="#"><span class="fa fa-facebook-square fs-2 mx-2 color-primary"></span></a><a class="d-inline-block mt-2" href="#"><span class="fa fa-google-plus-square fs-2 ml-2 color-primary"></span></a>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="background-white p-5 h-100 radius-secondary">
+                                <h5>Refund Reason</h5>
+                                <form name="refund" id="refund" method="get" action="${pageContext.request.contextPath}/refund/request">
+                                    <div class="row">
+                                        <div class="col-12 mt-4">
+                                            <textarea class="form-control background-white" rows="11" name="refundReason" placeholder="환불 신청 사유를 작성해주세요." required></textarea>
+                                            <input class="form-control" type="hidden" name="ticketCode" value="${ticket.ticketCode}">
+                                            <!-- <input class="form-control" type="hidden" name="refundState" value="0"> -->
+                                            <input class="form-control" type="hidden" name="id" value="${member.id}">
+                                            <input class="form-control" type="hidden" name="name" value="${member.name}">
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <button class="btn btn-md-lg btn-primary" type="Submit"> <span class="color-white fw-600">Send Now</span></button>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="zform-feedback"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                </div>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-7">
-                        <div class="col-sm-6 col-lg-4 px-4 px-sm-3 text-lg-x" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <h5 data-zanim='{"delay":0}'><span class="ion-card color-primary fs-2 icon-position-fix mr-3"></span>Special financing</h5>
-                            <p class="mt-3 pr-3 pr-lg-5 mb-0" data-zanim='{"delay":0.1}'>Apply for special financial support and earn exclusive rewards.</p>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 px-4 px-sm-3 mt-4 mt-sm-0 text-lg-x" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <h5 data-zanim='{"delay":0}'><span class="ion-chatbox-working color-primary mr-3"></span>Chat with team</h5>
-                            <p class="mt-3 pr-3 pr-lg-5 mb-0" data-zanim='{"delay":0.1}'>Have a question? Chat online with an expert. <a href="#">Start chatting<span class="fa fa-external-link ml-1 icon-position-fix"></span></a></p>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 px-4 px-sm-3 mt-4 mt-lg-0 text-lg-x" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <h5 data-zanim='{"delay":0}'><span class="ion-android-call color-primary mr-3"></span>Call a specialist</h5>
-                            <p class="mt-3 pr-3 pr-lg-5 mb-0" data-zanim='{"delay":0.1}'>Our 24/7 support team is ready for you at 1-800-MY-Elixir.</p>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-white">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="owl-carousel owl-theme owl-dot-round" data-options='{"nav":true,"dots":false,"loop":true,"autoplay":true,"autoplayHoverPause":true,"items":1}'>
-                                <div class="row px-lg-8">
-                                    <div class="col-4 col-md-3 mx-auto"><img class="radius-secondary mx-auto" src="${pageContext.request.contextPath}/assets/images/client1.png" alt="Member" style="width: auto" /></div>
-                                    <div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-                                        <p class="lead fw-400">Their work on our website and Internet marketing has made a significant different to our business. We’ve seen a 425% increase in quote requests from the website which has been pretty remarkable – but I’d always like to see more!</p>
-                                        <h6 class="fs-0 mb-1 mt-4">Michael Clarke</h6>
-                                        <p class="mb-0 color-7">CEO, A.E.T Institute</p>
-                                    </div>
-                                </div>
-                                <div class="row px-lg-8">
-                                    <div class="col-4 col-md-3 mx-auto"><img class="radius-secondary mx-auto" src="${pageContext.request.contextPath}/assets/images/client2.png" alt="Member" style="width: auto" /></div>
-                                    <div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-                                        <p class="lead fw-400">Writing case studies was a daunting task for us. We didn’t know where to begin or what questions to ask, and clients never seemed to follow through when we asked. Elixir team did everything – with almost no time or effort for me!</p>
-                                        <h6 class="fs-0 mb-1 mt-4">Maria Sharapova</h6>
-                                        <p class="mb-0 color-7">Managing Director, Themewagon Inc.</p>
-                                    </div>
-                                </div>
-                                <div class="row px-lg-8">
-                                    <div class="col-4 col-md-3 mx-auto"><img class="radius-secondary mx-auto" src="${pageContext.request.contextPath}/assets/images/client3.png" alt="Member" style="width: auto" /></div>
-                                    <div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-                                        <p class="lead fw-400">As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails, but Elixir was highly recommended by many other Y-Combinator startups we knew. Elixir helped us run a ~6 week email campaign.</p>
-                                        <h6 class="fs-0 mb-1 mt-4">David Beckham</h6>
-                                        <p class="mb-0 color-7">Chairman, Harmony Corporation</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class="background-10 py-6">
-                <div class="container">
-                    <div class="row align-items-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo2.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo1.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo6.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo3.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo5.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo4.png" alt="" data-zanim="{}" /></div>
                     </div>
                     <!--/.row-->
                 </div>
@@ -436,7 +281,7 @@
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="/"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>
@@ -461,7 +306,8 @@
         <script src="${pageContext.request.contextPath}/assets/js/config.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/zanimation.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/inertia.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/googlemap.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoK8GIrOHzHwnzHCyqrdtmTpUWcdrTTD8&callback=initMap" async></script>
         <script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
     </body>
