@@ -182,7 +182,7 @@
 						  </thead>
 						  <tbody>
 						  	<c:choose>
-						  		<c:when test="${empty pageList}">
+						  		<c:when test="${empty pageList.content}">
 						  			<tr>
 						  				<td colspan="4">
 						  					<h4 data-zanim='{"delay":0.1}' class="mt-3">자가진단 테스트를 실행하지 않았습니다.</h4>
@@ -223,7 +223,7 @@
                                 	<c:set var="doneLoop" value="false"/>
                                 	
                                 		<c:if test="${(startPage-blockCount) >0 }">
-                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/result?nowPage=${startPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/result?nowPage=${startPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
                                 		</c:if>
                                 	
 	                                    <c:forEach var="i" begin="${startPage}" end="${(startPage-1)+blockCount}">
@@ -233,14 +233,14 @@
 										    
 										   
 										    <c:if test="${not doneLoop}">
-										    	<li class="page-item" ><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/psy/result?nowPage=${i}">${i}</a> </li>
+										    	<li class="page-item" ><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/psy/lo/result?nowPage=${i}">${i}</a> </li>
 										    </c:if>
 										    
 										    
 	                                    </c:forEach>
 	                                    
 	                                    <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
-	                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/result?nowPage=${startPage+blockCount}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+	                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/result?nowPage=${startPage+blockCount}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
 	                                    </c:if>
                                     
                                 </ul>

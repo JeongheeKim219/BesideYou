@@ -8,27 +8,6 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-/* function reply(code){
-	//alert(1);
-	//code.style.visibility="visible";
-	
-	//document.getElementById("code").style.display  = 'none';
-	/*var style = document.getElementById(code).style.visibility;
-	alert(style);
-	if(style=="visible"){
-		document.getElementById(code).style.visibility = "hidden";
-	}else{
-		document.getElementById(code).style.visibility = "visible";
-	}*/
- 	
-	/*var style = document.getElementById(code).style.display;
-	//alert(style);
-	if(style=="none"){
-		document.getElementById(code).style.display = "block";
-	}else{
-		document.getElementById(code).style.display = "none";
-	} 
-} */
 
 $(function(){
 	$("[name=replayDone]").click(function(){

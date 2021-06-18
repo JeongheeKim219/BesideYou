@@ -179,7 +179,7 @@
 		                                        <p class="mt-3" data-zanim='{"delay":0.2}'>${list.counselor.career}</p>
 		                                    </div>
 		                                    <div class="overflow-hidden">
-		                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/psy/artTest/${list.artCounselorCode}">선택하기 <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
+		                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/psy/lo/artTest/${list.artCounselorCode}">선택하기 <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -204,7 +204,7 @@
 	                                	<c:set var="doneLoop" value="false"/>
 	                                	
 	                                		<c:if test="${(startPage-blockCount) >0 }">
-	                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/artCounselor?nowPage=${startPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+	                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/artCounselor?nowPage=${startPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
 	                                		</c:if>
 	                                	
 		                                    <c:forEach var="i" begin="${startPage}" end="${(startPage-1)+blockCount}">
@@ -214,14 +214,14 @@
 											    
 											   
 											    <c:if test="${not doneLoop}">
-											    	<li class="page-item"><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/psy/artCounselor?nowPage=${i}">${i}</a> </li>
+											    	<li class="page-item"><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/psy/lo/artCounselor?nowPage=${i}">${i}</a> </li>
 											    </c:if>
 											    
 											    
 		                                    </c:forEach>
 		                                    
 		                                    <c:if test="${(startPage+blockCount)<=list.getTotalPages()}">
-		                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/artCounselor?nowPage=${startPage+blockCount}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+		                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/artCounselor?nowPage=${startPage+blockCount}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
 		                                    </c:if>
 	                                    
 	                                </ul>

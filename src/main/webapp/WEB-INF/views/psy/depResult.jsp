@@ -273,7 +273,7 @@
                                 <h5 class="ml-3">현대인에게 가장 무서운 마음의 병 우울증</h5>
                                     <h5 class="fw-500 ml-3 mb-0">혹시 우울증일까? 걱정된다면 BU 에서 전문가에게 상담받으세요!</h5><br>
                                 	<div style="text-align:center;" >
-                                		<a href="${pageContext.request.contextPath}/psy/index" class="btn btn-outline-primary btn-capsule">심리상담 알아보기</a>
+                                		<a href="${pageContext.request.contextPath}/index" class="btn btn-outline-primary btn-capsule">심리상담 알아보기</a>
                                 	</div>
                                 </blockquote>
                             </div>

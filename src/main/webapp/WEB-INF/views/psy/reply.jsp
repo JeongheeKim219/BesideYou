@@ -206,7 +206,7 @@
 			                                        <div class="col-12">
 			                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
 			                                                <h4 data-zanim='{"delay":0.1}'>답변 등록하기</h4>
-			                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/write">
+			                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/lo/write">
 			                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 			                                                	<input type="hidden" name="artCode" value="${art.artCode}">
 			                                                    <div class="row">

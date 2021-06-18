@@ -13,7 +13,7 @@ public interface ArtCounselorRepository extends JpaRepository<ArtCounselor, Long
 	/**
 	 * 상담사code 에 해당하는 그림상담사 조회
 	 * */
-	@Query("select z from ArtCounselor z where counselor=?1")
+	@Query("select z from ArtCounselor z where z.counselor=?1")
 	ArtCounselor selectByCounselorCode(Counselor co);
 	
 	/**

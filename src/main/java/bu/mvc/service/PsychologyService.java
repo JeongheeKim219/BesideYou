@@ -53,7 +53,13 @@ public interface PsychologyService {
 	/**
 	 * 그림상담사에 해당하는 ART 조회
 	 * */
-	List<Art> selectByCounselor(ArtCounselor artCounselor);
+	//List<Art> selectByCounselor(ArtCounselor artCounselor);
+	
+	/////////////////////////////////////
+	/**
+	 * 그림상담사에 해당하는 ART 조회
+	 * */
+	List<Art> selectByCounselor(Counselor co);
 	
 	/**
 	 * 카운슬러코드에 해당하는 아트카운슬러 조회

@@ -189,9 +189,9 @@
 							    			<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artDate}" type="both"/>
 							    			</td>
 									      	<td>${list.member.id}</td>
-									      	<td><a href="${pageContext.request.contextPath}/psy/down/${list.artFile}/${list.artCounselor.counselor.member.name}/<fmt:formatDate value="${parseDate}" pattern="yyyyMMddHHmm"/>">${list.artFile}</a></td>
+									      	<td><a href="${pageContext.request.contextPath}/psy/lo/down/${list.artFile}/${list.artCounselor.counselor.member.name}/<fmt:formatDate value="${parseDate}" pattern="yyyyMMddHHmm"/>">${list.artFile}</a></td>
 									      	<td><fmt:formatDate value="${parseDate}" pattern="yyyy년 MM월 dd일"/></td>
-									      	<td><a href="${pageContext.request.contextPath}/psy/reply/${list.artCode}" class="btn btn-primary btn-capsule btn-sm">답변하기</a></td>
+									      	<td><a href="${pageContext.request.contextPath}/psy/lo/reply/${list.artCode}" class="btn btn-primary btn-capsule btn-sm">답변하기</a></td>
 									      	</tr>
 						    			</c:forEach>
 						    		</c:otherwise>

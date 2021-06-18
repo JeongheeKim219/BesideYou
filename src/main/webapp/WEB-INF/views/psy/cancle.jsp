@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -163,29 +164,46 @@ $(function(){
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-11">
-                <div class="container">
-                    <div class="row mt-6">
-                        <div class="col">
-                            <h3 class="text-center fs-2 fs-md-3">그림상담사 해지안내</h3>
-                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
-                        </div>
-                        <div class="col-12">
-                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
-                                <h5><span class="icon-Speaker-2 color-primary mr-3"></span>해지를 신청하기 전에 안내사항을 꼭 확인해주세요.</h5>
-                                <p class="mt-3">해지 이후에도 고객에게 남긴 답변은 삭제되지 않고 그대로 남아있습니다.<br>이전에 등록한 지시사항과 검사항목은 삭제되지 않습니다.</p>
-                                <div class="form-check">
-                                	<input class="form-check-input" type="checkbox" id="chbox" value="안내 사항을 모두 확인하였으며, 이에 동의합니다.">
-                                	<label class="form-check-label" for="chbox">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label><br>
-                                </div>
-                                <a href="${pageContext.request.contextPath}/psy/stateUpdate" class="btn btn-outline-dark mt-3" id="btn">그림상담사 해지하기</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
+            <c:choose>
+            	<c:when test="${ac.artCounselorState==1}">
+            		<section class="background-11">
+		                <div class="container">
+		                    <div class="row mt-6">
+		                        <div class="col">
+		                            <h3 class="text-center fs-2 fs-md-3">그림상담사로 등록되어 있지 않습니다.</h3>
+		                        </div>
+		                    </div>
+		                    <!--/.row-->
+		                </div>
+		                <!--/.container-->
+		            </section>
+            	</c:when>
+            	<c:otherwise>
+            		<section class="background-11">
+		                <div class="container">
+		                    <div class="row mt-6">
+		                        <div class="col">
+		                            <h3 class="text-center fs-2 fs-md-3">그림상담사 해지안내</h3>
+		                        </div>
+		                        <div class="col-12">
+		                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
+		                                <h5><span class="icon-Speaker-2 color-primary mr-3"></span>해지를 신청하기 전에 안내사항을 꼭 확인해주세요.</h5>
+		                                <p class="mt-3">해지 이후에도 고객에게 남긴 답변은 삭제되지 않고 그대로 남아있습니다.<br>이전에 등록한 지시사항과 검사항목은 삭제되지 않습니다.</p>
+		                                <div class="form-check">
+		                                	<input class="form-check-input" type="checkbox" id="chbox" value="안내 사항을 모두 확인하였으며, 이에 동의합니다.">
+		                                	<label class="form-check-label" for="chbox">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label><br>
+		                                </div>
+		                                <a href="${pageContext.request.contextPath}/psy/lo/stateUpdate" class="btn btn-outline-dark mt-3" id="btn">그림상담사 해지하기</a>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!--/.row-->
+		                </div>
+		                <!--/.container-->
+		            </section>
+            	</c:otherwise>
+            </c:choose>
+            
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
