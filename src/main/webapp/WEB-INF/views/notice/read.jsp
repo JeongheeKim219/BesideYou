@@ -2,6 +2,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <HEAD>
 <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -206,6 +207,7 @@
        <div class="background-white p-5 h-100 radius-secondary">
            <h5>공지사항 자세히 보기</h5>
            <form  id="requestForm" method="get" >
+           		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
         	   <input type=hidden name="noticeCode" value="${notice.noticeCode}">
                <div class="row">
                    <div class="col-12">
@@ -217,6 +219,7 @@
                    <div class="col-12 mt-4">
                        <textarea class="form-control background-white" rows="11" readonly="readonly">${requestScope.notice.noticeContent}</textarea>
                    </div>
+                   <sec:authorize access="hasRole('ROLE_ADMIN')">
                    <div class="col-12 mt-4">
                        <div class="row">
                            <div class="col-auto">
@@ -230,6 +233,7 @@
                            </div>
                        </div>
                    </div>
+                   </sec:authorize>
                </div>
            </form>
        </div>

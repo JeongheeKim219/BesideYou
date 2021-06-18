@@ -182,6 +182,7 @@ $(function(){
        <div class="background-white p-5 h-100 radius-secondary">
            <h5>${notice.noticeCode} 공지사항 수정 하기</h5>
            <form  id="updateForm" method="post" action="${pageContext.request.contextPath}/notice/update">
+         	  <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
         	   <input type=hidden name="noticeCode" value="${notice.noticeCode}">
                <div class="row">
                    <div class="col-12">

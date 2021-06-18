@@ -1,18 +1,16 @@
 package bu.mvc.controller;
 
-import java.time.LocalDate;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -163,9 +161,15 @@ public class MemberController {
 	/**
 	 * 탈퇴하기
 	 * */
-	@RequestMapping("/delete")
-	public String delete(Long memberCode, String password) {
-		memberService.delete(memberCode, password);
+	@RequestMapping("/memberDelete")
+	public String delete(Long memberCode, String password, HttpServletRequest request, HttpServletResponse response) {
+		memberService.delete( memberCode, password);
+		
+		//탈퇴가 되면 로그아웃시킨다.
+		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
+		if(auth!=null && auth.isAuthenticated()) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
 		
 		return "redirect:/";
 	}

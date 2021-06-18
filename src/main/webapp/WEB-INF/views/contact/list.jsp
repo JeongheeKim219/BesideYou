@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 	<head>
         <meta charset="utf-8">
@@ -208,8 +209,8 @@
             <p align="center"><font color="white"><b><span style="font-size:9pt;">처리상태</span></b></font></p>
         </td>
     </tr>
-    <c:choose>
-    <c:when test="${empty requestScope.pageList}">
+     <c:choose>
+    <c:when test="${empty requestScope.pageList.content}">
 	<tr>
         <td colspan="5">
             <p align="center"><b><span style="font-size:9pt;">등록된 문의가 없습니다.</span></b></p>
@@ -277,11 +278,12 @@
     </c:forEach>
 	</c:otherwise>
     </c:choose>
+    
 </table>
 <hr>
-${pageList.hasPrevious()}  /  ${pageList.hasNext()}
 <div style="text-align: center">
 <!-- 페이징 처리 -->
+<c:if test="${not empty pageList.content}">
  <c:forEach begin="0" end="${pageList.totalPages-1}" var="i"> <!-- pageList.getTotalPages()호출 (0부터 시작해서 -1) -->
    <c:choose>
      <c:when test="${pageList.number==i}">
@@ -293,10 +295,12 @@ ${pageList.hasPrevious()}  /  ${pageList.hasNext()}
    </c:choose>
    
  </c:forEach>
+</c:if>
 </div>
 
 <div align=right>
-<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/write">글쓰기</a>&gt;</span></div>
+	<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/write">글쓰기</a>&gt;</span>
+</div>
 
 
 

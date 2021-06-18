@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +30,21 @@
 <link href="${pageContext.request.contextPath}/adminCss/main.css"
 	rel="stylesheet">
 
+	
+	<script type="text/javascript">
+	function checkValid(){
+		var f = window.document.writeForm;
+		
+		if ( f.contactReplyContent.value == "") {
+		    alert( "내용을 입력해 주세요." );
+		    f.contactReplyContent.focus();
+			return false;
+	    }
+		return true;
+		
+		
+	}
+</script>
 </head>
 <body>
 	<%@include file="./header.jsp"%>
@@ -116,31 +130,31 @@
 												</c:otherwise>
 											</c:choose>
 										</tr>
-											<tr>
-												<th scope="row">문의자</th>
-												<td>${contact.member.id}</td>
-											</tr>
-											<tr>
-												<th scope="row">이메일</th>
-												<td>${contact.member.email}</td>
-											</tr>
-											<tr>
-												<th scope="row">연락처</th>
-												<td>${contact.member.phone}</td>
-											</tr>
-											<tr>
-												<th scope="row">제목</th>
-												<td>${contact.contactTitle}</td>
-											</tr>
-											<tr>
-												<th scope="row">내용</th>
-												<td>${contact.contactContent}</td>
-											</tr>
-											<tr>
-												<th scope="row">작성일자</th>
-												<td>${contact.contactDate}</td>
-											</tr>
-									</tbody>
+										<tr>
+											<th scope="row">문의자</th>
+											<td>${contact.member.id}</td>
+										</tr>
+										<tr>
+											<th scope="row">이메일</th>
+											<td>${contact.member.email}</td>
+										</tr>
+										<tr>
+											<th scope="row">연락처</th>
+											<td>${contact.member.phone}</td>
+										</tr>
+										<tr>
+											<th scope="row">제목</th>
+											<td>${contact.contactTitle}</td>
+										</tr>
+										<tr>
+											<th scope="row">내용</th>
+											<td>${contact.contactContent}</td>
+										</tr>
+										<tr>
+											<th scope="row">작성일자</th>
+											<td>${contact.contactDate}</td>
+										</tr>
+						</tbody>
 								</table>
 							</div>
 						</div>
@@ -149,8 +163,10 @@
 						<div class="main-card mb-3 card">
 						<div class="card-body">
 							<h5 class="card-title"># ${contact.contactCode}에 대한 답변</h5>
-							<%-- <sec:authorize access="isAuthenticated()"> --%>
-							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply" method="post">
+
+
+							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply" method="post" onsubmit="return checkValid()" name="writeForm">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<div class="position-relative row form-group">
 									<div class="col-sm-10">
 										<textarea  name="contactReplyContent" class="form-control" rows="10"></textarea>
@@ -159,13 +175,11 @@
 								<div class="position-relative row form-check">
 									<div class="col-sm-10 offset-sm-6">
 										<button class="btn btn-primary">답변작성</button>
-										<%-- <input type="hidden" name="${_csrf.parameterName}"
-                      					  value="${_csrf.token}" /> --%>
 									</div>
 								</div>
 								<input type="hidden" name="contactCode" value="${contact.contactCode}"/>
 							</form>
-							<%-- </sec:authorize> --%>
+
 						</div>
 					</div>
 					</div>

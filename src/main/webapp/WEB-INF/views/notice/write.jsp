@@ -151,6 +151,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/style.css">
 
+<script type="text/javascript">
+	function checkValid(){
+		var f = window.document.writeForm;
+		
+		if ( f.noticeTitle.value == "") {
+		    alert( "제목을 입력해 주세요." );
+		    f.noticeTitle.focus();
+			return false;
+	    }
+		if ( f.noticeContent.value == "") {
+		    alert( "내용을 입력해 주세요." );
+		    f.noticeContent.focus();
+			return false;
+	    }
+		return true;
+		
+		
+	}
+</script>
 
 
 </HEAD>
@@ -163,7 +182,8 @@
 	<div class="col-12 mt-4">
        <div class="background-white p-5 h-100 radius-secondary">
            <h5>공지사항 등록</h5>
-           <form  id="writeForm" method="post" action="${pageContext.request.contextPath}/notice/insert">
+           <form name="writeForm" id="writeForm" method="post" action="${pageContext.request.contextPath}/notice/insert" onsubmit="return checkValid()">
+        	   <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
                <div class="row">
                    <div class="col-12">
                        <input class="form-control background-white" type="text" name="noticeTitle" placeholder="제목">

@@ -1,10 +1,13 @@
 package bu.mvc.controller;
 
+import javax.servlet.jsp.PageContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Contact;
+import bu.mvc.domain.Member;
 import bu.mvc.hs.service.ContactService;
 
 @Controller
@@ -35,13 +39,16 @@ public class ContactController {
 	}
 	
 	/**
-	 * 전체 문의글 가져오기
+	 * 회원이 전체 문의글 가져오기
 	 * */
 	@RequestMapping("/contact/list")
-	public void select(Model model ,@RequestParam(defaultValue = "0")int nowPage) {
+	public void findByMemberMemberCode(Model model ,@RequestParam(defaultValue = "0")int nowPage) {
+		
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "contactCode");
 		
-		Page<Contact> pageList = contactService.selectAll(pageable);
+		Page<Contact> pageList = contactService.findByMemberMemberCode(pageable, member.getMemberCode());
 		
 		model.addAttribute("pageList", pageList);
 	}

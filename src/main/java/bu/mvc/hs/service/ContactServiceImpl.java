@@ -1,5 +1,7 @@
 package bu.mvc.hs.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,26 +16,26 @@ import bu.mvc.respsitory.MemberRepository;
 
 @Service
 @Transactional
-public class ContactServiceImpl implements ContactService {
+public class ContactServiceImpl implements ContactService { 
 	
 	@Autowired
 	private ContactRepository contactRepository;
 	
-	@Autowired
-	private MemberRepository memberRepository;
-	
 
 	/**
-	 * 전체 문의글 가져오기
+	 * 관리자가 전체 문의글 가져오기
 	 * */
 	@Override
 	public Page<Contact> selectAll(Pageable pageable) {
-		
-		if(memberRepository.findAll() == null) {
-			throw new RuntimeException("로그인후 이용해주세요.");
-		}
-		
 		return contactRepository.findAll(pageable);
+	}
+	
+	/**
+	 * 회원이 전체 문의글 가져오기
+	 * */
+	@Override
+	public Page<Contact> findByMemberMemberCode(Pageable pageable, Long memberCode) {
+		return contactRepository.findByMemberMemberCode(pageable, memberCode);
 	}
 
 	/**
@@ -71,6 +73,8 @@ public class ContactServiceImpl implements ContactService {
 		dbContact.setContactContent(contact.getContactContent());
 		return dbContact;
 	}
+
+
 
 
 

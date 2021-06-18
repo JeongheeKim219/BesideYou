@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html>
@@ -132,7 +133,10 @@
 															<td>기타문의</td>
 														</c:otherwise>
 													</c:choose>
+
 													<td><a href="${pageContext.request.contextPath}/contact/read/${contact.contactCode}">${contact.contactTitle}</a></td>
+
+
 													<td>${contact.member.id}</td>
 													<c:choose>
 														<c:when test="${contact.contactState == 0}">
@@ -177,7 +181,6 @@
 					</div>
 				</div>
 			</div>
-
 
 		</div>
 	</div>

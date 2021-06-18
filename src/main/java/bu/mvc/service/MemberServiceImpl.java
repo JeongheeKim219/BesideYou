@@ -127,14 +127,22 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	/**
-	 * 회원탈퇴
+	 * 회원탈퇴(회원정보 상태 수정하기 )
 	 * */
 	@Override
 	public void delete(Long memberCode, String password) {
-		Member member=memberRep.findById(memberCode).orElse(null);
+		
+		  Member member = memberRep.findById(memberCode).orElse(null);
 		
 		
-		memberRep.deleteById(memberCode);
+		
+		
+		if(member==null || !passwordEncoder.matches(password, member.getPassword())) {
+			throw new RuntimeException("글 번호나 비밀번호 오류로 삭제할수 없습니다...^^");
+	}
+		
+		memberRep.deleteMember(memberCode);
+		
 	}
 	
 	
