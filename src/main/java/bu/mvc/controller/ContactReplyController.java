@@ -11,7 +11,6 @@ import bu.mvc.domain.ContactReply;
 import bu.mvc.hs.service.ContactReplyService;
 
 @Controller
-@RequestMapping("/contactReply")
 public class ContactReplyController {
 	
 	@Autowired
@@ -21,25 +20,28 @@ public class ContactReplyController {
 	/**
 	 * 답변 폼
 	 * */
-	@RequestMapping("/write")
+	@RequestMapping("/admin/contactDetailView")
 	public void writeForm(Long contactCode, Model model) {
-		model.addAttribute("contactCode", contactCode);
+		Contact contact = contactReplyService.selectById(contactCode);
+		model.addAttribute("contact", contact);
 	}
 	
 	/**
 	 * 답변 등록하기
 	 * */
-	@RequestMapping("/insert")
+	@RequestMapping("/admin/insertContactReply")
 	public String insert(ContactReply contactReply, Long contactCode) {
 		contactReply.setContact(new Contact(contactCode));
+		
 		contactReplyService.insert(contactReply);
+		
 		return "redirect:/contact/read/"+contactCode;
 	}
 	
 	/**
 	 * 답변 삭제하기
 	 * */
-	@RequestMapping("/delete/{contactReplyCode}/{contactCode}")
+	@RequestMapping("/contactReply/delete/{contactReplyCode}/{contactCode}")
 	public String delete(@PathVariable Long contactReplyCode, @PathVariable Long contactCode) {
 		contactReplyService.delete(contactReplyCode);
 		return "redirect:/contact/read/"+contactCode;

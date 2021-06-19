@@ -364,7 +364,6 @@
 											<!-- Ajax로 구현될 영역-->
 										
 											<!-- ----------------- -->
-										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
 										<c:forEach  var="counselor" items="${requestScope.counselorList}">
 											<li class="list-group-item">
 												<div class="widget-content p-0">

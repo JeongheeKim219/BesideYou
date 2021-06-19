@@ -466,15 +466,15 @@ public class AdminService {
 	/**
 	 * 멤버코드에 해당하는 상담권 결제내역 조회
 	 * */
-	public List<Ticket> findByMemberMemberCode(Long memberCode){
-		return ticketRep.findByMemberMemberCode(memberCode);
+	public Page<Ticket> findByMemberMemberCode(Pageable pageable, Long memberCode){
+		return ticketRep.findByMemberMemberCode(pageable, memberCode);
 	}
 	
 	/**
-	 * 멤버코드에 해당하는 상담권 결제내역 조회
+	 * 멤버코드에 해당하는 상담권 사용내역 조회
 	 * */
-	public List<TicketLines> findByTicketMemberMemberCode(Long memberCode) {
-		return ticketLinesRep.findByTicketMemberMemberCode(memberCode);
+	public Page<TicketLines> findByTicketMemberMemberCode(Pageable pageable, Long memberCode) {
+		return ticketLinesRep.findByTicketMemberMemberCode(pageable, memberCode);
 	}
 	
 	/**

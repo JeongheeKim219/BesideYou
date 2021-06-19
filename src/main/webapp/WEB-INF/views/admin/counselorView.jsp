@@ -106,17 +106,16 @@
 						상담사 등록 현황
 						<div class="btn-actions-pane-right">
 							<div role="group" class="btn-group-sm btn-group">
-								<button class="active btn btn-focus" id="all">전체</button>
-								<button class="btn btn-focus" id="request">등록신청</button>
-								<button class="btn btn-focus" id="denied">반려</button>
-								<button class="btn btn-focus" id="approval">승인</button>	
-								<button class="btn btn-focus" id="revoked">자격정지</button>	
+								<button class="btn btn-gray" id="all">전체</button>
+								<button class="btn btn-light" id="request">등록신청</button>
+								<button class="btn btn-light" id="denied">반려</button>
+								<button class="btn btn-light" id="approval">승인</button>	
+								<button class="btn btn-light" id="revoked">자격정지</button>	
 							</div>
 						</div>
 					</div>
 					<div class="table-responsive">
-						<table
-							class="align-middle mb-0 table table-borderless table-striped table-hover">
+						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 							<thead>
 								<tr>
 									<th class="text-center">상담사코드</th>
@@ -127,8 +126,16 @@
 									<th class="text-center">상태</th>	
 								</tr>
 							</thead>
-					<c:forEach items="${requestScope.allList.content}" var="newCounselor" varStatus="reqState">
-							<tbody>
+					<c:choose>
+						<c:when test="${not empty requestScope.errorMessage}">
+							<tr>
+								<td colspan="6"><p align="center">${requestScope.errorMessage}</p></td>
+							</tr>
+						</c:when>
+					<c:otherwise>
+					<tbody>
+					<c:forEach items="${requestScope.pageList.content}" var="newCounselor" varStatus="reqState">
+							
 								<tr>
 									<td class="text-center text-muted"># ${newCounselor.counselorCode}</td>
 									<td>
@@ -166,7 +173,7 @@
 									</td>
 									<td>
 									 <div class="dropdown d-inline-block">
-                                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-focus">인증</button>
+                                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-focus btn-sm">인증</button>
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                                 <button type="button" tabindex="1" class="dropdown-item" id="approval" value="${newCounselor.member.memberCode}">승인</button>
                                                 <button type="button" tabindex="2" class="dropdown-item" id="denial" value="${newCounselor.member.memberCode}">반려</button>                                                
@@ -187,18 +194,24 @@
 										<c:when test="${newCounselor.counselorState == 3}">
 											<div class="mb-2 mr-2 badge badge-secondary">정지</div>
 										</c:when>
-									</c:choose></td>
+									</c:choose>
+									</td>
 									</tr>
+									
 									</c:forEach>
-							</tbody>
+									</tbody>
+								</c:otherwise>
+							</c:choose>
 						</table>
+						<c:choose>
+						<c:when test ="${empty requestScope.errorMessage}">
 						<ul class="pagination">
 								<li class="page-item"><a href="javascript:void(0);"
 									class="page-link" aria-label="Previous"><span
 										aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-								<c:forEach begin="0" end="${allList.totalPages-1}" var="i">
+								<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
 									<c:choose>
-										<c:when test="${allList.number==i}">
+										<c:when test="${pageList.number==i}">
 											<li class="page-item active"><a
 												href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
@@ -215,12 +228,8 @@
 									class="page-link" aria-label="Next"><span
 										aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
 							</ul>
-					</div>
-					<div class="d-block text-center card-footer">
-						<button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger">
-							<i class="pe-7s-trash btn-icon-wrapper"> </i>
-						</button>
-						<button class="btn-wide btn btn-success">Save</button>
+							</c:when>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -260,20 +269,33 @@
 			
 
 			$("#all").click(function (){
-			/* 	$(".btn btn-focus"). */
+				$(".active btn btn-focus").removeClass("active");
+				$(this).addClass("active btn btn-focus");
 				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/4";
+			});
+
+			$("#request").click(function (){
+				$(".active btn btn-focus").removeClass("active");
+				$(this).addClass("active btn btn-focus");
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/0";
 			});
 			
 			$("#denied").click(function (){
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState";
+				$(".btn btn-focus active").removeClass("btn btn-focus active").addClass("btn btn-focus");
+				$(this).addClass("btn btn-focus active");
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/1";
 			});
 			
 			$("#approval").click(function (){
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState";
+				$(".btn btn-focus active").removeClass("btn btn-focus active").addClass("btn btn-focus");
+				$(this).addClass("btn btn-focus active");
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/2";
 			});
 			
 			$("#revoked").click(function (){
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState";
+				$(".btn btn-focus active").removeClass("btn btn-focus active").addClass("btn btn-focus");
+				$(this).addClass("btn btn-focus active");
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/3";
 			});
 			
 			

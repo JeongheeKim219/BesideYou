@@ -8,9 +8,14 @@ import bu.mvc.domain.Contact;
 public interface ContactService {
 	
 	/**
-	 * 전체 문의글 가져오기
+	 * 관리자가 전체 문의글 가져오기
 	 * */
 	Page<Contact> selectAll(Pageable pageable);
+	
+	/**
+	 * 회원이 전체 문의글 가져오기
+	 * */
+	Page<Contact> findByMemberMemberCode(Pageable pageable, Long memberCode);
 	
 	/**
 	 * 문의글 등록하기

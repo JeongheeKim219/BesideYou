@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -29,13 +31,15 @@ import bu.mvc.domain.ContactReply;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.Ticket;
 import bu.mvc.domain.Psychology;
 import bu.mvc.domain.ReviewStar;
-import bu.mvc.domain.Ticket;
 import bu.mvc.domain.TicketLines;
+
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.service.AdminService;
+import bu.mvc.service.TicketService;
 
 @Controller
 @RequestMapping("/admin")
@@ -49,6 +53,9 @@ public class AdminController {
 	
 	@Autowired
 	private CounselorRepository counselorRep;
+	
+	@Autowired
+	private TicketService ticketService;
 	
 	
 	/**
@@ -185,31 +192,7 @@ public class AdminController {
 	}
 
 	
-	/**
-	 * 12. 문의내역 처리 게시판으로 이동 +) 문의내역 검색
-	 */
-	@RequestMapping("/contactView")
-	public String viewContact(Model model, @RequestParam(defaultValue = "0") int currentPage) {
 
-		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "contactCode");
-		Page<Contact> contactPageList = adminService.selectAllContact(pageable);
-		model.addAttribute("contactPageList", contactPageList);
-		return "admin/contactView";
-	}
-
-	
-	/**
-	 * 13. 문의 상세보기 페이지로 이동
-	 * 
-	 * @param contactCode
-	 * @return "admin/contactDetailView"
-	 */
-	@RequestMapping("/viewContactDetail/{contactCode}")
-	public String viewContactDetail(Model model, @PathVariable Long contactCode) {
-		Contact contact = adminService.selectContactById(contactCode);
-		model.addAttribute("contact", contact);
-		return "admin/contactDetailView";
-	}
 
 	
 	/**
@@ -260,22 +243,22 @@ public class AdminController {
 	/**
 	 * 17. 상담사 등록용 전체 상담사 조회
 	 */
-	@RequestMapping("/viewCounselorState/{counselorState}")
-	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage, @PathVariable int counselorState){
-		
+	@RequestMapping({"/viewCounselorState", "/viewCounselorState/{counselorState}"})
+	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage, @PathVariable Optional<Integer> counselorState){
 		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "counselorCode");
-		Page<Counselor> allList = adminService.findAllCounselor(pageable);
-		Page<Counselor> requestList  = adminService.updateByCounselorState(0, pageable);
-		Page<Counselor> deniedList = adminService.updateByCounselorState(1, pageable);
-		Page<Counselor> approvedList  = adminService.updateByCounselorState(2, pageable);
-		Page<Counselor> revokedList  = adminService.updateByCounselorState(3, pageable);
-
-		model.addAttribute("allList", allList);
-		model.addAttribute("requestList", requestList);
-		model.addAttribute("deniedList", deniedList);
-		model.addAttribute("approvedList", approvedList);
-		model.addAttribute("revokedList", revokedList);
+		Page<Counselor> pageList = adminService.findAllCounselor(pageable);
+		Integer state = (counselorState.isPresent())? counselorState.get() : 4;
 		
+		if (state == 4) {
+			model.addAttribute("pageList", pageList);
+		} else {
+			model.addAttribute("pageList", adminService.updateByCounselorState(state, pageable));
+		}
+				
+		 if(pageList.getNumberOfElements() == 0) {
+			  model.addAttribute("errorMessage", "조회된 상담사 회원이 없습니다.");
+		  }
+		 
 		return "admin/counselorView";
 	}
 	
@@ -314,9 +297,9 @@ public class AdminController {
 			
 			counselor.setCounselorState(state);
 			adminService.updateCounselorState(counselor);
-			System.out.println("반려");
-		
 		}
+		
+	
 		
 		return "redirect:/admin/viewCounselorState";	
 	}
@@ -337,6 +320,25 @@ public class AdminController {
 		  
 		  return "admin/memberView";
 	  }
+	  
+	 
+	 /**
+	  * 결제내역 조회
+	  * @param nowPage
+	  * @return ModelAndView
+	  */
+	@RequestMapping("/ticketView")
+	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
+		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
+		Page<Ticket> tkList = ticketService.selectAll(pageable);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/ticketView");
+		mv.addObject("tkList", tkList);
+		mv.addObject("previous", pageable.previousOrFirst().getPageNumber());
+		mv.addObject("next", pageable.next().getPageNumber());
+		return mv;
+	}
 	
 }
 
