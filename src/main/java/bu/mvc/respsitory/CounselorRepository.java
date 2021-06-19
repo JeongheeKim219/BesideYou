@@ -1,5 +1,7 @@
 package bu.mvc.respsitory;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,5 +16,10 @@ public interface CounselorRepository extends JpaRepository<Counselor, Long>{
 	 * */
 	@Query("select c from Counselor c where c.member.memberCode=?1")
 	Counselor searchBymembercode(Long mem);
-	
+
+	/**
+	 * 1. 상담사 상태별 조회
+	 */
+	List<Counselor> findAllByCounselorState(int state);
+
 }

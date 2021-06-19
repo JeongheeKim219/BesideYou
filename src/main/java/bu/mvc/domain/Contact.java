@@ -48,7 +48,6 @@ public class Contact { //1:1문의
 	private ContactReply contactReply;
 	
 
-	
 	public Contact(Long contactCode, int contactCategory, String contactTitle, String contactContent, int contactState,
 			Member member) {
 		super();
