@@ -39,7 +39,7 @@ public class ReviewController {
 	 * */
 	@RequestMapping("/review/insert")
 	public String insert(ReviewStar reviewStar) {
-		System.out.println("11");
+		System.out.println(reviewStar.getMember());
 		reviewService.insert(reviewStar);
 		
 		return "redirect:/review/reviewList";
@@ -53,7 +53,7 @@ public class ReviewController {
 	 * */
 	@RequestMapping("/review/reviewList")
 	public void selectAll(Model model, @RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 100, Direction.ASC, "reviewCode");
+		Pageable pageable = PageRequest.of(nowPage, 100, Direction.DESC, "reviewCode");
 		Page<ReviewStar> pageList = reviewService.selectAll(pageable);
 		System.out.println("aaaa  : "+pageList.toString());
 		model.addAttribute("pageList", pageList);

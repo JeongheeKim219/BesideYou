@@ -33,9 +33,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<form name="requestForm" method="post" id ="requestForm">
-		<input type="hidden" id="reportCode" name="reviewCode" value = ""/>
-		<input type="hidden" id="reviewCode" name="reviewCode" value = ""/>
+	
 		<%@include file="./header.jsp"%>
 		<%@include file="./menu.jsp"%>
 		<div class="app-main">
@@ -98,6 +96,7 @@
 					<div class="col-lg-12">
 						<div class="main-card mb-3 card" style="width:50%; margin: 0 auto;" >
 							<div class="card-body" style="width:100%; margin: 0 auto ">
+							<form name="requestForm" id="requestForm" method="post">							
 								<h5 class="card-title" align="center">신고 내용</h5>
 								<table class="mb-0 table table-hover" >					
 									<tr>
@@ -128,26 +127,40 @@
 									</tr>
 									<tr>
 										<td colspan="2" align="right">
-											<input type="button" id="btn" name="btn" value="삭제">
-											<input type="hidden" id="reviewCode" value="${requestScope.report.reviewStar.reviewCode}">
-											<input type="hidden" id="reportCode" value="${requestScope.report.reportCode}">
+											<input type="button" id="btn" value="삭제">
+											<input type="text" id="reviewCode" value="${requestScope.report.reviewStar.reviewCode}">
+											<input type="text" id="reportCode" value="${requestScope.report.reportCode}">
 										</td>
 									</tr>		
 								</table>
+							</form>	
 			</div>
 		  </div>	
 		</div>
-	</form>	
+
 	
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
 </body>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#btn").click(function() {
-			var reviewCode = $('#reviewCode').val();
-			alert(reviewCode);
-		});
-	});
+	$("#btn").click(function(){
+		var reviewCode = $('#reviewCode').val();
+		var reportCode = $('#reportCode').val();
+		
+		$.ajax({
+			type : 'POST',
+			url :'${pageContext.request.contextPath}/report/delete',
+			data : JSON.stringify({reviewCode : reviewCode, reportCode : reportCode}),
+			dataType :'json',
+			contentType: 'application/json; charset=UTF-8',
+			success : function(data){
+				
+			},
+			error:function(){
+				
+			}
+		})
+	})
+	
 </script>
 </html>

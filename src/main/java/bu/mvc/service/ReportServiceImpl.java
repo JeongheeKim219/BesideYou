@@ -33,8 +33,8 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public void deleteByreview(Long reviewCode) {
-		
+	public void deleteReport(Long reportCode) {
+		reportRepository.deleteById(reportCode);
 		
 	}
 

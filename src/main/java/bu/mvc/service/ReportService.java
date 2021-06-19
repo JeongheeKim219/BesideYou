@@ -26,6 +26,6 @@ public interface ReportService {
 	/**
 	 * 신고 삭제
 	 * */
-	void deleteByreview(Long reviewCode);
+	void deleteReport(Long reportCode);
 
 }

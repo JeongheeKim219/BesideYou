@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -31,13 +29,13 @@ public class ReviewStar {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
 	@SequenceGenerator(sequenceName = "review_seq", allocationSize = 1, name = "review_seq")
 	private Long reviewCode; //리뷰번호
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "member_code")
 	private Member member; // 회원코드
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "COUNSELOR_CODE")
 	private Counselor counselor; // 상담사 코드
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "COUNSEL_CODE")
 	private Counsel counsel; // 상담코드
 	@CreationTimestamp

@@ -25,6 +25,8 @@ import bu.mvc.service.ReviewService;
 public class ReportController {
 	@Autowired
 	private ReportService reportService;
+	@Autowired
+	private ReviewService rs;
 	
 	
 	/**
@@ -95,12 +97,16 @@ public class ReportController {
 	/**
 	 * 신고 삭제
 	 * */
-	@RequestMapping("/review/deleteAdmin{reportCode}")
-	public String deleteAdmin(@PathVariable Long reviewCode) {
-		System.out.println("dd");
-		
-		
-		return "";
+	@ResponseBody
+	@RequestMapping("/report/delete")
+	public String deleteAdmin(@RequestBody ReportDTO report) {
+		Long a =Long.parseLong(report.getReportCode());
+		Long b =Long.parseLong (report.getReviewCode());
+		System.out.println(a +"///" + b);
+		reportService.deleteReport(a);
+		rs.delete(b);
+		System.out.println("완료");
+		return "redirect:/review/reviewList";
 	}
 	
 	

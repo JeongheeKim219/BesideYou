@@ -33,7 +33,7 @@ onSubmit='return checkValid()'>
 				</p>
 			</td>
 			<td width="450" height="20"><b><span style="font-size: 9pt;">
-						<input name="memberCode.memberCode" size="30" value="">
+						<input name="member.memberCode" size="30" value="">
 						<%-- <input name="id" size="30" value="${loginUser}" readonly="readonly"
 						disabled="disabled"> --%>
 				</span></b></td>
@@ -45,7 +45,7 @@ onSubmit='return checkValid()'>
 				</p>
 			</td>
 			<td width="450" height="20"><b><span style="font-size: 9pt;">
-						<input type="text" name="counselorCode.counselorCode" size="30" value="">
+						<input type="text" name="counselor.counselorCode" size="30" value="">
 				</span></b></td>
 		</tr>
 		<tr>
@@ -55,7 +55,7 @@ onSubmit='return checkValid()'>
 				</p>
 			</td>
 			<td width="450" height="20"><b><span style="font-size: 9pt;">
-						<input type="text" name="counselCode.counselCode" size="30" value="">
+						<input type="text" name="counsel.counselCode" size="30" value="">
 				</span></b></td>
 		</tr>
 		<tr>
