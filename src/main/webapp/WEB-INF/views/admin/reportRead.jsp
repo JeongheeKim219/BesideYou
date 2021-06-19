@@ -96,7 +96,8 @@
 					<div class="col-lg-12">
 						<div class="main-card mb-3 card" style="width:50%; margin: 0 auto;" >
 							<div class="card-body" style="width:100%; margin: 0 auto ">
-							<form name="requestForm" id="requestForm" method="post">							
+							<form name="requestForm" id="requestForm" method="post"  action="${pageContext.request.contextPath}/report/delete">	
+											
 								<h5 class="card-title" align="center">신고 내용</h5>
 								<table class="mb-0 table table-hover" >					
 									<tr>
@@ -127,10 +128,10 @@
 									</tr>
 									<tr>
 										<td colspan="2" align="right">
-											<input type="button" id="btn" value="삭제(리뷰까지)">
+											<input type="button" id="btn"  value="삭제(리뷰까지)">
 											<input type="button" id="btn1" value="삭제(신고내역)">
-											<input type="text" id="reviewCode" value="${requestScope.report.reviewStar.reviewCode}">
-											<input type="text" id="reportCode" value="${requestScope.report.reportCode}">
+											<input type="hidden" id="reviewStar" name="reviewStar" value="${requestScope.report.reviewStar.reviewCode}">
+											<input type="hidden" id="reportCode" name="reportCode" value="${requestScope.report.reportCode}">
 										</td>
 									</tr>		
 								</table>
@@ -143,7 +144,31 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
 </body>
-<script type="text/javascript">
+
+	<script type="text/javascript">
+		$(function(){
+			$("#btn").click(function(){
+				var param = document.getElementById('requestForm');
+				param.method = "POST";
+				param.action = "${pageContext.request.contextPath}/report/delete";
+				param.submit();
+				
+			});
+			
+				$("#btn1").click(function(){
+					var param = document.getElementById('requestForm');
+					param.method = "POST";
+					param.action = "${pageContext.request.contextPath}/report/deleteReportOnly";
+					param.submit();
+					
+				});
+			
+		})
+	</script>
+
+
+
+<!-- <script type="text/javascript">
 	$("#btn").click(function(){
 		var reviewCode = $('#reviewCode').val();
 		var reportCode = $('#reportCode').val();
@@ -153,9 +178,10 @@
 			url :'${pageContext.request.contextPath}/report/delete',
 			data : JSON.stringify({reviewCode : reviewCode, reportCode : reportCode}),
 			dataType :'json',
+			async: false,
 			contentType: 'application/json; charset=UTF-8',
-			success : function(data){
-				
+			success : function(){
+
 			},
 			error:function(){
 				
@@ -170,7 +196,7 @@
 		
 		$.ajax({
 			type : 'POST',
-			url :'${pageContext.request.contextPath}/report/deleteReportOnly',
+			url :'${pageContext.request.contextPath}//report/deleteReportOnly',
 			data : JSON.stringify({reportCode : reportCode}),
 			dataType :'json',
 			contentType: 'application/json; charset=UTF-8',
@@ -181,7 +207,8 @@
 				
 			}
 		})
-	})
-	
-</script>
+	});
+
+</script> -->
+
 </html>

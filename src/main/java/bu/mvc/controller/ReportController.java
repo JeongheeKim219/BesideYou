@@ -1,13 +1,18 @@
 package bu.mvc.controller;
 
+import javax.print.attribute.standard.Media;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +26,6 @@ import bu.mvc.service.ReportService;
 import bu.mvc.service.ReviewService;
 
 @Controller
-
 public class ReportController {
 	@Autowired
 	private ReportService reportService;
@@ -71,13 +75,15 @@ public class ReportController {
 	 * */
 	@RequestMapping("/admin/reportView")
 	public void selectAll(Model model,  @RequestParam(defaultValue = "0") int nowPage) {
+		System.out.println("여이이어ㅕ이어이여");
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "reportCode");
 		Page<Report> pageList = reportService.selectAll(pageable);
-		System.out.println(pageList.toString());
+		System.out.println( pageList.toString());
 		model.addAttribute("ReportpageList",pageList);
+		System.out.println("asdfsdaf");
 	}
 	
-	
+
 	/**
 	 * 신고된 리뷰 내용보기
 	 * */
@@ -90,37 +96,48 @@ public class ReportController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/reportRead");
 		mv.addObject("report",report);
-		
 		return mv;
 	}
+	
+	
+//	@RequestMapping("/report/delete")
+//	public String deleteAdmin( ReportDTO report) {
+//		Long a =Long.parseLong(report.getReportCode());
+//		Long b =Long.parseLong (report.getReviewCode());
+//		System.out.println(a +"///" + b);
+//		reportService.deleteReport(a);
+//		rs.delete(b);
+//		System.out.println("완료");
+//		return "redirect:/admin/reportView";
+//	}
 	
 	/**
 	 * 신고 삭제(리뷰같이 삭제)
 	 * */
-	@ResponseBody
-	@RequestMapping("/report/delete")
-	public String deleteAdmin(@RequestBody ReportDTO report) {
-		Long a =Long.parseLong(report.getReportCode());
-		Long b =Long.parseLong (report.getReviewCode());
-		System.out.println(a +"///" + b);
+	@RequestMapping("/report/delete" )
+	public String deleteAdmin( Report report) {	
+		Long a =report.getReportCode();
+		ReviewStar rsn =report.getReviewStar();
+		System.out.println(a);
+
 		reportService.deleteReport(a);
-		rs.delete(b);
+		rs.delete(rsn.getReviewCode());
 		System.out.println("완료");
-		return "redirect:/review/reviewList";
+		return "redirect:/admin/reportView";
 	}
+	
 	
 	/**
 	 * 신고삭제(신고만 삭제)
 	 * */
-	@ResponseBody
+	
 	@RequestMapping("/report/deleteReportOnly")
-	public String deleteReport(@RequestBody ReportDTO report) {
-		Long a =Long.parseLong(report.getReportCode());
-		System.out.println(a);
+	public String deleteReport( Report report) {
+		System.out.println(report.getReportCode());
+		Long a = report.getReportCode();
 		reportService.deleteReport(a);
-		
 		System.out.println("완료");
-		return "redirect:/review/reviewList";
+		return "redirect:/admin/reportView";
 	}
 	
 	
