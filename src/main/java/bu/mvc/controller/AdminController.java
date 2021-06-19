@@ -229,16 +229,17 @@ public class AdminController {
 	/**
 	 * 17. 상담사 등록용 전체 상담사 조회
 	 */
-	@RequestMapping("/viewCounselorState")
-	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage){
+	@RequestMapping("/viewCounselorState/{counselorState}")
+	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage, @PathVariable int counselorState){
 		
 		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "counselorCode");
+		Page<Counselor> allList = adminService.findAllCounselor(pageable);
 		Page<Counselor> requestList  = adminService.updateByCounselorState(0, pageable);
 		Page<Counselor> deniedList = adminService.updateByCounselorState(1, pageable);
 		Page<Counselor> approvedList  = adminService.updateByCounselorState(2, pageable);
 		Page<Counselor> revokedList  = adminService.updateByCounselorState(3, pageable);
 
-		
+		model.addAttribute("allList", allList);
 		model.addAttribute("requestList", requestList);
 		model.addAttribute("deniedList", deniedList);
 		model.addAttribute("approvedList", approvedList);
@@ -268,13 +269,23 @@ public class AdminController {
 	public String approvalDenial(@PathVariable Long memberCode, @PathVariable int state) {
 		Member member = adminService.findMember(memberCode);
 		Counselor counselor = adminService.findCounselorByMemberCode(memberCode);
-	
-		counselor.setCounselorState(state);
-		member.setMemberType(1);
 		
-		adminService.updateCounselorState(counselor);
-		adminService.updateMemberType(member);
-		adminService.addAuthority(member);		
+		if(state == 2) {
+		
+			counselor.setCounselorState(state);
+			member.setMemberType(1);
+			
+			adminService.updateCounselorState(counselor);
+			adminService.updateMemberType(member);
+			adminService.addAuthority(member);		
+		
+		} else if (state == 1) {
+			
+			counselor.setCounselorState(state);
+			adminService.updateCounselorState(counselor);
+			System.out.println("반려");
+		
+		}
 		
 		return "redirect:/admin/viewCounselorState";	
 	}

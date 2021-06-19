@@ -446,6 +446,14 @@ public class AdminService {
 		return adminRep.findByAliasContainingOrNameContaining(pageable, keyword, keyword);
 	}
 
+	/**
+	 * 20. 전체 상담사 회원 조회
+	 */
+	public Page<Counselor> findAllCounselor(Pageable pageable){
+		return counselorRep.findAll(pageable);
+	}
+	
+
 }
 
 

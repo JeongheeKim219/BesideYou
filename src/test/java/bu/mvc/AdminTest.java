@@ -1,5 +1,7 @@
 package bu.mvc;
 
+import static org.assertj.core.api.Assertions.contentOf;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -194,9 +196,19 @@ public class AdminTest {
 			System.out.println(member.getId());
 		}
 		
-		
 	}
-
+	
+	@Test
+	void test_15() {
+		/*
+		 * //Pageable pageable = PageRequest.of(, 10, Direction.DESC, "counselorCode");
+		 * Page<Counselor> coPage = counselorRep.findAll(pageable);
+		 * 
+		 * for(Counselor counselor : coPage.getContent()) {
+		 * System.out.println(counselor.getCounselorCode()); }
+		 * 
+		 * System.out.println("상담사 인원 : " + coPage.getContent().size());
+		 */	}
 
 
 }

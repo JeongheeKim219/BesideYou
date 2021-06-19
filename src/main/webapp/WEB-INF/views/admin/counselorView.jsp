@@ -106,8 +106,11 @@
 						상담사 등록 현황
 						<div class="btn-actions-pane-right">
 							<div role="group" class="btn-group-sm btn-group">
-								<button class="active btn btn-focus">등록신청</button>
-								<button class="btn btn-focus">반려</button>
+								<button class="active btn btn-focus" id="all">전체</button>
+								<button class="btn btn-focus" id="request">등록신청</button>
+								<button class="btn btn-focus" id="denied">반려</button>
+								<button class="btn btn-focus" id="approval">승인</button>	
+								<button class="btn btn-focus" id="revoked">자격정지</button>	
 							</div>
 						</div>
 					</div>
@@ -124,7 +127,7 @@
 									<th class="text-center">상태</th>	
 								</tr>
 							</thead>
-					<c:forEach items="${requestScope.requestList.content}" var="newCounselor" varStatus="reqState">
+					<c:forEach items="${requestScope.allList.content}" var="newCounselor" varStatus="reqState">
 							<tbody>
 								<tr>
 									<td class="text-center text-muted"># ${newCounselor.counselorCode}</td>
@@ -165,15 +168,26 @@
 									 <div class="dropdown d-inline-block">
                                             <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-focus">인증</button>
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                                <h6 tabindex="-1" class="dropdown-header">자격증 인증</h6>
                                                 <button type="button" tabindex="1" class="dropdown-item" id="approval" value="${newCounselor.member.memberCode}">승인</button>
                                                 <button type="button" tabindex="2" class="dropdown-item" id="denial" value="${newCounselor.member.memberCode}">반려</button>                                                
                                             </div>
                                         </div>
 									</td>
-									<td class="text-center">
-										<div class="badge badge-warning">대기</div>
-									</td>
+									<td>
+									<c:choose>
+										<c:when test="${newCounselor.counselorState == 0}">
+											<div class="mb-3 mr-3 badge badge-info">대기</div>
+										</c:when>
+										<c:when test="${newCounselor.counselorState == 1}">
+											<div class="mb-2 mr-2 badge badge-warning">반려</div>
+										</c:when>
+										<c:when test="${newCounselor.counselorState == 2}">
+											<div class="mb-2 mr-2 badge badge-success">승인</div>
+										</c:when>
+										<c:when test="${newCounselor.counselorState == 3}">
+											<div class="mb-2 mr-2 badge badge-secondary">정지</div>
+										</c:when>
+									</c:choose></td>
 									</tr>
 									</c:forEach>
 							</tbody>
@@ -182,9 +196,9 @@
 								<li class="page-item"><a href="javascript:void(0);"
 									class="page-link" aria-label="Previous"><span
 										aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-								<c:forEach begin="0" end="${requestList.totalPages-1}" var="i">
+								<c:forEach begin="0" end="${allList.totalPages-1}" var="i">
 									<c:choose>
-										<c:when test="${requestList.number==i}">
+										<c:when test="${allList.number==i}">
 											<li class="page-item active"><a
 												href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
 												class="page-link">${i+1}</a></li>
@@ -224,17 +238,44 @@
 	<script>
 		$(function() {
 		
-			$("button[tabindex='1']").click(function (){
+			
+			
+			$("button[tabindex='1']").click(function (){		
 				var answer = confirm("상담사 자격을 승인하시겠습니까?"); 
+				var memberCode = $(this).val();
+				if(answer){
+					location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/" + memberCode +"/2";
+				
+				}		
+			});	
+			
+			$("button[tabindex='2']").click(function (){
+				var answer = confirm("상담사 자격 신청을 반려하시겠습니까?"); 
 				var memberCode = $(this).val();
 				alert(memberCode);
 				if(answer){
-					location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/" + memberCode +"/2";
-					
-				}	
-					
-			});	
-				
+					location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/" + memberCode +"/1";
+				}		
+			});
+			
+
+			$("#all").click(function (){
+			/* 	$(".btn btn-focus"). */
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/4";
+			});
+			
+			$("#denied").click(function (){
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState";
+			});
+			
+			$("#approval").click(function (){
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState";
+			});
+			
+			$("#revoked").click(function (){
+				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState";
+			});
+			
 			
 		})//JQuery Ready 끝
 	</script>
