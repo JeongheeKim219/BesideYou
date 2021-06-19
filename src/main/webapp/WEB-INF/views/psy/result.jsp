@@ -8,7 +8,12 @@
 <head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-
+	$(function(){
+		var nowPage = ${nowPage};
+		//alert(nowPage)
+		$("#page"+nowPage).parent().addClass("active");
+		
+ 	})
 </script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -151,7 +156,7 @@
                                     <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>심리테스트 결과목록</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item"><a class="color-white" href="${pageContext.request.contextPath}/index">Home</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">My Page</li>
                                         </ol>
                                     </div>
@@ -177,7 +182,7 @@
 						  </thead>
 						  <tbody>
 						  	<c:choose>
-						  		<c:when test="${empty pageList}">
+						  		<c:when test="${empty pageList.content}">
 						  			<tr>
 						  				<td colspan="4">
 						  					<h4 data-zanim='{"delay":0.1}' class="mt-3">자가진단 테스트를 실행하지 않았습니다.</h4>
@@ -210,6 +215,37 @@
 						</table>
 					</div>  
                 </div>
+                <!-- ***************************************페이징처리******************************************* -->
+                
+                <div class="col-auto mx-auto mt-4">
+                            <nav class="font-1 mt-5" aria-label="Page navigation example">
+                                <ul class="pagination pagination justify-content-center">
+                                	<c:set var="doneLoop" value="false"/>
+                                	
+                                		<c:if test="${(startPage-blockCount) >0 }">
+                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/result?nowPage=${startPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                                		</c:if>
+                                	
+	                                    <c:forEach var="i" begin="${startPage}" end="${(startPage-1)+blockCount}">
+	                                    	<c:if test="${(i-1)>=pageList.getTotalPages()}">
+										       <c:set var="doneLoop" value="true"/>
+										    </c:if>
+										    
+										   
+										    <c:if test="${not doneLoop}">
+										    	<li class="page-item" ><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/psy/lo/result?nowPage=${i}">${i}</a> </li>
+										    </c:if>
+										    
+										    
+	                                    </c:forEach>
+	                                    
+	                                    <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+	                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/result?nowPage=${startPage+blockCount}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+	                                    </c:if>
+                                    
+                                </ul>
+                            </nav>
+             	</div>
                 <!--/.container-->
             </section>            
             <section class="background-primary text-center py-4">

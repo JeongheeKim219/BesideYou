@@ -1,11 +1,5 @@
 package bu.mvc;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.Map;
-
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
@@ -13,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
-import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Authority;
 import bu.mvc.domain.Member;
-import bu.mvc.domain.Speciality;
 import bu.mvc.respsitory.AdminRepository;
+import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.PriceRepository;

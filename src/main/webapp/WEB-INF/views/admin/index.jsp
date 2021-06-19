@@ -355,15 +355,44 @@
 								<div class="card-header-title">
 									<i class="header-icon lnr-apartment icon-gradient bg-love-kiss">
 									</i> 상담사 별 상담건수
+									<c:out value="${requestScope.counselorList}"/>
 								</div>
 							</div>
 							<div class="card-body">
 								<div class="scroll-area-sm">
 									<div class="scrollbar-container">
 										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush" id="rank-table">
-											<!-- Ajax로 구현될 역역-->
+											<!-- Ajax로 구현될 영역-->
 										
 											<!-- ----------------- -->
+										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+										<c:forEach  var="counselor" items="${requestScope.counselorList}">
+											<li class="list-group-item">
+												<div class="widget-content p-0">
+													<div class="widget-content-wrapper">
+														<div class="widget-content-left mr-3">
+															<%-- <img width="42" class="rounded-circle"
+																src="${pageContext.request.contextPath}/adminCss/assets/images/avatars/9.jpg"
+																alt=""> --%>
+														</div>
+														</div>
+														<div class="widget-content-right">
+															<div class="widget-content-left">
+															<div class="widget-heading">${counselor.member.name}</div>
+														<c:forEach items="${counselor.speciality}" var="feild">	
+															<div class="widget-subheading">${feild.specialityName}</div>
+														</c:forEach>
+														<div class="font-size-xlg text-muted">
+																<small class="opacity-5 pr-1"></small> <span class="count"></span>
+																<small class="text-danger pl-2"> <i
+																	class="fa fa-angle-down"></i>
+																</small>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											</c:forEach>
 										</ul>
 									</div>
 								</div>
@@ -839,6 +868,7 @@
 						alert("error");
 					}
 				})
+
 			}
 			
 			
@@ -917,6 +947,33 @@
 					}
 				});
 			}
+
+			}
+			
+			
+			//상담사 순위 데이터 가져오기
+			function rankCounselor() {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/admin/rankCounselor",
+					type : "POST",
+					dataType : 'json',
+					//contentType : 'application/json',
+					success : function(result) {
+						//alert(result.counselSessions);
+						 $.each(result.counselSessions, function (index, item){
+							//alert(item);
+							 $(".count").each(function(){
+								$(this).text(item);				
+							});
+						 });
+														
+					},
+					error : function(err) {
+						alert("error");
+					}
+				});
+			}
+
 				
 			
 			//신규 멤버 일자별 차트 그리기

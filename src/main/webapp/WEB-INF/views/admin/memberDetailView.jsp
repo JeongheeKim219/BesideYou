@@ -73,70 +73,67 @@
 								<div class="main-card mb-3 card">
 									<div class="card-body">
 										<h5 class="card-title">기본 정보</h5>
-										<form class="">
 											<div class="position-relative form-group">
 												<label for="id" class="">ID</label><input name="id" id="id"
-													type="text" readonly="readonly" class="form-control">
+													type="text" readonly="readonly" class="form-control" value="${member.id}">
 											</div>
 											<div class="position-relative form-group">
 												<label for="name" class="">이름</label><input name="name"
-													id="name" type="text" readonly="readonly" class="form-control">
+													id="name" type="text" readonly="readonly" class="form-control" value="${member.name}">
 											</div>
 											<div class="position-relative form-group">
 												<label for="alias" class="">가명</label><input name="alias"
-													id="alias" type="text" readonly="readonly" class="form-control">
+													id="alias" type="text" readonly="readonly" class="form-control" value="${member.alias}">
 											</div>
 											<div class="position-relative form-group">
 												<label for="address" class="">주소</label><input
 													name="address" id="address" type="text" readonly="readonly"
-													class="form-control">
+													class="form-control" value="${member.memberAddr}">
 											</div>
 											<div class="position-relative form-group">
 												<label for="email" class="">이메일</label><input
 													name="email" id="email" type="email" readonly="readonly"
-													class="form-control">
+													class="form-control" value="${member.email}">
 											</div><div class="position-relative form-group">
 												<label for="phone" class="">핸드폰 번호</label><input
 													name="phone" id="phone" type="tel" readonly="readonly"
-													class="form-control">
+													class="form-control" value="${member.phone}">
 											</div>
 											<div class="position-relative form-group">
 												<label for="birth" class="">생년월일</label><input
 													name="birth" id="birth"
 													placeholder="birth" type="date"
-													class="form-control">
+													class="form-control" value="${member.dateOfBirth}">
 											</div>
 											<div class="position-relative form-group">
+											<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${member.dateOfReg}" type="both"/>
 												<label for="registerDate" class="">가입일</label><input
 													name="registerDate" id="registerDate"
 													placeholder="registerDate" type="datetime"
-													class="form-control">
+													class="form-control" value="<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd"/>">
 											</div>
-											</form>
 											</div>
 											</div>
 								<div class="main-card mb-3 card">
 									<div class="card-body">
+									<form name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/admin/update/${member.memberCode}">
 										<h5 class="card-title">회원 활동 상태</h5>
 											<div class="position-relative form-group">
-												<label for="exampleSelect" class="">Select</label><select
-													name="select" id="exampleSelect" class="form-control">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
+												<label for="exampleSelect" class="">Select - memberState</label><select
+													name="state" id="exampleSelect" class="form-control">
+													<option value="0">정상</option>
+													<option value="1">경고</option>
+													<option value="2">정지</option>
+													<option value="3">탈퇴</option>
 												</select>
 											</div>
 											<div class="position-relative form-group">
 												<label for="exampleSelectMulti" class="">Select
-													Multiple</label><select multiple="" name="selectMulti"
+													Multiple - memberType</label><select multiple="" name="type"
 													id="exampleSelectMulti" class="form-control">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
+													<option value="0">회원</option>
+													<option value="1">상담사</option>
+													<option value="2">관리자</option>
 												</select>
 											</div>
 											<div class="position-relative form-group">
@@ -151,8 +148,7 @@
 													placeholder block-level help text for the above input. It's
 													a bit lighter and easily wraps to a new line.</small>
 											</div>
-											<button class="mt-1 btn btn-primary">Submit</button>
-									
+											<button class="mt-1 btn btn-primary" type="submit">Submit</button></form>
 									</div>
 								</div>
 							</div>

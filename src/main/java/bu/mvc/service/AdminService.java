@@ -32,6 +32,7 @@ import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.ReviewRepository;
+import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service
@@ -59,7 +60,10 @@ public class AdminService {
 	@Autowired
 	private AuthorityRepository authorityRep;
 	
-	
+	@Autowired
+	private MemberRepository memRep;
+
+
 	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
 	private LocalDateTime end = LocalDateTime.now();
 
@@ -396,6 +400,23 @@ public class AdminService {
 		return adminRep.findById(memberCode).orElse(null);
 	}
 	
+	/**
+	 * 멤버코드에 해당하는 멤버 조회
+	 * */
+	public Member selectMember(Long memberCode) {
+		return memRep.findById(memberCode).orElse(null);
+	}
+	
+	/**
+	 * 멤버코드에 해당하는 멤버상태, 멤버타입 업데이트
+	 * */
+	public void updateMember(Long memberCode, int memberState, int memberType) {
+		 Member member = memRep.findById(memberCode).orElse(null);
+		 //System.out.println("1ㅂ");
+		 member.setMemberState(memberState);
+		 //System.out.println("2");
+		 member.setMemberType(memberType);
+	}
 	
 	/**
 	 * 16. 멤버코드로 상담사 조회(1인)

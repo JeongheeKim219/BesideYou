@@ -182,6 +182,26 @@
 									<li><a href="components-slider.html">Slider</a></li>
 									<li><a href="components-typography.html">Typography</a></li>
 								</ul></li>
+								<li><a href="${pageContext.request.contextPath}/psy/list">Self Test</a>
+								<ul class="dropdown fs--1">
+									<li><a href="${pageContext.request.contextPath}/psy/lo/depression">우울증 검사</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/lo/stress">스트레스 검사</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/art">그림 검사</a></li>
+								</ul></li>
+								<sec:authorize access="isAuthenticated()">
+								<li><a href="#">My Page</a>
+								<ul class="dropdown fs--1">
+									<li><a href="${pageContext.request.contextPath}/psy/lo/result">결과목록</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/lo/answerList">그림검사 답변</a></li>
+								</ul></li>
+								<!-- 상담사일때만 나오게 -->
+								<li><a href="#">Counselor</a>
+								<ul class="dropdown fs--1">
+									<li><a href="${pageContext.request.contextPath}/psy/lo/signupArt">그림상담사 등록</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/lo/requestList">그림검사 요청목록</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/lo/cancle">그림상담사 해지</a></li>
+								</ul></li>
+								</sec:authorize>
 							<li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
 						</ul>
 						<ul class="navbar-nav ml-lg-auto">

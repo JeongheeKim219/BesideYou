@@ -44,9 +44,10 @@ public class Counselor {
 	@Column(name="counselor_state")
 	private int counselorState;
 	
+
 	@OneToMany(mappedBy = "counselor", cascade = CascadeType.ALL)
 	private List<Speciality> speciality;
-	
+
 	@OneToOne
 	@JoinColumn(name="member_code")
 	private Member member; // 회원코드
