@@ -1,6 +1,8 @@
 package bu.mvc.domain;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,8 +42,8 @@ public class ReviewStar {
 	@JoinColumn(name = "COUNSEL_CODE")
 	private Counsel counselCode; // 상담코드
 	
-	@CreationTimestamp
-	private Date reviewDate; // 리뷰작성날짜
+	//@CreationTimestamp
+	private LocalDateTime reviewDate; // 리뷰작성날짜
 	
 	private double star; // 별점
 	private String reviewContent; // 리뷰 내용
