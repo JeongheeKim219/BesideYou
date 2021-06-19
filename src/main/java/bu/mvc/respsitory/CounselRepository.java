@@ -3,6 +3,8 @@ package bu.mvc.respsitory;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import bu.mvc.domain.Counsel;
@@ -25,6 +27,6 @@ public interface CounselRepository extends JpaRepository<Counsel, Long> {
 	 */
 	List<Counsel> findByCounselCategory(int category);
 	
-	List<Counsel> findByMemberMemberCode(Long memberCode);
+	Page<Counsel> findByMemberMemberCode(Pageable pageable, Long memberCode);
 	
 }

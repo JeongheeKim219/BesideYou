@@ -257,7 +257,7 @@ $(function(){
 									<div class="card-body">
 										<form class="">
 											<h5 class="card-title">상담권 결제내역</h5>
-											<c:forEach items="${ticket}" var="ticket" varStatus="status">
+											<c:forEach items="${ticket.content}" var="ticket" varStatus="status">
 												${status.count} <p>상담권 수량 : ${ticket.ticketAmount} /상담권
 													잔여량 : ${ticket.ticketRemain}/ 상담권 구매일 :
 													${ticket.ticketDate}
@@ -267,6 +267,36 @@ $(function(){
 											</c:forEach>
 									</div>
 									</form>
+									<!-- 페이징처리 -->
+									<div class="col-auto mx-auto mt-4">
+					                            <nav class="font-1 mt-5" aria-label="Page navigation example">
+					                                <ul class="pagination pagination justify-content-center">
+					                                	<c:set var="doneLoop" value="false"/>
+					                                	
+					                                		<c:if test="${(ticketStartPage-ticketBlock) >0 }">
+					                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowTicketPage=${ticketStartPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+					                                		</c:if>
+					                                	
+						                                    <c:forEach var="i" begin="${ticketStartPage}" end="${(ticketStartPage-1)+ticketBlock}">
+						                                    	<c:if test="${(i-1)>=ticket.getTotalPages()}">
+															       <c:set var="doneLoop" value="true"/>
+															    </c:if>
+															    
+															   
+															    <c:if test="${not doneLoop}">
+															    	<li class="page-item" ><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowTicketPage=${i}">${i}</a> </li>
+															    </c:if>
+															    
+															    
+						                                    </c:forEach>
+						                                    
+						                                    <c:if test="${(ticketStartPage+ticketBlock)<=ticket.getTotalPages()}">
+						                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowTicketPage=${ticketStartPage+ticketBlock}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+						                                    </c:if>
+					                                    
+					                                </ul>
+					                            </nav>
+					             	</div>
 								</div>
 								<div class="main-card mb-3 card">
 									<div class="card-body">
@@ -276,9 +306,9 @@ $(function(){
 												varStatus="status">
 												${status.count} <p>상담권 사용일자 :
 													${ticketLines.ticketLinesDate} / 상담권 구매일 :
-													${ticketLines.ticket.ticketDate}
+													<%-- ${ticketLines.ticket.ticketDate}
 												<p>상담권 종류 : ${ticketLines.ticket.ticketField} / 상담권 총가격
-													: ${ticketLines.ticket.ticketPrice}
+													: ${ticketLines.ticket.ticketPrice} --%>
 												<p>
 											</c:forEach>
 									</div>
@@ -288,7 +318,7 @@ $(function(){
 									<div class="card-body">
 										<form class="">
 											<h5 class="card-title">상담내역</h5>
-											<c:forEach items="${counsel}" var="counsel"
+											<c:forEach items="${counsel.content}" var="counsel"
 												varStatus="status">
 												${status.count} <p>상담사이름 :
 													${counsel.counselor.member.name} / 상담카테고리 :
@@ -300,12 +330,42 @@ $(function(){
 											</c:forEach>
 									</div>
 									</form>
+									<!-- 페이징처리 -->
+									<div class="col-auto mx-auto mt-4">
+					                            <nav class="font-1 mt-5" aria-label="Page navigation example">
+					                                <ul class="pagination pagination justify-content-center">
+					                                	<c:set var="doneLoop" value="false"/>
+					                                	
+					                                		<c:if test="${(counselStartPage-counselBlock) >0 }">
+					                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowCounselPage=${counselStartPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+					                                		</c:if>
+					                                	
+						                                    <c:forEach var="i" begin="${counselStartPage}" end="${(counselStartPage-1)+counselBlock}">
+						                                    	<c:if test="${(i-1)>=counsel.getTotalPages()}">
+															       <c:set var="doneLoop" value="true"/>
+															    </c:if>
+															    
+															   
+															    <c:if test="${not doneLoop}">
+															    	<li class="page-item" ><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowCounselPage=${i}">${i}</a> </li>
+															    </c:if>
+															    
+															    
+						                                    </c:forEach>
+						                                    
+						                                    <c:if test="${(counselStartPage+counselBlock)<=counsel.getTotalPages()}">
+						                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowCounselPage=${counselStartPage+counselBlock}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+						                                    </c:if>
+					                                    
+					                                </ul>
+					                            </nav>
+					             	</div>
 								</div>
 								<div class="main-card mb-3 card">
 									<div class="card-body">
 										<form class="">
 											<h5 class="card-title">리뷰 별점내역</h5>
-											<c:forEach items="${reviewStar}" var="reviewStar"
+											<c:forEach items="${reviewStar.content}" var="reviewStar"
 												varStatus="status">
 												${status.count} <p>상담사이름 :
 													${reviewStar.counselorCode.member.name} / 상담일 :
@@ -321,6 +381,36 @@ $(function(){
 											</c:forEach>
 									</div>
 									</form>
+									<!-- 페이징처리 -->
+									<div class="col-auto mx-auto mt-4">
+					                            <nav class="font-1 mt-5" aria-label="Page navigation example">
+					                                <ul class="pagination pagination justify-content-center">
+					                                	<c:set var="doneLoop" value="false"/>
+					                                	
+					                                		<c:if test="${(reviewStartPage-reviewBlock) >0 }">
+					                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${reviewStartPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+					                                		</c:if>
+					                                	
+						                                    <c:forEach var="i" begin="${reviewStartPage}" end="${(reviewStartPage-1)+reviewBlock}">
+						                                    	<c:if test="${(i-1)>=reviewStar.getTotalPages()}">
+															       <c:set var="doneLoop" value="true"/>
+															    </c:if>
+															    
+															   
+															    <c:if test="${not doneLoop}">
+															    	<li class="page-item" ><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${i}">${i}</a> </li>
+															    </c:if>
+															    
+															    
+						                                    </c:forEach>
+						                                    
+						                                    <c:if test="${(reviewStartPage+reviewBlock)<=reviewStar.getTotalPages()}">
+						                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${reviewStartPage+reviewBlock}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+						                                    </c:if>
+					                                    
+					                                </ul>
+					                            </nav>
+					             	</div>
 								</div>
 								<div class="main-card mb-3 card">
 									<div class="card-body">
