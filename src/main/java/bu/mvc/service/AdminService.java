@@ -382,6 +382,7 @@ public class AdminService {
 	 */
 	public void updateCounselorState(Counselor counselor) {
 		counselorRep.save(counselor);
+		System.out.println("상담사 상태 업데이트");
 	}
 	
 	

@@ -269,6 +269,9 @@ public class AdminController {
 		Member member = adminService.findMember(memberCode);
 		Counselor counselor = adminService.findCounselorByMemberCode(memberCode);
 	
+		counselor.setCounselorState(state);
+		member.setMemberType(1);
+		
 		adminService.updateCounselorState(counselor);
 		adminService.updateMemberType(member);
 		adminService.addAuthority(member);		
@@ -287,9 +290,7 @@ public class AdminController {
 		  model.addAttribute("pageList", pageList);
 		  
 		  if(pageList.getNumberOfElements() == 0) {
-			  
 			  model.addAttribute("errorMessage", "검색결과가 없습니다.");
-
 		  }
 		  
 		  return "admin/memberView";
