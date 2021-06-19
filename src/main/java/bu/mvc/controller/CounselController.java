@@ -41,7 +41,7 @@ public class CounselController {
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		Counselor counselor = counselService.getCounselor(141L);
-		int counselField = 3;
+		int counselField = 2;
 
 		ModelAndView mv = new ModelAndView();
 		if (counselField == 0 || counselField == 1 || counselField == 2) {
