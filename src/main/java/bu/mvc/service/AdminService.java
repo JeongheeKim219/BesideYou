@@ -24,15 +24,19 @@ import bu.mvc.domain.Contact;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.Psychology;
 import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Ticket;
+import bu.mvc.domain.TicketLines;
 import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.ReviewRepository;
+import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.MemberRepository;
+import bu.mvc.respsitory.PsychologyRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service
@@ -62,6 +66,12 @@ public class AdminService {
 	
 	@Autowired
 	private MemberRepository memRep;
+	
+	@Autowired
+	private TicketLinesRepository ticketLinesRep;
+	
+	@Autowired
+	private PsychologyRepository psychologyRep;
 
 
 	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
@@ -453,7 +463,47 @@ public class AdminService {
 		return counselorRep.findAll(pageable);
 	}
 	
+	/**
+	 * 멤버코드에 해당하는 상담권 결제내역 조회
+	 * */
+	public List<Ticket> findByMemberMemberCode(Long memberCode){
+		return ticketRep.findByMemberMemberCode(memberCode);
+	}
+	
+	/**
+	 * 멤버코드에 해당하는 상담권 결제내역 조회
+	 * */
+	public List<TicketLines> findByTicketMemberMemberCode(Long memberCode) {
+		return ticketLinesRep.findByTicketMemberMemberCode(memberCode);
+	}
+	
+	/**
+	 * 리뷰별점
+	 * */
+	public List<ReviewStar> findReviewByMemberMemberCode(Long memberCode){
+		return reviewRep.findByMemberMemberCode(memberCode);
+	}
+	
+	/**
+	 * 상담
+	 * */
+	public List<Counsel> findCounselByMemberMemberCode(Long memberCode){
+		return counselRep.findByMemberMemberCode(memberCode);
+	}
 
+	/**
+	 * 일대일문의
+	 * */
+	public List<Contact> findContactByMemberMemberCode(Long memberCode){
+		return contactRep.findByMemberMemberCode(memberCode);
+	}
+	
+	/**
+	 * 테스트
+	 * */
+	public List<Psychology> findPsychologyByMemberMemberCode(Long memberCode){
+		return psychologyRep.findByMemberMemberCode(memberCode); 
+	}
 }
 
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import bu.mvc.domain.Ticket;
 
@@ -24,5 +25,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long>{
 	 * 2. 전체 상품권 매출 조회
 	 */
 	Page<Ticket> findAll(Pageable pageable);
+	
+	List<Ticket> findByMemberMemberCode(Long memberCode);
 	
 }
