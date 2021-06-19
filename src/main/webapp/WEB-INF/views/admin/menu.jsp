@@ -79,11 +79,11 @@
 						매출관리<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul>
-						<li><a href="components-tabs.html"> <i
-								class="metismenu-icon"> </i>전체결제통계
-						</a></li>
-						<li><a href="components-accordions.html"> <i
+						<li><a href="${pageContext.request.contextPath}/admin/ticketView"> <i
 								class="metismenu-icon"> </i>전체결제목록
+						</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/viewTicketLines"> <i
+								class="metismenu-icon"> </i>상담권사용내역
 						</a></li>
 						<li><a href="components-notifications.html"> <i
 								class="metismenu-icon"> </i>Notifications

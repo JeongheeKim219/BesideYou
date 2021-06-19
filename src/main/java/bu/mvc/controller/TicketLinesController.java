@@ -29,7 +29,7 @@ public class TicketLinesController {
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		Page<TicketLines> tlList = ticketLinesService.selectAll(pageable);
-		return new ModelAndView("ticket/ticketLinesAdmin", "tlList", tlList);
+		return new ModelAndView("admin/viewTicketLines", "tlList", tlList);
 	}
 	
 	/**

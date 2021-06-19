@@ -22,9 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private MemberAuthenticationProvider memberAuthenticationProvider;
 	
-	
-	
-	
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -36,11 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()	
 		//.antMatchers("/member/*").authenticated()
-		//.antMatchers("/**").permitAll()
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/**").permitAll()
+		//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/contact/**").access("hasRole('ROLE_MEMBER')")
 		.and()
-		
+		.csrf().disable()
 		.formLogin()
 		.loginPage("/member/login")
 		.usernameParameter("id")
