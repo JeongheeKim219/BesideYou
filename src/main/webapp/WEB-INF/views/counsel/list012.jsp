@@ -261,6 +261,7 @@
 										<th>신청일</th>
 										<th>예약일시</th>
 										<th>진행 상황</th>
+										<th>리뷰작성</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -293,6 +294,22 @@
 												<c:when test="${counsel.counselState==3}">
 													<td><button class="btn btn-info btn-xs" disabled="disabled">완료</button></td>
 												</c:when>
+											</c:choose>
+											<c:choose>
+												<c:when test="${counsel.counselState==3}">
+													<td>
+														<form action="#" method="get">
+															<input type="hidden" name="memberCode" value="<sec:authentication property="principal.memberCode" />">
+															<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+															<input type="hidden" name="counselorCode" value="${counsel.counselor.counselorCode}">
+															<input type="hidden" name="counselCode" value="${counsel.counselCode}">
+															<input type="submit" class="btn btn-outline-primary btn-xs" value="리뷰작성">
+														</form>
+													</td>
+												</c:when>
+												<c:otherwise>
+													<td> </td>
+												</c:otherwise>
 											</c:choose>
 										</tr>		
 									</c:forEach>									

@@ -112,4 +112,45 @@ public class CounselServiceImpl implements CounselService {
 		return counselRepository.findForUserField(member.getMemberCode(), 3, pageable);
 	}
 
+	@Override
+	public Counselor checkCounselor(Long memberCode) {
+		return counselorRepository.searchBymembercode(memberCode);
+	}
+
+	@Override
+	public Page<Counsel> counselorList012(Pageable pageable, int field, Counselor counselor) {
+		if(field==-1) {
+			return counselRepository.findByCounselor(counselor, pageable);
+		}else if(field==0||field==1||field==2) {
+			return counselRepository.findByCounselorField(counselor, field, pageable);
+		}
+		return null;
+	}
+	
+	@Override
+	public Page<Counsel> counselorList3(Pageable pageable, Counselor counselor) {
+		return counselRepository.findByCounselorField(counselor, 3, pageable);
+	}
+
+	@Override
+	public void approve012(Long counselCode) {
+		counselRepository.approveCounsel(counselCode);
+	}
+
+	@Override
+	public void reject012(Long counselCode) {
+		counselRepository.rejectCounsel(counselCode);
+	}
+
+	@Override
+	public Counsel seeDeatil(Long counselCode) {
+		return counselRepository.findById(counselCode).orElse(null);
+	}
+
+	@Override
+	public void complete(Long counselCode) {
+		counselRepository.completeCounsel(counselCode);
+	}
+
+
 }

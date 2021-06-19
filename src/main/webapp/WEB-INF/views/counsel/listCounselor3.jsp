@@ -224,7 +224,7 @@
 							data-zanim-trigger="scroll">
 							<div class="overflow-hidden">
 								<h1 class="color-white fs-4 fs-md-5 mb-0 zopacity"
-									data-zanim='{"delay":0}'>나의 텍스트 상담</h1>
+									data-zanim='{"delay":0}'>신청된 상담글 목록</h1>
 								<!-- 								<div class="nav zopacity" aria-label="breadcrumb" -->
 								<!-- 									role="navigation" data-zanim='{"delay":0.1}'> -->
 								<!-- 									<ol class="breadcrumb fs-1 pl-0 fw-700"> -->
@@ -251,19 +251,17 @@
 							<table>
 								<thead>
 									<tr>
-										<th>상담사</th>
+										<th>회원이름</th>
 										<th>신청일</th>
-										<th>상세보기</th>
 										<th>진행 상황</th>
-										<th>리뷰작성</th>
+										<th>상세보기</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${pageList.content}" var="counsel" varStatus="status">
 										<tr>
-											<td>${counsel.counselor.member.name}</td>
+											<td>${counsel.member.name}</td>
 											<td>${fn:substring(counsel.counselReqDate,0,10)}</td>
-											<td><a class="btn btn-outline-primary btn-xs" href="${pageContext.request.contextPath}/requests/read?counselCode=${counsel.counselCode}">상세보기</a></td>
 											<c:choose>
 												<c:when test="${counsel.counselState==0}">
 													<td><button class="btn btn-warning btn-xs" disabled="disabled">답변대기</button></td>
@@ -272,22 +270,9 @@
 													<td><button class="btn btn-info btn-xs" disabled="disabled">답변완료</button></td>
 												</c:when>
 											</c:choose>
-											<c:choose>
-												<c:when test="${counsel.counselState==3}">
-													<td>
-														<form action="#" method="get">
-															<input type="hidden" name="memberCode" value="<sec:authentication property="principal.memberCode" />">
-															<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-															<input type="hidden" name="counselorCode" value="${counsel.counselor.counselorCode}">
-															<input type="hidden" name="counselCode" value="${counsel.counselCode}">
-															<input type="submit" class="btn btn-outline-primary btn-xs" value="리뷰작성">
-														</form>
-													</td>
-												</c:when>
-												<c:otherwise>
-													<td> </td>
-												</c:otherwise>
-											</c:choose>
+											<td>
+												<a href="${pageContext.request.contextPath}/requests/seeDetail?counselCode=${counsel.counselCode}" class="btn btn-outline-info btn-xs">상세보기</a>
+											</td>
 										</tr>		
 									</c:forEach>									
 								</tbody>
@@ -298,12 +283,12 @@
 										<c:choose>
 											<c:when test="${pageList.number==i}">
 												<li class="page-item active">
-													<a class="page-link" href="${pageContext.request.contextPath}/counsel/myCounselList?nowPage=${i}&field=${field}">${i+1}</a>
+													<a class="page-link" href="${pageContext.request.contextPath}/counsel/listForCounselor?nowPage=${i}&field=${field}">${i+1}</a>
 												</li>
 											</c:when>
 											<c:otherwise>
 												<li class="page-item">
-													<a class="page-link" href="${pageContext.request.contextPath}/counsel/myCounselList?nowPage=${i}&field=${field}">${i+1}</a>
+													<a class="page-link" href="${pageContext.request.contextPath}/counsel/listForCounselor?nowPage=${i}&field=${field}">${i+1}</a>
 												</li>
 											</c:otherwise>
 										</c:choose>

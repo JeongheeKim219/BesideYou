@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri = "http://www.springframework.org/security/tags" prefix="sec"%>
-<%@ taglib uri= "http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -67,36 +68,14 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
-<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		
-	})
-
 </script>
-
-<style>
-  table {
-    width: 100%;
-    border-top: 1px solid #ffffff;
-    border-collapse: collapse;
-  }
-  th, td {
-    border-bottom: 1px solid #ffffff;
-    padding: 10px;
-    text-align: center;
-    height: 50px;
-  }
-  thead tr {
-    background-color: #3680B3;
-    color: #ffffff;
-  }
-  tbody tr:nth-child(2n) {
-    background-color: #F2F2F2;
-  }
-  tbody tr:nth-child(2n+1) {
-    background-color: #E1E1E1;
-  }
+<style type="text/css">
+tr{
+	height: 70px; 
+}
 </style>
 </head>
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
@@ -143,7 +122,7 @@
 				<nav class="navbar navbar-expand-lg">
 					<a class="navbar-brand overflow-hidden pr-3" href="index.html"><img
 						src="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png"
-						alt=""  style="width: 50px; height: 50px"/></a>
+						alt="" style="width: 50px; height: 50px" /></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 						aria-expanded="false" aria-label="Toggle navigation">
@@ -215,7 +194,7 @@
 		<section>
 			<div>
 				<div class="background-holder overlay"
-					style="background-image:url(${pageContext.request.contextPath}/assets/images/counsel/bggh.jpg);background-position: center bottom;">
+					style="background-image:url(${pageContext.request.contextPath}/assets/images/counsel/bggh2.png);background-position: center bottom;">
 				</div>
 				<!--/.background-holder-->
 				<div class="container">
@@ -224,7 +203,7 @@
 							data-zanim-trigger="scroll">
 							<div class="overflow-hidden">
 								<h1 class="color-white fs-4 fs-md-5 mb-0 zopacity"
-									data-zanim='{"delay":0}'>나의 텍스트 상담</h1>
+									data-zanim='{"delay":0}'>상담신청 상세보기</h1>
 								<!-- 								<div class="nav zopacity" aria-label="breadcrumb" -->
 								<!-- 									role="navigation" data-zanim='{"delay":0.1}'> -->
 								<!-- 									<ol class="breadcrumb fs-1 pl-0 fw-700"> -->
@@ -241,75 +220,106 @@
 			</div>
 			<!--/.container-->
 		</section>
-		<section class="background-11" style="padding-top : 50px !important">
+		<section class="background-11">
 			<div class="container">
 				<div class="row mt-6" style="margin-top: 10px !important">
 					<div class="col"></div>
 					<div class="col-12">
 						<div
-							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary" style="margin-top: 20px !important">
-							<table>
-								<thead>
+							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary"
+							style="margin-top: 20px !important">
+							<h3 class="text-center fs-2 fs-md-3">요청 정보</h3>
+							<hr class="short"
+								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
+								data-zanim-trigger="scroll" />
+								<table style="width: 100%; vertical-align: middle;">
 									<tr>
-										<th>상담사</th>
-										<th>신청일</th>
-										<th>상세보기</th>
-										<th>진행 상황</th>
-										<th>리뷰작성</th>
+										<td style="width: 30%">
+											<h5>이름(가명)</h5>
+										</td>										
+										<td>
+											<h5>${counsel.member.alias}</h5>
+										</td>										
 									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${pageList.content}" var="counsel" varStatus="status">
-										<tr>
-											<td>${counsel.counselor.member.name}</td>
-											<td>${fn:substring(counsel.counselReqDate,0,10)}</td>
-											<td><a class="btn btn-outline-primary btn-xs" href="${pageContext.request.contextPath}/requests/read?counselCode=${counsel.counselCode}">상세보기</a></td>
+									<tr>
+										<td>
+											<h5>상담 유형</h5>
+										</td>
+										<c:choose>
+											<c:when test="${counsel.counselCategory==0}">
+												<td><h5>대면상담</h5></td>
+											</c:when>
+											<c:when test="${counsel.counselCategory==1}">
+												<td><h5>전화상담</h5></td>
+											</c:when>
+											<c:when test="${counsel.counselCategory==2}">
+												<td><h5>채팅상담</h5></td>
+											</c:when>
+										</c:choose>
+									</tr>
+									<tr>
+										<td>
+											<h5>진행상황</h5>
+										</td>										
+										<td>
 											<c:choose>
 												<c:when test="${counsel.counselState==0}">
-													<td><button class="btn btn-warning btn-xs" disabled="disabled">답변대기</button></td>
+													<h5 style="color: #FDD428">승인 대기중</h5>
+												</c:when>
+												<c:when test="${counsel.counselState==1}">
+													<h5 style="color: #B33641">반려</h5>
+												</c:when>
+												<c:when test="${counsel.counselState==2}">
+													<h5 style="color: #3680B3">승인</h5>
 												</c:when>
 												<c:when test="${counsel.counselState==3}">
-													<td><button class="btn btn-info btn-xs" disabled="disabled">답변완료</button></td>
+													<h5 style="color: #36B36A">완료</h5>
 												</c:when>
 											</c:choose>
-											<c:choose>
-												<c:when test="${counsel.counselState==3}">
-													<td>
-														<form action="#" method="get">
-															<input type="hidden" name="memberCode" value="<sec:authentication property="principal.memberCode" />">
-															<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-															<input type="hidden" name="counselorCode" value="${counsel.counselor.counselorCode}">
-															<input type="hidden" name="counselCode" value="${counsel.counselCode}">
-															<input type="submit" class="btn btn-outline-primary btn-xs" value="리뷰작성">
-														</form>
-													</td>
-												</c:when>
-												<c:otherwise>
-													<td> </td>
-												</c:otherwise>
-											</c:choose>
-										</tr>		
-									</c:forEach>									
-								</tbody>
-							</table>
-							<nav class="font-1 mt-5" aria-label="Page navigation example">
-								<ul class="pagination pagination justify-content-center">
-									<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
-										<c:choose>
-											<c:when test="${pageList.number==i}">
-												<li class="page-item active">
-													<a class="page-link" href="${pageContext.request.contextPath}/counsel/myCounselList?nowPage=${i}&field=${field}">${i+1}</a>
-												</li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item">
-													<a class="page-link" href="${pageContext.request.contextPath}/counsel/myCounselList?nowPage=${i}&field=${field}">${i+1}</a>
-												</li>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</ul>
-							</nav>
+										</td>										
+									</tr>
+									<tr>
+										<td>
+											<h5>전화번호</h5>
+										</td>										
+										<td>
+											<h5>${counsel.member.phone}</h5>
+										</td>										
+									</tr>
+									<tr>
+										<td>
+											<h5>상담 요청일</h5>
+										</td>										
+										<td>
+											<h5>${fn:substring(counsel.counselReqDate,0,10)}</h5>
+										</td>										
+									</tr>
+									<tr>
+										<td>
+											<h5>상담 희망일시</h5>
+										</td>										
+										<td>
+											<h5>${fn:substring(counsel.counselReqDate,0,4)}년 ${fn:substring(counsel.counselReqDate,5,7)}월 ${fn:substring(counsel.counselReqDate,8,10)}일
+										${fn:substring(counsel.counselReqDate,11,16)}</h5>
+										</td>										
+									</tr>
+								</table>
+								<div>
+									<c:if test="${counsel.counselState==2}">
+										<h5 style="color: red">※완료되지 않은 상담을 임의로 완료처리하는 경우에는 불이익을 받을 수 있습니다.</h5>
+									</c:if>
+								</div>
+								<div style="text-align: right;">
+									<c:choose>
+										<c:when test="${counsel.counselState==0}">
+											<a class="btn btn-info" href="${pageContext.request.contextPath}/counsel/approve?counselCode=${counsel.counselCode}">승인</a>
+											<a class="btn btn-danger" href="${pageContext.request.contextPath}/counsel/reject?counselCode=${counsel.counselCode}">반려</a>
+										</c:when>
+										<c:when test="${counsel.counselState==2}">
+											 <a class="btn btn-success " href="${pageContext.request.contextPath}/counsel/complete?counselCode=${counsel.counselCode}">완료</a>
+										</c:when>
+									</c:choose>
+								</div>
 						</div>
 					</div>
 				</div>

@@ -40,8 +40,8 @@ public class CounselController {
 		
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		Counselor counselor = counselService.getCounselor(26L);
-		int counselField = 2;
+		Counselor counselor = counselService.getCounselor(141L);
+		int counselField = 3;
 
 		ModelAndView mv = new ModelAndView();
 		if (counselField == 0 || counselField == 1 || counselField == 2) {
@@ -155,6 +155,57 @@ public class CounselController {
 		return mv;
 	}
 	
+	@RequestMapping("/listForCounselor")
+	public ModelAndView listForCounselor(HttpServletRequest request, int field,@RequestParam(defaultValue = "0") int nowPage) {
+		ModelAndView mv = new ModelAndView();
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(member.getMemberType()!=1) {
+			mv.setViewName("/index");
+			return mv;
+		}
+		
+		Pageable pageable = PageRequest.of(nowPage, 5, Direction.DESC, "counselCode");
+		Counselor counselor = counselService.checkCounselor(member.getMemberCode());
+		
+		if(field==3) {
+			Page<Counsel> pageList = counselService.counselorList3(pageable, counselor);
+			mv.setViewName("/counsel/listCounselor3");
+			mv.addObject("pageList", pageList);
+			return mv;
+		}
+		
+		Page<Counsel> pageList = counselService.counselorList012(pageable, field, counselor);
+		mv.setViewName("/counsel/listCounselor012");
+		mv.addObject("pageList", pageList);
+		mv.addObject("field", field);
+		return mv;
+	}
 	
+	@RequestMapping("/seeDetail")
+	public ModelAndView seeDetail(Long counselCode) {
+		ModelAndView mv = new ModelAndView();
+		Counsel counsel = counselService.seeDeatil(counselCode);
+		mv.setViewName("/counsel/detail");
+		mv.addObject("counsel", counsel);
+		return mv;
+	}
 	
+	@RequestMapping("/approve")
+	public String approve(Long counselCode) {
+		System.out.println(counselCode+" !!!!in!!!!!!!!!!");
+		counselService.approve012(counselCode);
+		return "redirect:/counsel/listForCounselor?field=-1";
+	}
+	
+	@RequestMapping("/reject")
+	public String reject(Long counselCode) {
+		counselService.reject012(counselCode);
+		return "redirect:/counsel/listForCounselor?field=-1";
+	}
+	
+	@RequestMapping("/complete")
+	public String complete(Long counselCode) {
+		counselService.complete(counselCode);
+		return "redirect:/counsel/listForCounselor?field=-1";
+	}
 }
