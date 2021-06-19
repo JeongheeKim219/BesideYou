@@ -63,9 +63,10 @@ public class ReportController {
 		r.setReportOption(reportDTO.getReportOption());
 		r.setReviewContent(reportDTO.getReviewContent());
 				
-		reportService.insert(r);
+		
 		
 		return "redirect:/review/reviewByCode/{counselorCode}";
+				
 	}
 	
 	
@@ -99,17 +100,7 @@ public class ReportController {
 		return mv;
 	}
 	
-	
-//	@RequestMapping("/report/delete")
-//	public String deleteAdmin( ReportDTO report) {
-//		Long a =Long.parseLong(report.getReportCode());
-//		Long b =Long.parseLong (report.getReviewCode());
-//		System.out.println(a +"///" + b);
-//		reportService.deleteReport(a);
-//		rs.delete(b);
-//		System.out.println("완료");
-//		return "redirect:/admin/reportView";
-//	}
+
 	
 	/**
 	 * 신고 삭제(리뷰같이 삭제)

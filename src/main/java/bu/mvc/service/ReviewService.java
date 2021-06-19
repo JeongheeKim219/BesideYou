@@ -37,5 +37,10 @@ public interface ReviewService {
 	 * */
 	void delete(Long reviewCode);
 	
+	/**
+	 * 리뷰 수정
+	 * */
+	ReviewStar update(ReviewStar review);
+	
 }
 

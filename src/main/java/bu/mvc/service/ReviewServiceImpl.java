@@ -56,4 +56,13 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 
+	@Override
+	public ReviewStar update(ReviewStar review) {
+		ReviewStar reviewUpdate = reviewRepository.findById(review.getReviewCode()).orElse(null);
+		reviewUpdate.setStar(review.getStar());
+		reviewUpdate.setReviewContent(review.getReviewContent());
+		System.out.println("서비스콜" + review.getReviewContent());
+		return reviewUpdate;
+	}
+
 }

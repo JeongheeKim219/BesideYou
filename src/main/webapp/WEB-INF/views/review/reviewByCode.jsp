@@ -192,6 +192,7 @@
 		<div align="center">
 		<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
 		<input type="hidden" id ="reviewContent" name="reviewContent" value=""/>
+		<input type="hidden" id ="counselor" name="counselor" value=""/>
 		<c:choose>
 			<c:when test="${empty requestScope.revList}">
 				<div class="panel panel-default" style="width: 600px;">
@@ -235,8 +236,12 @@
 							<tr>
 								<td style="border-top: hidden;" colspan="5" align="right">
 									<input type="button" id="btn_${num.index}" name="btn" value="신고하기" > 
+									<input type="button" id="reviewDelete_${num.index}" name="reviewDelete" value="리뷰삭제"> 
+									<input type="button" id="reviewChange_${num.index}" name=reviewChange value="리뷰수정"> 
 									<input type="hidden" id="reviewCode_${num.index}" value="${review.reviewCode}">
 									<input type="hidden" id="reviewContent_${num.index}" value="${review.reviewContent}">
+									<input type="hidden" id="counselor_${num.index}" name="counselor" value="${review.counselor.counselorCode}">
+									<input type="hidden" id="memberCode_${num.index}" name="memberCode" value="${review.member.memberCode}">
 								</td>
 							</tr>
 						</table>
@@ -247,7 +252,7 @@
 			<a href="?page=${previous}">Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?page=${next}">Next</a>
 		</div>
 		
-		<div class="modal">
+		<div class="modal" id="modal1">
 			<h2 align="center">신고하기</h2>
 			
 			<table border="1">
@@ -313,10 +318,99 @@
 				</tr>
 			</table>
 		</div>
+		
+		
+		<div class="modal" id="modal2">
+			<h2 align="center">리뷰수정</h2>
+			
+			<table border="1">
+				<tr>
+					<td height="20" colspan="2" bgcolor="#DEDCDC">
+						<p align="center">
+							<font color="black" size="3"><b>리뷰 수정하기</b></font>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="150" height="20" style="vertical-align: center;">
+					작성자
+						<!-- <p align="right">
+							<b><span style="font-size: 9pt;vertical-align: center;">신고자</span></b>
+						</p> -->
+					</td>
+					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
+								<input id="tgmemberCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+								<%-- <input name="id" size="30" value="${loginUser}" readonly="readonly"
+								disabled="disabled"> --%>
+						</span></b></td>
+				</tr>
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
+						리뷰번호
+						<!-- <p align="right">
+							<b><span style="font-size: 9pt;vertical-align: center;">리뷰번호</span></b>
+						</p> -->
+					</td>
+					<td width="450" height="20"><b><span style="font-size: 9pt;">
+						<input type="text" id="tgreviewCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+					</span></b></td>
+				</tr>
+				
+				<tr>
+					<td width="150" height="20">
+						<p align="right">
+							<b><span style="font-size: 9pt;">평점</span></b>
+						</p>
+					</td>
+					<td width="450" height="20"><b><span style="font-size: 9pt;">
+							<select name="star" id="star">
+								<option value="1.0">★</option>
+								<option value="2.0">★★</option>
+								<option value="3.0">★★★</option>
+								<option value="4.0">★★★★</option>
+								<option value="5.0">★★★★★</option>
+							</select>
+					</span></b></td>
+			</tr>
+				
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;" colspan="2">
+					리뷰 내용
+						<!-- <p align="right">
+							<b><span style="font-size: 9pt;vertical-align: center;">신고사유</span></b>
+						</p> -->
+					</td>
+				</tr>
+				<tr>
+					<td width="450" height="20" colspan="2"><b><span style="font-size: 9pt; margin: 2px;">
+								<textarea cols="55" rows="5" id="tgreviewContent" name="reviewContent"></textarea>
+								<%-- <input name="id" size="30" value="${loginUser}" readonly="readonly"
+								disabled="disabled"> --%>
+						</span></b></td>
+				</tr>
+				<tr>
+					<td width="450" height="20" colspan="2" align="center">
+						<b>
+						<span style="font-size: 9pt;">
+						<input type="button" id="reportBtn2" value=리뷰수정 >
+						<input type="button" id="backBtn2" value="돌아가기">
+						</span>
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		
+		
+		
+		
+		
 	</form>
 </body>
 <style>
 	.modal{position: absolute;width: 100%;height: 35%;background: rgba(255,255,255,255);top:40%;left:35%;display: none;}
+	#modal2{position: absolute;width: 40%;height: 23%;background: rgba(255,255,255,255);top:40%;left:35%;display: none;}
 </style>
 
 <script type="text/javascript">
@@ -325,17 +419,29 @@
 			var s = $("input[name='btn']").index(this);
 			$('#reviewCode').val($('#reviewCode_'+ s).val());
 			$('#reviewContent').val($('#reviewContent_'+ s).val());
-			//alert($('#reviewCode').val());
+			alert($('#reviewCode').val());
 			//$("#requestForm").attr("action","${pageContext.request.contextPath}/report/reportForm");
 			//$("#requestForm").submit();
 			$('#tgReviewNo').val($('#reviewCode').val());
 			
-			$('.modal').fadeIn();
+			$('#modal1').fadeIn();
 		});
+		
+		$("input[name='reviewDelete']").click(function() {
+			var s = $("input[name='reviewDelete']").index(this);
+			$('#reviewCode').val($('#reviewCode_'+ s).val());
+			$('#reviewContent').val($('#reviewContent_'+ s).val());
+			$('#counselor').val($('#counselor_'+ s).val());
 			
-		$('#backBtn').click(function(){
-			$('.modal').fadeOut();
+			
+			 var param = document.getElementById('requestForm');
+			param.method = "POST";
+			param.action = "${pageContext.request.contextPath}/review/reviewDelete";
+			param.submit(); 
+
+			
 		});
+		
 		
 		$("#reportBtn").click(function() {
 			
@@ -359,13 +465,61 @@
 				contentType: 'application/json; charset=UTF-8',
 				success : function(data){
 					//모달종료			
-					$('.modal').fadeOut();
+					$('#modal1').fadeOut();
 				},
 				error:function(){
-					$('.modal').fadeOut();
+					$('#modal1').fadeOut();
 				}
 			});
+			
 		});
+		
+		$("input[name='reviewChange']").click(function() {
+			alert("1");
+			var s = $("input[name='reviewChange']").index(this);
+			$('#reviewCode').val($('#reviewCode_'+ s).val());
+			$('#reviewContent').val($('#reviewContent_'+ s).val());
+			$('#memberCode').val($('#memberCode_'+s).val());
+			$('#counselor').val($('#counselor_'+ s).val());
+			$('#tgmemberCode').val($('#memberCode').val());
+			$('#tgreviewCode').val($('#reviewCode').val());
+			$('#tgreviewContent').val($('#reviewContent').val());
+			$('#modal2').fadeIn();
+		});
+		
+		$("#reportBtn2").click(function() {
+			
+			var param = document.getElementById('requestForm');
+			console.log($('#memberCode').val() +"///"+ $('#reviewCode').val() +"///"+$('#reviewContent').val())
+		    var memberCode = $('#memberCode').val();
+			var reviewCode = $('#reviewCode').val();
+			var reviewContent = $('#reviewContent').val();
+			var counselor = $('#counselor').val();
+			var star = $('#star').val();
+			
+			alert(memberCode);
+			alert(reviewCode);
+			alert(counselor);
+			
+			 var param = document.getElementById('requestForm');
+				param.method = "POST";
+				param.action = "${pageContext.request.contextPath}/review/reviewUpdate";
+				param.submit(); 
+
+		});
+		
+		
+		
+		$('#backBtn2').click(function(){
+			$('#modal2').fadeOut();
+		});
+		
+		
+	
+		$('#backBtn').click(function(){
+			$('.modal').fadeOut();
+		});
+		
 	});
 </script>
 </html>
