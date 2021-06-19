@@ -7,6 +7,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	if(${member.memberType}==0){
+		$("#memberType").val("회원");
+	}else if(${member.memberType}==1){
+		$("#memberType").val("상담사");
+	}else{
+		$("#memberType").val("관리자");
+	}
+
+	
+	
+})
+</script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Language" content="ko">
@@ -72,6 +87,7 @@
 							<div class="col-md-6">
 								<div class="main-card mb-3 card">
 									<div class="card-body">
+										<form class="">
 										<h5 class="card-title">기본 정보</h5>
 											<div class="position-relative form-group">
 												<label for="id" class="">ID</label><input name="id" id="id"
@@ -113,6 +129,7 @@
 													class="form-control" value="<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd"/>">
 											</div>
 											</div>
+											</form>
 											</div>
 								<div class="main-card mb-3 card">
 									<div class="card-body">
@@ -129,12 +146,10 @@
 											</div>
 											<div class="position-relative form-group">
 												<label for="exampleSelectMulti" class="">Select
-													Multiple - memberType</label><select multiple="" name="type"
-													id="exampleSelectMulti" class="form-control">
-													<option value="0">회원</option>
-													<option value="1">상담사</option>
-													<option value="2">관리자</option>
-												</select>
+													Multiple - memberType</label>
+												<input
+													name="memberType" id="memberType" type="text" readonly="readonly"
+													class="form-control" value="">
 											</div>
 											<div class="position-relative form-group">
 												<label for="exampleText" class="">Text Area</label>
@@ -151,6 +166,46 @@
 											<button class="mt-1 btn btn-primary" type="submit">Submit</button></form>
 									</div>
 								</div>
+								<div class="main-card mb-3 card">
+									<div class="card-body">
+									<form class="">
+										<h5 class="card-title">상담권 사용내역</h5>
+											<c:forEach items="${ticketLines}" var="ticketLines" varStatus="status">
+												${status.count} <p>
+												상담권 사용일자 : ${ticketLines.ticketLinesDate} / 상담권 구매일 : ${ticketLines.ticket.ticketDate}<p>
+												상담권 종류 : ${ticketLines.ticket.ticketField} / 상담권 총가격 : ${ticketLines.ticket.ticketPrice} <p>
+											</c:forEach>
+											</div>
+											</form>
+									</div>
+									<div class="main-card mb-3 card">
+									<div class="card-body">
+									<form class="">
+										<h5 class="card-title">상담내역</h5>
+											<c:forEach items="${counsel}" var="counsel" varStatus="status">
+												${status.count} <p>
+												상담사이름 : ${counsel.counselor.member.name} / 상담카테고리 : ${counsel.counselCategory}<p>
+												상담신청날짜 : ${counsel.counselReqDate} / 상담예약날짜 : ${counsel.counselDate} <p>
+												상담상태 : ${counsel.counselState}<p>
+											</c:forEach>
+											</div>
+											</form>
+									</div>
+									<div class="main-card mb-3 card">
+									<div class="card-body">
+									<form class="">
+										<h5 class="card-title">리뷰 별점내역</h5>
+											<c:forEach items="${reviewStar}" var="reviewStar" varStatus="status">
+												${status.count} <p>
+												상담사이름 : ${reviewStar.counselorCode.member.name} / 상담일 : ${reviewStar.counselCode.counselDate}<p>
+												리뷰작성날짜 : ${reviewStar.reviewDate} / 별점 : ${reviewStar.star} <p>
+												리뷰내용 : <c:if test="${empty reviewStar.reviewContent}">
+												내용없음</c:if> 
+												${reviewStar.reviewContent}<p>
+											</c:forEach>
+											</div>
+											</form>
+									</div>
 							</div>
 							<div class="col-md-6">
 								<div class="main-card mb-3 card">
@@ -202,6 +257,45 @@
 													out</label>
 											</div>
 										</form>
+									</div>
+								</div>
+								<div class="main-card mb-3 card">
+									<div class="card-body">
+									<form class="">
+										<h5 class="card-title">상담권 결제내역</h5>
+											<c:forEach items="${ticket}" var="ticket" varStatus="status">
+												${status.count} <p>
+												상담권 수량 : ${ticket.ticketAmount} /상담권 잔여량 : ${ticket.ticketRemain}/ 상담권 구매일 : ${ticket.ticketDate}<p>
+												상담권 종류 : ${ticket.ticketField} / 상담권 총가격 : ${ticket.ticketPrice} <p>
+											</c:forEach>
+											</div>
+											</form>
+									</div>
+									<div class="main-card mb-3 card">
+									<div class="card-body">
+									<form class="">
+										<h5 class="card-title">일대일 문의 내역</h5>
+											<c:forEach items="${contact}" var="contact" varStatus="status">
+												${status.count} <p>
+												문의글유형 : ${contact.contactCategory} / 문의글제목 : ${contact.contactTitle}<p>
+												문의글내용 : ${contact.contactContent} / 문의글처리상태 : ${contact.contactState} <p>
+												문의글작성일 : ${contact.contactDate}<p>
+												
+											</c:forEach>
+											</div>
+											</form>
+									</div>
+									<div class="main-card mb-3 card">
+									<div class="card-body">
+									<form class="">
+										<h5 class="card-title">테스트 내역</h5>
+											<c:forEach items="${psychology}" var="psychology" varStatus="status">
+												${status.count} <p>
+												테스트유형 : ${psychology.testName} / 테스트점수 : ${psychology.total}<p>
+												테스트날짜 : ${psychology.testDate}<p>
+											</c:forEach>
+											</div>
+											</form>
 									</div>
 								</div>
 							</div>

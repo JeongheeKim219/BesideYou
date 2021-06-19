@@ -18,4 +18,5 @@ public interface PsychologyRepository extends JpaRepository<Psychology, Long> {
 	@Query("select p from Psychology p where p.member=?1 order by p.testDate desc")
 	Page<Psychology> seacrchPsyByMember(Member member, Pageable pageable);
 	
+	List<Psychology> findByMemberMemberCode(Long memberCode);
 }

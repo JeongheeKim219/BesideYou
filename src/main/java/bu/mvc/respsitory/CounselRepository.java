@@ -25,4 +25,6 @@ public interface CounselRepository extends JpaRepository<Counsel, Long> {
 	 */
 	List<Counsel> findByCounselCategory(int category);
 	
+	List<Counsel> findByMemberMemberCode(Long memberCode);
+	
 }

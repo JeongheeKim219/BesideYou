@@ -28,6 +28,6 @@ public interface ReviewRepository extends JpaRepository<ReviewStar, Long> {
 	
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
+	List<ReviewStar> findByMemberMemberCode(Long memberCode);
 }
 

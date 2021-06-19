@@ -32,6 +32,10 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Ticket;
+import bu.mvc.domain.Psychology;
+import bu.mvc.domain.ReviewStar;
+import bu.mvc.domain.TicketLines;
+
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.service.AdminService;
@@ -159,6 +163,31 @@ public class AdminController {
 	public String viewMemberDetail(@PathVariable Long memberCode, Model model) {
 		Member member = adminService.selectMember(memberCode);
 		model.addAttribute("member", member);
+		
+		//멤버코드에 해당하는 결제내역
+		List<Ticket> ticket = adminService.findByMemberMemberCode(memberCode);
+		model.addAttribute("ticket", ticket);
+		
+		//사용내역
+		List<TicketLines> ticketLines = adminService.findByTicketMemberMemberCode(memberCode);
+		model.addAttribute("ticketLines", ticketLines);
+		
+		//리뷰
+		List<ReviewStar> reviewStar = adminService.findReviewByMemberMemberCode(memberCode);
+		model.addAttribute("reviewStar", reviewStar);
+		
+		//상담
+		List<Counsel> counsel = adminService.findCounselByMemberMemberCode(memberCode);
+		model.addAttribute("counsel", counsel);
+		
+		//일대일문의
+		List<Contact> contact = adminService.findContactByMemberMemberCode(memberCode);
+		model.addAttribute("contact", contact);
+		
+		//테스트
+		List<Psychology> psychology = adminService.findPsychologyByMemberMemberCode(memberCode);
+		model.addAttribute("psychology", psychology);
+		
 		return "admin/memberDetailView";
 	}
 
@@ -187,12 +216,14 @@ public class AdminController {
 	
 	
 	/**
-	 * 회원상태, 회원타입 업데이트
+	 * 회원상태 업데이트
 	 * */
 	@RequestMapping("/update/{memberCode}")
 	public String update(@PathVariable Long memberCode, Integer state, Integer type) {
 		//System.out.println(state +", "+type);
-		adminService.updateMember(memberCode, state, type);
+
+		adminService.updateMember(memberCode, state);
+		
 		
 		return "redirect:/admin/memberView";
 	}

@@ -175,17 +175,25 @@
 						  <tbody>
 						    
 						    	<c:choose>
+						    		<c:when test="${not empty co}">
+						    			<tr>
+						    			<td colspan="5">
+						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">상담사 자격이 확인되지 않아 해당 서비스를 이용할 수 없습니다.</h4>
+						    			</td>
+						    			</tr>
+						    		</c:when>
+						    		<c:when test="${empty ac}">
+						    			<tr>
+						    			<td colspan="5">
+						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담사로 등록되어 있지 않습니다.</h4>
+						    				<a href="${pageContext.request.contextPath}/psy/lo/signupArt">그림상담사 등록하러가기</a>
+						    			</td>
+						    			</tr>
+						    		</c:when>
 						    		<c:when test="${empty list}">
 						    			<tr>
 						    			<td colspan="5">
 						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담 요청이 없습니다.</h4>
-						    			</td>
-						    			</tr>
-						    		</c:when>
-						    		<c:when test="${ac.counselor.counselorState != 1}">
-						    			<tr>
-						    			<td colspan="5">
-						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">상담사 자격이 확인되지 않아 해당 서비스를 이용할 수 없습니다.</h4>
 						    			</td>
 						    			</tr>
 						    		</c:when>

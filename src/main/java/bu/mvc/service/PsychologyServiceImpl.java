@@ -99,9 +99,9 @@ public class PsychologyServiceImpl implements PsychologyService {
 		// TODO Auto-generated method stub
 		System.out.println("co.getCounselorCode() = "+co.getCounselorCode());
 		ArtCounselor ac = acRepository.selectByCounselorCode(co);
-		if(ac==null) {
-			throw new RuntimeException("그림상담사로 등록되어있지 않습니다.");
-		}
+		//if(ac==null) {
+			//throw new RuntimeException("그림상담사로 등록되어있지 않습니다.");
+		//}
 		List<Art> list= artRepository.searchByCounselor(ac);
 		return list;
 	}
