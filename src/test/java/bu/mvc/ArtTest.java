@@ -50,6 +50,8 @@ public class ArtTest {
 		System.out.println("artRep : "+artRep);
 	}
 	
+	
+	
 	//테스트 실행
 	@Test
 	void testInsert() {
@@ -62,7 +64,7 @@ public class ArtTest {
 	@Test
 	void artCounselor() {
 		//acRep.save(new ArtCounselor(null, "q", "d", new Counselor(1L)));
-		acRep.save(new ArtCounselor(null, "준비물은 연필과 지우개입니다. 오래 생각하지 말고 그려주세요.", "1.비오는 날의 그림을 그려주세요. 2. 나무를 그려주세요.", new Counselor(25L)));
+		//acRep.save(new ArtCounselor(null, "준비물은 연필과 지우개입니다. 오래 생각하지 말고 그려주세요.", "1.비오는 날의 그림을 그려주세요. 2. 나무를 그려주세요.", new Counselor(25L)));
 	}
 	
 	//그림테스트 요청
@@ -97,7 +99,7 @@ public class ArtTest {
 	//그림상담사를 대상으로 그림테스트요청검색
 	@Test
 	void selectByCounselor() {
-		List<Art> list = artRep.searchByCounselor(new ArtCounselor(21L));
+		List<Art> list = artRep.searchByCounselor(new ArtCounselor(142L));
 		System.out.println("개수 : "+list.size());
 		list.forEach(a->System.out.println(a));
 	}
@@ -135,7 +137,7 @@ public class ArtTest {
 	//카운슬러코드에 해당하는 아트카운슬러 검색
 	@Test
 	void select1() {
-		ArtCounselor ac = acRep.selectByCounselorCode(new Counselor(1L));
+		ArtCounselor ac = acRep.selectByCounselorCode(new Counselor(81L));
 		System.out.println("ac : "+ac);
 	}
 	

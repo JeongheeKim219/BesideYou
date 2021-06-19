@@ -2,15 +2,18 @@ package bu.mvc.domain;
 
 
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
@@ -21,12 +24,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+
+//@ToString
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Member {
 	
 	@Id
@@ -55,6 +60,7 @@ public class Member {
 	@Column(name ="DATE_OF_BIRTH")
 	private LocalDate dateOfBirth;//생년월일
 	
+	
 	@Transient 
 	private String beforeDateOfBirth;
 	
@@ -64,13 +70,25 @@ public class Member {
 	
 	
 
+	//6.13추가 조인을 위한 관계 매핑
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	private List<Counsel> counselList; //상담내역
+	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	private List<Ticket> ticketList; //상담권 내역
+	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	private List<Contact> contactList; //문의  내역 
+	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	private List<ReviewStar> reviewStarsList;
+	
+	
 	public Member(Long memberCode) {
-		super();
 		this.memberCode = memberCode;
-
 	}
 
-
+	
 	
 	public Member(Long memberCode, String id, String password, String name, String alias, String memberAddr,
 			String phone, String email, int memberState, int memberType, LocalDate dateOfBirth) {

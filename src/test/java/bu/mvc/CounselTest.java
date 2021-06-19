@@ -32,8 +32,11 @@ class CounselTest {
 	@Autowired
 	private RequestAnsRepository requestAnsRep;
 
+	@Test
+	void insertCounsel() {
+		//counselRep.save(new Counsel(null, new Member(4L), new Counselor(1L), 3, 1, new Date()));
+	}
 
-	
 	@Test
 	void insertRequest() {
 		requestRep.save(new Requests(null, new Counsel(2L), "제목제목", 3, "내용내용내용"));
