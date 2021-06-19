@@ -7,6 +7,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	if(${member.memberType}==0){
+		$("#memberType").val("회원");
+	}else if(${member.memberType}==1){
+		$("#memberType").val("상담사");
+	}else{
+		$("#memberType").val("관리자");
+	}
+
+	
+	
+})
+</script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Language" content="ko">
@@ -135,6 +150,10 @@
 													<option value="1">상담사</option>
 													<option value="2">관리자</option>
 												</select>
+												<input
+													name="memberType" id="memberType" type="text" readonly="readonly"
+													class="form-control" value="">
+													!!!!!!${member.memberType}
 											</div>
 											<div class="position-relative form-group">
 												<label for="exampleText" class="">Text Area</label>

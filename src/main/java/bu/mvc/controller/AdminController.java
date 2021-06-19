@@ -192,7 +192,7 @@ public class AdminController {
 	@RequestMapping("/update/{memberCode}")
 	public String update(@PathVariable Long memberCode, Integer state, Integer type) {
 		//System.out.println(state +", "+type);
-		adminService.updateMember(memberCode, state, type);
+		adminService.updateMember(memberCode, state);
 		return "/admin/index";
 		
 	}

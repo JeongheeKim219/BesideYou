@@ -314,16 +314,11 @@ public class AdminService {
 	/**
 	 * 멤버코드에 해당하는 멤버상태, 멤버타입 업데이트
 	 * */
-	public void updateMember(Long memberCode, int memberState, int memberType) {
+	public void updateMember(Long memberCode, int memberState) {
 		 Member member = memRep.findById(memberCode).orElse(null);
 		 //System.out.println("1ㅂ");
 		 member.setMemberState(memberState);
 		 //System.out.println("2");
-		 member.setMemberType(memberType);
-		 if(memberType==1) {
-			  Counselor counselor = counselorRep.searchBymembercode(memberCode);
-			  counselor.setCounselorState(1);
-		 }
 		
 	}
 	
