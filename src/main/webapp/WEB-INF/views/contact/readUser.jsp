@@ -1,7 +1,10 @@
-<%@ page info="게시판 수정하기" contentType="text/html;charset=UTF-8" %>
-<HTML>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <HEAD>
-<meta charset="utf-8">
+
+		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--  -->
@@ -34,17 +37,10 @@
         <!-- Main stylesheet and color file-->
         <link href="/assets/css/style.css" rel="stylesheet">
         <link href="/assets/css/custom.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
-<SCRIPT >
-$(function(){
-	alert(1)
-})
 
-</SCRIPT>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 
-</HEAD>
- <div class="loading" id="preloader">
+<div class="loading" id="preloader">
                 <div class="loader h-100 d-flex align-items-center justify-content-center">
                     <div class="line-scale">
                         <div></div>
@@ -134,7 +130,30 @@ $(function(){
                     </nav>
                 </div>
             </div>
-
+            <section>
+                <div>
+                    <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
+                    </div>
+                    <!--/.background-holder-->
+                    <div class="container">
+                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
+                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                <div class="overflow-hidden">
+                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>1 : 1 문의</h1>
+                                    <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
+                                        <ol class="breadcrumb fs-1 pl-0 fw-700">
+                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.row-->
+                </div>
+                <!--/.container-->
+            </section>
             
         <!--    JavaScripts-->
         <!--    =============================================-->
@@ -151,50 +170,112 @@ $(function(){
         <script src="/assets/js/inertia.js"></script>
         <script src="/assets/js/core.js"></script>
         <script src="/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<SCRIPT language=javascript>
+	$(function(){
+		//alert(1)
+		$("#update").click(function(){
+			//document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
+		   
+			$("#requestForm").attr("action", "${pageContext.request.contextPath}/contact/updateForm");
+			$("#requestForm").submit();
+		})
+	   
+	   
+		$("#delete").click(function(){
+			var result = confirm("정말 삭제 하시겠습니까?");
+			if(result){
+				$("#requestForm").attr("action", "${pageContext.request.contextPath}/contact/deleteUser");
+				$("#requestForm").submit();
+			}
+		})
+	   
+	})
+</script>
 
-<BODY>
+
+</HEAD>
+<body>
+
 
 <div class="col-12 mt-4">
-       <div class="background-white p-5 h-100 radius-secondary">
-           <h5>${contact.contactCode} 문의글 수정 하기</h5>
-           <form  id="updateForm" method="post" action="${pageContext.request.contextPath}/contact/update">
-        	   <input type='hidden' name='contactCode' value="${contact.contactCode}">
-               <div class="row">
-                   <div class="col-12">
-                       <input class="form-control background-white" type="text" name="contactTitle" value="${requestScope.contact.contactTitle}" >
-                   </div>
-                   <div class="col-12 mt-4">
-                   	<select id="contactCategory" name="contactCategory" >
-						<option value="0">상담</option>
-						<option value="1">결제</option>
-						<option value="2">환불</option>
-						<option value="3">기타</option>
-					</select>
-                   </div>
-                   <div class="col-12 mt-4">
-                       <textarea class="form-control background-white" rows="11" name="contactContent">${requestScope.contact.contactContent}</textarea>
-                   </div>
-                   <div class="col-12 mt-4">
-                       <div class="row">
-                           <div class="col-auto">
-                               <button class="btn btn-md-lg btn-primary"  id="update" type="submit"> <span class="color-white fw-600">수정하기</span></button>
-                           </div>
-                           <div class="col-auto">
-                               <button class="btn btn-md-lg btn-primary" id="delete" type="reset"> <span class="color-white fw-600">다시쓰기</span></button>
-                           </div>
-                           <div class="col">
-                               <div class="zform-feedback"></div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </form>
-       </div>
-   </div>
+    <div class="background-white p-5 h-100 radius-secondary">
+        <h5>문의글 자세히 보기</h5>
+        <form  id="requestForm" method="get" >
+     	   <input type=hidden name="contactCode" value="${contact.contactCode}">
+            <div class="row">
+                <div class="col-12">
+                    <input class="form-control background-white" type="text" value="${requestScope.contact.contactTitle}" readonly="readonly">
+                </div>
+                <div class="col-12 mt-4">
+                	<c:choose>
+                		<c:when test="${contact.contactCategory == 0}">
+                      <input class="form-control background-white" type="text" value="상담" readonly="readonly">
+                		</c:when>
+                		<c:when test="${contact.contactCategory == 1}">
+                      <input class="form-control background-white" type="text" value="결제" readonly="readonly">
+                		</c:when>
+                		<c:when test="${contact.contactCategory == 2}">
+                      <input class="form-control background-white" type="text" value="환불" readonly="readonly">
+                		</c:when>
+                		<c:when test="${contact.contactCategory == 3}">
+                      <input class="form-control background-white" type="text" value="기타" readonly="readonly">
+                		</c:when>
+                	</c:choose>
+                </div>
+                <div class="col-12 mt-4">
+                    <input class="form-control background-white" type="text" value="${requestScope.contact.contactDate}" readonly="readonly">
+                </div>
+                <div class="col-12 mt-4">
+                    <textarea class="form-control background-white" rows="11" readonly="readonly">${requestScope.contact.contactContent}</textarea>
+                </div>
+                <c:if test="${contact.contactReply.contactReplyContent == null}">
+                <div class="col-12 mt-4">
+                    <div class="row">
+                        <div class="col-auto">
+                            <button class="btn btn-md-lg btn-primary"  id="update"> <span class="color-white fw-600">수정하기</span></button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-md-lg btn-primary" id="delete"> <span class="color-white fw-600">삭제하기</span></button>
+                        </div>
+                        <div class="col">
+                            <div class="zform-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+                </c:if>
+            </div>
+        </form>
+        <c:choose>
+        <c:when test="${contact.contactReply.contactReplyContent == null}">
+        	<h4>답변 요청 중입니다</h4>
+        </c:when>
+        <c:otherwise>
+	        <h5> 답변 </h5>
+			${contact.contactReply.contactReplyDate}<br>
+			${contact.contactReply.contactReplyContent}<p>
+		</c:otherwise>
+		</c:choose>
+    </div>
+</div>
 
-<hr>
+<br>
+
+
+
+
 <div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/contact/list">리스트로 돌아가기</a>&gt;</span></div>
-</BODY>
+
+</body>
 
 
-</HTML>
+
+
+
+
+
+
+
+
+
+

@@ -151,6 +151,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/style.css">
 
+<script type="text/javascript">
+	function checkValid(){
+		var f = window.document.writeForm;
+		
+		if ( f.noticeTitle.value == "") {
+		    alert( "제목을 입력해 주세요." );
+		    f.noticeTitle.focus();
+			return false;
+	    }
+		if ( f.noticeContent.value == "") {
+		    alert( "내용을 입력해 주세요." );
+		    f.noticeContent.focus();
+			return false;
+	    }
+		return true;
+		
+		
+	}
+</script>
 
 
 </HEAD>
@@ -158,40 +177,37 @@
 \r\n
 <p>
 <br>
-<form name="writeForm" method="post" action="${pageContext.request.contextPath}/notice/insert"  >
 
-<table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
 
-    <tr>
-        <td width="1220" height="20" colspan="2" bgcolor="#3680B3">
-            <p align="center"><font color="white" size="3"><b> 공지사항 등록 </b></font></p>
-        </td>
-    </tr>
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">제목</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="noticeTitle" size="30"></span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">내용</span></b></p>
-        </td>
-        <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<textarea name="noticeContent"  rows="20" cols="60"></textarea></span></b></td>
-    </tr>
-   
-    <tr>
-        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;">
-	        <input type=submit value=글쓰기> 
-	        <input type=reset value=다시쓰기>
-	        </span></b>
-        </td>
-    </tr>
-</table>
-
-</form>
+	<div class="col-12 mt-4">
+       <div class="background-white p-5 h-100 radius-secondary">
+           <h5>공지사항 등록</h5>
+           <form name="writeForm" id="writeForm" method="post" action="${pageContext.request.contextPath}/notice/insert" onsubmit="return checkValid()">
+        	   <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+               <div class="row">
+                   <div class="col-12">
+                       <input class="form-control background-white" type="text" name="noticeTitle" placeholder="제목">
+                   </div>
+                   <div class="col-12 mt-4">
+                       <textarea class="form-control background-white" rows="11" name="noticeContent" placeholder="내용"></textarea>
+                   </div>
+                   <div class="col-12 mt-4">
+                       <div class="row">
+                           <div class="col-auto">
+                               <button class="btn btn-md-lg btn-primary" type="submit"> <span class="color-white fw-600">등록하기</span></button>
+                           </div>
+                           <div class="col-auto">
+                               <button class="btn btn-md-lg btn-primary" type="reset"> <span class="color-white fw-600">다시쓰기</span></button>
+                           </div>
+                           <div class="col">
+                               <div class="zform-feedback"></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </form>
+       </div>
+   </div>
 
 <hr>
 <div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/notice/list">리스트로 돌아가기</a>&gt;</span></div>

@@ -30,4 +30,8 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
 
 	
+	
+	Page<Contact> findByMemberMemberCode(Pageable pageable, Long memberCode);
+	
+	
 }

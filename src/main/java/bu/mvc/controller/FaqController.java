@@ -120,7 +120,9 @@ public class FaqController {
 	 * */
 	@RequestMapping("/updateForm")
 	public ModelAndView updateForm(Faq faq) {
+		System.out.println(1111);
 		Faq dbFaq = faqService.selectById(faq.getFaqCode());
+		System.out.println(2222);
 		return new ModelAndView("faq/update", "faq", dbFaq);
 	}
 	
