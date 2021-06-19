@@ -46,7 +46,7 @@
 $(function() {
 	$("#use").click(function() {
 		if ($("#remain").text() == 0) {
-			alert("소진된 상담권입니다. 사용할 수 없습니다.");
+			alert("소진된 상담권입니다. 더이상 사용할 수 없습니다.");
 			return;
 		} else {
 			if(confirm("상담권을 사용하시겠습니까?")){
@@ -195,8 +195,8 @@ $(function() {
                                         	<c:when test="${ticket.ticketField==3}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-File-TXT"></span>&nbsp;&nbsp;간편 텍스트 상담권</h3></c:when>
                                         </c:choose>
                                     </div>
-                                    <hr>
-                                    <div class="overflow-hidden" style="float:left; margin-right: 50px">
+                                    <hr style="height:1px;">
+                                    <div class="overflow-hidden" style="float:left; margin-right: 150px">
 	                                    <div class="mt-3" data-zanim='{"delay":0.1}'><h5>담당 상담사</h5></div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>티켓 구매일</div>
 	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>최초 구매량</div>
@@ -213,37 +213,41 @@ $(function() {
 	                                    <div class="mt-3" id="remain" data-zanim='{"delay":0.4}'>${ticket.ticketRemain}</div>
                                     </div>
                                     <br>
+                                    <hr style="height:1px;">
+                                    <div class="overflow-hidden" align="left" style="float:left; margin-right: 150px">
+                                        <div data-zanim='{"delay":0.5}'>
+                                        	<c:choose>
+                                        		<c:when test="${refundState==0}"><span style="font-size: 18px; color: red">환불 처리 진행 중</span></c:when>
+                                        		<c:when test="${refundState==1}"><span style="font-size: 18px; color: red">환불 불가</span></c:when>
+                                        		<c:when test="${refundState==2}"><span style="font-size: 18px; color: blue">환불 완료</span></c:when>
+                                        	</c:choose>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="overflow-hidden" align="right">
                                         <div data-zanim='{"delay":0.5}'>
-                                        	<form name="payment" id="payment" method="get" action="">
-	                                        	<input type="hidden" name="category" value="1"/>
-							            		<input type="hidden" name="counselor" value="1"/>
-							            		<input type="hidden" name="id" value="aa"/>
-							            		<input type="hidden" name="name" value="aaa"/>
-							            		<input type="hidden" name="phone" value="111"/>
-							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value=""/>
-            									<c:choose>
-            										<c:when test="${refundState==0}">
-            											<input type="button" id="ref" value="환불 처리 진행중" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==1}">
-            											<input type="button" id="notref" value="환불 불가" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==2}">
-            											<input type="button" id="refdone" value="환불 처리 완료" class="btn btn-outline-info" disabled="disabled"/>
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:when test="${ticket.ticketRemain<=0}">
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:otherwise>
-            											<a href="#"><input type="button" id="use" value="사용하기" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="refund" value="환불신청" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:otherwise>
-            									</c:choose>
-	                                        </form>
+           									<c:choose>
+           										<c:when test="${refundState==0}">
+           											<a href="${pageContext.request.contextPath}/ticket/mylist"><input type="button" id="mylist" value="목록으로" class="btn btn-outline-primary btn-xs"/></a>
+           										</c:when>
+           										<c:when test="${refundState==1}">
+           											<a href="${pageContext.request.contextPath}/ticket/mylist"><input type="button" id="mylist" value="목록으로" class="btn btn-outline-primary btn-xs"/></a>
+           										</c:when>
+           										<c:when test="${refundState==2}">
+           											<a href="${pageContext.request.contextPath}/ticket/mylist"><input type="button" id="mylist" value="목록으로" class="btn btn-outline-primary btn-xs"/></a>
+           										</c:when>
+           										<c:otherwise>
+           											<form name="useticket" id="useticket" method="get" action="${pageContext.request.contextPath}/counsel/submit012">
+			                                        	<input type="hidden" name="counselCategory" value="${ticket.ticketField}"/>
+									            		<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
+           												<input type="submit" id="usetk" value="사용하기" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp;
+	                                        		</form>
+	                                        		<!-- <input type="button" id="use" value="사용하기" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp; -->
+	                                        		<input type="button" id="refund" value="환불신청" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp;
+	                                        		<a href="${pageContext.request.contextPath}/ticket/mylist"><input type="button" id="mylist" value="목록으로" class="btn btn-outline-primary btn-sm"/></a>
+	                                        		<!-- <a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a> -->
+           										</c:otherwise>
+           									</c:choose>
                                         </div>
                                     </div>
                                     

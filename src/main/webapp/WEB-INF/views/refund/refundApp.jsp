@@ -185,7 +185,7 @@
                                         <div class="col-12 mt-4">
                                             <div class="row">
                                                 <div class="col-auto">
-                                                    <button class="btn btn-md-lg btn-primary" type="Submit"> <span class="color-white fw-600">Send Now</span></button>
+                                                    <button class="btn btn-md-lg btn-primary" type="submit"> <span class="color-white fw-600">Send Now</span></button>
                                                 </div>
                                                 <div class="col">
                                                     <div class="zform-feedback"></div>

@@ -37,11 +37,11 @@ public class RefundController {
 	 * */
 	@RequestMapping("/list")
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 5, Direction.DESC, "refundCode");
+		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "refundCode");
 		Page<Refund> rfList = refundService.selectAll(pageable);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("refund/listAdmin");
+		mv.setViewName("refund/list");
 		mv.addObject("rfList", rfList);
 		mv.addObject("previous", pageable.previousOrFirst().getPageNumber());
 		mv.addObject("next", pageable.next().getPageNumber());
@@ -55,7 +55,7 @@ public class RefundController {
 	 * */
 	@RequestMapping("/mylist")
 	public ModelAndView myList(HttpServletRequest request, @RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 5, Direction.DESC, "refundCode");
+		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "refundCode");
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Page<Refund> rfList = refundService.searchById(member.getId(), pageable);
 		
@@ -96,7 +96,7 @@ public class RefundController {
 		
 		refundService.insert(refund);
 		
-		return "redirect:refund/list";
+		return "redirect:/ticket/read/"+ticket.getTicketCode();
 	}
 	
 	/**

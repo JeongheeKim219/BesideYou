@@ -107,7 +107,7 @@ public class TicketController {
 	@RequestMapping("/use/{code}")
 	public String useTicket(@PathVariable Long code) {
 		ticketService.useTicket(code);
-		return "redirect:/ticket/list";
+		return "redirect:/ticket/read/"+code;
 	}
 	
 	/**
@@ -116,7 +116,7 @@ public class TicketController {
 	@RequestMapping("/delete/{code}")
 	public String deleteTicket(@PathVariable Long code) {
 		ticketService.delete(code);
-		return "redirect:/ticket/list";
+		return "redirect:/ticket/read/"+code;
 	}
 	
 }

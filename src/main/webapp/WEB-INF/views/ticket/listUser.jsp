@@ -129,11 +129,11 @@
                     </nav>
                 </div>
             </div>
-            <section>
+            <!-- <section>
                 <div>
                     <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
                     </div>
-                    <!--/.background-holder-->
+                    /.background-holder
                     <div class="container">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
@@ -150,10 +150,10 @@
                             </div>
                         </div>
                     </div>
-                    <!--/.row-->
+                    /.row
                 </div>
-                <!--/.container-->
-            </section>
+                /.container
+            </section> -->
             <section class="background-11">
                 <div class="container">
                     <div class="row">
@@ -181,7 +181,7 @@
                                             		<h4 data-zanim='{"delay":0}'>채팅 상담권</h4>
                                             	</c:when>
                                             	<c:when test="${ticket.ticketField==3}">
-                                            		<h4 data-zanim='{"delay":0}'>텍스트 상담권</h4>
+                                            		<h4 data-zanim='{"delay":0}'>간편 텍스트 상담권</h4>
                                             	</c:when>
                                             </c:choose>
                                         </a></div>
