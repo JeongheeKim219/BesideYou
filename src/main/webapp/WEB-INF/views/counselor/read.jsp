@@ -265,7 +265,7 @@
 					<div class="col-12 px-0">
 
 						<table align="center" cellpadding="18" cellspacing="8" width="600">
-							<h2>가입된 정보</h2>
+							<h2>상담사 가입된 정보</h2>
 
 							<tr>
 								<td width="100" height="20">
@@ -274,69 +274,69 @@
 									</p>
 								</td>
 								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${member.memberCode}</b></span></td>
+									style="font-size: 9pt;"><b>${counselor.counselorCode}</b></span></td>
 							</tr>
 							<tr>
 								<td width="100" height="20">
 									<p align="right">
-										<b><span style="font-size: 9pt;">ID</span></b>
+										<b><span style="font-size: 9pt;">경력</span></b>
 									</p>
 								</td>
 								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.member.id }</b></span>
-								</td>
-							</tr>
-							<tr>
-								<td width="100" height="20">
-									<p align="right">
-										<b><span style="font-size: 9pt;">이름</span></b>
-									</p>
-								</td>
-								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.member.name}</b></span>
+									style="font-size: 9pt;"><b>${requestScope.counselor.career}</b></span>
 								</td>
 							</tr>
 							<tr>
 								<td width="100" height="20">
 									<p align="right">
-										<b><span style="font-size: 9pt;">이메일</span></b>
+										<b><span style="font-size: 9pt;">학위</span></b>
 									</p>
 								</td>
 								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.member.email}</b></span>
+									style="font-size: 9pt;"><b>${requestScope.counselor.degree}</b></span>
 								</td>
 							</tr>
 							<tr>
 								<td width="100" height="20">
 									<p align="right">
-										<b><span style="font-size: 9pt;">주소</span></b>
+										<b><span style="font-size: 9pt;">상담센터 위치</span></b>
 									</p>
 								</td>
 								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.member.memberAddr}</b></span>
+									style="font-size: 9pt;"><b>${requestScope.counselor.counselorAddr}</b></span>
 								</td>
 							</tr>
 							<tr>
 								<td width="100" height="20">
 									<p align="right">
-										<b><span style="font-size: 9pt;">닉네임</span></b>
+										<b><span style="font-size: 9pt;">자격증</span></b>
 									</p>
 								</td>
 								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.member.alias}</b></span>
+									style="font-size: 9pt;"><b>${requestScope.counselor.cerificate}</b></span>
 								</td>
 							</tr>
 							<tr>
 								<td width="100" height="20">
 									<p align="right">
-										<b><span style="font-size: 9pt;">Phone</span></b>
+										<b><span style="font-size: 9pt;">프로필 사진</span></b>
 									</p>
 								</td>
 								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.member.phone}</b></span>
+									style="font-size: 9pt;"><b>${requestScope.counselor.picture}</b></span>
 								</td>
 							</tr>
-							<tr>
+							 <tr>
+								<td width="100" height="20">
+									<p align="right">
+										<b><span style="font-size: 9pt;">전문분야</span></b>
+									</p>
+								</td>
+								<td width="450" height="20" colspan="3"><span
+									style="font-size: 9pt;"><b>${speciality.specialityName}</b></span>
+								</td>
+							</tr>
+							<%-- <tr>
 								<td width="100" height="20">
 									<p align="right">
 										<b><span style="font-size: 9pt;">생년월일</span></b>
@@ -345,19 +345,19 @@
 								<td width="450" height="20" colspan="3"><span
 									style="font-size: 9pt;"><b>${requestScope.member.beforeDateOfBirth}${requestScope.member.dateOfBirth}</b></span>
 								</td>
-							</tr>
+							</tr> --%>
 
 						</table>
 						<br>
 
-						<sec:authorize access="isAuthenticated()">
+						<%-- <sec:authorize access="isAuthenticated()">
 
 							<form id="updateForm"
 								action="${pageContext.request.contextPath}/member/memberUpdate"
 								method="post" style="display: none;">
 
-								<%-- <input type="hidden" name="memberCode"
-								value="${pageContext.request.userPrincipal.principal.memberCode}" /> --%>
+								<input type="hidden" name="memberCode"
+								value="${pageContext.request.userPrincipal.principal.memberCode}" />
 
 								<input type="hidden" name="memberCode"
 									value='<sec:authentication property="principal.memberCode"/>' />
@@ -369,8 +369,8 @@
 								action="${pageContext.request.contextPath}/member/memberDelete"
 								method="post" style="display: none;">
 
-								<%-- <input type="hidden" name="memberCode"
-								value="${pageContext.request.userPrincipal.principal.memberCode}" /> --%>
+								<input type="hidden" name="memberCode"
+								value="${pageContext.request.userPrincipal.principal.memberCode}" />
 
 								<input type="hidden" name="memberCode"
 									value='<sec:authentication property="principal.memberCode"/>' />
@@ -378,7 +378,7 @@
 									value="${_csrf.token}" /> 
 									<input type="hidden" name="password" />
 							</form>
-						</sec:authorize>
+						</sec:authorize> --%>
 						<!--  <form id="deleteForm"
 						action="${pageContext.request.contextPath}/member/delete"
 							method="post" style="display: none" >

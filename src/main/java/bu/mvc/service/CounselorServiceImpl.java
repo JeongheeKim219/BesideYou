@@ -68,4 +68,10 @@ public class CounselorServiceImpl implements CounselorService {
 		
 	}
 
+	@Override
+	public Counselor selectByCounselor(Long memberCode) {
+		
+		return counselorRep.searchBymembercode(memberCode);
+	}
+
 }

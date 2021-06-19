@@ -9,4 +9,10 @@ public interface CounselorService {
 	 * 상담사 신청
 	 * */
 	void joinCounselor(Counselor counselor , String [] tagNams, int [] prices, String [] spcNames);
+
+	/**
+	 * 상담사 회원정보 보기
+	 * */
+	Counselor selectByCounselor(Long memberCode);
+
 }

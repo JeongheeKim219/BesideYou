@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.Speciality;
 import bu.mvc.domain.Tag;
 import bu.mvc.service.CounselorService;
+import bu.mvc.service.SpecialityService;
 import bu.mvc.service.TagService;
 
 @Controller
@@ -29,6 +31,8 @@ public class CounselorController {
 	@Autowired
 	private CounselorService counselorService;
 	
+	@Autowired
+	private SpecialityService specialityService;
 	
 	/**
 	 * 신청 폼
@@ -96,4 +100,25 @@ public class CounselorController {
 		mv.setViewName("counselor/joinSuccess");
 		return mv;
 		}
+	
+	
+	/**
+	 * 상담사 회원 정보
+	 * */
+	@RequestMapping("/read")
+	public ModelAndView read(Long memberCode,Long counselorCode) {
+	
+		
+		Counselor counselor = counselorService.selectByCounselor(memberCode);
+		Speciality speciality = specialityService.selectByCounselor(counselorCode);
+		
+		
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("counselor/read");
+		mv.addObject("counselor", counselor);
+		//mv.addObject("speciality",speciality);
+		return mv;
+	}
+	
 }
