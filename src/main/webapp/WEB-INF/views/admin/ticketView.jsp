@@ -36,10 +36,6 @@
 <body>
 	<%@include file="./header.jsp"%>
 	<%@include file="./menu.jsp"%>
-
-
-
-
 	<div class="app-main">
 		<div class="app-main__outer">
 			<div class="app-main__inner">
@@ -149,11 +145,12 @@
 														<c:otherwise>	
 															<td>
 																<span><fmt:formatNumber type="currency" value="${totalPrice}"/></span><br>
-																<span style="text-decoration: line-through; font-size: x-small;"><fmt:formatNumber type="currency" value="${totalPrice}"/>원</span>
+																<span style="text-decoration: line-through; font-size: x-small;"><fmt:formatNumber type="currency" value="${tkList.ticketPrice}"/></span>
 															</td>
 													</c:otherwise>
 													</c:choose>
-													<td>${tkList.ticketDate}</td>
+													<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${tkList.ticketDate}" type="both"/>
+													<td><fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>

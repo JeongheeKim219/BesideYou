@@ -262,8 +262,6 @@ public class AdminController {
 		return "admin/counselorView";
 	}
 	
-
-	
 	
 	/**
 	 * 18. 자격증 다운로드

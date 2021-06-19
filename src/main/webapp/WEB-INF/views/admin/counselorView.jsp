@@ -106,11 +106,11 @@
 						상담사 등록 현황
 						<div class="btn-actions-pane-right">
 							<div role="group" class="btn-group-sm btn-group">
-								<button class="active btn btn-focus" id="all">전체</button>
-								<button class="btn btn-focus" id="request">등록신청</button>
-								<button class="btn btn-focus" id="denied">반려</button>
-								<button class="btn btn-focus" id="approval">승인</button>	
-								<button class="btn btn-focus" id="revoked">자격정지</button>	
+								<button class="btn btn-gray" id="all">전체</button>
+								<button class="btn btn-light" id="request">등록신청</button>
+								<button class="btn btn-light" id="denied">반려</button>
+								<button class="btn btn-light" id="approval">승인</button>	
+								<button class="btn btn-light" id="revoked">자격정지</button>	
 							</div>
 						</div>
 					</div>
@@ -173,7 +173,7 @@
 									</td>
 									<td>
 									 <div class="dropdown d-inline-block">
-                                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-focus">인증</button>
+                                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-focus btn-sm">인증</button>
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                                 <button type="button" tabindex="1" class="dropdown-item" id="approval" value="${newCounselor.member.memberCode}">승인</button>
                                                 <button type="button" tabindex="2" class="dropdown-item" id="denial" value="${newCounselor.member.memberCode}">반려</button>                                                
