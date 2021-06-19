@@ -12,11 +12,15 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Requests;
+import bu.mvc.domain.Speciality;
+import bu.mvc.domain.Tag;
 import bu.mvc.domain.Ticket;
 import bu.mvc.domain.TicketLines;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.RequestRepository;
+import bu.mvc.respsitory.SpecialityRepository;
+import bu.mvc.respsitory.TagRepository;
 import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.TicketRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +39,10 @@ public class CounselServiceImpl implements CounselService {
 	private final TicketLinesRepository ticketLinesRepository;
 
 	private final RequestRepository requestRepository;
+	
+	private final TagRepository tagRepository;
+	
+	private final SpecialityRepository speRepository;
 
 	@Override
 	public Counselor getCounselor(Long counselorCode) {
@@ -150,6 +158,18 @@ public class CounselServiceImpl implements CounselService {
 	@Override
 	public void complete(Long counselCode) {
 		counselRepository.completeCounsel(counselCode);
+	}
+
+	@Override
+	public List<Speciality> getSpecialities(Counselor counselor) {
+		// TODO Auto-generated method stub
+		return speRepository.findByCounselor(counselor);
+	}
+
+	@Override
+	public List<Tag> getTag(Counselor counselor) {
+		// TODO Auto-generated method stub
+		return tagRepository.findByCounselor(counselor);
 	}
 
 

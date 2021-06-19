@@ -31,5 +31,5 @@ public class Tag {
 	
 	@ManyToOne
 	@JoinColumn(name = "counselor_code")
-	private Counselor counselorCode;
+	private Counselor counselor;
 }

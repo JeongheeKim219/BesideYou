@@ -1,5 +1,7 @@
 package bu.mvc.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -7,6 +9,8 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Requests;
+import bu.mvc.domain.Speciality;
+import bu.mvc.domain.Tag;
 
 public interface CounselService {
 	
@@ -79,6 +83,15 @@ public interface CounselService {
 	void complete(Long counselCode);
 	
 	
+	/**
+	 * 상담사 전문분야 가져오기
+	 * */
+	List<Speciality> getSpecialities(Counselor counselor);
+	
+	/**
+	 * 상담사 태그 가져오기
+	 * */
+	List<Tag> getTag(Counselor counselor);
 	
 	
 }

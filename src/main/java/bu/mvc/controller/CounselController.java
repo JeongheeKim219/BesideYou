@@ -3,6 +3,7 @@ package bu.mvc.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +22,8 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Requests;
+import bu.mvc.domain.Speciality;
+import bu.mvc.domain.Tag;
 import bu.mvc.service.CounselService;
 import lombok.RequiredArgsConstructor;
 
@@ -207,5 +210,18 @@ public class CounselController {
 	public String complete(Long counselCode) {
 		counselService.complete(counselCode);
 		return "redirect:/counsel/listForCounselor?field=-1";
+	}
+	
+	@RequestMapping("/profile")
+	public ModelAndView profile(Long counselorCode) {
+		ModelAndView mv = new ModelAndView();
+		Counselor counselor = counselService.getCounselor(counselorCode);
+		List<Tag> tagList = counselService.getTag(counselor);
+		List<Speciality> speList = counselService.getSpecialities(counselor);
+		mv.setViewName("/counsel/profile");
+		mv.addObject("counselor", counselor);
+		mv.addObject("tagList", tagList);
+		mv.addObject("speList", speList);
+		return mv;
 	}
 }
