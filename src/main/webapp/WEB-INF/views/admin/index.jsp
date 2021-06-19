@@ -11,8 +11,7 @@
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Analytics Dashboard - This is an example dashboard
-	created using build-in elements and components.</title>
+<title>Admin Page</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
 <meta name="description"
@@ -948,33 +947,6 @@
 				});
 			}
 
-			}
-			
-			
-			//상담사 순위 데이터 가져오기
-			function rankCounselor() {
-				$.ajax({
-					url : "${pageContext.request.contextPath}/admin/rankCounselor",
-					type : "POST",
-					dataType : 'json',
-					//contentType : 'application/json',
-					success : function(result) {
-						//alert(result.counselSessions);
-						 $.each(result.counselSessions, function (index, item){
-							//alert(item);
-							 $(".count").each(function(){
-								$(this).text(item);				
-							});
-						 });
-														
-					},
-					error : function(err) {
-						alert("error");
-					}
-				});
-			}
-
-				
 			
 			//신규 멤버 일자별 차트 그리기
 			function drawNewMemberChart() {
