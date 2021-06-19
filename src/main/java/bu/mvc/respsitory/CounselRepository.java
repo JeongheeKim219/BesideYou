@@ -60,19 +60,4 @@ public interface CounselRepository extends JpaRepository<Counsel, Long> {
 	 */
 	List<Counsel> findByCounselCategory(int category);
 	
-	/**
-	    * 1. 신규 상담 신청 조회
-	    */
-	   List<Counsel> findAllByCounselReqDateBetween(LocalDateTime start, LocalDateTime end);
-	   
-	   /**
-	    * 2. 상담 진행 상태별 조회(완료는 해당 월의 상담 완료건만 누적된다.)
-	    */
-	   List<Counsel> findAllByCounselState(int state);
-
-	   
-	   /**
-	    * 3. 상담신청된 상담의 유형 조회
-	    */
-	   List<Counsel> findByCounselCategory(int category);
 }
