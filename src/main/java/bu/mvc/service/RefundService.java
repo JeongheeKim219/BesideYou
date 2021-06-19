@@ -29,7 +29,7 @@ public interface RefundService {
 	int selectByTicketCode(Long ticketCode);
 	
 	/**
-	 * 환불 신청하기
+	 * 환불 신청 완료하기
 	 * */
 	void insert(Refund refund);
 	

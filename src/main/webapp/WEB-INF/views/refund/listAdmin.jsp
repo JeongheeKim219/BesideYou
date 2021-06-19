@@ -162,14 +162,14 @@
 											        </td>
 											        <td bgcolor="">
 														<p align="center"><span style="font-size:9pt;">
-														<%-- <a href="${pageContext.request.contextPath}/board/read/${board.bno}"> --%> <!-- controller 에서 @PathVariable 사용해서 주소를 인수로 받음 -->
+														<a href="${pageContext.request.contextPath}/refund/read/${refund.refundCode}"> <!-- controller 에서 @PathVariable 사용해서 주소를 인수로 받음 -->
 														  <c:choose>
 														  	<c:when test="${refund.ticket.ticketField==0}">대면상담권</c:when>
 														  	<c:when test="${refund.ticket.ticketField==1}">전화상담권</c:when>
 														  	<c:when test="${refund.ticket.ticketField==2}">채팅상담권</c:when>
 														  	<c:when test="${refund.ticket.ticketField==3}">간편텍스트상담권</c:when>
 														  </c:choose>
-														<!-- </a> -->
+														</a>
 														</span></p>
 											        </td>
 											        <td bgcolor="">
@@ -178,14 +178,15 @@
 											        </td>
 											        <td bgcolor="">
 											            <p align="center"><span style="font-size:9pt;">
-											            ${refund.refundDate}</span></p>
+											            <fmt:parseDate var="refundReqDate" pattern="yyyy-MM-dd'T'HH:mm" value="${refund.refundDate}" type="both"/>
+	                                    	<fmt:formatDate value="${refundReqDate}" pattern="yyyy년 MM월 dd일 hh시 mm분"/></span></p>
 											        </td>
 											        <td bgcolor="">
 											            <p align="center"><span style="font-size:9pt;">
 											            <c:choose>
 														  	<c:when test="${refund.refundState==0}">처리중</c:when>
 														  	<c:when test="${refund.refundState==1}" ><span style="color:red">환불 불가</span></c:when>
-														  	<c:when test="${refund.refundState==2}">환불 완료</c:when>
+														  	<c:when test="${refund.refundState==2}"><span style="color:blue">환불 완료</span></c:when>
 														  </c:choose>
 											            </span></p>
 											        </td>

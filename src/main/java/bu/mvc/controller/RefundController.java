@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Refund;
 import bu.mvc.domain.Ticket;
@@ -86,7 +87,7 @@ public class RefundController {
 	 * 환불 신청 완료하기
 	 * */
 	@RequestMapping("/request")
-	public ModelAndView refundRequest(String refundReason, Long ticketCode, String id, String name) {
+	public String refundRequest(String refundReason, Long ticketCode) {
 		Refund refund = new Refund();
 		Ticket ticket = ticketService.selectByCode(ticketCode);
 		refund.setRefundReason(refundReason);
@@ -95,19 +96,25 @@ public class RefundController {
 		
 		refundService.insert(refund);
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("ticket/listUser");
-		
-		return mv;
+		return "redirect:refund/list";
 	}
 	
 	/**
 	 * 환불 신청 내역 상세보기
 	 * */
-	@RequestMapping("/read")
-	public ModelAndView refundDetail(Long refundCode) {
-		Refund refund = refundService.selectByCode(refundCode);
-		return new ModelAndView("refund/refundDetail", "refund", refund);
+	@RequestMapping("/read/{code}")
+	public ModelAndView refundDetail(@PathVariable Long code) {
+		Refund refund = refundService.selectByCode(code);
+		Ticket ticket = refund.getTicket();
+		Counselor counselor = ticket.getCounselor();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("refund/refundDetail");
+		mv.addObject("counselor", counselor);
+		mv.addObject("refund", refund);
+		mv.addObject("ticket", ticket);
+		
+		return mv;
 	}
 	
 	/**
@@ -125,19 +132,20 @@ public class RefundController {
 	 *  2. 상담권 잔여량이 남아있을 경우 잔여량을 0으로 만든다.
 	 *  3. 환불 불가 결정 or 환불 완료시 신청 내역의 진행 상태를 변경한다.
 	 * */
-	@RequestMapping("/process")
-	public String refundProcess(Refund refund) {
+	@RequestMapping("/process/{code}")
+	public String refundProcess(@PathVariable Long code) {
+		Refund refund = refundService.selectByCode(code);
 		refundService.refundTicket(refund);
-		return "redirect:/refund/mylist";
+		return "redirect:/refund/list";
 	}
 	
 	/**
 	 * 환불 신청 내역 삭제하기
 	 * */
-	@RequestMapping("/delete")
-	public String deleteRefundReq(Long refundCode) {
-		refundService.delete(refundCode);
-		return "redirect:/refund/mylist";
+	@RequestMapping("/delete/{code}")
+	public String deleteRefundReq(@PathVariable Long code) {
+		refundService.delete(code);
+		return "redirect:/refund/list";
 	}
 	
 }

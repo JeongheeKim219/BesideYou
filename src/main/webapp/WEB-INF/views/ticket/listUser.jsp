@@ -191,7 +191,7 @@
                                     <div class="overflow-hidden">
                                         <p class="color-7" data-zanim='{"delay":0.2}'>Remain : ${ticket.ticketRemain}</p>
                                     </div>
-                                    <div class="overflow-hidden">
+                                    <%-- <div class="overflow-hidden">
                                     	<c:choose>
                                     		<c:when test="${ticket.ticketRemain>0}">
                                     			<div class="d-inline-block" data-zanim='{"delay":0.3}'>
@@ -210,7 +210,7 @@
                                     			</div>
                                     		</c:when>
                                     	</c:choose>
-                                    </div>
+                                    </div> --%>
                                 </div>
                             </div>
                         </div>

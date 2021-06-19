@@ -178,9 +178,9 @@
                                         <div class="col-12 mt-4">
                                             <textarea class="form-control background-white" rows="11" name="refundReason" placeholder="환불 신청 사유를 작성해주세요." required></textarea>
                                             <input class="form-control" type="hidden" name="ticketCode" value="${ticket.ticketCode}">
-                                            <!-- <input class="form-control" type="hidden" name="refundState" value="0"> -->
+                                            <!-- <input class="form-control" type="hidden" name="refundState" value="0">
                                             <input class="form-control" type="hidden" name="id" value="${member.id}">
-                                            <input class="form-control" type="hidden" name="name" value="${member.name}">
+                                            <input class="form-control" type="hidden" name="name" value="${member.name}"> -->
                                         </div>
                                         <div class="col-12 mt-4">
                                             <div class="row">
