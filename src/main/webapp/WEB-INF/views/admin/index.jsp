@@ -62,7 +62,7 @@
 					<div class="page-title-wrapper">
 						<div class="page-title-heading">
 							<div class="page-title-icon">
-								<i class="pe-7s-display1 icon-gradient bg-deep-blue"></i>
+								<i class="fa fa-cog icon-gradient bg-deep-blue icon-gradient bg-deep-blue"></i>
 							</div>
 							<div>
 								<b>관리자 대쉬보드</b>

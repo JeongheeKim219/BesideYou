@@ -56,7 +56,7 @@
 						<li><a href="${pageContext.request.contextPath}/admin/memberView"> <i
 								class="metismenu-icon"> </i> 전체회원조회
 						</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/viewCounselorState"> 상담사목록 <i
+						<li><a href="${pageContext.request.contextPath}/admin/viewCounselorState">상담사승인<i
 								class="metismenu-icon"> </i>
 						</a></li>
 						<li><a href="elements-badges-labels.html"> <i

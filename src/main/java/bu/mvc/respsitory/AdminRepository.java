@@ -79,4 +79,12 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 	 */
 	Page<Member> findAll(Pageable pageable);
 	
+
+	/**
+	 * 8. 회원 이름/가명 검색
+	 */
+	Page<Member> findByAliasContainingOrNameContaining(Pageable pagable, String alias, String name);
+	
+	
+
 } 

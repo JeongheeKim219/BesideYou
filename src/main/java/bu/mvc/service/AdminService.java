@@ -415,11 +415,16 @@ public class AdminService {
 	/**
 	 * 18. 회원 전체 조회(일반 + 상담사)
 	 */
-
 	public Page<Member> selectAll(Pageable pageable){
 		return adminRep.findAll(pageable);
 	}
 
+	/**
+	 * 19. 회원 이름/가명 검색
+	 */
+	public Page<Member> findByAliasAndName(Pageable pageable, String keyword){
+		return adminRep.findByAliasContainingOrNameContaining(pageable, keyword, keyword);
+	}
 
 }
 

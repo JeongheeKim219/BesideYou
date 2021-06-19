@@ -85,7 +85,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 4. 일반 회원 전체 보기 페이지로 이동 1) 전체 회원 조회 2) 페이징
+	 * 4. 회원 전체 보기 페이지로 이동 1) 전체 회원 조회 2) 페이징
 	 */
 	@RequestMapping("/memberView")
 	public String select(Model model, @RequestParam(defaultValue = "0") int currentPage) {
@@ -207,6 +207,8 @@ public class AdminController {
 		return ajaxDataTwo;
 	
 	}
+	
+	
 	/**
 	 * 17. 상담사 등록용 전체 상담사 조회
 	 */
@@ -253,10 +255,20 @@ public class AdminController {
 		adminService.updateMemberType(member);
 		adminService.addAuthority(member);		
 		
-		return "redirect:/admin/viewCounselorState";
-		
+		return "redirect:/admin/viewCounselorState";	
 	}
 	
+	
+	/**
+	 * 20. 회원 이름/가명 검색
+	 */
+	/*
+	 * @RequestMapping("/selectByNameAndAlias") public String
+	 * selectByNameAndAlias(String keyword) {
+	 * 
+	 * 구현중
+	 * return }
+	 */
 	
 }
 
