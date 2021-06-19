@@ -9,5 +9,6 @@ public class ReportDTO {
 	private String memberCode;
 	private String reviewCode;
 	private String reportOption;
+	private String reviewContent;
 
 }

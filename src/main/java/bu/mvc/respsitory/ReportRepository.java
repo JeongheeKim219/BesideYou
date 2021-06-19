@@ -9,7 +9,12 @@ import bu.mvc.domain.Report;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
 	
+	
 	@Query("select r from ReviewStar r where r.reviewCode=?1")
 	List<Report> selectByReviewNo(Long reviewCode);
+	
+	
 
+
+	
 }

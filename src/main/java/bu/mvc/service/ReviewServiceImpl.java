@@ -44,4 +44,16 @@ public class ReviewServiceImpl implements ReviewService {
 		return point;
 	}
 
+	@Override
+	public ReviewStar selectByReviewCode(Long reviewCode) {
+		
+		return reviewRepository.findById(reviewCode).orElse(null);
+	}
+
+	@Override
+	public void delete(Long reviewCode) {
+		reviewRepository.deleteById(reviewCode);
+		
+	}
+
 }

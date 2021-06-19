@@ -16,19 +16,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import bu.mvc.domain.Report;
 import bu.mvc.domain.ReviewStar;
 import bu.mvc.service.ReviewService;
 
 @Controller
-@RequestMapping("/review")
+
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
 	/**
+	 * 리뷰폼
+	 * */
+	@RequestMapping("/review/reviewForm")
+	public void reviewForm() {
+		
+	}
+	
+	/**
+	 * 리뷰 등록
+	 * */
+	@RequestMapping("/review/insert")
+	public String insert(ReviewStar reviewStar) {
+		System.out.println("11");
+		reviewService.insert(reviewStar);
+		
+		return "redirect:/review/reviewList";
+	}
+	
+	
+	
+	
+	/**
 	 * 모든 리뷰출력(삭제예정)
 	 * */
-	@RequestMapping("/reviewList")
+	@RequestMapping("/review/reviewList")
 	public void selectAll(Model model, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 100, Direction.ASC, "reviewCode");
 		Page<ReviewStar> pageList = reviewService.selectAll(pageable);
@@ -39,7 +62,7 @@ public class ReviewController {
 	/**
 	 * 상담사 코드에따른 리뷰 출력
 	 * */
-	@RequestMapping("/reviewByCode/{counselorCode}")
+	@RequestMapping("/review/reviewByCode/{counselorCode}")
 	public ModelAndView selectByCounselor(@PathVariable Long counselorCode, @PageableDefault(size = 5, sort = "reviewCode", direction = Sort.Direction.DESC) Pageable pageable) {
 		List<ReviewStar> revList = reviewService.selectByCounselorCode(counselorCode, pageable);
 		Double point = reviewService.avgStar(counselorCode);
@@ -53,5 +76,11 @@ public class ReviewController {
 		return mv;
 		
 	}
+	
+	/**
+	 * 리뷰코드에 해당하는 리뷰 삭제
+	 * */
+	
+	
 
 }

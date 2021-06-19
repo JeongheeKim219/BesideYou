@@ -21,6 +21,11 @@ public interface ReportService {
 	/**
 	 * 신고리뷰 찾기
 	 * */
-	List<Report> selectByReviewNo(Long reviewCode);
+	Report selectbyId(Long reportCode);
+	
+	/**
+	 * 신고 삭제
+	 * */
+	void deleteByreview(Long reviewCode);
 
 }

@@ -192,6 +192,13 @@ alert(${pageContext.request.contextPath})
 <title>Insert title here</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/report/aa"> aa </a>
+<form name="test" id="test" method="POST" action="${pageContext.request.contextPath}/report/aa" enctype='application/x-www-form-urlencoded'> 
+    <input type='text' value=''/> <br>
+    <input type="submit" id="testbtn" value="테스트" />
+</form>
+
+</form>
 	<form name="requestForm" method="post" id="requestForm">
 		<div align="center">
 		<input type="hidden" id="reviewCode" name="reviewCode" value="">

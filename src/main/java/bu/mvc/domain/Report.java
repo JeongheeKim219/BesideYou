@@ -41,6 +41,9 @@ public class Report {
 	@JoinColumn(name = "REVIEW_CODE")
 	private ReviewStar reviewStar; // 리뷰코드
 	
+
+	private String reviewContent;
+	
 	@CreationTimestamp
 	private Date reportDate; // 신고날자
 	
@@ -54,13 +57,20 @@ public class Report {
 	}
 
 
-	public Report(Long reportCode, Member member, ReviewStar reviewStar, String reportOption) {
+
+	public Report(Long reportCode, Member member, ReviewStar reviewStar, String reviewContent, String reportOption) {
 		super();
 		this.reportCode = reportCode;
 		this.member = member;
 		this.reviewStar = reviewStar;
+		this.reviewContent = reviewContent;
 		this.reportOption = reportOption;
 	}
+
+
+
+
+
 
 
 

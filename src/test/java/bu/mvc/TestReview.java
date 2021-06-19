@@ -25,6 +25,8 @@ public class TestReview {
 
 	@Autowired
 	private ReviewRepository rr;
+	@Autowired
+	private ReportRepository rp;
 
 	@Test
 	void selectAll() {
@@ -39,6 +41,11 @@ public class TestReview {
 	void selectByNum() {
 		List<ReviewStar> rs = rr.selectByCounCode(1L);
 		System.out.println("RS ============" + rs.toString());
+	}
+	@Test
+	void selectNum() {
+		Report report = rp.selectByReviewNum(287L);
+		System.out.println(report);
 	}
 
 }

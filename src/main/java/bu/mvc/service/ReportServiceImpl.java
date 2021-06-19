@@ -1,7 +1,5 @@
 package bu.mvc.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +28,20 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public List<Report> selectByReviewNo(Long reviewCode) {
-		// TODO Auto-generated method stub
-		return null;
+	public Report selectbyId(Long reportCode) {
+		return reportRepository.findById(reportCode).orElse(null);
 	}
+
+	@Override
+	public void deleteByreview(Long reviewCode) {
+		
+		
+	}
+
+	
+
+
+
+
 
 }

@@ -29,5 +29,13 @@ public interface ReviewService {
 	 * 상담사별 별점 출력
 	 * */
 	Double avgStar(Long counselor);
-
+	
+	ReviewStar selectByReviewCode(Long reviewCode);
+	
+	/**
+	 * 리뷰삭제
+	 * */
+	void delete(Long reviewCode);
+	
 }
+

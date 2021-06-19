@@ -17,8 +17,8 @@ public interface ReviewRepository extends JpaRepository<ReviewStar, Long> {
 	
 	
 	
-	
 	@Query("select round(avg(star),1) from ReviewStar r where counselor.counselorCode=?1")
 	double selectStarAvg(Long counselorCode);
 
+	
 }
