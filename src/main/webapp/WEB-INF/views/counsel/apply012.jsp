@@ -77,7 +77,8 @@
 			var d = $("#date").val();
 			if(confirm(d+" 예약이 맞나요?")){
 				if($("input[name = 'remainTicket'").val() <= 0){
-					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");					
+					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");
+					$("#submitForm").attr("action", "${pageContext.request.contextPath}/ticket/ticketApp")
 				}
 				$("#submitForm").submit();
 			}
@@ -336,10 +337,11 @@
 							<hr class="short"
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
-							<form action="${pageContext.request.contextPath}/counsel/submit012" method="get" id="submitForm">
+							<form action="${pageContext.request.contextPath}/counsel/submit012" method="post" id="submitForm">
 								<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
 								<input type="hidden" name="counselCategory" value="${counselField}"/>
 								<input type="hidden" name="remainTicket" value="${remainTicket}"/>
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 								<table style="width: 100%; vertical-align: middle;">
 									<tr style="height: 150px;">
 										<td>

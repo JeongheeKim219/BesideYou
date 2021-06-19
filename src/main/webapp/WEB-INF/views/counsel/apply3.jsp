@@ -87,7 +87,8 @@
 			
 			if (confirm("등록하시겠습니까?")) {
 				if($("input[name = 'remainTicket'").val() <= 0){
-					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");					
+					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");
+					$("#submitForm").attr("action", "${pageContext.request.contextPath}/ticket/ticketApp")
 				}
 				$("#submitForm").submit();
 			}
