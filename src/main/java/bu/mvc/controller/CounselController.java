@@ -35,13 +35,13 @@ public class CounselController {
 	 * 신청 폼 이동 (* 연결할 때 input param 필요
 	 * */
 	@RequestMapping("/apply")
-	public ModelAndView apply(HttpServletRequest request) {
+	public ModelAndView apply(HttpServletRequest request, Long counselorCode, int counselCategory) {
 		// 보낼 정보 : 상담사객체, 상담유형, 잔여 상담권 개수
 		
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		Counselor counselor = counselService.getCounselor(141L);
-		int counselField = 2;
+		Counselor counselor = counselService.getCounselor(counselorCode);
+		int counselField = counselCategory;
 
 		ModelAndView mv = new ModelAndView();
 		if (counselField == 0 || counselField == 1 || counselField == 2) {
