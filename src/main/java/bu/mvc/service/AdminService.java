@@ -320,6 +320,11 @@ public class AdminService {
 		 member.setMemberState(memberState);
 		 //System.out.println("2");
 		 member.setMemberType(memberType);
+		 if(memberType==1) {
+			  Counselor counselor = counselorRep.searchBymembercode(memberCode);
+			  counselor.setCounselorState(1);
+		 }
+		
 	}
 	
 }
