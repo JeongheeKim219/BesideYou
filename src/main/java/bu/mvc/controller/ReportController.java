@@ -95,7 +95,7 @@ public class ReportController {
 	}
 	
 	/**
-	 * 신고 삭제
+	 * 신고 삭제(리뷰같이 삭제)
 	 * */
 	@ResponseBody
 	@RequestMapping("/report/delete")
@@ -105,6 +105,20 @@ public class ReportController {
 		System.out.println(a +"///" + b);
 		reportService.deleteReport(a);
 		rs.delete(b);
+		System.out.println("완료");
+		return "redirect:/review/reviewList";
+	}
+	
+	/**
+	 * 신고삭제(신고만 삭제)
+	 * */
+	@ResponseBody
+	@RequestMapping("/report/deleteReportOnly")
+	public String deleteReport(@RequestBody ReportDTO report) {
+		Long a =Long.parseLong(report.getReportCode());
+		System.out.println(a);
+		reportService.deleteReport(a);
+		
 		System.out.println("완료");
 		return "redirect:/review/reviewList";
 	}

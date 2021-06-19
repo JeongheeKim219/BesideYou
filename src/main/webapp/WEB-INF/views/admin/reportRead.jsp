@@ -127,7 +127,8 @@
 									</tr>
 									<tr>
 										<td colspan="2" align="right">
-											<input type="button" id="btn" value="삭제">
+											<input type="button" id="btn" value="삭제(리뷰까지)">
+											<input type="button" id="btn1" value="삭제(신고내역)">
 											<input type="text" id="reviewCode" value="${requestScope.report.reviewStar.reviewCode}">
 											<input type="text" id="reportCode" value="${requestScope.report.reportCode}">
 										</td>
@@ -151,6 +152,26 @@
 			type : 'POST',
 			url :'${pageContext.request.contextPath}/report/delete',
 			data : JSON.stringify({reviewCode : reviewCode, reportCode : reportCode}),
+			dataType :'json',
+			contentType: 'application/json; charset=UTF-8',
+			success : function(data){
+				
+			},
+			error:function(){
+				
+			}
+		})
+	});
+	
+	
+	$("#btn1").click(function(){
+		var reviewCode = $('#reviewCode').val();
+		var reportCode = $('#reportCode').val();
+		
+		$.ajax({
+			type : 'POST',
+			url :'${pageContext.request.contextPath}/report/deleteReportOnly',
+			data : JSON.stringify({reportCode : reportCode}),
 			dataType :'json',
 			contentType: 'application/json; charset=UTF-8',
 			success : function(data){
