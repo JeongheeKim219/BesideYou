@@ -141,6 +141,9 @@ public class ContactController {
 		return new ModelAndView("contact/errorView", "errMsg", e.getMessage());
 	}
 	
+	@RequestMapping("/contact/error")
+	public void error() {}
+	
 
 }
 

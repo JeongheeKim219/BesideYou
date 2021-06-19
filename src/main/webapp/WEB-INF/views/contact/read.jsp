@@ -126,20 +126,21 @@
         <span style="font-size:9pt;"><b><pre>${requestScope.contact.contactContent}</pre></b></span></td>
     </tr>
     
-      
-    <tr>
+   <c:if test="${contact.contactReply.contactReplyContent == null}">
+   	 <tr>
         <td height="20" colspan="4" align="center" valign="middle">
 			<!-- 수정시 필요한 데이터들을 hidden으로 숨겨놓고 폼 데이터로 보내준다. -->
-			<form name="requestForm" method="post" id="requestForm">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type=hidden name="contactCode" value="${contact.contactCode}">
+				<form name="requestForm" method="post" id="requestForm">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input type=hidden name="contactCode" value="${contact.contactCode}">
 				
-				<!-- <input type=button value="수정하기" > -->
-				<input type=button value="답변하기" >
-				<input type=button value="삭제하기" >
-			</form>
-		</td>
-    </tr>
+					<!-- <input type=button value="수정하기" > -->
+					<input type=button value="답변하기" >
+					<input type=button value="삭제하기" >
+				</form>
+			</td>
+    	</tr>
+    </c:if>
 </table>
 
 <br>
