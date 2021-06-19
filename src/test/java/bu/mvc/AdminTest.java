@@ -3,7 +3,6 @@ package bu.mvc;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +12,10 @@ import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.annotation.Commit;
 
 import bu.mvc.domain.Counsel;
@@ -182,4 +185,18 @@ public class AdminTest {
 
 	}
 	
+	
+	@Test
+	void test_14() {
+		Pageable pageable =  PageRequest.of(0, 10, Direction.DESC, "memberCode");
+		Page<Member> pageList = adminRep.findByAliasContainingOrNameContaining(pageable, "동동", "동동");
+		for(Member member : pageList.getContent()) {
+			System.out.println(member.getId());
+		}
+		
+		
+	}
+
+
+
 }

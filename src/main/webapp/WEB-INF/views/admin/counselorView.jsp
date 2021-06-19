@@ -234,10 +234,6 @@
 				}	
 					
 			});	
-			
-		
-			//$(document).on("click", "#approval", function (){
-				
 				
 			
 		})//JQuery Ready 끝

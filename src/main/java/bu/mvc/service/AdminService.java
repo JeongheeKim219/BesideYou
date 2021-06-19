@@ -412,9 +412,7 @@ public class AdminService {
 	 * */
 	public void updateMember(Long memberCode, int memberState, int memberType) {
 		 Member member = memRep.findById(memberCode).orElse(null);
-		 //System.out.println("1ㅂ");
 		 member.setMemberState(memberState);
-		 //System.out.println("2");
 		 member.setMemberType(memberType);
 	}
 	

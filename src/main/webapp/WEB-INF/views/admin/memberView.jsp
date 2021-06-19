@@ -55,16 +55,16 @@
 					<div class="main-card mb-3 card">
 						<div class="card-header" style="justify-content: flex-end;">
 						<div class="widget-content widget-content-right">
-						<form action="" method="get">
+						<form action="${pageContext.request.contextPath}/admin/selectByNameAndAlias" method="get">
 							<div class="input-group">
-								<input type="text" class="form-control form-control-sm">
+								<input type="text" class="form-control form-control" name="keyword">
 								<div class="input-group-append">
 									<button type="button" data-toggle="dropdown"
 										aria-haspopup="true" aria-expanded="false"
 										class="dropdown-toggle btn btn-secondary">
 										이름/가명</button>
-									<div tabindex="0" role="menu" aria-hidden="true" class="dropdown-menu">
-										<button type="button" tabindex="0" class="dropdown-item">Another Action</button>
+									<div role="menu" aria-hidden="true" class="dropdown-menu">
+										<button type="button" tabindex="0" class="dropdown-item">아이디</button>
 										
 									</div>
 								</div>
@@ -87,7 +87,12 @@
 								<c:choose>
 									<c:when test="${empty requestScope.pageList}">
 										<tr>
-											<td colspan="5"><p align="center">조회된 회원이 없습니다.</p></td>
+											<td colspan="6"><p align="center">조회된 회원이 없습니다.</p></td>
+										</tr>
+									</c:when>
+									<c:when test ="${not empty requestScope.errorMessage}">
+										<tr>
+											<td colspan="6"><p align="center">${requestScope.errorMessage}</p></td>
 										</tr>
 									</c:when>
 									<c:otherwise>
@@ -149,6 +154,10 @@
 									</c:otherwise>
 								</c:choose>
 							</table>
+							<c:choose>
+							<c:when test ="${empty requestScope.errorMessage}">
+										
+									
 							<ul class="pagination">
 								<li class="page-item"><a href="javascript:void(0);"
 									class="page-link" aria-label="Previous"><span
@@ -172,6 +181,9 @@
 									class="page-link" aria-label="Next"><span
 										aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
 							</ul>
+						</c:when>
+						</c:choose>	
+							
 						</div>
 					</div>
 				</div>
@@ -180,7 +192,21 @@
 
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script>
+		$(function (){
+			
+/* 
+			$("button[tabindex='0']").click(function (){
+				$("#keyfield").();
+			
+			});	
+			 */
+		
+			
+			
+			
+		})//제이 쿼리 Ready
+	</script>
 </body>
 </html>

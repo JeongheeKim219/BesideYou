@@ -68,6 +68,7 @@ public class AdminController {
 		return "admin/index";
 	}
 
+	
 	/**
 	 * 2. 신규 회원 타입별 가입자 인원수 조회
 	 */
@@ -75,6 +76,7 @@ public class AdminController {
 		return adminService.selectNewMemberList(memberType);
 	}
 
+	
 	/**
 	 * 3. 회원 통계 페이지로 이동 !!!!!!!!!!!!!!!!!!!!!!!!!!세부 데이터 필요!!!!!!!!!!!!!!!!!!!!!!!!
 	 */
@@ -83,6 +85,7 @@ public class AdminController {
 
 		return "admin/memberSummary";
 	}
+
 
 	/**
 	 * 4. 회원 전체 보기 페이지로 이동 1) 전체 회원 조회 2) 페이징
@@ -96,6 +99,7 @@ public class AdminController {
 		return "admin/memberView";
 	}
 
+	
 	/**
 	 * 5. 해당 월 상담상태별 조회
 	 */
@@ -198,6 +202,7 @@ public class AdminController {
 		return adminService.countCounselByMonth();
 	}
 	
+	
 	/**
 	 * 회원상태, 회원타입 업데이트
 	 * */
@@ -205,8 +210,8 @@ public class AdminController {
 	public String update(@PathVariable Long memberCode, Integer state, Integer type) {
 		//System.out.println(state +", "+type);
 		adminService.updateMember(memberCode, state, type);
-		return "/admin/index";
 		
+		return "redirect:/admin/memberView";
 	}
 	
 	
@@ -220,7 +225,6 @@ public class AdminController {
 		return ajaxDataTwo;
 	
 	}
-	
 	
 	/**
 	 * 17. 상담사 등록용 전체 상담사 조회
@@ -256,6 +260,7 @@ public class AdminController {
 		return new ModelAndView("downLoadView", "fname", file);
 	}
 		
+	
 	/**
 	 * 19. 상담사 승인/ 반려
 	 */
@@ -275,13 +280,20 @@ public class AdminController {
 	/**
 	 * 20. 회원 이름/가명 검색
 	 */
-	/*
-	 * @RequestMapping("/selectByNameAndAlias") public String
-	 * selectByNameAndAlias(String keyword) {
-	 * 
-	 * 구현중
-	 * return }
-	 */
+	  @RequestMapping("/selectByNameAndAlias") 
+	  public String selectByNameAndAlias(String keyword, @RequestParam(defaultValue = "0") int currentPage, Model model) {
+		  Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "memberCode");
+		  Page<Member> pageList = adminService.findByAliasAndName(pageable, keyword);
+		  model.addAttribute("pageList", pageList);
+		  
+		  if(pageList.getNumberOfElements() == 0) {
+			  
+			  model.addAttribute("errorMessage", "검색결과가 없습니다.");
+
+		  }
+		  
+		  return "admin/memberView";
+	  }
 	
 }
 
