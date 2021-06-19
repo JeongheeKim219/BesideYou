@@ -35,4 +35,9 @@ public class TicketLines {
 	@OneToOne
 	@JoinColumn(name="ticket_code") //상담권 코드
 	private Ticket ticket;
+
+	public TicketLines(Ticket ticket) {
+		this.ticket = ticket;
+	}
+
 }

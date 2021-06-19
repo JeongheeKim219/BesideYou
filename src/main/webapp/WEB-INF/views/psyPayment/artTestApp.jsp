@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -43,42 +41,23 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-$(function() {
-	$("#use").click(function() {
-		if ($("#remain").text() == 0) {
-			alert("소진된 상담권입니다. 사용할 수 없습니다.");
-			return;
-		} else {
-			if(confirm("상담권을 사용하시겠습니까?")){
-				location.href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}";
-			}else{
-				return;
-			}
-		}
-	})
-	
-	$("#refund").click(function() {
-		if ($("#remain").text() == 0) {
-			alert("소진된 상담권입니다. 환불 신청이 불가합니다.");
-			return;
-		} else {
-			location.href="${pageContext.request.contextPath}/refund/refundApp/${ticket.ticketCode}";
-		}
-	})
-	
-	$("#delete").click(function() {
-		if ($("#remain").text() > 0) {
-			alert("잔여량이 남아있는 상담권입니다. 삭제가 불가합니다.");
-			return;
-		} else {
-			if(confirm("소진된 상담권을 삭제하시겠습니까?")){
-				location.href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}";
-			}else{
-				return;
-			}
-		}
-	})
-})
+	$(function(){
+	   $("#card").click(function(){
+		   $("#artTestPay").attr("action", "${pageContext.request.contextPath}/psyPayment/inicis");
+		   $("#artTestPay").submit();
+	   })
+	   
+	   $("#phone").click(function(){
+		   $("#artTestPay").attr("action", "${pageContext.request.contextPath}/psyPayment/danal");
+		   $("#artTestPay").submit();
+	   })
+	   
+	   $("#paypal").click(function(){
+		   $("#artTestPay").attr("action", "${pageContext.request.contextPath}/psyPayment/paypal");
+		   $("#artTestPay").submit();
+	   })
+	   
+	})	
 
 </script>
         
@@ -187,62 +166,35 @@ $(function() {
                         <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0 radius-tr-lg-secondary">
                             <div class="d-flex align-items-center h-100">
                                 <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden" align="right">
-                                        <c:choose>
-                                        	<c:when test="${ticket.ticketField==0}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Business-ManWoman"></span>&nbsp;&nbsp;대면 상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==1}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Phone-2"></span>&nbsp;&nbsp;전화 상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==2}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Phone-SMS"></span>&nbsp;&nbsp;채팅 상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==3}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-File-TXT"></span>&nbsp;&nbsp;간편 텍스트 상담권</h3></c:when>
-                                        </c:choose>
+                                    <div class="overflow-hidden">
+                                        <h4 data-zanim='{"delay":0}'>그림 심리 검사</h4>
                                     </div>
-                                    <hr>
                                     <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'><h5>담당 상담사</h5></div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>티켓 구매일</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>최초 구매량</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'>현재 잔여량</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>Original Price</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}' style="color:red">Discount</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.3}'><h5>Purchase Price</h5></div>
                                     </div>
                                     
-                                    <div class="overflow-hidden" align="right">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'><h5>${counselor.member.name}</h5></div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>
-	                                    <fmt:parseDate var="ticketDate" pattern="yyyy-MM-dd'T'HH:mm" value="${ticket.ticketDate}" type="both"/>
-	                                    	<fmt:formatDate value="${ticketDate}" pattern="yyyy년 MM월 dd일"/>
-	                                    </div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>${ticket.ticketAmount}</div>
-	                                    <div class="mt-3" id="remain" data-zanim='{"delay":0.4}'>${ticket.ticketRemain}</div>
+                                    <div class="overflow-hidden" align="right" style="margin-right: 20px">
+	                                    <div class="mt-3" data-zanim='{"delay":0.1}'>150,000 원</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}' style="color:red">-50,000 원</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.3}'><h5>100,000 원</h5></div>
                                     </div>
                                     <br>
-                                    <div class="overflow-hidden" align="right">
-                                        <div data-zanim='{"delay":0.5}'>
-                                        	<form name="payment" id="payment" method="get" action="">
+                                    <div class="overflow-hidden">
+                                        <div data-zanim='{"delay":0.4}'>
+                                        	<form name="artTestPay" id="artTestPay" method="get" action="">
 	                                        	<input type="hidden" name="category" value="1"/>
 							            		<input type="hidden" name="counselor" value="1"/>
 							            		<input type="hidden" name="id" value="aa"/>
 							            		<input type="hidden" name="name" value="aaa"/>
 							            		<input type="hidden" name="phone" value="111"/>
 							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value=""/>
-            									<c:choose>
-            										<c:when test="${refundState==0}">
-            											<input type="button" id="ref" value="환불 처리 진행중" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==1}">
-            											<input type="button" id="notref" value="환불 불가" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==2}">
-            											<input type="button" id="refdone" value="환불 처리 완료" class="btn btn-outline-info" disabled="disabled"/>
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:when test="${ticket.ticketRemain<=0}">
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:otherwise>
-            											<a href="#"><input type="button" id="use" value="사용하기" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="refund" value="환불신청" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:otherwise>
-            									</c:choose>
+							            		<input type="hidden" name="price" value="1000"/>
+            		
+		                                        <input type="button" id="card" value="카드결제" class="btn btn-info mr-3 mb-3"/>
+		                                        <input type="button" id="phone" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>
+		                                        <input type="button" id="paypal" value="PayPal" class="btn btn-info mr-3 mb-3"/>
 	                                        </form>
                                         </div>
                                     </div>

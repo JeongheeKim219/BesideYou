@@ -29,7 +29,7 @@ public class Refund {
 	@SequenceGenerator(sequenceName = "refund_code_seq", allocationSize = 1, name = "refund_code_seq")
 	private Long refundCode; //환불 요청 코드
 	private String refundReason; //환불 요청 사유
-	private int refundState; //환불 진행 상태
+	private int refundState; //환불 진행 상태 (0:처리중 / 1:환불불가 / 2:환불완료)
 
 	@CreationTimestamp
 	private LocalDateTime refundDate; //환불 요청일

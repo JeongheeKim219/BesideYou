@@ -43,42 +43,28 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-$(function() {
-	$("#use").click(function() {
-		if ($("#remain").text() == 0) {
-			alert("소진된 상담권입니다. 사용할 수 없습니다.");
-			return;
-		} else {
-			if(confirm("상담권을 사용하시겠습니까?")){
-				location.href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}";
+	$(function() {
+		$("#process").click(function() {
+			if ($("#remain").text() == 0) {
+				alert("소진된 상담권입니다. 환불이 불가합니다.");
+				return;
+			} else {
+				if(confirm("환불 신청을 승인하시겠습니까?")){
+					location.href="${pageContext.request.contextPath}/refund/process/${refund.refundCode}";
+				}else{
+					return;
+				}
+			}
+		})
+		
+		$("#delete").click(function() {
+			if(confirm("환불 신청 내역을 삭제하시겠습니까?")){
+				location.href="${pageContext.request.contextPath}/refund/delete/${refund.refundCode}";	
 			}else{
 				return;
 			}
-		}
+		})
 	})
-	
-	$("#refund").click(function() {
-		if ($("#remain").text() == 0) {
-			alert("소진된 상담권입니다. 환불 신청이 불가합니다.");
-			return;
-		} else {
-			location.href="${pageContext.request.contextPath}/refund/refundApp/${ticket.ticketCode}";
-		}
-	})
-	
-	$("#delete").click(function() {
-		if ($("#remain").text() > 0) {
-			alert("잔여량이 남아있는 상담권입니다. 삭제가 불가합니다.");
-			return;
-		} else {
-			if(confirm("소진된 상담권을 삭제하시겠습니까?")){
-				location.href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}";
-			}else{
-				return;
-			}
-		}
-	})
-})
 
 </script>
         
@@ -198,52 +184,51 @@ $(function() {
                                     <hr>
                                     <div class="overflow-hidden" style="float:left; margin-right: 50px">
 	                                    <div class="mt-3" data-zanim='{"delay":0.1}'><h5>담당 상담사</h5></div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>티켓 구매일</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>최초 구매량</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'>현재 잔여량</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>구매자 이름(ID)</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>구매자 연락처</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.4}'>구매자 E-mail</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.5}'>티켓 구매일</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.6}'>환불 신청일</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.7}'>최초 구매량</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.8}'>현재 잔여량</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.9}' style="font-weight: bold; color:navy;">환불 신청 사유</div>
                                     </div>
                                     
                                     <div class="overflow-hidden" align="right">
                                     	<div class="mt-3" data-zanim='{"delay":0.1}'><h5>${counselor.member.name}</h5></div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>
+                                    	<div class="mt-3" data-zanim='{"delay":0.2}'>${ticket.member.name} (${ticket.member.id})</div>
+                                    	<div class="mt-3" data-zanim='{"delay":0.3}'>${ticket.member.phone}</div>
+                                    	<div class="mt-3" data-zanim='{"delay":0.4}'>${ticket.member.email}</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.5}'>
 	                                    <fmt:parseDate var="ticketDate" pattern="yyyy-MM-dd'T'HH:mm" value="${ticket.ticketDate}" type="both"/>
 	                                    	<fmt:formatDate value="${ticketDate}" pattern="yyyy년 MM월 dd일"/>
 	                                    </div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>${ticket.ticketAmount}</div>
-	                                    <div class="mt-3" id="remain" data-zanim='{"delay":0.4}'>${ticket.ticketRemain}</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.6}'>
+	                                    <fmt:parseDate var="refundDate" pattern="yyyy-MM-dd'T'HH:mm" value="${refund.refundDate}" type="both"/>
+	                                    	<fmt:formatDate value="${refundDate}" pattern="yyyy년 MM월 dd일"/>
+	                                    </div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.7}'>${ticket.ticketAmount}</div>
+	                                    <div class="mt-3" id="remain" data-zanim='{"delay":0.8}'>${ticket.ticketRemain}</div>
+	                                    <div class="mt-3" data-zanim='{"delay":0.9}' style="color:navy;">${refund.refundReason}</div>
                                     </div>
                                     <br>
                                     <div class="overflow-hidden" align="right">
-                                        <div data-zanim='{"delay":0.5}'>
-                                        	<form name="payment" id="payment" method="get" action="">
-	                                        	<input type="hidden" name="category" value="1"/>
-							            		<input type="hidden" name="counselor" value="1"/>
-							            		<input type="hidden" name="id" value="aa"/>
-							            		<input type="hidden" name="name" value="aaa"/>
-							            		<input type="hidden" name="phone" value="111"/>
-							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value=""/>
-            									<c:choose>
-            										<c:when test="${refundState==0}">
-            											<input type="button" id="ref" value="환불 처리 진행중" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==1}">
-            											<input type="button" id="notref" value="환불 불가" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==2}">
-            											<input type="button" id="refdone" value="환불 처리 완료" class="btn btn-outline-info" disabled="disabled"/>
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:when test="${ticket.ticketRemain<=0}">
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:otherwise>
-            											<a href="#"><input type="button" id="use" value="사용하기" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="refund" value="환불신청" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:otherwise>
-            									</c:choose>
-	                                        </form>
+                                        <div data-zanim='{"delay":0.6}'>
+                                        	<c:choose>
+           										<c:when test="${ticket.ticketAmount==0}">
+           											<input type="button" id="notref" value="환불 불가" class="btn btn-outline-danger" disabled="disabled"/>
+           											<a href="#"><input type="button" id="delete" value="신청 내역 삭제" class="btn btn-outline-danger"/></a>
+           										</c:when>
+           										<c:when test="${refund.refundState==2}">
+           											<input type="button" id="refdone" value="환불 처리 완료" class="btn btn-outline-info" disabled="disabled"/>&nbsp;&nbsp;
+           											<a href="#"><input type="button" id="delete" value="신청 내역 삭제" class="btn btn-outline-danger"/></a>
+           										</c:when>
+           										<c:otherwise>
+           											<a href="#"><input type="button" id="process" value="환불 처리" class="btn btn-outline-info"/></a>&nbsp;&nbsp;
+		                                      		<a href="#"><input type="button" id="delete" value="신청 내역 삭제" class="btn btn-outline-danger"/></a>
+		                                      		
+           										</c:otherwise>
+           									</c:choose>
                                         </div>
                                     </div>
                                     

@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
 import bu.mvc.domain.Authority;
+import bu.mvc.domain.Counselor;
+
 import bu.mvc.domain.Member;
 import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.AuthorityRepository;

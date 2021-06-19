@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -34,54 +34,9 @@
         <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/assets/lib/hamburgers/dist/hamburgers.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
         <!-- Main stylesheet and color file-->
         <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/assets/css/custom.css" rel="stylesheet">
-        
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-
-$(function() {
-	$("#use").click(function() {
-		if ($("#remain").text() == 0) {
-			alert("소진된 상담권입니다. 사용할 수 없습니다.");
-			return;
-		} else {
-			if(confirm("상담권을 사용하시겠습니까?")){
-				location.href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}";
-			}else{
-				return;
-			}
-		}
-	})
-	
-	$("#refund").click(function() {
-		if ($("#remain").text() == 0) {
-			alert("소진된 상담권입니다. 환불 신청이 불가합니다.");
-			return;
-		} else {
-			location.href="${pageContext.request.contextPath}/refund/refundApp/${ticket.ticketCode}";
-		}
-	})
-	
-	$("#delete").click(function() {
-		if ($("#remain").text() > 0) {
-			alert("잔여량이 남아있는 상담권입니다. 삭제가 불가합니다.");
-			return;
-		} else {
-			if(confirm("소진된 상담권을 삭제하시겠습니까?")){
-				location.href="${pageContext.request.contextPath}/ticket/delete/${ticket.ticketCode}";
-			}else{
-				return;
-			}
-		}
-	})
-})
-
-</script>
-        
     </head>
     <body data-spy="scroll" data-target=".inner-link" data-offset="60">
         <main>
@@ -125,7 +80,7 @@ $(function() {
                             <ul class="navbar-nav fs-0 fw-700">
                                 <li><a href="JavaScript:void(0)">Home</a>
                                     <ul class="dropdown fs--1">
-                                        <li><a href="index.html">Slider Header</a></li>
+                                        <li><a href="/">Slider Header</a></li>
                                         <li><a href="index--header-slider-classic.html">Slider Classic</a></li>
                                         <li><a href="index--header-static.html">Static Header</a></li>
                                         <li><a href="index--header-static-classic.html">Static Classic</a></li>
@@ -175,162 +130,120 @@ $(function() {
                     </nav>
                 </div>
             </div>
-            <section class="background-11">
-                <div class="container">
-                    <div class="row no-gutters pos-relative mt-6">
-                        <div class="elixir-caret d-none d-lg-block"></div>
-                        <div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height:400px;">
-                            <div class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0" style="background-image:url(${pageContext.request.contextPath}/assets/images/6.jpg);">
-                            </div>
-                            <!--/.background-holder-->
-                        </div>
-                        <div class="col-lg-6 px-lg-5 py-lg-6 p-4 my-lg-0 background-white radius-bl-secondary radius-bl-lg-0 radius-br-secondary radius-br-lg-0 radius-tr-lg-secondary">
-                            <div class="d-flex align-items-center h-100">
-                                <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <div class="overflow-hidden" align="right">
-                                        <c:choose>
-                                        	<c:when test="${ticket.ticketField==0}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Business-ManWoman"></span>&nbsp;&nbsp;대면 상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==1}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Phone-2"></span>&nbsp;&nbsp;전화 상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==2}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-Phone-SMS"></span>&nbsp;&nbsp;채팅 상담권</h3></c:when>
-                                        	<c:when test="${ticket.ticketField==3}"><h3 data-zanim='{"delay":0}'><span class="color-1 fs-3 icon-File-TXT"></span>&nbsp;&nbsp;간편 텍스트 상담권</h3></c:when>
-                                        </c:choose>
-                                    </div>
-                                    <hr>
-                                    <div class="overflow-hidden" style="float:left; margin-right: 50px">
-	                                    <div class="mt-3" data-zanim='{"delay":0.1}'><h5>담당 상담사</h5></div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>티켓 구매일</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>최초 구매량</div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.4}'>현재 잔여량</div>
-                                    </div>
-                                    
-                                    <div class="overflow-hidden" align="right">
-                                    	<div class="mt-3" data-zanim='{"delay":0.1}'><h5>${counselor.member.name}</h5></div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.2}'>
-	                                    <fmt:parseDate var="ticketDate" pattern="yyyy-MM-dd'T'HH:mm" value="${ticket.ticketDate}" type="both"/>
-	                                    	<fmt:formatDate value="${ticketDate}" pattern="yyyy년 MM월 dd일"/>
-	                                    </div>
-	                                    <div class="mt-3" data-zanim='{"delay":0.3}'>${ticket.ticketAmount}</div>
-	                                    <div class="mt-3" id="remain" data-zanim='{"delay":0.4}'>${ticket.ticketRemain}</div>
-                                    </div>
-                                    <br>
-                                    <div class="overflow-hidden" align="right">
-                                        <div data-zanim='{"delay":0.5}'>
-                                        	<form name="payment" id="payment" method="get" action="">
-	                                        	<input type="hidden" name="category" value="1"/>
-							            		<input type="hidden" name="counselor" value="1"/>
-							            		<input type="hidden" name="id" value="aa"/>
-							            		<input type="hidden" name="name" value="aaa"/>
-							            		<input type="hidden" name="phone" value="111"/>
-							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value=""/>
-            									<c:choose>
-            										<c:when test="${refundState==0}">
-            											<input type="button" id="ref" value="환불 처리 진행중" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==1}">
-            											<input type="button" id="notref" value="환불 불가" class="btn btn-outline-danger" disabled="disabled"/>
-            										</c:when>
-            										<c:when test="${refundState==2}">
-            											<input type="button" id="refdone" value="환불 처리 완료" class="btn btn-outline-info" disabled="disabled"/>
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:when test="${ticket.ticketRemain<=0}">
-            											<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:when>
-            										<c:otherwise>
-            											<a href="#"><input type="button" id="use" value="사용하기" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="refund" value="환불신청" class="btn btn-outline-info"/></a>&nbsp;&nbsp;&nbsp;
-		                                        		<a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a>
-            										</c:otherwise>
-            									</c:choose>
-	                                        </form>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-7">
-                        <div class="col-sm-6 col-lg-4 px-4 px-sm-3 text-lg-x" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <h5 data-zanim='{"delay":0}'><span class="ion-card color-primary fs-2 icon-position-fix mr-3"></span>Special financing</h5>
-                            <p class="mt-3 pr-3 pr-lg-5 mb-0" data-zanim='{"delay":0.1}'>Apply for special financial support and earn exclusive rewards.</p>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 px-4 px-sm-3 mt-4 mt-sm-0 text-lg-x" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <h5 data-zanim='{"delay":0}'><span class="ion-chatbox-working color-primary mr-3"></span>Chat with team</h5>
-                            <p class="mt-3 pr-3 pr-lg-5 mb-0" data-zanim='{"delay":0.1}'>Have a question? Chat online with an expert. <a href="#">Start chatting<span class="fa fa-external-link ml-1 icon-position-fix"></span></a></p>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 px-4 px-sm-3 mt-4 mt-lg-0 text-lg-x" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <h5 data-zanim='{"delay":0}'><span class="ion-android-call color-primary mr-3"></span>Call a specialist</h5>
-                            <p class="mt-3 pr-3 pr-lg-5 mb-0" data-zanim='{"delay":0.1}'>Our 24/7 support team is ready for you at 1-800-MY-Elixir.</p>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-primary py-6">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md">
-                            <h4 class="color-white mb-0">If you have any query related investment... <br class="d-md-none" />we are available 24/7</h4>
-                        </div>
-                        <div class="col-md-auto mt-md-0 mt-4"><a class="btn btn-white btn-capsule" href="contact.html">Contact Us</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class=" background-white">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="owl-carousel owl-theme owl-dot-round" data-options='{"nav":true,"dots":false,"loop":true,"autoplay":true,"autoplayHoverPause":true,"items":1}'>
-                                <div class="row px-lg-8">
-                                    <div class="col-4 col-md-3 mx-auto"><img class="radius-secondary mx-auto" src="${pageContext.request.contextPath}/assets/images/client1.png" alt="Member" style="width: auto" /></div>
-                                    <div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-                                        <p class="lead fw-400">Their work on our website and Internet marketing has made a significant different to our business. We’ve seen a 425% increase in quote requests from the website which has been pretty remarkable – but I’d always like to see more!</p>
-                                        <h6 class="fs-0 mb-1 mt-4">Michael Clarke</h6>
-                                        <p class="mb-0 color-7">CEO, A.E.T Institute</p>
-                                    </div>
-                                </div>
-                                <div class="row px-lg-8">
-                                    <div class="col-4 col-md-3 mx-auto"><img class="radius-secondary mx-auto" src="${pageContext.request.contextPath}/assets/images/client2.png" alt="Member" style="width: auto" /></div>
-                                    <div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-                                        <p class="lead fw-400">Writing case studies was a daunting task for us. We didn’t know where to begin or what questions to ask, and clients never seemed to follow through when we asked. Elixir team did everything – with almost no time or effort for me!</p>
-                                        <h6 class="fs-0 mb-1 mt-4">Maria Sharapova</h6>
-                                        <p class="mb-0 color-7">Managing Director, Themewagon Inc.</p>
-                                    </div>
-                                </div>
-                                <div class="row px-lg-8">
-                                    <div class="col-4 col-md-3 mx-auto"><img class="radius-secondary mx-auto" src="${pageContext.request.contextPath}/assets/images/client3.png" alt="Member" style="width: auto" /></div>
-                                    <div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-                                        <p class="lead fw-400">As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails, but Elixir was highly recommended by many other Y-Combinator startups we knew. Elixir helped us run a ~6 week email campaign.</p>
-                                        <h6 class="fs-0 mb-1 mt-4">David Beckham</h6>
-                                        <p class="mb-0 color-7">Chairman, Harmony Corporation</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class="background-10 py-6">
-                <div class="container">
-                    <div class="row align-items-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo2.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo1.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo6.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo3.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo5.png" alt="" data-zanim="{}" /></div>
-                        <div class="col-4 col-md-2 my-3 overflow-hidden"><img src="${pageContext.request.contextPath}/assets/images/partner/logo4.png" alt="" data-zanim="{}" /></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
+            
+			<section class="background-11">
+			  <div class="container">
+				<div class="col-lg-12">
+					<div class="main-card mb-3 card">
+						<div class="card-body">
+							<h4 class="card-title" align="center">Refund Request List</h4><br>
+							<table class="mb-0 table table-hover">
+								<thead>
+									<tr align="center">
+										<th>REFUND.NO</th>
+										<th>TICKET</th>
+										<th>USER.ID</th>
+										<th>REGDATE</th>
+										<th>STATE</th>
+									</tr>
+								</thead>
+								<c:choose>
+									<c:when test="${empty requestScope.rfList.content}">
+										<tr>
+											<td colspan="5"><p align="center">환불 신청 내역이 없습니다.</p></td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${requestScope.rfList.content}" var="refund" varStatus="status">
+											    <tr onmouseover="this.style.background='#eaeaea'" onmouseout="this.style.background='white'">
+											        <td bgcolor="">
+											            <p align="center"><span style="font-size:9pt;">
+											            ${refund.refundCode}</span></p>
+											        </td>
+											        <td bgcolor="">
+														<p align="center"><span style="font-size:9pt;">
+														<a href="${pageContext.request.contextPath}/refund/read/${refund.refundCode}"> <!-- controller 에서 @PathVariable 사용해서 주소를 인수로 받음 -->
+														  <c:choose>
+														  	<c:when test="${refund.ticket.ticketField==0}">대면상담권</c:when>
+														  	<c:when test="${refund.ticket.ticketField==1}">전화상담권</c:when>
+														  	<c:when test="${refund.ticket.ticketField==2}">채팅상담권</c:when>
+														  	<c:when test="${refund.ticket.ticketField==3}">간편텍스트상담권</c:when>
+														  </c:choose>
+														</a>
+														</span></p>
+											        </td>
+											        <td bgcolor="">
+											            <p align="center"><span style="font-size:9pt;">
+											            ${refund.ticket.member.id}</span></p>
+											        </td>
+											        <td bgcolor="">
+											            <p align="center"><span style="font-size:9pt;">
+											            <fmt:parseDate var="refundReqDate" pattern="yyyy-MM-dd'T'HH:mm" value="${refund.refundDate}" type="both"/>
+	                                    	<fmt:formatDate value="${refundReqDate}" pattern="yyyy년 MM월 dd일 hh시 mm분"/></span></p>
+											        </td>
+											        <td bgcolor="">
+											            <p align="center"><span style="font-size:9pt;">
+											            <c:choose>
+														  	<c:when test="${refund.refundState==0}">처리중</c:when>
+														  	<c:when test="${refund.refundState==1}" ><span style="color:red">환불 불가</span></c:when>
+														  	<c:when test="${refund.refundState==2}"><span style="color:blue">환불 완료</span></c:when>
+														  </c:choose>
+											            </span></p>
+											        </td>
+											    </tr>
+											    <tr id="info" style="display: none">
+											    <td colspan="5">
+											    	<p align="center"><span style="font-size:9pt;">${refund.refundReason}</span></p></td>
+											    </tr>
+									    </c:forEach>
+									</c:otherwise>
+								</c:choose>
+							</table>
+							
+							<c:if test="${not empty requestScope.rfList.content}">
+			                    <!-- 페이징 처리 -->
+			                    <div class="col-auto mx-auto mt-4">
+									<nav class="font-1 mt-5" aria-label="Page navigation example">
+										<ul class="pagination pagination justify-content-center">
+											<c:choose>
+												<c:when test="${requestScope.rfList.hasPrevious()==true}">
+													<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/refund/list?nowPage=${previous}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item"><a class="page-link"><span aria-hidden="true">«</span></a></li>
+												</c:otherwise>
+											</c:choose>
+											<c:forEach begin="0" end="${rfList.totalPages-1}" var="i"> <!-- pageList.getTotalPages() : 페이지 수 만큼 반복문 돌기(0부터 시작하기 때문에 -1 해준다.) -->
+											   <li class="page-item">
+											   <c:choose>
+											     <c:when test="${rfList.number==i}"> <!-- tkList.getNumber() 호출 : 현재 페이지 번호 -->
+											       <a class="page-link" href="${pageContext.request.contextPath}/refund/list?nowPage=${i}" style="color:red">${i+1}</a> <!-- 현재 페이지만 빨간색으로 표시 -->
+											     </c:when>
+											     <c:otherwise>
+											       <a class="page-link" href="${pageContext.request.contextPath}/refund/list?nowPage=${i}">${i+1}</a>
+											     </c:otherwise>
+											   </c:choose>
+											   </li>
+											</c:forEach>
+											<c:choose>
+												<c:when test="${requestScope.rfList.hasNext()==true}">
+													<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/refund/list?nowPage=${next}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item"><a class="page-link"><span aria-hidden="true">»</span></a></li>
+												</c:otherwise>
+											</c:choose>
+										 </ul>
+									 </nav>
+								</div>
+							</c:if>
+						</div>
+					</div>
+				</div>
+			</div>
+			</section>
+
+			<!--/.container-->
             <section style="background-color: #3D4C6F">
                 <div class="container">
                     <div class="row align-items-center">
@@ -411,7 +324,7 @@ $(function() {
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="index.html"><img src="assets/images/logo-light.png" alt="" /></a></div>
+                        <div class="col-sm-3 text-sm-left"><a href="/"><img src="${pageContext.request.contextPath}/assets/images/logo-light.png" alt="" /></a></div>
                         <div class="col-sm-6 mt-3 mt-sm-0">
                             <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
                         </div>
@@ -436,8 +349,8 @@ $(function() {
         <script src="${pageContext.request.contextPath}/assets/js/config.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/zanimation.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/inertia.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
     </body>
 </html>
+
