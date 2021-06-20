@@ -1,7 +1,5 @@
 package bu.mvc.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,7 +42,7 @@ public class TicketLinesController {
 	@RequestMapping("/mylist")
 	public ModelAndView myList(String id, @RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
-		List<TicketLines> myList = ticketLinesService.searchById(id, pageable);
+		Page<TicketLines> myList = ticketLinesService.searchById(id, pageable);
 		return new ModelAndView("ticket/ticketLines", "myList", myList);
 	}
 	

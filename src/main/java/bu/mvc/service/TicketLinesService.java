@@ -19,7 +19,7 @@ public interface TicketLinesService {
 	 * 회원 id로 상담권 사용 내역 검색하기 : 로그인한 사용자
 	 *  - 회원 id로 검색하여 사용자 마이페이지에서 출력
 	 * */
-	List<TicketLines> searchById(String id, Pageable pageable);
+	Page<TicketLines> searchById(String id, Pageable pageable);
 	
 	/**
 	 * 상담권 사용 내역 삭제하기
