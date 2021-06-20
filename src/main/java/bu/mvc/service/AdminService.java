@@ -349,7 +349,7 @@ public class AdminService {
 			String name = counselor.getMember().getName();			
 		 	int countThisMonth =  Integer.parseInt(String.valueOf(mapThis.get("COUNT")));
 		 	Double avgStar = reviewRep.selectStarAvg(counselorCode);
-		 	List <ReviewStar> starCount= reviewRep.findByCounselorCode(counselor);
+		 	List <ReviewStar> starCount= reviewRep.findByCounselor(counselor);
 		 	starCountList.add(starCount.size());
 		 	
 		 	int gap = 0;
