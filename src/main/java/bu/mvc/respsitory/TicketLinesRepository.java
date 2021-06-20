@@ -12,5 +12,7 @@ public interface TicketLinesRepository extends JpaRepository<TicketLines, Long>{
 	
 	List<TicketLines> findByTicketMemberIdLike(String id, Pageable pageable);
 	
-	Page<TicketLines> findByTicketMemberMemberCode(Pageable pageable, Long memberCode);
+	Page<TicketLines> findByTicketMemberMemberCode(Pageable pageable,  Long memberCode);
+	
+	Page<TicketLines> findByTicket_Member_MemberCode(Pageable pageable,  Long memberCode);
 }

@@ -186,7 +186,7 @@
 						    			<tr>
 						    			<td colspan="5">
 						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담사로 등록되어 있지 않습니다.</h4>
-						    				<a href="${pageContext.request.contextPath}/psy/lo/signupArt">그림상담사 등록하러가기</a>
+						    				<a href="${pageContext.request.contextPath}/psy/lo/signupArt" class="btn btn-primary">그림상담사 등록하러가기</a>
 						    			</td>
 						    			</tr>
 						    		</c:when>
@@ -201,7 +201,7 @@
 						    			<tr>
 						    			<td colspan="5">
 						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담사가 해지된 경우 해당 서비스를 이용할 수 없습니다.</h4>
-						    				<a href="${pageContext.request.contextPath}/psy/lo/signupArt">그림상담사 재등록하러가기</a>
+						    				<a href="${pageContext.request.contextPath}/psy/lo/signupArt" class="btn btn-primary">그림상담사 재등록하러가기</a>
 						    			</td>
 						    			</tr>
 						    		</c:when>

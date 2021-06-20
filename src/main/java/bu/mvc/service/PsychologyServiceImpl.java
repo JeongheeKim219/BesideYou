@@ -76,7 +76,7 @@ public class PsychologyServiceImpl implements PsychologyService {
 		// TODO Auto-generated method stub
 		Counselor co = coRepository.searchBymembercode(id);
 		if(co==null) {
-			throw new RuntimeException("상담사로 등록되어있지 않습니다.");
+			throw new RuntimeException("상담사로 등록되어있지 않습니다. 접근할 수 없는 페이지입니다.");
 		}
 		return co;
 	}

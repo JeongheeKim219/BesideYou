@@ -474,26 +474,30 @@ public class AdminService {
 	 * 멤버코드에 해당하는 상담권 사용내역 조회
 	 * */
 	public Page<TicketLines> findByTicketMemberMemberCode(Pageable pageable, Long memberCode) {
-		return ticketLinesRep.findByTicketMemberMemberCode(pageable, memberCode);
+		//return ticketLinesRep.findByTicketMemberMemberCode(pageable, memberCode);
+		return ticketLinesRep.findByTicket_Member_MemberCode(pageable, memberCode);
 	}
 	
 	/**
 	 * 리뷰별점
 	 * */
-	public List<ReviewStar> findReviewByMemberMemberCode(Long memberCode){
-		return reviewRep.findByMemberMemberCode(memberCode);
+	public Page<ReviewStar> findReviewByMemberMemberCode(Pageable pageable, Long memberCode){
+		return reviewRep.findByMemberMemberCode(pageable, memberCode);
 	}
 	
 	/**
 	 * 상담
 	 * */
-	public List<Counsel> findCounselByMemberMemberCode(Long memberCode){
-		return counselRep.findByMemberMemberCode(memberCode);
+	public Page<Counsel> findCounselByMemberMemberCode(Pageable pageable, Long memberCode){
+		return counselRep.findByMemberMemberCode(pageable, memberCode);
 	}
 
 	/**
 	 * 일대일문의
 	 * */
+	/*public Page<Contact> findContactByMemberMemberCode(Pageable pageable, Long memberCode){
+		return contactRep.findByMemberMemberCode(pageable, memberCode);
+	}*/
 	public List<Contact> findContactByMemberMemberCode(Long memberCode){
 		return contactRep.findByMemberMemberCode(memberCode);
 	}
@@ -501,8 +505,8 @@ public class AdminService {
 	/**
 	 * 테스트
 	 * */
-	public List<Psychology> findPsychologyByMemberMemberCode(Long memberCode){
-		return psychologyRep.findByMemberMemberCode(memberCode); 
+	public Page<Psychology> findPsychologyByMemberMemberCode(Pageable pageable, Long memberCode){
+		return psychologyRep.findByMemberMemberCode(pageable, memberCode); 
 	}
 }
 

@@ -22,6 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private MemberAuthenticationProvider memberAuthenticationProvider;
 	
+	
+	
+	
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,10 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()	
+		//.antMatchers("/member/**").authenticated()
+
+		.antMatchers("/psy/lo/**").authenticated()
 		//.antMatchers("/member/*").authenticated()
 		.antMatchers("/**").permitAll()
-		//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.antMatchers("/contact/**").access("hasRole('ROLE_MEMBER')")
+		//.antMatchers("/admin/**").hasRole("ADMIN")
+
 		.and()
 		.csrf().disable()
 		.formLogin()
@@ -52,7 +58,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.invalidateHttpSession(true)
 		.deleteCookies("JSESSIONID")
 		.and();
-		http.exceptionHandling().accessDeniedPage("/contact/error");
 	}
 
 }

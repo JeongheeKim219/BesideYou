@@ -204,7 +204,7 @@ $(function(){
 									      
 									      	<c:choose>
 									      		<c:when test="${list.artState==0}">
-										      			<td>미답변</td>
+										      			<td class="color-danger">미답변</td>
 										      	</c:when>
 										      	<c:otherwise>
 										      		<td>
