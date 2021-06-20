@@ -57,9 +57,8 @@ public class ContactController {
 	 * 문의글 작성 폼
 	 * */
 	@RequestMapping("/contact/write")
-	public void writeForm() {
-		System.out.println("writeCall...");
-	}
+	public void writeForm() {}
+	
 	
 	/**
 	 * 문의글 작성하기
@@ -142,6 +141,9 @@ public class ContactController {
 	public ModelAndView error(RuntimeException e) {
 		return new ModelAndView("contact/errorView", "errMsg", e.getMessage());
 	}
+	
+	@RequestMapping("/contact/error")
+	public void error() {}
 	
 
 }

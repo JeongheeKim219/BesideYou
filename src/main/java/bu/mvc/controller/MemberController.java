@@ -101,17 +101,17 @@ public class MemberController {
 	 * 회원정보 (회원) 
 	 * */
 	@RequestMapping("/read")
-	public ModelAndView read( Long memberCode) {
+	public ModelAndView read(HttpServletRequest request) {
 	
-		
-		Member member = memberService.selectByMember(memberCode);
+		Member me =(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//Member member = memberService.selectByMember(memberCode);
 		
 		
 		
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/read");
-		mv.addObject("member", member);
+		mv.addObject("member", me);
 		return mv;
 	}
 	/**

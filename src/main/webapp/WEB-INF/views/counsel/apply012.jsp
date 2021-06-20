@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -65,6 +66,27 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
+<script type="text/javascript" src = "${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#sub").click(function () {
+			if($("#date").val()==''){
+				alert("상담 희망일을 선택하세요");
+				return;
+			}
+			var d = $("#date").val();
+			if(confirm(d+" 예약이 맞나요?")){
+				if($("input[name = 'remainTicket'").val() <= 0){
+					alert("보유중인 상담권이 없어 결제창으로 이동합니다.");
+					$("#submitForm").attr("action", "${pageContext.request.contextPath}/ticket/ticketApp")
+				}
+				$("#submitForm").submit();
+			}
+		})
+	})
+
+</script>
+
 </head>
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
 	<main>
@@ -182,7 +204,7 @@
 		<section>
 			<div>
 				<div class="background-holder overlay"
-					style="background-image:url(${pageContext.request.contextPath}/assets/images/background-2.jpg);background-position: center bottom;">
+					style="background-image:url(${pageContext.request.contextPath}/assets/images/counsel/bggh2.png);background-position: center bottom;">
 				</div>
 				<!--/.background-holder-->
 				<div class="container">
@@ -230,6 +252,7 @@
 								data-zanim-trigger="scroll" />
 							<br>
 							
+							
 							<table style="width: 100%">
 								<tr>
 									<td style="width: 180px">
@@ -252,7 +275,7 @@
 												<c:when test="${counselField==1 }">
 													전화상담
 												</c:when>
-												<c:when test="${counselField==1 }">
+												<c:when test="${counselField==2 }">
 													채팅상담
 												</c:when>
 											</c:choose>
@@ -289,6 +312,18 @@
 										<h5 data-zanim='{"delay":0}'>${counselor.career}</h5>
 									</td>
 								</tr>
+								<tr>
+									<td colspan="2" style="height: 20px">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5 data-zanim='{"delay":0}' >보유중인 상담권</h5>
+									</td>
+									<td>
+										<h5 data-zanim='{"delay":0}' style="color: red">${remainTicket} 매</h5>
+									</td>
+								</tr>
 							</table>
 						</div>
 					</div>
@@ -302,16 +337,17 @@
 							<hr class="short"
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
-							<form action="${pageContext.request.contextPath}/counsel/submit012" method="get">
+							<form action="${pageContext.request.contextPath}/counsel/submit012" method="post" id="submitForm">
 								<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
 								<input type="hidden" name="counselCategory" value="${counselField}"/>
-								<input type="hidden" name="memberCode" value=""/>
+								<input type="hidden" name="remainTicket" value="${remainTicket}"/>
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 								<table style="width: 100%; vertical-align: middle;">
 									<tr style="height: 150px;">
 										<td>
 											<h5>상담 희망일</h5>
 										</td>
-										<td><input type="date" name="counselDate"></td>
+										<td><input type="date" name="counselDate" min="${tomorrow}" id="date" ></td>
 										<td>
 											<h5>상담 희망시간</h5>
 										</td>
@@ -326,7 +362,7 @@
 									</tr>
 									<tr>
 										<td colspan="4" style="text-align: right;">
-											<input type="submit" class="btn btn-success" value="상담 신청"/>
+											<input id="sub" type="button" class="btn btn-success" value="상담 신청"/>
 										</td>
 									</tr>
 								</table>

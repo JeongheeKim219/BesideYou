@@ -210,18 +210,36 @@
 							<!-- 인증 됐으면 -->
 							<sec:authorize access="isAuthenticated()">
 
-								<!-- 일반회원이거나 관리자인 경우. 두개 이상의 role을 비교할 때 hasAnyRole() -->
-								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
-								
-								</sec:authorize>
-								<li>
+								<!-- 일반회원인 경우 -->
+								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN') and !hasRole('ROLE_COUNSELOR')">
+									 <li>
 									<p>
-										${requestScope.member.name}님 환영합니다.
+										<sec:authentication property="principal.name" />
+										님 환영합니다.
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
-								<li><a href="javascript:logout();">로그아웃</a></li>
-
-
+								<li><a href="javascript:logout();">로그아웃</a></li> 
+								</sec:authorize>
+								
+								<!-- 관리자인 경우 -->
+								 <sec:authorize access="hasRole('ROLE_ADMIN')">
+									 <li>
+									<p>
+										<sec:authentication property="principal.name" />
+										님 환영합니다.
+										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+								</li>
+								<li><a href="admin/index">관리자페이지</a>
+								<li><a href="javascript:logout();">로그아웃</a></li> 
+								</sec:authorize>  
+								
+								<!--  상담사인 경우 -->
+								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+								   상담사입니다...
+								   <li><a href="javascript:logout();">로그아웃</a></li> 
+								</sec:authorize>
+								
+								
 								<form id="logoutForm"
 									action="${pageContext.request.contextPath}/member/logout"
 									method="post" style="display: none">

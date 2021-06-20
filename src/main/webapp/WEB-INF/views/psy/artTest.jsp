@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,44 +142,60 @@ $(function(){
                     </nav>
                 </div>
             </div>
-            <section class="background-11">
-                <div class="container">
-                	<div class="col">
-                            <h3 class="text-center fs-2 fs-md-3">ART TEST</h3>
-                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
-                        </div>
-                    <div class="row no-gutters">
-                        <div class="col-lg-12 px-5 py-6 my-lg-0 background-white radius-tr-lg-secondary radius-br-secondary radius-bl-secondary radius-bl-lg-0">
-                            <div class="d-flex align-items-center h-100">
-                                <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                    <h5 data-zanim='{"delay":0}'>그림테스트 지시사항</h5>
-                                    <p class="my-4" data-zanim='{"delay":0.1}'>${ac.question}</p>
-                                    <h5 class="text-uppercase mt-3 fw-500 mb-3" data-zanim='{"delay":0.3}'>그림테스트 검사항목</h5>
-                                    <h6 class="color-7 fw-600" data-zanim='{"delay":0.4}'>${ac.detail}</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-6">
-                        <div class="col-12">
-                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
-                                <h5>파일 첨부하기</h5>
-                                <form id="form" action="${pageContext.request.contextPath}/psy/upload" method="post" enctype="multipart/form-data">
-                                	<input type="hidden" name="name" value="${ac.counselor.member.name}">
-                                	<input type="hidden" name="code" value="${ac.artCounselorCode}">
-									<p class="mt-3">그림을 (회원ID).zip 형식으로 첨부해주세요.</p>
-									<input type="file" name="file" accept=".zip" required="required"/>
-									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
-									<input type="submit" class="btn btn-primary" value="완료"/>
-								</form>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
+            <c:choose>
+            	<c:when test="${not empty ac}">
+            		<section class="background-11">
+		                <div class="container">
+		                	<div class="col">
+		                            <h3 class="text-center fs-2 fs-md-3">ART TEST</h3>
+		                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
+		                        </div>
+		                    <div class="row no-gutters">
+		                        <div class="col-lg-12 px-5 py-6 my-lg-0 background-white radius-tr-lg-secondary radius-br-secondary radius-bl-secondary radius-bl-lg-0">
+		                            <div class="d-flex align-items-center h-100">
+		                                <div data-zanim-timeline="{}" data-zanim-trigger="scroll">
+		                                    <h5 data-zanim='{"delay":0}'>그림테스트 지시사항</h5>
+		                                    <p class="my-4" data-zanim='{"delay":0.1}'>${ac.question}</p>
+		                                    <h5 class="text-uppercase mt-3 fw-500 mb-3" data-zanim='{"delay":0.3}'>그림테스트 검사항목</h5>
+		                                    <h6 class="color-7 fw-600" data-zanim='{"delay":0.4}'>${ac.detail}</h6>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    
+		                    <div class="row mt-6">
+		                        <div class="col-12">
+		                            <div class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary">
+		                                <h5>파일 첨부하기</h5>
+		                                <form id="form" action="${pageContext.request.contextPath}/psy/lo/upload" method="post" enctype="multipart/form-data">
+		                                	<input type="hidden" name="name" value="${ac.counselor.member.name}">
+		                                	<input type="hidden" name="code" value="${ac.artCounselorCode}">
+											<p class="mt-3">그림을 (회원ID).zip 형식으로 첨부해주세요.</p>
+											<input type="file" name="file" accept=".zip" required="required"/>
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+											<input type="submit" class="btn btn-primary" value="완료"/>
+										</form>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!--/.row-->
+		                </div>
+		                <!--/.container-->
+		            </section>
+            	</c:when>
+            	<c:otherwise>
+            		<section class="background-11">
+		                <div class="container">
+		                	<div class="col">
+		                            <h3 class="text-center fs-2 fs-md-3">잘못된 경로입니다.</h3>
+		                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
+		                        </div>
+		                </div>
+		                <!--/.container-->
+		            </section>
+            	</c:otherwise>
+            </c:choose>
+            
             <section class="background-primary text-center py-4">
                 <div class="container">
                     <div class="row align-items-center" style="opacity: 0.85">

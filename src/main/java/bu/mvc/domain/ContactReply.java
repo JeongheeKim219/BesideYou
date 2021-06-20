@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
@@ -39,6 +40,10 @@ public class ContactReply { //1:1문의 답변
 	@JoinColumn(name = "contact_code")
 	private Contact contact;
 
+	public ContactReply(String contactReplyContent) {
+		this.contactReplyContent = contactReplyContent;
+	}
+	
 	public ContactReply(Long contactReplyCode, String contactReplyContent, Contact contact) {
 		super();
 		this.contactReplyCode = contactReplyCode;

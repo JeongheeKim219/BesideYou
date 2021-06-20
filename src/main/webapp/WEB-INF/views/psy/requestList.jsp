@@ -147,7 +147,7 @@
                                     <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>ART REQUEST LIST</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item"><a class="color-white" href="${pageContext.request.contextPath}/index">Home</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">ART REQUEST LIST</li>
                                         </ol>
                                     </div>
@@ -175,10 +175,33 @@
 						  <tbody>
 						    
 						    	<c:choose>
+						    		<c:when test="${not empty co}">
+						    			<tr>
+						    			<td colspan="5">
+						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">상담사 자격이 확인되지 않아 해당 서비스를 이용할 수 없습니다.</h4>
+						    			</td>
+						    			</tr>
+						    		</c:when>
+						    		<c:when test="${empty ac}">
+						    			<tr>
+						    			<td colspan="5">
+						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담사로 등록되어 있지 않습니다.</h4>
+						    				<a href="${pageContext.request.contextPath}/psy/lo/signupArt" class="btn btn-primary">그림상담사 등록하러가기</a>
+						    			</td>
+						    			</tr>
+						    		</c:when>
 						    		<c:when test="${empty list}">
 						    			<tr>
 						    			<td colspan="5">
 						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담 요청이 없습니다.</h4>
+						    			</td>
+						    			</tr>
+						    		</c:when>
+						    		<c:when test="${ac.artCounselorState == 1}">
+						    			<tr>
+						    			<td colspan="5">
+						    				<h4 data-zanim='{"delay":0.1}' class="mt-3">그림상담사가 해지된 경우 해당 서비스를 이용할 수 없습니다.</h4>
+						    				<a href="${pageContext.request.contextPath}/psy/lo/signupArt" class="btn btn-primary">그림상담사 재등록하러가기</a>
 						    			</td>
 						    			</tr>
 						    		</c:when>
@@ -189,9 +212,9 @@
 							    			<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${list.artDate}" type="both"/>
 							    			</td>
 									      	<td>${list.member.id}</td>
-									      	<td><a href="${pageContext.request.contextPath}/psy/down/${list.artFile}/${list.artCounselor.counselor.member.name}/<fmt:formatDate value="${parseDate}" pattern="yyyyMMddHHmm"/>">${list.artFile}</a></td>
+									      	<td><a href="${pageContext.request.contextPath}/psy/lo/down/${list.artFile}/${list.artCounselor.counselor.member.name}/<fmt:formatDate value="${parseDate}" pattern="yyyyMMddHHmm"/>">${list.artFile}</a></td>
 									      	<td><fmt:formatDate value="${parseDate}" pattern="yyyy년 MM월 dd일"/></td>
-									      	<td><a href="${pageContext.request.contextPath}/psy/reply/${list.artCode}" class="btn btn-primary btn-capsule btn-sm">답변하기</a></td>
+									      	<td><a href="${pageContext.request.contextPath}/psy/lo/reply/${list.artCode}" class="btn btn-primary btn-capsule btn-sm">답변하기</a></td>
 									      	</tr>
 						    			</c:forEach>
 						    		</c:otherwise>

@@ -30,10 +30,10 @@ public class Requests {
 	
 	private String requestTitle;
 	
-	private int requestCategory;
+	private String requestCategory;
 	
 	private String requestContent;
-
+	
 	public Requests(Long requestCode) {
 		this.requestCode = requestCode;
 	}

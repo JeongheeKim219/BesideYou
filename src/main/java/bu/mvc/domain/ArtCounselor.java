@@ -34,6 +34,7 @@ public class ArtCounselor {
 	
 	private String question;
 	private String detail;
+	private int artCounselorState;
 	
 	@OneToOne
 	@JoinColumn(name = "counselor_code")

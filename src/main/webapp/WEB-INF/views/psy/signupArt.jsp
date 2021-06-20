@@ -19,7 +19,7 @@
 			$("#detail").focus();
 			return false;
 		 }
-		 alert("그림상담사 등록이 되었습니다.")
+		 alert("등록되었습니다.")
 	 })
 	
   })
@@ -187,8 +187,15 @@
 		                                    <div class="row mt-6">
 		                                        <div class="col-12">
 		                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
-		                                                <h4 data-zanim='{"delay":0.1}'>수정하기</h4>
-		                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/update">
+		                                                <c:choose>
+		                                                	<c:when test="${info.artCounselorState==0}">
+		                                                		<h4 data-zanim='{"delay":0.1}'>수정하기</h4>
+		                                                	</c:when>
+		                                                	<c:otherwise>
+		                                                		<h4 data-zanim='{"delay":0.1}'>재등록하기</h4>
+		                                                	</c:otherwise>
+		                                                </c:choose>
+		                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/lo/update">
 		                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 		                                                    <div class="row">
 		                                                        <div class="col-12">
@@ -218,46 +225,69 @@
 		                <!--/.container-->
 		            </section>	
             	</c:when>
+            	<c:when test="${not empty co}">
+            		<section class="background-11 ">
+			                <div class="container">
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <div class="row">
+			                                <div class="col-12">
+			                                    <div class="row mt-6">
+			                                        <div class="col-12">
+			                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+			                                                <h4 data-zanim='{"delay":0.1}'>상담사 자격이 확인되지 않아 해당 서비스를 이용할 수 없습니다.</h4>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <!--/.row-->
+			                </div>
+			                <!--/.container-->
+			            </section>
+            	</c:when>
             	<c:otherwise>
-            	 <section class="background-11 ">
-		                <div class="container">
-		                    <div class="row">
-		                        <div class="col-lg-12">
-		                            <div class="row">
-		                                <div class="col-12">
-		                                    <div class="row mt-6">
-		                                        <div class="col-12">
-		                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
-		                                                <h4 data-zanim='{"delay":0.1}'>등록하기</h4>
-		                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/signup">
-		                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
-		                                                    <div class="row">
-		                                                        <div class="col-12">
-		                                                            <h5 data-zanim='{"delay":0.1}'>피상담자에게 사전에 안내할 지시사항을 입력해주세요.</h5>
-		                                                            <p>1000자 이내로 작성해주세요.</p>
-		                                                            <textarea name="question" id="question" class="form-control background-white" rows="10" placeholder="ex) 제한시간은 3분이내입니다. 오래 생각하지 말고 그려주세요." aria-label="Text input with dropdown button" maxlength="1000"></textarea>
-		                                                        </div>
-		                                                        <div class="col-12 mt-4">
-		                                                        	<h5 data-zanim='{"delay":0.1}'>검사항목을 입력해주세요.</h5>
-		                                                        	<p>1000자 이내로 작성해주세요.</p>
-		                                                            <textarea name="detail" id="detail" class="form-control background-white" rows="10" placeholder="ex) 1. 비오는 날 그림을 그려주세요. 2. 나무를 그려주세요." aria-label="Text input with dropdown button" maxlength="1000"></textarea>
-		                                                        </div>
-		                                                        <div class="col-12 mt-4">
-		                                                            <button class="btn btn-primary" type="Submit" id="btn"> <span class="color-white fw-600">Submit Comment</span></button>
-		                                                        </div>
-		                                                    </div>
-		                                                </form>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <!--/.row-->
-		                </div>
-		                <!--/.container-->
-		            </section>
+	            	<section class="background-11 ">
+			                <div class="container">
+			                    <div class="row">
+			                        <div class="col-lg-12">
+			                            <div class="row">
+			                                <div class="col-12">
+			                                    <div class="row mt-6">
+			                                        <div class="col-12">
+			                                            <div class="background-white p-5 radius-bl-secondary radius-br-secondary">
+			                                                <h4 data-zanim='{"delay":0.1}'>등록하기</h4>
+			                                                <form class="mt-4" name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/lo/signup">
+			                                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+			                                                    <div class="row">
+			                                                        <div class="col-12">
+			                                                            <h5 data-zanim='{"delay":0.1}'>피상담자에게 사전에 안내할 지시사항을 입력해주세요.</h5>
+			                                                            <p>1000자 이내로 작성해주세요.</p>
+			                                                            <textarea name="question" id="question" class="form-control background-white" rows="10" placeholder="ex) 제한시간은 3분이내입니다. 오래 생각하지 말고 그려주세요." aria-label="Text input with dropdown button" maxlength="1000"></textarea>
+			                                                        </div>
+			                                                        <div class="col-12 mt-4">
+			                                                        	<h5 data-zanim='{"delay":0.1}'>검사항목을 입력해주세요.</h5>
+			                                                        	<p>1000자 이내로 작성해주세요.</p>
+			                                                            <textarea name="detail" id="detail" class="form-control background-white" rows="10" placeholder="ex) 1. 비오는 날 그림을 그려주세요. 2. 나무를 그려주세요." aria-label="Text input with dropdown button" maxlength="1000"></textarea>
+			                                                        </div>
+			                                                        <div class="col-12 mt-4">
+			                                                            <button class="btn btn-primary" type="Submit" id="btn"> <span class="color-white fw-600">Submit Comment</span></button>
+			                                                        </div>
+			                                                    </div>
+			                                                </form>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <!--/.row-->
+			                </div>
+			                <!--/.container-->
+			            </section>
             	</c:otherwise>
             </c:choose>
            

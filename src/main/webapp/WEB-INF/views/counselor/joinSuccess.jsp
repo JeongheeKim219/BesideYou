@@ -148,7 +148,7 @@
 								</sec:authorize>
 								
 								<!-- 일반회원인 경우 -->
-								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN')">
+								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN')and !hasRole('ROLE_COUNSELOR')">
 									 <li>
 									<p>
 										<sec:authentication property="principal.name" />
@@ -173,6 +173,14 @@
 								<li><a href="javascript:logout();">로그아웃</a></li> 
 
 								</sec:authorize>  
+								<!--  상담사인 경우 -->
+								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+								   <sec:authentication property="principal.name" />상담사님 안녕하세요.
+								   <li><a href="javascript:counselorRead();">상담사 정보</a>
+								    <li><a href="javascript:read();">회원정보</a></li> 
+								   <a href="javascript:logout();">로그아웃</a></li>
+								   
+								</sec:authorize>
 								</sec:authorize>
                             </ul>
                         </div>

@@ -8,4 +8,5 @@ import bu.mvc.domain.Requests;
 
 public interface RequestAnsRepository extends JpaRepository<RequestAns, Long> {
 	
+	RequestAns findByRequests(Requests requests);
 }

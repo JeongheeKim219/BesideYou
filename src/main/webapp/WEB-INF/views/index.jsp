@@ -18,6 +18,13 @@
 	function read() {
 		document.getElementById("readForm").submit();
 	}
+	function counselorRead(){
+		document.getElementById("counselorReadForm").submit();
+	}
+	function counselorJoin(){
+		document.getElementById("counselorJoinForm").submit();
+	}
+	
 </script>
 
 <!--  -->
@@ -185,7 +192,7 @@
 							<li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
 						</ul>
 						
-						<ul class="navbar-nav ml0" style="font-align : right; ">
+						<ul class="navbar-nav ml-0" style="font-align : right; ">
 							<!-- 인증 안됐으면 -->
 							
 							<sec:authorize access="isAnonymous()">
@@ -204,19 +211,21 @@
 							<sec:authorize access="isAuthenticated()">
 
 								<!-- 일반회원이거나 관리자인 경우. 두개 이상의 role을 비교할 때 hasAnyRole() -->
-								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
 								
 								</sec:authorize>
 								
 								<!-- 일반회원인 경우 -->
-								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN')">
+								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN') and !hasRole('ROLE_COUNSELOR')">
 									 <li>
 									<p>
 										<sec:authentication property="principal.name" />
 										님 환영합니다.
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
+								
 								<li><a href="javascript:read();">회원정보</a></li>
+								<li><a href="javascript:counselorJoin();">상담사 신청</a></li>
 								<li><a href="javascript:logout();">로그아웃</a></li> 
 
 								</sec:authorize>
@@ -235,15 +244,23 @@
 
 								</sec:authorize>  
 								
+								<!--  상담사인 경우 -->
+								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+								   <sec:authentication property="principal.name" />상담사님 안녕하세요.
+								   <li><a href="${pageContext.request.contextPath}/counselor/read">상담사 정보</a>
+								    <li><a href="javascript:read();">회원정보</a></li> 
+								   <a href="javascript:logout();">로그아웃</a></li>
+								   
+								</sec:authorize>
 								
 								
-								
-								<form id="logoutForm"
+						<form id="logoutForm"
 							action="${pageContext.request.contextPath}/member/logout"
 							method="post" style="display: none">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
+						
 						<form id="readForm"
 							action="${pageContext.request.contextPath}/member/read"
 							method="post" style="display: none">
@@ -252,6 +269,16 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
+							
+						
+						<form id="counselorJoinForm"
+							action="${pageContext.request.contextPath}/counselor/CounselorJoin"
+							method="post" style="display: none">
+							<input type="hidden" name="memberCode"
+								value="<sec:authentication property="principal.memberCode" />" />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>  
 						
 							</sec:authorize>
 						</ul>

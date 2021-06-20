@@ -4,6 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var nowPage = ${nowPage};
+		//alert(nowPage)
+		$("#page"+nowPage).parent().addClass("active");
+		
+ 	})
+</script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -156,7 +165,7 @@
                     <div class="row">
                     <c:choose>
                     <c:when test="${not empty list}">
-                    	<c:forEach items="${list}" var="list">
+                    	<c:forEach items="${list.content}" var="list">
 	                    	<div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
 		                            <div class="background-white pb-4 h-100 radius-secondary"><img class="w-100 radius-tr-secondary radius-tl-secondary" src="/assets/images/psy/${list.counselor.picture}" alt="Profile Image" />
 		                                <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
@@ -170,7 +179,7 @@
 		                                        <p class="mt-3" data-zanim='{"delay":0.2}'>${list.counselor.career}</p>
 		                                    </div>
 		                                    <div class="overflow-hidden">
-		                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/psy/artTest/${list.artCounselorCode}">선택하기 <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
+		                                        <div class="d-inline-block" data-zanim='{"delay":0.3}'><a class="d-flex align-items-center" href="${pageContext.request.contextPath}/psy/lo/artTest/${list.artCounselorCode}">선택하기 <div class="overflow-hidden ml-2" data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block">&xrarr;</span></div></a></div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -185,21 +194,39 @@
                     </c:otherwise>
                     </c:choose>
                         
-                        <!-- 페이징... -->
-                        <!-- <div class="col-auto mx-auto mt-4">
-                            <nav class="font-1 mt-5" aria-label="Page navigation example">
-                                <ul class="pagination pagination justify-content-center">
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">Â«</span><span class="sr-only">Previous</span></a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">Â»</span><span class="sr-only">Next</span></a></li>
-                                </ul>
-                            </nav>
-                        </div> -->
                     </div>
                     <!--/.row-->
+                    <!-- ***************************************페이징처리******************************************* -->
+              
+	                <div class="col-auto mx-auto mt-4">
+	                            <nav class="font-1 mt-5" aria-label="Page navigation example">
+	                                <ul class="pagination pagination justify-content-center">
+	                                	<c:set var="doneLoop" value="false"/>
+	                                	
+	                                		<c:if test="${(startPage-blockCount) >0 }">
+	                                			<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/artCounselor?nowPage=${startPage-1}" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+	                                		</c:if>
+	                                	
+		                                    <c:forEach var="i" begin="${startPage}" end="${(startPage-1)+blockCount}">
+		                                    	<c:if test="${(i-1)>=list.getTotalPages()}">
+											       <c:set var="doneLoop" value="true"/>
+											    </c:if>
+											    
+											   
+											    <c:if test="${not doneLoop}">
+											    	<li class="page-item"><a class="page-link" id="page${i}" href="${pageContext.request.contextPath}/psy/lo/artCounselor?nowPage=${i}">${i}</a> </li>
+											    </c:if>
+											    
+											    
+		                                    </c:forEach>
+		                                    
+		                                    <c:if test="${(startPage+blockCount)<=list.getTotalPages()}">
+		                                    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/psy/lo/artCounselor?nowPage=${startPage+blockCount}" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+		                                    </c:if>
+	                                    
+	                                </ul>
+	                            </nav>
+	             	</div>
                 </div>
                 <!--/.container-->
             </section>

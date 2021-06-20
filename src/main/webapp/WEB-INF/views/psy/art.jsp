@@ -144,7 +144,7 @@
                                     <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>ART TEST</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item"><a class="color-white" href="${pageContext.request.contextPath}/index">Home</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">ART TEST</li>
                                         </ol>
                                     </div>
@@ -171,8 +171,8 @@
                     <div class="col-sm-8 col-lg-12 px-4 px-sm-3 mt-4 mt-sm-0 text-lg-x text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                             <h5 data-zanim='{"delay":0}'><span class="icon-Brush color-primary mr-3"></span>내가 그린 그림에 내 심리상태가 반영되어 있다.</h5>
                             <p class="mt-3 pr-3 pr-lg-5 mb-2" data-zanim='{"delay":0.1}'>간단한 테스트를 통해 나의 심리를 파악해보자!</p>
-                            <a href="${pageContext.request.contextPath}/psy/artCounselor" class="btn btn-outline-primary">START</a>
-                        </div>
+<<                          <a href="${pageContext.request.contextPath}/psyPayment/artTestApp" class="btn btn-outline-primary">START</a>
+>>                      </div>
                     
                 </div>
                 <!--/.container-->

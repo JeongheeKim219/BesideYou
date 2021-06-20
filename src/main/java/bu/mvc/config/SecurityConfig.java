@@ -35,15 +35,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()	
+		//.antMatchers("/member/**").authenticated()
+		.antMatchers("/psy/lo/**").authenticated()
+
 		//.antMatchers("/member/*").authenticated()
-		//.antMatchers("/**").permitAll()
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.antMatchers("/contact/**").access("hasRole('ROLE_MEMBER')")
-//		.antMatchers("/review/**").access("hasRole('ROLE_MEMBER')")
-//		.antMatchers("/report/**").access("hasRole('ROLE_MEMBER')")
+		.antMatchers("/**").permitAll()
+		//.antMatchers("/admin/**").hasRole("ADMIN")
+
 		.and()
-		
-		
+		//.csrf().disable()
 		.formLogin()
 		.loginPage("/member/login")
 		.usernameParameter("id")
@@ -57,11 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.logoutSuccessUrl("/")
 		.invalidateHttpSession(true)
 		.deleteCookies("JSESSIONID")
-		.and()
-		.cors().and()
-		.csrf().disable();
-
-		
+		.and();
 	}
 
 }

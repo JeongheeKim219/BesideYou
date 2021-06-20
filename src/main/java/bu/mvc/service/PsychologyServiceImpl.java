@@ -46,9 +46,9 @@ public class PsychologyServiceImpl implements PsychologyService {
 	}
 
 	@Override
-	public List<ArtCounselor> selectArtCounselor() {
+	public Page<ArtCounselor> selectArtCounselor(Pageable pageable) {
 		// TODO Auto-generated method stub
-		List<ArtCounselor> list= acRepository.findAll();
+		Page<ArtCounselor> list= acRepository.selectByArtCounselorState(pageable);
 		return list;
 	}
 
@@ -75,6 +75,9 @@ public class PsychologyServiceImpl implements PsychologyService {
 	public Counselor selectByMem(Long id) {
 		// TODO Auto-generated method stub
 		Counselor co = coRepository.searchBymembercode(id);
+		if(co==null) {
+			throw new RuntimeException("상담사로 등록되어있지 않습니다. 접근할 수 없는 페이지입니다.");
+		}
 		return co;
 	}
 	
@@ -85,10 +88,21 @@ public class PsychologyServiceImpl implements PsychologyService {
 		return psy;
 	}
 
+	/*
+	 * @Override public List<Art> selectByCounselor(ArtCounselor artCounselor) { //
+	 * TODO Auto-generated method stub List<Art> list =
+	 * artRepository.searchByCounselor(artCounselor); return list; }
+	 */
+	
 	@Override
-	public List<Art> selectByCounselor(ArtCounselor artCounselor) {
+	public List<Art> selectByCounselor(Counselor co) {
 		// TODO Auto-generated method stub
-		List<Art> list = artRepository.searchByCounselor(artCounselor);
+		System.out.println("co.getCounselorCode() = "+co.getCounselorCode());
+		ArtCounselor ac = acRepository.selectByCounselorCode(co);
+		//if(ac==null) {
+			//throw new RuntimeException("그림상담사로 등록되어있지 않습니다.");
+		//}
+		List<Art> list= artRepository.searchByCounselor(ac);
 		return list;
 	}
 
@@ -136,12 +150,29 @@ public class PsychologyServiceImpl implements PsychologyService {
 		Page<Psychology> list = psyRepository.seacrchPsyByMember(member, pageable);
 		return list;
 	}
-	
+
 	@Override
-	public Page<Psychology> selectPsy(Pageable pageable) {
+	public void updateQD(Long code, ArtCounselor artCounselor) {
 		// TODO Auto-generated method stub
-		return psyRepository.findAll(pageable);
+		//멤버코드로 -> 카운슬러 -> 아트카운슬러 찾아서 그 뭐냐
+		Counselor co= coRepository.searchBymembercode(code);
+		ArtCounselor ac = acRepository.selectByCounselorCode(co);
+		ac.setQuestion(artCounselor.getQuestion());
+		ac.setDetail(artCounselor.getDetail());
+		ac.setArtCounselorState(0);
 	}
+
+	@Override
+	public void updateState(Long code) {
+		// TODO Auto-generated method stub
+		Counselor co= coRepository.searchBymembercode(code);
+		ArtCounselor ac = acRepository.selectByCounselorCode(co);
+		ac.setArtCounselorState(1);
+	}
+
+	
+	
+	
 
 	
 

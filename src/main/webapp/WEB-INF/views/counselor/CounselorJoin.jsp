@@ -25,18 +25,18 @@
         			alert("커리어를 입력하세요");				
         			return false;
         		}
-        		if($("#registerForm :input[name=degree]").val().trim()==""){
+        		/* if($("#registerForm :select[name=degree]").val().trim()==""){
         			alert("학위를 입력하세요");				
         			return false;
-        		}
-        		if($("#registerForm :input[name=cerificate]").val().trim()==""){
+        		} */
+        		 if($("#registerForm :input[id=ade]").val().trim()==""){
         			alert("자격증 입력하세요");				
         			return false;
-        		}
-        		/* if($("#registerForm :input[name=counselorAddr]").val().trim()==""){
+        		} 
+        		 if($("#registerForm :input[name=firstAddr]").val().trim()==""){
         			alert("주소를 입력하세요");				
         			return false;
-        		}	 */
+        		}	 
         		var addr = "";
         		addr += $("#sample6_address").val();
         		addr += " ";
@@ -153,7 +153,7 @@
                 </div>
             </div>
             <section class="text-center py">
-                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/background-1.jpg);">
+                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/background-1.jpg); padding-bottom: 0px;padding-top: 0px;height: 1000;height: 1500px;">
                 </div>
                 <!--/.background-holder-->
                 <div class="container">
@@ -171,46 +171,76 @@
 								   
                                     <div class="row align-items-center">
                                    		<div class="col-12 mt-4">
-                                            사진<p><input  type="file" placeholder="상담사사진"  name = "file" accept=".zip"aria-label="Text input with dropdown button">
+                                            프로필사진<p><input  type="file" placeholder="상담사사진"  name = "file" accept=".zip"aria-label="Text input with dropdown button"> <br>  <br>  
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+                                       		<textarea rows="7" cols="70" name="career" placeholder="커리어 작성해주세요."></textarea><br>
+                                        	<select name = "degree">
+                                            	<option selected>--학사 선택--
+                                            	<option value = "석사">석사
+                                            	<option value = "박사">박사
+                                            </select>
+                                            <br>
+                                            <br>
+                                            자격증<br><input type="file" placeholder="자격증"  id = "ade" name = "file" aria-label="Text input with dropdown button">
+                                            
+                                            <div class="col-14 mt-1">
+                                       			 <input type="text" id="sample6_postcode" name = "postcode" placeholder="우편번호" readonly="readonly">
+												<input class="btn btn-secondary" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+											</div>
+												<input class="form-control" type="text" id="sample6_address" name = "firstAddr" placeholder="주소" readonly="readonly">
+												<input class="form-control" type="text" id="sample6_detailAddress" name = "detailAddress" placeholder="상세주소">
+												<input type="hidden" name = "counselorAddr">
+												<input type="hidden" name = "lat">
+												<input type="hidden" name = "longi">
+												<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목" readonly="readonly">
                                         </div>
-                                        <div class="col-12 mt-4">        
-                                            <input class="form-control" type="text" placeholder="커리어" name = "career" aria-label="Text input with dropdown button">
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                            <input class="form-control" type="text" placeholder="학위" name = "degree"  aria-label="Text input with dropdown button" >
-                                        </div>
-                                        
-                                        
-                                        <div class="col-12 mt-4">        
-                                            <input class="form-control" type="text" placeholder="자격증"   name = "cerificate" aria-label="Text input with dropdown button">
-                                        </div>
-                                        
-                                      <!--   <div class="col-12 mt-4">
-                                          <input class="form-control" type="text" placeholder="주소"  name = "counselorAddr" accept=".zip"aria-label="Text input with dropdown button">
-                                        </div> -->
-                                        <div class="col-12 mt-4">
-                                        <input type="text" id="sample6_postcode" name = "postcode" placeholder="우편번호">
-										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-										</div>
+                                     <div class="col-12 mt-3">
+										<h6>전문분야</h6>
+										1.<input type="checkbox" name="specialityName" value="우울">우울
+										2.<input type="checkbox" name="specialityName" value="불안">불안
+										3.<input type="checkbox" name="specialityName" value="섭식장애">섭식장애
+										4.<input type="checkbox" name="specialityName" value="청소년">청소년
+										5.<input type="checkbox" name="specialityName" value="강박">강박
+										6.<input type="checkbox" name="specialityName" value="스트레스">스트레스
+										7.<input type="checkbox" name="specialityName" value="직장">직장
+										8.<input type="checkbox" name="specialityName" value="진로">진로
+										9.<input type="checkbox" name="specialityName" value="중독">중독
+										9.<input type="checkbox" name="specialityName" value="감정조절">감정조절
+
 										
-										<div class="col-12 mt-4">
-										<input class="form-control" type="text" id="sample6_address" name = "firstAddr" placeholder="주소">
-										<input class="form-control" type="text" id="sample6_detailAddress" name = "detailAddress" placeholder="상세주소">
-										<input type="hidden" name = "counselorAddr">
-										<input type="hidden" name = "lat">
-										<input type="hidden" name = "longi">
-										<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목">
+									</div>
+
+									<div class="col-12 mt-3">
+										<h6>상담사 특징,성격 태그선택</h6>
+										1.<input type="checkbox" name="tagName" value="열정">열정
+										2.<input type="checkbox" name="tagName" value="상냥함">상냥함
+										3.<input type="checkbox" name="tagName" value="공감">공감
+										4.<input type="checkbox" name="tagName" value="긍정에너지">긍정에너지
+										5.<input type="checkbox" name="tagName" value="경험">경험
+										6.<input type="checkbox" name="tagName" value="이해">이해
+										7.<input type="checkbox" name="tagName" value="해외생활">해외생활
+										8.<input type="checkbox" name="tagName" value="친구">친구
+										9.<input type="checkbox" name="tagName" value="따듯함">따듯함
+
+										
+									</div>
+									<div class="col-12 mt-3">
+										<h6>대면상담 가격 입력해주세요. (권장가격 10000 ~ 20000)</h6>
+										<input type="text"  name = "price0"  ><p>
+										<h6>전화상담 가격 입력해주세요. (권장가격 10000 ~ 15000)</h6>
+										<input type="text"  name = "price1"  ><p>
+										<h6>채팅상담 가격 입력해주세요. (권장가격 5000 ~ 15000)</h6>
+										<input type="text"  name = "price2"  ><p>
+										<h6>간편텍스트상담 가격 입력해주세요. (권장가격 5000 ~ 15000)</h6>
+										<input type="text"  name = "price3"  >
+										
 										</div>
                                         
                                         
                                     </div>
                                     <div class="row align-items-center mt-3">
                                         <div class="col-md-6 mt-3">
-                                           
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <input class="btn btn-primary btn-block" type="button" value="Create" id="sub"/>
+                                            <input class="btn btn-success" style = "float: right;" type="button" value="Create" id="sub"/>
                                             <!-- <button class="btn btn-primary btn-block" type="reset">reset</button> -->
                                         </div>
                                     </div>

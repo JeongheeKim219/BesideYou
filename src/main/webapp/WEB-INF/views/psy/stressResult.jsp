@@ -281,7 +281,7 @@
                                 <h5 class="ml-3">현대인에게 가장 큰 적, 스트레스</h5>
                                     <h5 class="fw-500 ml-3 mb-0">스트레스로 위로와 객관적인 조언이 필요하다면 BU 에서 전문가에게 상담받으세요!</h5><br>
                                 	<div style="text-align:center;" >
-                                		<a href="${pageContext.request.contextPath}/psy/index" class="btn btn-outline-primary btn-capsule">심리상담 알아보기</a>
+                                		<a href="${pageContext.request.contextPath}/index" class="btn btn-outline-primary btn-capsule">심리상담 알아보기</a>
                                 	</div>
                                 </blockquote>
                             </div>

@@ -52,7 +52,7 @@
                     <div class="row h-full align-items-center color-white">
                         <div class="col" data-zanim-timeline="{}" data-zanim-trigger="scroll"><a href="index.html" data-zanim='{"delay":0}'><img src="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png" alt="" data-zanim='{"delay":0.1}' style="width: 300px; height: 300px"/></a>
                             <h5 class="text-uppercase mt-5 ls color-white fs-0 fs-md-1" data-zanim='{"delay":0.2}'>${message}</h5>
-                            <div data-zanim='{"delay":0.4}'><a class="btn btn-lg btn-warning btn-capsule mt-4" href="index.html">Take Me Home</a></div>
+                            <div data-zanim='{"delay":0.4}'><a class="btn btn-lg btn-info btn-capsule mt-4" href="#">예약내역 확인하기</a></div>
                         </div>
                     </div>
                     <!--/.row-->	

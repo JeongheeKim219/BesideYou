@@ -9,31 +9,32 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import bu.mvc.domain.Counselor;
 import bu.mvc.domain.ReviewStar;
 import bu.mvc.respsitory.ReviewRepository;
 
 @Service
 @Transactional
-public class ReviewServiceImpl implements ReviewService {
+public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
-	private ReviewRepository reviewRepository; 
-	
+	private ReviewRepository reviewRepository;
 	
 	@Override
 	public void insert(ReviewStar reviewStar) {
+		
 		reviewRepository.save(reviewStar);
+		
 	}
 
 	@Override
 	public Page<ReviewStar> selectAll(Pageable pageable) {
+		
 		return reviewRepository.findAll(pageable);
 	}
 
 	@Override
-	public List<ReviewStar> selectByCounselorCode(Long counselor, Pageable pageable) {
-		List<ReviewStar> reviewList = reviewRepository.selectByCounCode(counselor, pageable);
+	public List<ReviewStar> selectByCounCode(Long counselorCode, Pageable pageable) {
+		List<ReviewStar> reviewList = reviewRepository.selectByCounCode(counselorCode, pageable);
 		return reviewList;
 	}
 
@@ -45,24 +46,13 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewStar selectByReviewCode(Long reviewCode) {
-		
+	public ReviewStar selectByReviewNo(Long reviewCode) {
 		return reviewRepository.findById(reviewCode).orElse(null);
 	}
 
-	@Override
-	public void delete(Long reviewCode) {
-		reviewRepository.deleteById(reviewCode);
-		
-	}
 
-	@Override
-	public ReviewStar update(ReviewStar review) {
-		ReviewStar reviewUpdate = reviewRepository.findById(review.getReviewCode()).orElse(null);
-		reviewUpdate.setStar(review.getStar());
-		reviewUpdate.setReviewContent(review.getReviewContent());
-		System.out.println("서비스콜" + review.getReviewContent());
-		return reviewUpdate;
-	}
 
+
+
+	
 }
