@@ -43,7 +43,6 @@ public class PaymentController {
 		}else if(ticket.getTicketField()==3) {
 			ticketType = "BesideU 간편텍스트상담권";
 		}
-		System.out.println(ticketType);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("name", member.getName());

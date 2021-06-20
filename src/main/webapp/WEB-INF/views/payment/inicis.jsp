@@ -1,3 +1,4 @@
+<%@page import="bu.mvc.domain.Ticket"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -81,19 +82,40 @@
                 <%-- var code = <%=sucBidCode%>;
                 location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                var ticketField = <%=field%>;
+                <%-- var ticketField = <%=field%>;
                 var counselorCode = <%=counselorCode%>;
                 var ticketAmount = <%=ticketAmount%>;
                 var ticketRemain = <%=ticketRemain%>;
                 var discountCode = <%=discountCode%>;
                 var ticketPrice = <%=totalPrice%>;
                 
-                sessionStorage.setItem("ticketField", ticketField);
-                sessionStorage.setItem("counselorCode", counselorCode);
-                sessionStorage.setItem("ticketAmount", ticketAmount);
-                sessionStorage.setItem("ticketRemain", ticketRemain);
-                sessionStorage.setItem("discountCode", discountCode);
-                sessionStorage.setItem("ticketPrice", ticketPrice);
+                session.setAttribute("ticketField", ticketField);
+                session.setAttribute("counselorCode", counselorCode);
+                session.setAttribute("ticketAmount", ticketAmount);
+                session.setAttribute("ticketRemain", ticketRemain);
+                session.setAttribute("discountCode", discountCode);
+                session.setAttribute("ticketPrice", ticketPrice); --%>
+                
+                <%-- sessionStorage.setItem("ticketField", <%=field%>);
+                sessionStorage.setItem("counselorCode", <%=counselorCode%>);
+                sessionStorage.setItem("ticketAmount", <%=ticketAmount%>);
+                sessionStorage.setItem("ticketRemain", <%=ticketRemain%>);
+                sessionStorage.setItem("discountCode", <%=discountCode%>);
+                sessionStorage.setItem("ticketPrice", <%=totalPrice%>); --%>
+                
+                var fd = <%=field%>;
+                var code = <%=counselorCode%>;
+                var amount = <%=ticketAmount%>;
+                var remain = <%=ticketRemain%>;
+                var dc = <%=discountCode%>;
+                var pr = <%=totalPrice%>;
+                
+                sessionStorage.setItem("ticketField", fd);
+                sessionStorage.setItem("counselorCode", code);
+                sessionStorage.setItem("ticketAmount", amount);
+                sessionStorage.setItem("ticketRemain", remain);
+                sessionStorage.setItem("discountCode", dc);
+                sessionStorage.setItem("ticketPrice", pr);
                 
                 location.href="${pageContext.request.contextPath}/ticket/buy";
                 
