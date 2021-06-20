@@ -210,11 +210,11 @@
     </tr>
     </c:when>
     <c:otherwise>
-	<c:forEach items="${requestScope.list}" var="list"> <!-- pageList.getContent() -->
+	<c:forEach items="${requestScope.list}" var="list" varStatus="state"> <!-- pageList.getContent() -->
 		    <tr onmouseover="this.style.background='#eaeaea'" onmouseout="this.style.background='white'">
 		        <td bgcolor="">
 		            <p align="center"><span style="font-size:9pt;">
-		            ${list.faqCode}</span></p>
+		            ${state.count}</span></p>
 		        </td>
 		        <td bgcolor="">
 					<p><span style="font-size:9pt;">
