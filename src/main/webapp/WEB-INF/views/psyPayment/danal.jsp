@@ -70,7 +70,7 @@
                 <%-- var code = <%=sucBidCode%>;
                 location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code; --%>
                 
-                location.href="${pageContext.request.contextPath}/psy/artCounselor";
+                location.href="${pageContext.request.contextPath}/psy/lo/artCounselor";
                 
             } else {
                 msg = '결제에 실패하였습니다.';
