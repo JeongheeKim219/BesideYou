@@ -1,15 +1,23 @@
+<%@page import="bu.mvc.domain.Ticket"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	/* String title = (String)request.getParameter("artName");
-	String artist = (String)request.getParameter("artistName");
-	String id = (String)request.getParameter("sucBidId");
-	String sucBidCode = (String)request.getParameter("sucBidCode");
-	String sucBidCost = (String)request.getParameter("sucBidCost");
-	int totalPrice = Integer.parseInt(sucBidCost); */
-	
-	String totalPrice = (String)request.getParameter("price");
+	String name = (String)request.getParameter("name");
+	String phone = (String)request.getParameter("phone");
+	String email = (String)request.getParameter("email");
+	String addr = (String)request.getParameter("addr");
+	String type = (String)request.getParameter("ticketType");
+	String ticketField = (String)request.getParameter("ticketField");
+	int field = Integer.parseInt(ticketField);
+	String totalPrice = (String)request.getParameter("ticketPrice");
 	int price = Integer.parseInt(totalPrice);
+	
+	/////////////////////////////////////////////////////////////////
+	
+	String counselorCode = (String)request.getParameter("counselorCode");
+	String discountCode = (String)request.getParameter("discountCode");
+	String ticketAmount = (String)request.getParameter("ticketAmount");
+	String ticketRemain = (String)request.getParameter("ticketRemain");
 	
 %>
 <!DOCTYPE html>
@@ -32,12 +40,12 @@
             pg : 'html5_inicis', //다수의 PG 사용시 필수
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
-    		name : 'Beside-You 상담권',
+    		name : 'BesideU 상담권',
     		amount : <%=price%>,  //필수항목
-    		buyer_email : 'aaa1234@email.com',
-    		buyer_name : '김동현',
-    		buyer_tel : '010-1234-5678',  //필수항목
-    		//buyer_addr : '서울특별시 강남구 삼성동',
+    		buyer_email : <%=email%>,
+    		buyer_name : <%=name%>,
+    		buyer_tel : <%=phone%>,  //필수항목
+    		buyer_addr : <%=addr%>
     		//buyer_postcode : '123-456'
     		//m_redirect_url : 'https://shop.yourservice.com/payments/complete'
             
@@ -74,7 +82,42 @@
                 <%-- var code = <%=sucBidCode%>;
                 location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                location.href="${pageContext.request.contextPath}/payment/success";
+                <%-- var ticketField = <%=field%>;
+                var counselorCode = <%=counselorCode%>;
+                var ticketAmount = <%=ticketAmount%>;
+                var ticketRemain = <%=ticketRemain%>;
+                var discountCode = <%=discountCode%>;
+                var ticketPrice = <%=totalPrice%>;
+                
+                session.setAttribute("ticketField", ticketField);
+                session.setAttribute("counselorCode", counselorCode);
+                session.setAttribute("ticketAmount", ticketAmount);
+                session.setAttribute("ticketRemain", ticketRemain);
+                session.setAttribute("discountCode", discountCode);
+                session.setAttribute("ticketPrice", ticketPrice); --%>
+                
+                <%-- sessionStorage.setItem("ticketField", <%=field%>);
+                sessionStorage.setItem("counselorCode", <%=counselorCode%>);
+                sessionStorage.setItem("ticketAmount", <%=ticketAmount%>);
+                sessionStorage.setItem("ticketRemain", <%=ticketRemain%>);
+                sessionStorage.setItem("discountCode", <%=discountCode%>);
+                sessionStorage.setItem("ticketPrice", <%=totalPrice%>); --%>
+                
+                var frd = <%=field%>;
+                var code = <%=counselorCode%>;
+                var amt = <%=ticketAmount%>;
+                var rmn = <%=ticketRemain%>;
+                var dc = <%=discountCode%>;
+                var prc = <%=totalPrice%>;
+                
+                sessionStorage.setItem("ticketField", frd);
+                sessionStorage.setItem("counselorCode", code);
+                sessionStorage.setItem("ticketAmount", amt);
+                sessionStorage.setItem("ticketRemain", rmn);
+                sessionStorage.setItem("discountCode", dc);
+                sessionStorage.setItem("ticketPrice", prc);
+                
+                location.href="${pageContext.request.contextPath}/ticket/buy";
                 
             } else {
                 msg = '결제에 실패하였습니다.';

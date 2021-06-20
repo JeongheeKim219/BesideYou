@@ -1,8 +1,8 @@
 package bu.mvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,20 +15,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Discount;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Ticket;
+import bu.mvc.service.CounselService;
+import bu.mvc.service.DiscountService;
+import bu.mvc.service.PriceService;
 import bu.mvc.service.RefundService;
 import bu.mvc.service.TicketService;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/ticket")
 public class TicketController {
 
-	@Autowired
-	private TicketService ticketService;
-	
-	@Autowired
-	private RefundService refundService;
+	private final TicketService ticketService;
+	private final RefundService refundService;
+	private final CounselService counselService;
+	private final DiscountService discountService;
+	private final PriceService priceService;
 	
 	/**
 	 * 상담권 구매 목록(전체) : 관리자용
@@ -90,15 +96,61 @@ public class TicketController {
 	 * 상담권 구매 폼으로
 	 * */
 	@RequestMapping("/ticketApp")
-	public void paymentApp() {}
+	public ModelAndView paymentApp(HttpServletRequest request, Long counselorCode, int counselCategory) {
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int price = priceService.findPrice(counselorCode, counselCategory);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ticket/ticketApp");
+		mv.addObject("counselorCode", counselorCode);
+		mv.addObject("member", member);
+		mv.addObject("counselCategory", counselCategory);
+		mv.addObject("price", price);
+		
+		return mv;
+	}
 	
 	/**
 	 * 상담권 구매 완료 (결제 성공시)
 	 * */
 	@RequestMapping("/buy")
-	public String buyTicket(Ticket ticket) {
+	public ModelAndView buyTicket(HttpServletRequest request, HttpSession session) {
+		
+		int ticketField = (int)session.getAttribute("ticketField");
+		Long counselorCode = (Long)session.getAttribute("counselorCode");
+		int ticketAmount = (int)session.getAttribute("ticketAmount");
+		int ticketRemain = (int)session.getAttribute("ticketRemain");
+		Long discountCode = (Long)session.getAttribute("discountCode");
+		int ticketPrice = (int)session.getAttribute("ticketPrice");
+		
+		System.out.println("ticketField : "+ticketField);
+		System.out.println("counselorCode : "+counselorCode);
+		System.out.println("ticketAmount : "+ticketAmount);
+		System.out.println("ticketRemain : "+ticketRemain);
+		System.out.println("discountCode : "+discountCode);
+		System.out.println("ticketPrice : "+ticketPrice);
+		
+		Counselor counselor = counselService.getCounselor(counselorCode);
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Discount discount = discountService.selectByCode(discountCode);
+		
+		Ticket ticket = new Ticket();
+		ticket.setTicketField(ticketField);
+		ticket.setCounselor(counselor);
+		ticket.setMember(member);
+		ticket.setTicketAmount(ticketAmount);
+		ticket.setTicketRemain(ticketRemain);
+		ticket.setDiscount(discount);
+		ticket.setTicketPrice(ticketPrice);
+		
 		ticketService.insert(ticket);
-		return "redirect:/ticket/mylist";
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("counsel/apply012");
+		mv.addObject("counselorCode", counselor.getCounselorCode());
+		mv.addObject("couselCategory", ticketField);
+		
+		return mv;
 	}
 	
 	/**

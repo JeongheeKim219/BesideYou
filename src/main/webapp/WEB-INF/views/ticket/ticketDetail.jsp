@@ -44,13 +44,14 @@
 <script type="text/javascript">
 
 $(function() {
-	$("#use").click(function() {
+	$("#usetk").click(function() {
 		if ($("#remain").text() == 0) {
 			alert("소진된 상담권입니다. 더이상 사용할 수 없습니다.");
 			return;
 		} else {
 			if(confirm("상담권을 사용하시겠습니까?")){
-				location.href="${pageContext.request.contextPath}/ticket/use/${ticket.ticketCode}";
+				$("#useticket").attr("action", "${pageContext.request.contextPath}/counsel/apply");
+				$("#useticket").submit();
 			}else{
 				return;
 			}
@@ -237,15 +238,18 @@ $(function() {
            											<a href="${pageContext.request.contextPath}/ticket/mylist"><input type="button" id="mylist" value="목록으로" class="btn btn-outline-primary btn-xs"/></a>
            										</c:when>
            										<c:otherwise>
-           											<form name="useticket" id="useticket" method="get" action="${pageContext.request.contextPath}/counsel/apply">
+           											<form name="useticket" id="useticket" method="post" action="">
 			                                        	<input type="hidden" name="counselCategory" value="${ticket.ticketField}"/>
+			                                        	<input type="hidden" name="ticketRemain" value="${ticket.ticketRemain}"/>
 									            		<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
-           												<input type="submit" id="usetk" value="사용하기" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp;
-	                                        		</form>
+									            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+           												<input type="button" id="usetk" value="사용하기" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp;
+	                                        		
 	                                        		<!-- <input type="button" id="use" value="사용하기" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp; -->
 	                                        		<input type="button" id="refund" value="환불신청" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp;
 	                                        		<a href="${pageContext.request.contextPath}/ticket/mylist"><input type="button" id="mylist" value="목록으로" class="btn btn-outline-primary btn-sm"/></a>
 	                                        		<!-- <a href="#"><input type="button" id="delete" value="삭제하기" class="btn btn-outline-info"/></a> -->
+           											</form>
            										</c:otherwise>
            									</c:choose>
                                         </div>

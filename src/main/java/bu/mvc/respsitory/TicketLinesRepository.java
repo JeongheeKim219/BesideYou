@@ -10,7 +10,7 @@ import bu.mvc.domain.TicketLines;
 
 public interface TicketLinesRepository extends JpaRepository<TicketLines, Long>{
 	
-	List<TicketLines> findByTicketMemberIdLike(String id, Pageable pageable);
+	Page<TicketLines> findByTicketMemberIdLike(String id, Pageable pageable);
 	
 	Page<TicketLines> findByTicketMemberMemberCode(Pageable pageable,  Long memberCode);
 	
