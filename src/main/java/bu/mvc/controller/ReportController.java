@@ -63,8 +63,7 @@ public class ReportController {
 		r.setReportOption(reportDTO.getReportOption());
 		r.setReviewContent(reportDTO.getReviewContent());
 				
-		
-		
+		reportService.insert(r);
 		return "redirect:/review/reviewByCode/{counselorCode}";
 				
 	}

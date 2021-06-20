@@ -89,7 +89,7 @@ public class ReviewController {
 		Counselor cs = review.getCounselor();
 		Long cscode = cs.getCounselorCode();
 		String content = review.getReviewContent();
-		System.out.println(content);
+		System.out.println("content :: "+ content);
 		reviewService.update(review);
 		List<ReviewStar> revList = reviewService.selectByCounselorCode(cscode, pageable);
 		Double point = reviewService.avgStar(cscode);

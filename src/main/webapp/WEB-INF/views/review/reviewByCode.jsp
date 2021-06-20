@@ -241,7 +241,7 @@
 									<input type="hidden" id="reviewCode_${num.index}" value="${review.reviewCode}">
 									<input type="hidden" id="reviewContent_${num.index}" value="${review.reviewContent}">
 									<input type="hidden" id="counselor_${num.index}" name="counselor" value="${review.counselor.counselorCode}">
-									<input type="hidden" id="memberCode_${num.index}" name="memberCode" value="${review.member.memberCode}">
+									<input type="hidden" id="memberCode_${num.index}" name="memberCode" value="${review.member.id}">
 								</td>
 							</tr>
 						</table>
@@ -266,22 +266,18 @@
 				<tr>
 					<td width="150" height="20" style="vertical-align: center;">
 					신고자
-						<!-- <p align="right">
-							<b><span style="font-size: 9pt;vertical-align: center;">신고자</span></b>
-						</p> -->
+						
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
 								<input id="memberCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-								<%-- <input name="id" size="30" value="${loginUser}" readonly="readonly"
-								disabled="disabled"> --%>
+								
+								
 						</span></b></td>
 				</tr>
 				<tr>
 					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
 						리뷰번호
-						<!-- <p align="right">
-							<b><span style="font-size: 9pt;vertical-align: center;">리뷰번호</span></b>
-						</p> -->
+					
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt;">
 						<input type="text" id="tgReviewNo" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
@@ -291,9 +287,7 @@
 				<tr>
 					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
 					신고사유
-						<!-- <p align="right">
-							<b><span style="font-size: 9pt;vertical-align: center;">신고사유</span></b>
-						</p> -->
+						
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt;">
 								<select name="reportOption" id="reportOption" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
@@ -334,22 +328,17 @@
 				<tr>
 					<td width="150" height="20" style="vertical-align: center;">
 					작성자
-						<!-- <p align="right">
-							<b><span style="font-size: 9pt;vertical-align: center;">신고자</span></b>
-						</p> -->
+						
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
 								<input id="tgmemberCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-								<%-- <input name="id" size="30" value="${loginUser}" readonly="readonly"
-								disabled="disabled"> --%>
+							
 						</span></b></td>
 				</tr>
 				<tr>
 					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
 						리뷰번호
-						<!-- <p align="right">
-							<b><span style="font-size: 9pt;vertical-align: center;">리뷰번호</span></b>
-						</p> -->
+						
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt;">
 						<input type="text" id="tgreviewCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
@@ -376,16 +365,13 @@
 				<tr>
 					<td width="150" height="20" style="vertical-align: center; margin: 2px;" colspan="2">
 					리뷰 내용
-						<!-- <p align="right">
-							<b><span style="font-size: 9pt;vertical-align: center;">신고사유</span></b>
-						</p> -->
+						
 					</td>
 				</tr>
 				<tr>
 					<td width="450" height="20" colspan="2"><b><span style="font-size: 9pt; margin: 2px;">
 								<textarea cols="55" rows="5" id="tgreviewContent" name="reviewContent"></textarea>
-								<%-- <input name="id" size="30" value="${loginUser}" readonly="readonly"
-								disabled="disabled"> --%>
+								
 						</span></b></td>
 				</tr>
 				<tr>
@@ -420,8 +406,7 @@
 			$('#reviewCode').val($('#reviewCode_'+ s).val());
 			$('#reviewContent').val($('#reviewContent_'+ s).val());
 			alert($('#reviewCode').val());
-			//$("#requestForm").attr("action","${pageContext.request.contextPath}/report/reportForm");
-			//$("#requestForm").submit();
+		
 			$('#tgReviewNo').val($('#reviewCode').val());
 			
 			$('#modal1').fadeIn();
@@ -473,9 +458,13 @@
 			});
 			
 		});
+		/* 수정눌렀을때 
+		reviewContent+s > ,1
+		reviewContent >> ,1
+		tgreviewContent >> , */
+		
 		
 		$("input[name='reviewChange']").click(function() {
-			alert("1");
 			var s = $("input[name='reviewChange']").index(this);
 			$('#reviewCode').val($('#reviewCode_'+ s).val());
 			$('#reviewContent').val($('#reviewContent_'+ s).val());
@@ -484,27 +473,16 @@
 			$('#tgmemberCode').val($('#memberCode').val());
 			$('#tgreviewCode').val($('#reviewCode').val());
 			$('#tgreviewContent').val($('#reviewContent').val());
+			$('#reviewContent').val("");
 			$('#modal2').fadeIn();
 		});
 		
 		$("#reportBtn2").click(function() {
-			
 			var param = document.getElementById('requestForm');
-			console.log($('#memberCode').val() +"///"+ $('#reviewCode').val() +"///"+$('#reviewContent').val())
-		    var memberCode = $('#memberCode').val();
-			var reviewCode = $('#reviewCode').val();
-			var reviewContent = $('#reviewContent').val();
-			var counselor = $('#counselor').val();
-			var star = $('#star').val();
-			
-			alert(memberCode);
-			alert(reviewCode);
-			alert(counselor);
-			
-			 var param = document.getElementById('requestForm');
-				param.method = "POST";
-				param.action = "${pageContext.request.contextPath}/review/reviewUpdate";
-				param.submit(); 
+			param.reviewContent.value = $('#tgreviewContent').val();
+			param.method = "POST";
+			param.action = "${pageContext.request.contextPath}/review/reviewUpdate";
+			param.submit(); 
 
 		});
 		
