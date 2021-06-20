@@ -57,7 +57,9 @@ public class ContactController {
 	 * 문의글 작성 폼
 	 * */
 	@RequestMapping("/contact/write")
-	public void writeForm() {}
+	public void writeForm() {
+		System.out.println("writeCall...");
+	}
 	
 	
 	/**

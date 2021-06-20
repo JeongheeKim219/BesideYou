@@ -18,12 +18,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class ReviewStar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
@@ -33,6 +35,7 @@ public class ReviewStar {
 	@ManyToOne
 	@JoinColumn(name = "member_code")
 	private Member member; // 회원코드
+<<<<<<< HEAD
 	
 	@ManyToOne
 	@JoinColumn(name = "COUNSELOR_CODE")
@@ -44,31 +47,47 @@ public class ReviewStar {
 	
 	//@CreationTimestamp
 	private LocalDateTime reviewDate; // 리뷰작성날짜
+=======
+	@ManyToOne
+	@JoinColumn(name = "COUNSELOR_CODE")
+	private Counselor counselor; // 상담사 코드
+	@ManyToOne
+	@JoinColumn(name = "COUNSEL_CODE")
+	private Counsel counsel; // 상담코드
+	@CreationTimestamp
+	private Date reviewDate; // 리뷰작성날짜
+>>>>>>> gihun
 	
 	private double star; // 별점
+	@JoinColumn(name = "REVIEW_CONTENT")
 	private String reviewContent; // 리뷰 내용
 	
+<<<<<<< HEAD
 	
 
 	public ReviewStar(Long reviewCode, Member member, Counselor counselorCode, Counsel counselCode, double star,
+=======
+	public ReviewStar(Long reviewCode, Member member, Counselor counselor, Counsel counsel, double star,
+>>>>>>> gihun
 			String reviewContent) {
 		super();
 		this.reviewCode = reviewCode;
 		this.member = member;
+<<<<<<< HEAD
 		this.counselorCode = counselorCode;
 		this.counselCode = counselCode;
+=======
+		this.counselor = counselor;
+		this.counsel = counsel;
+>>>>>>> gihun
 		this.star = star;
 		this.reviewContent = reviewContent;
 	}
 
-
-
 	public ReviewStar(Long reviewCode) {
-
+	
 		this.reviewCode = reviewCode;
 	}
-	
-	
 	
 	
 	
