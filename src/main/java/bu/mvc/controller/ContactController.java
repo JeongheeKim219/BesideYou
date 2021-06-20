@@ -65,6 +65,7 @@ public class ContactController {
 	 * */
 	@RequestMapping("/contact/insert")
 	public String insert(Contact contact) {
+		System.out.println(contact.getMember().getMemberCode());
 		contactService.insert(contact);
 		return "redirect:/contact/list";
 	}

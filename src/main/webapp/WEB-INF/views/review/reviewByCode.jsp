@@ -191,8 +191,10 @@
 	<form name="requestForm" method="post" id="requestForm" vertical>
 		<div align="center">
 		<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
+		<input type="hidden" id="memberCode" name="memberCode" value=""/>
 		<input type="hidden" id ="reviewContent" name="reviewContent" value=""/>
 		<input type="hidden" id ="counselor" name="counselor" value=""/>
+		 <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
 		<c:choose>
 			<c:when test="${empty requestScope.revList}">
 				<div class="panel panel-default" style="width: 600px;">
@@ -269,7 +271,7 @@
 						
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
-								<input id="memberCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+								<input id="member" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 								
 								
 						</span></b></td>
@@ -280,7 +282,7 @@
 					
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt;">
-						<input type="text" id="tgReviewNo" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+						<input type="text" id="tgReviewNo" name="reviewStar" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 					</span></b></td>
 				</tr>
 				
@@ -291,6 +293,7 @@
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt;">
 								<select name="reportOption" id="reportOption" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+									<option value="">신고사유 선택</option>
 									<option value="스팸홍보도배글">스팸홍보도배글</option>
 									<option value="음란물">음란물</option>
 									<option value="불법정보를 포함하고 있습니다">불법정보를 포함하고 있습니다</option>
@@ -331,7 +334,7 @@
 						
 					</td>
 					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
-								<input id="tgmemberCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+								<input id="member" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 							
 						</span></b></td>
 				</tr>
@@ -396,7 +399,7 @@
 </body>
 <style>
 	.modal{position: absolute;width: 100%;height: 35%;background: rgba(255,255,255,255);top:40%;left:35%;display: none;}
-	#modal2{position: absolute;width: 40%;height: 23%;background: rgba(255,255,255,255);top:40%;left:35%;display: none;}
+	#modal2{position: absolute;width: 40%;height: 55%;background: rgba(255,255,255,255);top:40%;left:35%;display: none;}
 </style>
 
 <script type="text/javascript">
@@ -405,65 +408,43 @@
 			var s = $("input[name='btn']").index(this);
 			$('#reviewCode').val($('#reviewCode_'+ s).val());
 			$('#reviewContent').val($('#reviewContent_'+ s).val());
-			alert($('#reviewCode').val());
-		
+			$('#counselor').val($('#counselor_'+ s).val());
 			$('#tgReviewNo').val($('#reviewCode').val());
-			
 			$('#modal1').fadeIn();
 		});
 		
+		
+		
 		$("input[name='reviewDelete']").click(function() {
 			var s = $("input[name='reviewDelete']").index(this);
+			
 			$('#reviewCode').val($('#reviewCode_'+ s).val());
 			$('#reviewContent').val($('#reviewContent_'+ s).val());
 			$('#counselor').val($('#counselor_'+ s).val());
-			
+			alert($('#reviewCode').val());
 			
 			 var param = document.getElementById('requestForm');
 			param.method = "POST";
 			param.action = "${pageContext.request.contextPath}/review/reviewDelete";
 			param.submit(); 
 
-			
 		});
 		
 		
 		$("#reportBtn").click(function() {
-			
 			var param = document.getElementById('requestForm');
-			console.log($('#memberCode').val() +"///"+ $('#reviewCode').val() +"///"+ $('#reportOption').val()+"///"+$('#reviewContent').val())
-		    var memberCode = $('#memberCode').val();
-			var reviewCode = $('#reviewCode').val();
-			var reportOption = $('#reportOption').val();
-			var reviewContent = $('#reviewContent').val();
-			
-			alert(memberCode);
-			alert(reviewCode);
-			alert(reportOption);
-			alert(reviewContent);
-			
-			$.ajax({
-				type : 'POST',
-				url :'${path}/report/insert',
-				data : JSON.stringify({memberCode : memberCode, reviewCode:reviewCode, reportOption:reportOption, reviewContent : reviewContent}),
-				dataType :'json',
-				contentType: 'application/json; charset=UTF-8',
-				success : function(data){
-					//모달종료			
-					$('#modal1').fadeOut();
-				},
-				error:function(){
-					$('#modal1').fadeOut();
+			if(requestForm.reportOption.value ==""){
+				alert("신고 사유를 선택하세요");
+				return false;
 				}
-			});
+			param.method = "POST";
+			param.action = "${pageContext.request.contextPath}/report/insert";
+		    param.submit(); 
+			$('.modal').fadeOut();
+		
 			
-		});
-		/* 수정눌렀을때 
-		reviewContent+s > ,1
-		reviewContent >> ,1
-		tgreviewContent >> , */
-		
-		
+		}); 
+				
 		$("input[name='reviewChange']").click(function() {
 			var s = $("input[name='reviewChange']").index(this);
 			$('#reviewCode').val($('#reviewCode_'+ s).val());
