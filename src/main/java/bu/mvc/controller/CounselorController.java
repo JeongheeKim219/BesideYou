@@ -11,11 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,6 +35,7 @@ import bu.mvc.service.MemberService;
 import bu.mvc.service.PriceService;
 import bu.mvc.service.SpecialityService;
 import bu.mvc.service.TagService;
+
 
 @Controller
 @RequestMapping("/counselor")
@@ -183,37 +190,19 @@ public class CounselorController {
 	     
 		Member me =(Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Counselor con = counselorService.selectByCounselor(me.getMemberCode());
-		//List<Speciality> spc = specialityService.selectByCounselor(con.getCounselorCode());
-			//System.out.println(con.getCounselorCode());
-		
 			 counselorService.updateCounselor(me.getMemberCode(), counselor,speciality,spcNames,tagNames,prices);
-			 
-			 //specialityService.update(speciality, null);
-				/*
-				 * String spcNames [] = request.getParameterValues("specialityName"); for(String
-				 * spcName : spcNames) { //System.out.println(spcName); }
-				 */
-			 
-		   //  System.out.println(spcNames);
-			 	//specialityService.update(counselor,speciality, spcNames);
-			 
-			 
-			 
-			 //specialityService.updateSpeciality(con.getCounselorCode(), speciality);
-			//specialityService.update(speciality.getSpecialityName(), con.getCounselorCode());
-			
-			 //ModelAndView mv = new ModelAndView();
-			// mv.setViewName("counselor/read");
-			//mv.addObject("counselor", counselor);
-				
-				//return mv;
-			
-		return new ModelAndView("counselor/updateSuccess");
+		
+			 return new ModelAndView("counselor/updateSuccess");
 	}
 	
 	@RequestMapping("/counselorJoinList")
-	public void List() {
+	public void list(Model model,@RequestParam(defaultValue = "0") int nowPage) {
+		Pageable pageble = PageRequest.of(nowPage, 10,Direction.DESC,"bno");// --> dao영역(jap영역에서)전체레코드 수 구해서 /10나누고 전체 페이지 구하고 그 페이지중에서 전달받은 nowPage에 해당하는 레코드만 검색해서 content 검색한다.
+		Page<Counselor> pageList = counselorService.selectAll(pageble);
 		
+		
+		
+		model.addAttribute("pageList",pageList);//뷰페이지에서 ${pageList.메소드이름}
 	}
 	
 	@ExceptionHandler(RuntimeException.class)
