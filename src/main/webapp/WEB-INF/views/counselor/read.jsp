@@ -270,6 +270,18 @@
 							<tr>
 								<td width="100" height="20">
 									<p align="right">
+										<b><span style="font-size: 9pt;">프로필 사진</span></b>
+									</p>
+								</td>
+								<td width="450" height="20" colspan="3"><span
+									style="font-size: 9pt;"><b>
+									<img class="mb-4 radius-tr-secondary radius-tl-secondary" width ="200" src="/assets/images/${requestScope.counselor.picture}" alt="${requestScope.counselor.picture}">
+									</b></span>
+								</td>
+							</tr>
+							<tr>
+								<td width="100" height="20">
+									<p align="right">
 										<b><span style="font-size: 9pt;">경력</span></b>
 									</p>
 								</td>
@@ -307,18 +319,7 @@
 									style="font-size: 9pt;"><b>${requestScope.counselor.cerificate}</b></span>
 								</td>
 							</tr>
-							<tr>
-								<td width="100" height="20">
-									<p align="right">
-										<b><span style="font-size: 9pt;">프로필 사진</span></b>
-									</p>
-								</td>
-								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>
-									<img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/WEB-INF/save/${requestScope.counselor.picture}" alt="${requestScope.counselor.picture}">
-									</b></span>
-								</td>
-							</tr>
+							
 							 <tr>
 								<td width="100" height="20">
 									<p align="right">

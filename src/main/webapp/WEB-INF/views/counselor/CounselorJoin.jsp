@@ -42,6 +42,7 @@
         		addr += " ";
         		addr += $("#sample6_detailAddress").val();
         		$("input[name='counselorAddr']").val(addr);
+        		
         		var geocoder = new kakao.maps.services.Geocoder();
        			var gotY;
        			var gotX;
@@ -51,8 +52,8 @@
         			        gotY = result[0].y;
         			        gotX = result[0].x;
         			       }
-   			    $("input[name='lat']").val(gotY);
-  			    $("input[name='longi']").val(gotX);
+   			    $("input[name='lat']").val(gotY); //lat = 위도
+  			    $("input[name='longi']").val(gotX); //logni = 경도
         		$("#registerForm").submit();
         			});
         	});//submit

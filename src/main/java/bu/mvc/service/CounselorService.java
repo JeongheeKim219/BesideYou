@@ -26,14 +26,6 @@ public interface CounselorService {
 	 * */
 	void updateCounselor( Long code, Counselor counselor, Speciality speciality,String [] spcNames, String [] tagNames,int [] prices);
 	
-	/**
-	 * 전체 검색
-	 * */
-	List<Counselor> selectAll();
 	
-	/**
-	 * 전체검색 - Page처리
-	 * */
-	Page<Counselor> selectAll(Pageable pageable);
 
 }
