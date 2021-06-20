@@ -61,7 +61,7 @@
 	$(function(){
 		// 결제 API 이동
 	   $("#card").click(function(){
-		   if($("input[name=price]").val()==0){
+		   if($("input[name=ticketPrice]").val()==0){
 			   alert("구매 정보가 미입력되었습니다. 상담권 수량을 선택해주세요.");
 			   return;
 		   }else{
@@ -71,7 +71,7 @@
 	   })
 	   
 	   $("#phone").click(function(){
-		   if($("input[name=price]").val()==0){
+		   if($("input[name=ticketPrice]").val()==0){
 			   alert("구매 정보가 미입력되었습니다. 상담권 수량을 선택해주세요.");
 			   return;
 		   }else{
@@ -81,7 +81,7 @@
 	   })
 	   
 	   $("#paypal").click(function(){
-		   if($("input[name=price]").val()==0){
+		   if($("input[name=ticketPrice]").val()==0){
 			   alert("구매 정보가 미입력되었습니다. 상담권 수량을 선택해주세요.");
 			   return;
 		   }else{
@@ -96,7 +96,7 @@
 		   const resultElement = document.getElementById('result');  //수량이 표시되는 Element
 		   let number = resultElement.innerText;  //그 Element의 text 값
 		   let num = parseInt(number);  //그 text값을 정수형으로 변환
-		   let total = 30000 * num;  //원가 계산
+		   let total = ${price} * num;  //원가 계산
 		   $("#op").html(total+'&nbsp;원');  //계산된 원가를 #op Element에 html 형식으로 입력
 		   
 		   // 수량에 따른 할인율 (2~5개:5% / 6~10개:10% / 11개 이상~:20%)
@@ -104,22 +104,28 @@
 		   if(num >= 2 && num <= 5) {
 			   dc = total * 0.05;
 			   $("#dc").html('- '+dc+'&nbsp;원');
+			   $("input[name=discountCode]").val(5);
 		   }
 		   else if(num > 5 && num <= 10) {
 			   dc = total * 0.1;
 			   $("#dc").html('- '+dc+'&nbsp;원');
+			   $("input[name=discountCode]").val(10);
 		   }
 		   else if(num > 10) {
 			   dc = total * 0.2;
 			   $("#dc").html('- '+dc+'&nbsp;원');
+			   $("input[name=discountCode]").val(20);
 		   }
 		   else {
 			   dc = 0;
 			   $("#dc").html(dc+'&nbsp;원');
+			   $("input[name=discountCode]").val(1);
 		   }
 		   let price = total-dc;
 		   $("#price").html('<h5>'+price+'&nbsp;원</h5>');
-		   $("input[name=price]").val(price);
+		   $("input[name=ticketPrice]").val(price);
+		   $("input[name=ticketAmount]").val(number);
+		   $("input[name=ticketRemain]").val(number);
 	   })
 	   
 	})
@@ -258,14 +264,18 @@
                                     <br>
                                     <div class="overflow-hidden">
                                         <div data-zanim='{"delay":0.5}'>
-                                        	<form name="payment" id="payment" method="get" action="">
-	                                        	<input type="hidden" name="category" value="1"/>
-							            		<input type="hidden" name="counselor" value="1"/>
-							            		<input type="hidden" name="id" value="aa"/>
-							            		<input type="hidden" name="name" value="aaa"/>
-							            		<input type="hidden" name="phone" value="111"/>
-							            		<input type="hidden" name="email" value="aa@amail.com"/>
-							            		<input type="hidden" name="price" value=""/>
+                                        	<form name="payment" id="payment" method="post" action="">
+	                                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+	                                        	<input type="hidden" name="ticketField" value="${counselCategory}"/>
+							            		<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
+							            		<input type="hidden" name="name" value="${member.name}"/>
+							            		<input type="hidden" name="phone" value="${member.phone}"/>
+							            		<input type="hidden" name="email" value="${member.email}"/>
+							            		<input type="hidden" name="addr" value="${member.memberAddr}"/>
+							            		<input type="hidden" name="ticketAmount" value="0"/>
+							            		<input type="hidden" name="ticketRemain" value="0"/>
+							            		<input type="hidden" name="discountCode" value="0"/>
+							            		<input type="hidden" name="ticketPrice" value="0"/>
             		
 		                                        <input type="button" id="card" value="카드결제" class="btn btn-info mr-3 mb-3"/>
 		                                        <input type="button" id="phone" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>

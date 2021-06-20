@@ -237,9 +237,10 @@ $(function() {
            											<a href="${pageContext.request.contextPath}/ticket/mylist"><input type="button" id="mylist" value="목록으로" class="btn btn-outline-primary btn-xs"/></a>
            										</c:when>
            										<c:otherwise>
-           											<form name="useticket" id="useticket" method="get" action="${pageContext.request.contextPath}/counsel/apply">
+           											<form name="useticket" id="useticket" method="post" action="${pageContext.request.contextPath}/counsel/apply">
 			                                        	<input type="hidden" name="counselCategory" value="${ticket.ticketField}"/>
 									            		<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
+									            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
            												<input type="submit" id="usetk" value="사용하기" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp;
 	                                        		</form>
 	                                        		<!-- <input type="button" id="use" value="사용하기" class="btn btn-outline-primary btn-sm"/>&nbsp;&nbsp;&nbsp; -->

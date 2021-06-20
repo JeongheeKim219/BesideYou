@@ -32,12 +32,15 @@
             pg : 'html5_inicis', //다수의 PG 사용시 필수
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
-    		name : 'Beside-You 상담권',
-    		amount : <%=price%>,  //필수항목
-    		buyer_email : 'aaa1234@email.com',
-    		buyer_name : '김동현',
-    		buyer_tel : '010-1234-5678',  //필수항목
-    		//buyer_addr : '서울특별시 강남구 삼성동',
+    		if(${ticketField==0}) name : 'BesideU 대면상담권',
+    		else if(${ticketField==1}) name : 'BesideU 전화상담권',
+    		else if(${ticketField==2}) name : 'BesideU 채팅상담권',
+    		else if(${ticketField==3}) name : 'BesideU 텍스트상담권',
+    		amount : ${ticketPrice}<%-- <%=price%> --%>,  //필수항목
+    		buyer_email : ${email},
+    		buyer_name : ${name},
+    		buyer_tel : ${phone},  //필수항목
+    		buyer_addr : ${addr},
     		//buyer_postcode : '123-456'
     		//m_redirect_url : 'https://shop.yourservice.com/payments/complete'
             
@@ -74,7 +77,14 @@
                 <%-- var code = <%=sucBidCode%>;
                 location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
                 
-                location.href="${pageContext.request.contextPath}/payment/success";
+                sessionStorage("ticketField", ${ticketField});
+                sessionStorage("counselorCode", ${counselorCode});
+                sessionStorage("ticketAmount", ${ticketAmount});
+                sessionStorage("ticketRemain", ${ticketRemain});
+                sessionStorage("discountCode", ${discountCode});
+                sessionStorage("ticketPrice", ${ticketPrice});
+                
+                location.href="${pageContext.request.contextPath}/ticket/buy";
                 
             } else {
                 msg = '결제에 실패하였습니다.';
