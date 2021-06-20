@@ -21,6 +21,9 @@
 	function counselorRead(){
 		document.getElementById("counselorReadForm").submit();
 	}
+	function counselorJoin(){
+		document.getElementById("counselorJoinForm").submit();
+	}
 	
 </script>
 
@@ -220,7 +223,9 @@
 										님 환영합니다.
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
+								
 								<li><a href="javascript:read();">회원정보</a></li>
+								<li><a href="javascript:counselorJoin();">상담사 신청</a></li>
 								<li><a href="javascript:logout();">로그아웃</a></li> 
 
 								</sec:authorize>
@@ -270,8 +275,15 @@
 							method="post" style="display: none">
 							<input type="hidden" name="memberCode"
 								value="<sec:authentication property="principal.memberCode" />" />
-							 <%-- <input type="hidden" name="counselorCode"
-								value = "<sec:authentication property="principal.memberCode" />"/>   --%>
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>  
+						
+						<form id="counselorJoinForm"
+							action="${pageContext.request.contextPath}/counselor/CounselorJoin"
+							method="post" style="display: none">
+							<input type="hidden" name="memberCode"
+								value="<sec:authentication property="principal.memberCode" />" />
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>  

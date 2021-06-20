@@ -314,7 +314,9 @@
 									</p>
 								</td>
 								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.counselor.picture}</b></span>
+									style="font-size: 9pt;"><b>
+									<img class="mb-4 radius-tr-secondary radius-tl-secondary" src="/WEB-INF/save/${requestScope.counselor.picture}" alt="${requestScope.counselor.picture}">
+									</b></span>
 								</td>
 							</tr>
 							 <tr>
@@ -327,7 +329,7 @@
 								 <span
 									style="font-size: 9pt;">
 									<c:forEach items="${speciality}" var= "s" >
-									<b>${s.specialityName},</b>
+									<b>${s.specialityName}</b>
 								</c:forEach>
 								</span>
 								</td> 
@@ -342,7 +344,7 @@
 								 <span
 									style="font-size: 9pt;">
 									<c:forEach items="${tag}" var= "t" >
-									<b>${t.tagName},</b>
+									<b>${t.tagName}</b>
 								</c:forEach>
 								</span>
 								</td> 
@@ -371,7 +373,7 @@
 									<b><c:if test="${p.counselorField==3}">간편텍스트상담 : </c:if></b>
 									</span>
 									
-									${p.counselorPrice}원,</b>
+									${p.counselorPrice}원</b>
 								</c:forEach>
 								</span>
 								</td> 
