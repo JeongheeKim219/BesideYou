@@ -21,6 +21,7 @@
 	function counselorRead(){
 		document.getElementById("counselorReadForm").submit();
 	}
+	
 </script>
 
 <!--  -->
@@ -269,8 +270,8 @@
 							method="post" style="display: none">
 							<input type="hidden" name="memberCode"
 								value="<sec:authentication property="principal.memberCode" />" />
-							<%-- <input type="hidden" name="counselorCode"
-								value = "<sec:authentication property="principal.memberCode" />"/> --%>
+							 <%-- <input type="hidden" name="counselorCode"
+								value = "<sec:authentication property="principal.memberCode" />"/>   --%>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>  

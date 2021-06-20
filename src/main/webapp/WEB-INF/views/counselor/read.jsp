@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -33,18 +34,8 @@
 
 		document.getElementById("deleteForm").submit();
 	}
-	/*function delete1(){
-		document.getElementById("deleteForm").submit();
-	}*/
-
-	/* function delete().click(function(){
-		   var pwd = prompt("비밀번호를 입력하세요.");
-		   if(pwd){
-	           $("#password").val(pwd);
-			   $("#requestForm").attr("action", "${pageContext.request.contextPath}/member/delete");
-			   $("#requestForm").submit();
-		   }
-	   }) */
+	
+	
 </script>
 
 <!--  -->
@@ -235,7 +226,7 @@
 								
 								<!--  상담사인 경우 -->
 								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
-								   상담사입니다...
+								  <sec:authentication property="principal.name" />상담사님 안녕하세요.
 								   <li><a href="javascript:logout();">로그아웃</a></li> 
 								</sec:authorize>
 								
@@ -297,7 +288,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="100" height="20">
+								<td width="150" height="20">
 									<p align="right">
 										<b><span style="font-size: 9pt;">상담센터 위치</span></b>
 									</p>
@@ -332,68 +323,90 @@
 										<b><span style="font-size: 9pt;">전문분야</span></b>
 									</p>
 								</td>
-								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${speciality.specialityName}</b></span>
-								</td>
+								 <td width="450" height="20" colspan="3">
+								 <span
+									style="font-size: 9pt;">
+									<c:forEach items="${speciality}" var= "s" >
+									<b>${s.specialityName},</b>
+								</c:forEach>
+								</span>
+								</td> 
 							</tr>
-							<%-- <tr>
+							<tr>
 								<td width="100" height="20">
 									<p align="right">
-										<b><span style="font-size: 9pt;">생년월일</span></b>
+										<b><span style="font-size: 9pt;">태그</span></b>
 									</p>
 								</td>
-								<td width="450" height="20" colspan="3"><span
-									style="font-size: 9pt;"><b>${requestScope.member.beforeDateOfBirth}${requestScope.member.dateOfBirth}</b></span>
+								 <td width="450" height="20" colspan="3">
+								 <span
+									style="font-size: 9pt;">
+									<c:forEach items="${tag}" var= "t" >
+									<b>${t.tagName},</b>
+								</c:forEach>
+								</span>
+								</td> 
+							</tr>
+							<tr>
+								<td width="100" height="20">
+									<p align="right">
+										<b><span style="font-size: 9pt;">상담 가격</span></b>
+									</p>
 								</td>
-							</tr> --%>
+								 <td width="450" height="20" colspan="3">
+								 <span
+									style="font-size: 9pt;">
+									<c:forEach items="${price}" var= "p" >
+									<b><c:if test="${p.counselorField==0}">대면상담 : </c:if></b>
+									<span
+									style="font-size: 9pt;">
+									<b><c:if test="${p.counselorField==1}">전화상담 : </c:if></b>
+									</span>
+									<span
+									style="font-size: 9pt;">
+									<b><c:if test="${p.counselorField==2}">채팅상담 : </c:if></b>
+									</span>
+									<span
+									style="font-size: 9pt;">
+									<b><c:if test="${p.counselorField==3}">간편텍스트상담 : </c:if></b>
+									</span>
+									
+									${p.counselorPrice}원,</b>
+								</c:forEach>
+								</span>
+								</td> 
+							</tr>
+							
 
 						</table>
 						<br>
 
-						<%-- <sec:authorize access="isAuthenticated()">
+						 <sec:authorize access="isAuthenticated()">
 
 							<form id="updateForm"
-								action="${pageContext.request.contextPath}/member/memberUpdate"
+								action="${pageContext.request.contextPath}/counselor/counselorUpdate"
 								method="post" style="display: none;">
-
-								<input type="hidden" name="memberCode"
-								value="${pageContext.request.userPrincipal.principal.memberCode}" />
-
 								<input type="hidden" name="memberCode"
 									value='<sec:authentication property="principal.memberCode"/>' />
 								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden" name="password" />
+									value="${_csrf.token}" /> 
+									 <input type="hidden" name="password" /> 
 							</form>
 							
-							<form id="deleteForm"
+							<!--<form id="deleteForm"
 								action="${pageContext.request.contextPath}/member/memberDelete"
 								method="post" style="display: none;">
-
-								<input type="hidden" name="memberCode"
-								value="${pageContext.request.userPrincipal.principal.memberCode}" />
-
 								<input type="hidden" name="memberCode"
 									value='<sec:authentication property="principal.memberCode"/>' />
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" /> 
 									<input type="hidden" name="password" />
-							</form>
-						</sec:authorize> --%>
-						<!--  <form id="deleteForm"
-						action="${pageContext.request.contextPath}/member/delete"
-							method="post" style="display: none" >
-							<input type="hidden" name="memberCode"
-								value="<sec:authentication property="principal.memberCode" />" />
-							
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-								<input type="hidden" name="password" 
-								value="<sec:authentication property="principal.password" />" />
-								
-						</form>-->
+							</form>-->
+						</sec:authorize> 
+						
 
 						<a href="javascript:update();">수정하기</a>
-						<a href ="javascript:memberDelete();">탈퇴하기</a>
+						
 					</div>
 
 				</div>

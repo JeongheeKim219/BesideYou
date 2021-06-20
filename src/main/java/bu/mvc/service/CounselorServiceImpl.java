@@ -32,6 +32,9 @@ public class CounselorServiceImpl implements CounselorService {
 	@Autowired
 	private SpecialityRepository specialityRap;
 	
+	/**
+	 * 상담사 신청
+	 * */
 	@Override
 	public void joinCounselor(Counselor counselor , String [] tagNams, int [] prices,String [] spcNames) {
 		counselorRep.save(counselor);
@@ -67,11 +70,61 @@ public class CounselorServiceImpl implements CounselorService {
 		
 		
 	}
-
+	
+	/**
+	 * 상담사 정보보기
+	 * */
 	@Override
 	public Counselor selectByCounselor(Long memberCode) {
 		
 		return counselorRep.searchBymembercode(memberCode);
+	}
+
+	
+	
+	/**
+	 * 상담사 수정
+	 * */
+	@Override
+	public void updateCounselor(Long code, Counselor counselor, Speciality speciality,String [] spcNames,String [] tagNames, int [] prices) {
+		//Counselor counselorCo = new Counselor(counselor.getCounselorCode());//상담사의 code
+		
+		Counselor co = counselorRep.searchBymembercode(code);
+		System.out.println(co.getCounselorCode());
+		co.setCareer(counselor.getCareer());
+		
+		
+		
+		specialityRap.deleteByCounselorCode(co.getCounselorCode());
+		
+		List<Speciality> spcList = new ArrayList<Speciality>();
+		for(String spcName: spcNames) {
+			Speciality spc = new Speciality(null, spcName, co);
+			spcList.add(spc);
+			
+		}
+		
+		 specialityRap.saveAll(spcList);
+		 
+		 tagRepository.deleteByCounselorCode(co.getCounselorCode());
+		 
+		 List<Tag> tagList = new ArrayList<Tag>();
+			for(String tagName: tagNames) {
+				Tag tag = new Tag(null, tagName, co);
+				tagList.add(tag);
+				
+			}
+			
+			tagRepository.saveAll(tagList);
+			
+			priceRap.deleteByCounselorCode(co.getCounselorCode());
+			priceRap.save(new Price(null, 0, prices[0], co));
+			priceRap.save(new Price(null, 1, prices[1], co));
+			priceRap.save(new Price(null, 2, prices[2], co));
+			priceRap.save(new Price(null, 3, prices[3], co));
+		
+		//counselorRep.updateCounselor(counselor.getCareer(),counselor.getCounselorCode());
+		
 	}
 
 }

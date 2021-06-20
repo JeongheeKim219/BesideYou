@@ -1,6 +1,7 @@
 package bu.mvc.service;
 
 import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Speciality;
 
 public interface CounselorService {
 	
@@ -15,4 +16,8 @@ public interface CounselorService {
 	 * */
 	Counselor selectByCounselor(Long memberCode);
 
+	/**
+	 * 상담사 수정하기
+	 * */
+	void updateCounselor( Long code, Counselor counselor, Speciality speciality,String [] spcNames, String [] tagNames,int [] prices);
 }

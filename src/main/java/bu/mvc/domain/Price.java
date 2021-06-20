@@ -33,5 +33,5 @@ public class Price {
 	
 	@OneToOne
 	@JoinColumn(name = "counselor_code")
-	private Counselor counselorCode;
+	private Counselor counselor;
 }

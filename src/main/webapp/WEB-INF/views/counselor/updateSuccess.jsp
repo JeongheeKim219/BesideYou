@@ -176,8 +176,7 @@
 								<!--  상담사인 경우 -->
 								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
 								   <sec:authentication property="principal.name" />상담사님 안녕하세요.
-								   <li><a href="javascript:counselorRead();">상담사 정보</a>
-								    <li><a href="javascript:read();">회원정보</a></li> 
+								  
 								   <a href="javascript:logout();">로그아웃</a></li>
 								   
 								</sec:authorize>
@@ -191,8 +190,8 @@
                 <div class="container">
                     <div class="row h-full align-items-center">
                         <div class="col-12 px-0">
-                            <h2 style = "color: red">신청이 정상적으로 완료되었습니다</h2>
-                            <h5>관리자가 승인처리하는데까지 약 1~3일 걸립니다.</h5>
+                            <h2 style = "color: red">수정이 정상적으로 완료되었습니다</h2>
+                            
                             
 	
 	<p><a href="${pageContext.request.contextPath}/">메인페이지로 가기</a>
