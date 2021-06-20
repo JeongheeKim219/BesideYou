@@ -93,5 +93,9 @@ public interface CounselService {
 	 * */
 	List<Tag> getTag(Counselor counselor);
 	
+	/**
+	 * 상담사 목록 
+	 * */
+	Page<Counselor> counselorList(Pageable pageable);
 	
 }

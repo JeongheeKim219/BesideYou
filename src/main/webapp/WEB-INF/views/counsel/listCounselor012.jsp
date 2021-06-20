@@ -212,35 +212,6 @@
 				</nav>
 			</div>
 		</div>
-		<section>
-			<div>
-				<div class="background-holder overlay"
-					style="background-image:url(${pageContext.request.contextPath}/assets/images/counsel/bggh.jpg);background-position: center bottom;">
-				</div>
-				<!--/.background-holder-->
-				<div class="container">
-					<div class="row pt-6" data-inertia='{"weight":1.5}'>
-						<div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}"
-							data-zanim-trigger="scroll">
-							<div class="overflow-hidden">
-								<h1 class="color-white fs-4 fs-md-5 mb-0 zopacity"
-									data-zanim='{"delay":0}'>신청된 상담 목록</h1>
-								<!-- 								<div class="nav zopacity" aria-label="breadcrumb" -->
-								<!-- 									role="navigation" data-zanim='{"delay":0.1}'> -->
-								<!-- 									<ol class="breadcrumb fs-1 pl-0 fw-700"> -->
-								<!-- 										<li class="breadcrumb-item"><a class="color-white" -->
-								<!-- 											href="#">Home</a></li> -->
-								<!-- 										<li class="breadcrumb-item active" aria-current="page">About</li> -->
-								<!-- 									</ol> -->
-								<!-- 								</div> -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
 		<section class="background-11" style="padding-top : 50px !important">
 			<div class="container">
 				<div class="row mt-6" style="margin-top: 10px !important">
@@ -248,6 +219,11 @@
 					<div class="col-12">
 						<div
 							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary" style="margin-top: 20px !important">
+							<h3 class="text-center fs-2 fs-md-3">상담예약 요청목록</h3>
+							<hr class="short"
+								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
+								data-zanim-trigger="scroll" />
+							<br>
 							<a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=-1" class="btn btn-outline-info btn-capsule">전체</a>&nbsp;&nbsp;
 							<a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=0" class="btn btn-outline-info btn-capsule">대면</a>&nbsp;&nbsp;
 							<a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=1" class="btn btn-outline-info btn-capsule">전화</a>&nbsp;&nbsp;
