@@ -142,26 +142,17 @@
                     </nav>
                 </div>
             </div>
-            <section>
-                <div>
-                    <div class="background-holder overlay" style="background-image:url(assets/images/background-2.jpg);background-position: center bottom;">
-                    </div>
-                    <!--/.background-holder-->
-                    <div class="container">
-                        <div class="row pt-6" data-inertia='{"weight":1.5}'>
-                            <div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>상담사 선택</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
             <section class="background-11 text-center">
                 <div class="container">
+                <div class="row text-center mb-5">
+                        <div class="col">
+                            <h3 class="fs-2 fs-md-3 fw-600">상담사 선택</h3>
+                            <hr class="short" data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll">
+                       	<div class="col-sm-8 col-lg-12 px-4 px-sm-3 mt-4 mt-sm-0 text-lg-x text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                            <h5 data-zanim='{"delay":0}' class="color-6">내 그림에 답변할 상담사를 선택해주세요.</h5>
+                     </div>
+                        </div>
+                    </div>
                     <div class="row">
                     <c:choose>
                     <c:when test="${not empty list}">

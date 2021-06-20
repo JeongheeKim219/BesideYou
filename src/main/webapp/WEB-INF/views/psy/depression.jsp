@@ -162,29 +162,22 @@ $(function(){
                     </nav>
                 </div>
             </div>
-            <section>
-                <div>
-                    <div class="background-holder overlay" style="background-image:url(/assets/images/background-2.jpg);background-position: center bottom;">
-                    </div>
-                    <!--/.background-holder-->
-                    <div class="container">
+            <section class="background-11 text-center">
+                <div class="container">
+                <div class="container mb-7">
                         <div class="row pt-6" data-inertia='{"weight":1.5}'>
                             <div class="col-md-12 px-md-0 color-white" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden">
-                                    <h1 class="color-white fs-4 fs-md-5 mb-5 zopacity text-center" data-zanim='{"delay":0}'>우울증 검사</h1>
+                                    <h1 class="fs-4 fs-md-5 mb-5 zopacity text-center" data-zanim='{"delay":0}'>우울증 검사</h1>
                                     <div class="overflow-hidden text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                		<h5 data-zanim='{"delay":0.1}'>나의 우울증 지수는 몇 점일까?</h5>
+                                		<h5 data-zanim='{"delay":0.1}' class="color-5">나의 우울증 지수는 몇 점일까?</h5>
+                                		
                             		</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <section class="background-11 text-center">
-                <div class="container">
+               
                   <div>
 					<table class="table table-hover align-middle">
 					  <thead>
