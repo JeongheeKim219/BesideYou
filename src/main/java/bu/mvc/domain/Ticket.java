@@ -1,8 +1,6 @@
 package bu.mvc.domain;
 
 import java.time.LocalDateTime;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -52,11 +50,6 @@ public class Ticket {
 	@JoinColumn(name = "discount_code") //할인코드
 	private Discount discount;
 
-	@OneToOne
-	@JoinColumn(name = "ticket_code")
-	private TicketLines ticketLines;
-	
-	
 	//상담권 코드만 인수로 받는 생성자
 	public Ticket(Long ticketCode) {
 		this.ticketCode = ticketCode;
