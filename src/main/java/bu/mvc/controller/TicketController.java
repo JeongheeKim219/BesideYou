@@ -123,6 +123,13 @@ public class TicketController {
 		Long discountCode = (Long)session.getAttribute("discountCode");
 		int ticketPrice = (int)session.getAttribute("ticketPrice");
 		
+		System.out.println("ticketField : "+ticketField);
+		System.out.println("counselorCode : "+counselorCode);
+		System.out.println("ticketAmount : "+ticketAmount);
+		System.out.println("ticketRemain : "+ticketRemain);
+		System.out.println("discountCode : "+discountCode);
+		System.out.println("ticketPrice : "+ticketPrice);
+		
 		Counselor counselor = counselService.getCounselor(counselorCode);
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Discount discount = discountService.selectByCode(discountCode);

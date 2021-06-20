@@ -25,7 +25,7 @@ public class TicketLinesServiceImpl implements TicketLinesService {
 	}
 
 	@Override
-	public List<TicketLines> searchById(String id, Pageable pageable) {
+	public Page<TicketLines> searchById(String id, Pageable pageable) {
 		return ticketLinesRepository.findByTicketMemberIdLike(id, pageable);
 	}
 

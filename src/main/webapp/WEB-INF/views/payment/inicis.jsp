@@ -41,7 +41,7 @@
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
     		name : 'BesideU 상담권',
-    		amount : '1000'<%-- <%=price%> --%>,  //필수항목
+    		amount : <%=price%>,  //필수항목
     		buyer_email : <%=email%>,
     		buyer_name : <%=name%>,
     		buyer_tel : <%=phone%>,  //필수항목
@@ -103,19 +103,19 @@
                 sessionStorage.setItem("discountCode", <%=discountCode%>);
                 sessionStorage.setItem("ticketPrice", <%=totalPrice%>); --%>
                 
-                var fd = <%=field%>;
+                var frd = <%=field%>;
                 var code = <%=counselorCode%>;
-                var amount = <%=ticketAmount%>;
-                var remain = <%=ticketRemain%>;
+                var amt = <%=ticketAmount%>;
+                var rmn = <%=ticketRemain%>;
                 var dc = <%=discountCode%>;
-                var pr = <%=totalPrice%>;
+                var prc = <%=totalPrice%>;
                 
-                sessionStorage.setItem("ticketField", fd);
+                sessionStorage.setItem("ticketField", frd);
                 sessionStorage.setItem("counselorCode", code);
-                sessionStorage.setItem("ticketAmount", amount);
-                sessionStorage.setItem("ticketRemain", remain);
+                sessionStorage.setItem("ticketAmount", amt);
+                sessionStorage.setItem("ticketRemain", rmn);
                 sessionStorage.setItem("discountCode", dc);
-                sessionStorage.setItem("ticketPrice", pr);
+                sessionStorage.setItem("ticketPrice", prc);
                 
                 location.href="${pageContext.request.contextPath}/ticket/buy";
                 
