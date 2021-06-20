@@ -475,7 +475,7 @@ $(function(){
 														<c:forEach items="${requestScope.ticketLines}" var="tlList">
 															<tbody>
 																<tr>
-																	<th scope="row">${tlList.ticket.ticketCode}-${tlList.ticketLinesCode}</th>
+																	<th scope="row">${tlList.ticketLinesCode}</th>
 																	<td>${tlList.ticket.member.id}</td>
 																	<td>${tlList.ticket.ticketRemain}</td>
 
