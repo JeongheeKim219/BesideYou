@@ -35,7 +35,7 @@ public class Report {
 	
 	@ManyToOne
 	@JoinColumn(name = "REVIEW_CODE")
-	private ReviewStar reviewACode; // 리뷰코드
+	private ReviewStar reviewCode; // 리뷰코드
 	
 	@CreationTimestamp
 	private Date reportDate; // 리뷰작성날짜
@@ -44,7 +44,7 @@ public class Report {
 		super();
 		this.reportCode = reportCode;
 		this.memberCode = memberCode;
-		this.reviewACode = reviewACode;
+		this.reviewCode = reviewACode;
 	}
 	
 	
