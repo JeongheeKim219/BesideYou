@@ -197,7 +197,7 @@ public class CounselorController {
 	
 	@RequestMapping("/counselorJoinList")
 	public void list(Model model,@RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageble = PageRequest.of(nowPage, 10,Direction.DESC,"bno");// --> dao영역(jap영역에서)전체레코드 수 구해서 /10나누고 전체 페이지 구하고 그 페이지중에서 전달받은 nowPage에 해당하는 레코드만 검색해서 content 검색한다.
+		Pageable pageble = PageRequest.of(nowPage, 10,Direction.DESC,"counselorCode");// --> dao영역(jap영역에서)전체레코드 수 구해서 /10나누고 전체 페이지 구하고 그 페이지중에서 전달받은 nowPage에 해당하는 레코드만 검색해서 content 검색한다.
 		Page<Counselor> pageList = counselorService.selectAll(pageble);
 		
 		
