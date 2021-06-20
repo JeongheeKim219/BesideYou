@@ -375,6 +375,8 @@
 									</div>
 								</c:when>
 								<c:otherwise>
+									<h5>답변일 : ${fn:substring(requestAns.ansDate,0,4)}년 ${fn:substring(requestAns.ansDate,5,7)}월 ${fn:substring(requestAns.ansDate,8,10)}일
+										${fn:substring(requestAns.ansDate,11,16)}</h5>
 									<textarea style="width: 100%; height: 500px; background-color:#F2F2F2"
 												readonly="readonly">${requestAns.ansContent}</textarea>
 								</c:otherwise>

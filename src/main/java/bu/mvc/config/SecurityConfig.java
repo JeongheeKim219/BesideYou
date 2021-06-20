@@ -39,9 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/psy/lo/**").authenticated()
 
 		//.antMatchers("/member/*").authenticated()
-		.antMatchers("/**").permitAll()
+		//.antMatchers("/**").permitAll()
 		//.antMatchers("/admin/**").hasRole("ADMIN")
-
+		.antMatchers("/contact/**").access("hasRole('ROLE_MEMBER')")
+		
 		.and()
 		//.csrf().disable()
 		.formLogin()
