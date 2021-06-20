@@ -247,7 +247,7 @@
 								<!--  상담사인 경우 -->
 								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
 								   <sec:authentication property="principal.name" />상담사님 안녕하세요.
-								   <li><a href="javascript:counselorRead();">상담사 정보</a>
+								   <li><a href="${pageContext.request.contextPath}/counselor/read">상담사 정보</a>
 								    <li><a href="javascript:read();">회원정보</a></li> 
 								   <a href="javascript:logout();">로그아웃</a></li>
 								   
@@ -269,15 +269,7 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
-						
-						 <form id="counselorReadForm"
-							action="${pageContext.request.contextPath}/counselor/read"
-							method="post" style="display: none">
-							<input type="hidden" name="memberCode"
-								value="<sec:authentication property="principal.memberCode" />" />
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-						</form>  
+							
 						
 						<form id="counselorJoinForm"
 							action="${pageContext.request.contextPath}/counselor/CounselorJoin"

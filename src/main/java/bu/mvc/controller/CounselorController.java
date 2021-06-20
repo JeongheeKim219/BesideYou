@@ -123,11 +123,11 @@ public class CounselorController {
 	 * 상담사 회원 정보
 	 * */
 	@RequestMapping("/read")
-	public ModelAndView read(Long memberCode) {
+	public ModelAndView read(HttpServletRequest request) {
 	
 		//System.out.println(memberCode);
-		
-		Counselor counselor = counselorService.selectByCounselor(memberCode);
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Counselor counselor = counselorService.selectByCounselor(member.getMemberCode());
 		//System.out.println(counselor);
 		//System.out.println(counselor.getCounselorCode());
 		
