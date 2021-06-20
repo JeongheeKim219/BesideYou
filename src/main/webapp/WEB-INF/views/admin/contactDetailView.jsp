@@ -30,6 +30,21 @@
 <link href="${pageContext.request.contextPath}/adminCss/main.css"
 	rel="stylesheet">
 
+	
+	<script type="text/javascript">
+	function checkValid(){
+		var f = window.document.writeForm;
+		
+		if ( f.contactReplyContent.value == "") {
+		    alert( "내용을 입력해 주세요." );
+		    f.contactReplyContent.focus();
+			return false;
+	    }
+		return true;
+		
+		
+	}
+</script>
 </head>
 <body>
 	<%@include file="./header.jsp"%>
@@ -139,7 +154,7 @@
 											<th scope="row">작성일자</th>
 											<td>${contact.contactDate}</td>
 										</tr>
-									</tbody>
+						</tbody>
 								</table>
 							</div>
 						</div>
@@ -148,31 +163,23 @@
 						<div class="main-card mb-3 card">
 						<div class="card-body">
 							<h5 class="card-title"># ${contact.contactCode}에 대한 답변</h5>
-							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply/${contact.contactCode}">
+
+
+							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply" method="post" onsubmit="return checkValid()" name="writeForm">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<div class="position-relative row form-group">
 									<div class="col-sm-10">
-										<textarea name="text" name="contactReplyContent" class="form-control" rows="10"></textarea>
+										<textarea  name="contactReplyContent" class="form-control" rows="10"></textarea>
 									</div>
 								</div>
-								<fieldset class="position-relative row form-group">
-									<legend class="col-form-label col-sm-6">처리상태 변경</legend>
-									<div class="col-sm-10">
-										<div class="position-relative form-check">
-											<label class="form-check-label"><input name="radio2"
-												type="radio" class="form-check-input">미처리</label>
-										</div>
-										<div class="position-relative form-check">
-											<label class="form-check-label"><input name="radio2"
-												type="radio" class="form-check-input"> 처리</label>
-										</div>
-									</div>
-								</fieldset>
 								<div class="position-relative row form-check">
 									<div class="col-sm-10 offset-sm-6">
 										<button class="btn btn-primary">답변작성</button>
 									</div>
 								</div>
+								<input type="hidden" name="contactCode" value="${contact.contactCode}"/>
 							</form>
+
 						</div>
 					</div>
 					</div>

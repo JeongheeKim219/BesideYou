@@ -2,10 +2,12 @@ package bu.mvc.respsitory;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import bu.mvc.domain.ArtCounselor;
 import bu.mvc.domain.Counselor;
 
 
@@ -21,5 +23,11 @@ public interface CounselorRepository extends JpaRepository<Counselor, Long>{
 	 * 1. 상담사 상태별 조회
 	 */
 	List<Counselor> findAllByCounselorState(int state);
+	
+	/**
+	 * 2. 상담사 신청/등록용 페이지
+	 */
+	Page<Counselor> findByCounselorState(int state, Pageable pageable);
 
+	
 }

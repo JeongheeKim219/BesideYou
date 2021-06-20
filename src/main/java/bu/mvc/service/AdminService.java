@@ -14,18 +14,25 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.IncorrectResultSetColumnCountException;
 import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.AjaxData;
+import bu.mvc.domain.AjaxDataTwo;
+import bu.mvc.domain.Authority;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Ticket;
 import bu.mvc.respsitory.AdminRepository;
+import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
+import bu.mvc.respsitory.ReviewRepository;
+import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service
@@ -46,6 +53,16 @@ public class AdminService {
 
 	@Autowired
 	private ContactRepository contactRep;
+	
+	@Autowired
+	private ReviewRepository reviewRep;
+	
+	@Autowired
+	private AuthorityRepository authorityRep;
+	
+	@Autowired
+	private MemberRepository memRep;
+
 
 	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
 	private LocalDateTime end = LocalDateTime.now();
@@ -78,16 +95,19 @@ public class AdminService {
 		return ticketRep.findByTicketDateBetween(start, end);
 	}
 
+	
 	/**
 	 * 5. 당일 상품권 매출 금액 조회
 	 */
 	public int incomeToday() {
-		List<Ticket> ticketList = new ArrayList<Ticket>();
+		List<Ticket> ticketList = ticketRep.findByTicketDateBetween(start, end);
 		int income = 0;
 
 		for (Ticket ticket : ticketList) {
-			income += (ticket.getTicketAmount() * ticket.getTicketPrice())
-					* (1 - ticket.getDiscount().getDiscountRate() * 0.01);
+			
+		  income += (ticket.getTicketAmount() * ticket.getTicketPrice()) * (1 - (ticket.getDiscount().getDiscountRate() * 0.01));
+			 
+			System.out.println(income);
 		}
 		return income;
 	}
@@ -136,10 +156,8 @@ public class AdminService {
 		return contactRep.findAllByContactState(state);
 	}
 
-	
-	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
+
 	/**
 	 * 9_1. 날짜별 가입한 회원 수 조회 1
 	 */
@@ -180,26 +198,26 @@ public class AdminService {
 	 */
 	public List<Integer> countMemberJoin2(List<String> keyList) {
 		List<Integer> returnList = new ArrayList<Integer>();
-				
-		for(String key : keyList) {
+
+		for (String key : keyList) {
 			Map<String, Object> newMap = new HashMap<String, Object>();
-			Map<String, Object> map =  Optional.ofNullable((Map<String, Object>)adminRep.countJoinMember3(key)).orElse(newMap);
+			Map<String, Object> map = Optional.ofNullable((Map<String, Object>) adminRep.countJoinMember3(key))
+					.orElse(newMap);
 			newMap.put("DAY", key);
 			newMap.put("COUNT", 0);
-		
-			if(map.get("COUNT") == null) {
+
+			if (map.get("COUNT") == null) {
 				returnList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
 			} else {
 				returnList.add(Integer.parseInt(String.valueOf(map.get("COUNT"))));
 
 			}
 		}
-		returnList.forEach(i-> System.out.println(i));
+		returnList.forEach(i -> System.out.println(i));
 		return returnList;
-	
+
 	}
-	
-	
+
 	/**
 	 * 10. 전체 문의 내역 조회
 	 */
@@ -207,7 +225,6 @@ public class AdminService {
 		return contactRep.findAll(pageable);
 	}
 
-	
 	/**
 	 * 11. 문의 내역 상세 조회
 	 * 
@@ -218,7 +235,6 @@ public class AdminService {
 		return contactRep.findById(contactCode).orElse(null);
 	}
 
-	
 /////////////////////////////////////////////////////////////////////////////////////////	
 	/**
 	 * 12. 월별 상담 타입 조회(상담신청일 기준)
@@ -257,48 +273,179 @@ public class AdminService {
 		List<Integer> counselList = new ArrayList<Integer>();
 		
 		AjaxData ajaxData = new AjaxData();
-		
-		for(int i = 0; i < 12; i++) {
-			
+
+		for (int i = 0; i < 12; i++) {
+
 			LocalDate lastMonth = now.minusMonths(i);
 			int year = lastMonth.getYear();
 			int monthValue = lastMonth.getMonthValue();
-			String monthStr = (monthValue < 10)? "0" + monthValue : "" + monthValue;
+			String monthStr = (monthValue < 10) ? "0" + monthValue : "" + monthValue;
 			String dateStr = year + "/" + monthStr;
-			
+
 			dateList.add(0, dateStr);
 		}
-		
-		for(String key : dateList) {
+
+		for (String key : dateList) {
 			Map<String, Object> newMap = new HashMap<String, Object>();
-			Map<String, Object> reqMap =  Optional.ofNullable((Map<String, Object>)adminRep.countCounselReqByMonth(key)).orElse(newMap);			
-			Map<String, Object> counselMap =  Optional.ofNullable((Map<String, Object>)adminRep.countCounselByMonth(key)).orElse(newMap);			
-			
-			if(reqMap.get("COUNT") == null) {
+			Map<String, Object> reqMap = Optional.ofNullable((Map<String, Object>) adminRep.countCounselReqByMonth(key))
+					.orElse(newMap);
+			Map<String, Object> counselMap = Optional
+					.ofNullable((Map<String, Object>) adminRep.countCounselByMonth(key)).orElse(newMap);
+
+			if (reqMap.get("COUNT") == null) {
 				newMap.put("MONTH", key);
 				newMap.put("COUNT", 0);
 				counselReqList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
 			} else {
 				counselReqList.add(Integer.parseInt(String.valueOf(reqMap.get("COUNT"))));
 			}
-		
-			if(counselMap.get("COUNT") == null) {
+
+			if (counselMap.get("COUNT") == null) {
 				newMap.put("MONTH", key);
-				newMap.put("COUNT", 0
-						);
+				newMap.put("COUNT", 0);
 				counselList.add(Integer.parseInt(String.valueOf(newMap.get("COUNT"))));
 			} else {
 				counselList.add(Integer.parseInt(String.valueOf(counselMap.get("COUNT"))));
 			}
-		
+
 		}
-	
+
 		ajaxData.setYearMonthList(dateList);
 		ajaxData.setCounselCountList(counselList);
 		ajaxData.setCounselReqList(counselReqList);
 		return ajaxData;
+	}
+
 	
+	
+	/**
+	 * 11. 월별 상담사 순위 (+별점 평균 가져오기) 구하기
+	 */
+	public AjaxDataTwo rankCounselor(){
+		int counselorsNumber = adminRep.findByMemberType(1).size();
+		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 6);
+		List<Map<String, Object>> listLastMonth = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), counselorsNumber);
+
+		AjaxDataTwo ajaxDataTwo = new AjaxDataTwo();
+		List<String> counselorNameList = new ArrayList<String>();
+		List<Integer> sessionList = new ArrayList<Integer>();
+		List<Integer> gapList = new ArrayList<Integer>();
+		List<Double> starList= new ArrayList<Double>();
+		List<Integer> starCountList = new ArrayList<Integer>();
+		
+		for(Map<String, Object> mapThis : listThisMonth) {
+			Long counselorCode = Long.valueOf(String.valueOf((mapThis.get("COUNSELOR"))));
+			Counselor counselor =  counselorRep.findById(counselorCode).orElse(null);
+			String name = counselor.getMember().getName();			
+		 	int countThisMonth =  Integer.parseInt(String.valueOf(mapThis.get("COUNT")));
+		 	Double avgStar = reviewRep.selectStarAvg(counselorCode);
+		 	List <ReviewStar> starCount= reviewRep.findByCounselorCode(counselor);
+		 	starCountList.add(starCount.size());
+		 	
+		 	int gap = 0;
+		 	
+		 	counselorNameList.add(name);
+		 	sessionList.add(countThisMonth); 
+		 	starList.add(avgStar);
+		 	starCountList.add(starCount.size());
+		 	
+			for(Map<String, Object> mapLast : listLastMonth){  
+					
+				if(mapThis.get("COUNSELOR").equals(mapLast.get("COUNSELOR"))) {
+					gap = countThisMonth - Integer.parseInt(String.valueOf(mapLast.get("COUNT")));
+				} 	
+			}
+			
+			gapList.add(gap);
+		}
+		
+		ajaxDataTwo.setCounselorNameList(counselorNameList);
+		ajaxDataTwo.setSessionList(sessionList);
+		ajaxDataTwo.setGapList(gapList);
+		ajaxDataTwo.setStarList(starList);
+		ajaxDataTwo.setStarCountList(starCountList);
+		
+		return ajaxDataTwo;
+	}
+
+	
+	/**
+	 * 12. 상담사 등록용 상담사 상태 조회
+	 */
+	public Page<Counselor> updateByCounselorState(int state, Pageable pageable){
+		return counselorRep.findByCounselorState(state, pageable);
 	}
 	
 	
+	/**
+	 * 13. 상담사 상태 변경
+	 */
+	public void updateCounselorState(Counselor counselor) {
+		counselorRep.save(counselor);
+		System.out.println("상담사 상태 업데이트");
+	}
+	
+	
+	/**
+	 * 14. 회원 상태 변경
+	 */
+	public void updateMemberType(Member member) {
+		adminRep.save(member);
+	}
+	
+	
+	/**
+	 * 15. 회원 조회(1인) 
+	 */
+	public Member findMember(Long memberCode) {
+		return adminRep.findById(memberCode).orElse(null);
+	}
+	
+	/**
+	 * 멤버코드에 해당하는 멤버 조회
+	 * */
+	public Member selectMember(Long memberCode) {
+		return memRep.findById(memberCode).orElse(null);
+	}
+	
+	/**
+	 * 멤버코드에 해당하는 멤버상태, 멤버타입 업데이트
+	 * */
+	public void updateMember(Long memberCode, int memberState, int memberType) {
+		 Member member = memRep.findById(memberCode).orElse(null);
+		 member.setMemberState(memberState);
+		 member.setMemberType(memberType);
+	}
+	
+	/**
+	 * 16. 멤버코드로 상담사 조회(1인)
+	 */
+	public Counselor findCounselorByMemberCode(Long memberCode) {
+		return counselorRep.searchBymembercode(memberCode);
+	}
+	
+	/**
+	 * 17. 회원 권한 추가
+	 */
+	public void addAuthority(Member member) {
+		Authority authority = new Authority(null, member, "ROLE_COUNSELOR"); 
+		authorityRep.save(authority);
+	}
+	
+	/**
+	 * 18. 회원 전체 조회(일반 + 상담사)
+	 */
+	public Page<Member> selectAll(Pageable pageable){
+		return adminRep.findAll(pageable);
+	}
+
+	/**
+	 * 19. 회원 이름/가명 검색
+	 */
+	public Page<Member> findByAliasAndName(Pageable pageable, String keyword){
+		return adminRep.findByAliasContainingOrNameContaining(pageable, keyword, keyword);
+	}
+
 }
+
+

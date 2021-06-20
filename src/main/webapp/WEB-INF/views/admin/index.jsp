@@ -11,8 +11,7 @@
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Analytics Dashboard - This is an example dashboard
-	created using build-in elements and components.</title>
+<title>Admin Page</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
 <meta name="description"
@@ -28,9 +27,10 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
-<link href="${pageContext.request.contextPath}/adminCss/main.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/adminCss/main.css" rel="stylesheet">
+
 <style>
+
 #rowWidget {
 	display: flex;
 	flex-direction: row;
@@ -48,6 +48,7 @@
 .list-group-item {
 	padding: .75rem 1rem;
 }
+
 </style>
 </head>
 <body>
@@ -60,62 +61,24 @@
 					<div class="page-title-wrapper">
 						<div class="page-title-heading">
 							<div class="page-title-icon">
-								<i class="pe-7s-car icon-gradient bg-mean-fruit"> </i>
+								<i class="fa fa-cog icon-gradient bg-deep-blue icon-gradient bg-deep-blue"></i>
 							</div>
 							<div>
-								Analytics Dashboard
-								<div class="page-title-subheading">This is an example
-									dashboard created using build-in elements and components.</div>
-							</div>
-						</div>
-						<div class="page-title-actions">
-							<button type="button" data-toggle="tooltip"
-								title="Example Tooltip" data-placement="bottom"
-								class="btn-shadow mr-3 btn btn-dark">
-								<i class="fa fa-star"></i>
-							</button>
-							<div class="d-inline-block dropdown">
-								<button type="button" id="ajaxTest" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"
-									class="btn-shadow dropdown-toggle btn btn-info">
-									<span class="btn-icon-wrapper pr-2 opacity-7"> <i
-										class="fa fa-business-time fa-w-20"></i>
-									</span> Buttons
-								</button>
-								<div tabindex="-1" role="menu" aria-hidden="true"
-									class="dropdown-menu dropdown-menu-right">
-									<ul class="nav flex-column">
-										<li class="nav-item"><a href="javascript:void(0);"
-											class="nav-link"> <i class="nav-link-icon lnr-inbox"></i>
-												<span> Inbox </span>
-												<div class="ml-auto badge badge-pill badge-secondary">86</div>
-										</a></li>
-										<li class="nav-item"><a href="javascript:void(0);"
-											class="nav-link"> <i class="nav-link-icon lnr-book"></i>
-												<span> Book </span>
-												<div class="ml-auto badge badge-pill badge-danger">5</div>
-										</a></li>
-										<li class="nav-item"><a href="javascript:void(0);"
-											class="nav-link"> <i class="nav-link-icon lnr-picture"></i>
-												<span> Picture </span>
-										</a></li>
-										<li class="nav-item"><a disabled
-											href="javascript:void(0);" class="nav-link disabled"> <i
-												class="nav-link-icon lnr-file-empty"></i> <span> File
-													Disabled </span>
-										</a></li>
-									</ul>
-								</div>
+								<b>관리자 대쉬보드</b>
+								<div class="page-title-subheading">전체적인 운영상황을 요약해서 보여줍니다.</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
+				<div>
+					</div>
 					<div class="col-md-6 col-xl-4">
+					
 						<div class="card mb-3 widget-content bg-midnight-bloom">
 							<div class="widget-content-wrapper text-white">
 								<div class="widget-content-left">
-									<div class="widget-heading">신규 회원 수</div>
+									<div class="widget-heading">신규 일반회원 가입</div>
 									<div class="widget-subheading">${now}</div>
 								</div>
 								<div class="widget-content-right">
@@ -127,10 +90,10 @@
 						</div>
 					</div>
 					<div class="col-md-6 col-xl-4">
-						<div class="card mb-3 widget-content bg-arielle-smile">
+						<div class="card mb-3 widget-content bg-amy-crisp">
 							<div class="widget-content-wrapper text-white">
 								<div class="widget-content-left">
-									<div class="widget-heading">신규 상담사 수</div>
+									<div class="widget-heading">신규 상담사 회원 가입</div>
 									<div class="widget-subheading">${now}</div>
 								</div>
 								<div class="widget-content-right">
@@ -145,7 +108,7 @@
 						<div class="card mb-3 widget-content bg-grow-early">
 							<div class="widget-content-wrapper text-white">
 								<div class="widget-content-left">
-									<div class="widget-heading">신규 상담신청 수</div>
+									<div class="widget-heading">신규 상담 신청</div>
 									<div class="widget-subheading">${now}</div>
 								</div>
 								<div class="widget-content-right">
@@ -391,28 +354,35 @@
 								<div class="card-header-title">
 									<i class="header-icon lnr-apartment icon-gradient bg-love-kiss">
 									</i> 상담사 별 상담건수
+									<c:out value="${requestScope.counselorList}"/>
 								</div>
 							</div>
 							<div class="card-body">
 								<div class="scroll-area-sm">
 									<div class="scrollbar-container">
-										<ul
-											class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush" id="rank-table">
+											<!-- Ajax로 구현될 영역-->
+										
+											<!-- ----------------- -->
+										<ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+										<c:forEach  var="counselor" items="${requestScope.counselorList}">
 											<li class="list-group-item">
 												<div class="widget-content p-0">
 													<div class="widget-content-wrapper">
 														<div class="widget-content-left mr-3">
-															<img width="42" class="rounded-circle"
+															<%-- <img width="42" class="rounded-circle"
 																src="${pageContext.request.contextPath}/adminCss/assets/images/avatars/9.jpg"
-																alt="">
+																alt=""> --%>
 														</div>
 														</div>
 														<div class="widget-content-right">
 															<div class="widget-content-left">
-															<div class="widget-heading">Ella-Rose Henry</div>
-															<div class="widget-subheading">Web Developer</div>
+															<div class="widget-heading">${counselor.member.name}</div>
+														<c:forEach items="${counselor.speciality}" var="feild">	
+															<div class="widget-subheading">${feild.specialityName}</div>
+														</c:forEach>
 														<div class="font-size-xlg text-muted">
-																<small class="opacity-5 pr-1">$</small> <span>129</span>
+																<small class="opacity-5 pr-1"></small> <span class="count"></span>
 																<small class="text-danger pl-2"> <i
 																	class="fa fa-angle-down"></i>
 																</small>
@@ -421,94 +391,7 @@
 													</div>
 												</div>
 											</li>
-											<li class="list-group-item">
-												<div class="widget-content p-0">
-													<div class="widget-content-wrapper">
-														<div class="widget-content-left mr-3">
-															<img width="42" class="rounded-circle"
-																src="assets/images/avatars/5.jpg" alt="">
-														</div>
-														<div class="widget-content-left">
-															<div class="widget-heading">Ruben Tillman</div>
-															<div class="widget-subheading">UI Designer</div>
-														</div>
-														<div class="widget-content-right">
-															<div class="font-size-xlg text-muted">
-																<small class="opacity-5 pr-1">$</small> <span>54</span>
-																<small class="text-success pl-2"> <i
-																	class="fa fa-angle-up"></i>
-																</small>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="list-group-item">
-												<div class="widget-content p-0">
-													<div class="widget-content-wrapper">
-														<div class="widget-content-left mr-3">
-															<img width="42" class="rounded-circle"
-																src="assets/images/avatars/4.jpg" alt="">
-														</div>
-														<div class="widget-content-left">
-															<div class="widget-heading">Vinnie Wagstaff</div>
-															<div class="widget-subheading">Java Programmer</div>
-														</div>
-														<div class="widget-content-right">
-															<div class="font-size-xlg text-muted">
-																<small class="opacity-5 pr-1">$</small> <span>429</span>
-																<small class="text-warning pl-2"> <i
-																	class="fa fa-dot-circle"></i>
-																</small>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="list-group-item">
-												<div class="widget-content p-0">
-													<div class="widget-content-wrapper">
-														<div class="widget-content-left mr-3">
-															<img width="42" class="rounded-circle"
-																src="assets/images/avatars/3.jpg" alt="">
-														</div>
-														<div class="widget-content-left">
-															<div class="widget-heading">Ella-Rose Henry</div>
-															<div class="widget-subheading">Web Developer</div>
-														</div>
-														<div class="widget-content-right">
-															<div class="font-size-xlg text-muted">
-																<small class="opacity-5 pr-1">$</small> <span>129</span>
-																<small class="text-danger pl-2"> <i
-																	class="fa fa-angle-down"></i>
-																</small>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="list-group-item">
-												<div class="widget-content p-0">
-													<div class="widget-content-wrapper">
-														<div class="widget-content-left mr-3">
-															<img width="42" class="rounded-circle"
-																src="assets/images/avatars/2.jpg" alt="">
-														</div>
-														<div class="widget-content-left">
-															<div class="widget-heading">Ruben Tillman</div>
-															<div class="widget-subheading">UI Designer</div>
-														</div>
-														<div class="widget-content-right">
-															<div class="font-size-xlg text-muted">
-																<small class="opacity-5 pr-1">$</small> <span>54</span>
-																<small class="text-success pl-2"> <i
-																	class="fa fa-angle-up"></i>
-																</small>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
+											</c:forEach>
 										</ul>
 									</div>
 								</div>
@@ -650,7 +533,7 @@
 			<div class="col-md-12">
 				<div class="main-card mb-3 card">
 					<div class="card-header">
-						Active Users
+						상담사 등록 현황
 						<div class="btn-actions-pane-right">
 							<div role="group" class="btn-group-sm btn-group">
 								<button class="active btn btn-focus">Last Week</button>
@@ -899,8 +782,7 @@
 		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
 	<!-- Chart.js -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 
@@ -910,7 +792,8 @@
 			var newJoinMember = new Array();
 			var countCounselList = new Array();
 			var counselReqList = new Array();
-
+		
+			
 			//날짜구하기
 			var v = 1;
 			for (var i = 0; i <= 6; i++) {
@@ -929,6 +812,7 @@
 				today.setDate(today.getDate() - v);
 			}
 
+			
 			//현재일로부터 7일간 일자별 가입회원 수 
 			function countNewMember() {
 				$
@@ -952,40 +836,118 @@
 						});
 			}
 
+			
 			//월별 상담/상담신청 건수 데이터 가져오기
 			function countCounselByMonth() {
-				$
-						.ajax({
-							url : "${pageContext.request.contextPath}/admin/countCounselByMonth",
-							type : "POST",
-							dataType : "json",
-							contentType : 'application/json',
-							success : function(result) {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/admin/countCounselByMonth",
+					type : "POST",
+					dataType : "json",
+					contentType : 'application/json',
+					success : function(result) {
+						$.each(result.counselCountList, function(index,
+								item) {
+							countCounselList.push(item);
+						});
 
-								$.each(result.counselCountList, function(index,
-										item) {
-									countCounselList.push(item);
-								});
+						$.each(result.counselReqList, function(index,
+								item) {
+							counselReqList.push(item);
+						});
 
-								$.each(result.counselReqList, function(index,
-										item) {
-									counselReqList.push(item);
-								});
+						$.each(result.yearMonthList, function(index,
+								item) {
+							monthList.push(item);
+						});
 
-								$.each(result.yearMonthList, function(index,
-										item) {
-									monthList.push(item);
-								});
+						drawNewCounselByMonth();
 
-								drawNewCounselByMonth();
+					},
+					error : function(err) {
+						alert("error");
+					}
+				})
 
-							},
-							error : function(err) {
-								alert("error");
+			}
+			
+			
+			//상담사 순위 데이터 가져오기 + 목록 만들기
+			function rankCounselor() {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/admin/rankCounselor",
+					type : "POST",
+					dataType : "json",
+					success : function(result) {
+						var str = "";
+						$.each(result.counselorNameList, function (index, item){
+							str += "<li class='list-group-item'><div class='widget-content p-0'>" 
+							str += "<div class='widget-content-wrapper'>"
+							str += "<div class='widget-content-left' style='width:60%'><div class='widget-heading'>";
+							str += item + "</div>";
+				
+							if (result.starList[index] == 0){
+								if (result.starCountList[index]  == 0) {
+									str += "<div class='mb-3 progress'>";
+                            		str +=  "<div class='progress-bar bg-danger' role='progressbar' aria-valuenow='" + result.starList[index] +"' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>등록된 별점이 없습니다.</div>";
+                            		str += "</div>";
+								}else {
+									str += "<div class='mb-3 progress'>";
+                            		str +=  "<div class='progress-bar bg-danger' role='progressbar' aria-valuenow='" + result.starList[index] +"' aria-valuemin='0' aria-valuemax='5' style='width: " + 100 + "%;'>" + result.starList[index] + "</div>";
+                            		str += "</div>";
+								}
+							} else if (result.starList[index] < 2){
+   	                            str += "<div class='mb-3 progress'>";
+   	                            str +=  "<div class='progress-bar bg-warning' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + " (" + result.starCountList[index] + ")</div>";
+   	                            str += "</div>";
+	    					} else if (result.starList[index] < 3){
+	                            str += "<div class='mb-3 progress'>";
+		                        str +=  "<div class='progress-bar' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + " (" + result.starCountList[index] + ")</div>";
+		                        str += "</div>";
+		    				} else if (result.starList[index] < 4){
+	                            str += "<div class='mb-3 progress'>";
+			                    str +=  "<div class='progress-bar bg-info' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] +  "(" +  result.starCountList[index] + ")</div>";
+			                    str += "</div>";
+		    				} else if (result.starList[index] >= 4){
+			 	                str += "<div class='mb-3 progress'>";
+		                        str +=  "<div class='progress-bar bg-success' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" +  result.starList[index] + "(" + result.starCountList[index] + ")</div>";
+		                        str += "</div>";
+		    				}
+        					str += "</div>";
+							str += "<div class='widget-content-right'>";
+											
+							if(result.gapList[index] < 0){	
+								str += "<div class='widget-subheading>" + " - " + result.gapList[index] +"   "+ "</div></div>";
+								str += "<div class='font-size-xlg text-muted'>";
+								str += "<small class='opacity-5 pr-5'></small> <span>"+ result.sessionList[index] + "</span>";
+								str += "<small class='text-danger pl-2'> <i class='fa fa-angle-down fa-2x'></i></small>"
+							} else if(result.gapList[index] == 0){
+								str += "<div class='widget-subheading'>" + " - " + "</div></div>";
+								str += "<div class='font-size-xlg text-muted'>";
+								str += "<small class='opacity-5 pr-5'></small> <span>"+ result.sessionList[index] + "</span>";
+								str += "<small class='text-warning pl-2'><i class='fa fa-dot-circle'></i></small>"
+							} else if(result.gapList[index] > 0){
+								str += "<div class='widget-subheading'>" + " + " + result.gapList[index] + "</div></div>";
+								str += "<div class='font-size-xlg text-muted'>";
+								str += "<small class='opacity-5 pr-5'></small> <span>"+ result.sessionList[index] + "</span>";
+								str +="<small class='text-success pl-2'><i class='fa fa-angle-up fa-lg' ></i></small>"
 							}
-						})
+				
+							str += "</div></div></div></div></li>"	
+						
+														
+						});
+		
+						$("#rank-table").after(str);
+						
+														
+					},
+					error : function(err) {
+						alert("error");
+					}
+				});
 			}
 
+			
 			//신규 멤버 일자별 차트 그리기
 			function drawNewMemberChart() {
 				var newMemeberChart = $("#newMemeberChart");
@@ -1008,6 +970,7 @@
 				});
 			}
 
+			
 			// 상담/상담신청 월별 증감 추이 차트 그리기
 			function drawNewCounselByMonth() {
 				var newCounselByMonth = $("#newCounselByMonth");
@@ -1069,6 +1032,7 @@
 
 			countNewMember();
 			countCounselByMonth();
+			rankCounselor();
 
 		})//JQuery Ready 끝
 	</script>

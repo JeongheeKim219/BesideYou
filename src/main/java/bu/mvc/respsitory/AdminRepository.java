@@ -1,5 +1,6 @@
 package bu.mvc.respsitory;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import bu.mvc.domain.Member;
@@ -55,12 +57,34 @@ public interface AdminRepository extends JpaRepository<Member, Long> {
 			+ "HAVING TO_CHAR(c.counselDate, 'yyyy/mm') = ?1 ORDER BY MONTH")
 	Map<String, Object> countCounselByMonth(String date);
 
+
+	/**
+	 * 5. 상담 건수별 상담사 등급 조회
+	 */
+	@Query(value = "SELECT COUNSELOR, COUNT, RANKING FROM ("
+			+ "SELECT COUNSELOR_CODE AS COUNSELOR, COUNT(*) AS COUNT,  RANK () OVER (ORDER BY COUNT(*) DESC) AS RANKING "
+			+ "FROM COUNSEL WHERE TO_CHAR(COUNSEL_REQ_DATE, 'yyyy/mm') = TO_CHAR(:date, 'yyyy/mm') "
+			+ "GROUP BY COUNSELOR_CODE) WHERE RANKING < :rank", nativeQuery = true)
+	public List<Map<String, Object>> selectCounselorByRanking(@Param("date") LocalDate date, @Param("rank")int rank);
 	
+	
+	/** 
+	 * 6. 회원 타입별 전체 조회
+	 */
+	List<Member> findByMemberType(int type);
+
 	
 	/**
-	 * 테스트용
+	 * 7. 회원 전체조회
 	 */
-	//List<Member> findByPasswordStartsWith(String string);
-	List<Member> findByMemberType(int type);
+	Page<Member> findAll(Pageable pageable);
+	
+
+	/**
+	 * 8. 회원 이름/가명 검색
+	 */
+	Page<Member> findByAliasContainingOrNameContaining(Pageable pagable, String alias, String name);
+	
+	
 
 } 

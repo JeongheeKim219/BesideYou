@@ -16,7 +16,6 @@ $(function(){
 			sum += Number($(this).val())
 		})
 		
-	    $("#test").html(sum);
 	    $("#total").val(sum);
 	});
 	
@@ -284,10 +283,9 @@ $(function(){
 					    
 					  </tbody>
 					</table>
-					<div id="test"></div>
-					<form name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/stressInsert">
+					<form name="inForm" method="post" id="inForm" action="${pageContext.request.contextPath}/psy/lo/stressInsert">
 					<input type="hidden" name="testName" value="1">
-					<input type="text" name="total" id="total" value="">
+					<input type="hidden" name="total" id="total" value="">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 					<input type="submit" id="btn" class="btn btn-outline-primary" value="결과보기">
 					</form>

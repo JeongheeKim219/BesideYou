@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 	<head>
         <meta charset="utf-8">
@@ -209,11 +210,11 @@
     </tr>
     </c:when>
     <c:otherwise>
-	<c:forEach items="${requestScope.list}" var="list"> <!-- pageList.getContent() -->
+	<c:forEach items="${requestScope.list}" var="list" varStatus="state"> <!-- pageList.getContent() -->
 		    <tr onmouseover="this.style.background='#eaeaea'" onmouseout="this.style.background='white'">
 		        <td bgcolor="">
 		            <p align="center"><span style="font-size:9pt;">
-		            ${list.faqCode}</span></p>
+		            ${state.count}</span></p>
 		        </td>
 		        <td bgcolor="">
 					<p><span style="font-size:9pt;">
@@ -229,8 +230,10 @@
 </table>
 <hr>
 
-<div align=right>
-<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/faq/write">글쓰기</a>&gt;</span></div>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<div align=right>
+	<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/faq/write">글쓰기</a>&gt;</span></div>
+</sec:authorize>
 
 
 

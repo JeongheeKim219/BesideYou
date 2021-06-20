@@ -1,11 +1,5 @@
 package bu.mvc;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.Map;
-
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
@@ -15,8 +9,8 @@ import org.springframework.test.annotation.Commit;
 
 import bu.mvc.domain.Authority;
 import bu.mvc.domain.Counselor;
+
 import bu.mvc.domain.Member;
-import bu.mvc.domain.Speciality;
 import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.CounselorRepository;
@@ -53,8 +47,8 @@ class BesideYouApplicationTests {
 	 * null, "테스트", "11-111", "qo10@na", 0, 3, LocalDate.of(1998, 8, 20), null)); }
 	 */
 
-	@Autowired
-	private AuthorityRepository authorityRep;
+	//@Autowired
+	//private AuthorityRepository authorityRep;
 	/*@Test
 	void insert() {
 		testRep.save(new Member(null, "admin2", "1234", "관리자", null, "테스트", "11-111", "qo10@na", 0, 3, LocalDate.of(1998, 8, 20), null));
@@ -86,12 +80,11 @@ class BesideYouApplicationTests {
 	 * @Test void insert() { tagRep.save(new Tag(null, "#가정, #친구", new
 	 * Counselor(17L))); }
 	 */
-	@Test
-	void insert() {
-		authorityRep.save(new Authority(null, new Member(3L), "MEMBER"));
-	}
-
-
+	/*
+	 * @Test void insert() { authorityRep.save(new Authority(null, new Member(3L),
+	 * "MEMBER")); }
+	 * 
+	 */
 
 	
 	/*@Test

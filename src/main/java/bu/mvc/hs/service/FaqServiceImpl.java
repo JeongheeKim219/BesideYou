@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.Faq;
@@ -22,7 +23,7 @@ public class FaqServiceImpl implements FaqService {
 	 * */
 	@Override
 	public List<Faq> selectAll() {
-		return faqRepository.findAll();
+		return faqRepository.findAll(Sort.by(Sort.Direction.ASC, "faqCode"));
 	}
 
 	/**

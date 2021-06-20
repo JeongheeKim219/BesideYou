@@ -1,8 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
+ <sec:authorize access="isAuthenticated()">
+							<sec:authentication property="principal.name" var="sessionName"/>
+					   </sec:authorize>
+					   
+<script type="text/javascript">
+function stressCheck(){
+	var loginId="${sessionName}";
+	if(loginId==""){
+		alert("로그인한 후 이용가능한 서비스입니다.")
+	}
+	//alert(111)
+	location.href="${pageContext.request.contextPath}/psy/lo/stress";
+}
+function depressionCheck(){
+	var loginId="${sessionName}";
+	if(loginId==""){
+		alert("로그인한 후 이용가능한 서비스입니다.")
+	}
+	//alert(222)
+	location.href="${pageContext.request.contextPath}/psy/lo/depression";
+}
+</script>
 <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,7 +168,7 @@
                                     <h1 class="color-white fs-4 fs-md-5 mb-0 zopacity" data-zanim='{"delay":0}'>Self Test</h1>
                                     <div class="nav zopacity" aria-label="breadcrumb" role="navigation" data-zanim='{"delay":0.1}'>
                                         <ol class="breadcrumb fs-1 pl-0 fw-700">
-                                            <li class="breadcrumb-item"><a class="color-white" href="#">Home</a></li>
+                                            <li class="breadcrumb-item"><a class="color-white" href="${pageContext.request.contextPath}/index">Home</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">Self Test</li>
                                         </ol>
                                     </div>
@@ -171,8 +195,9 @@
                                     <div class="overflow-hidden">
                                         <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>우울증 자가진단 테스트! <p> 나의 우울증 지수는 몇 점일까?</p>
                                     </div>
+                                    
                                     <div class="overflow-hidden">
-                                    	<a href="${pageContext.request.contextPath}/psy/depression" class="btn btn-outline-primary">START</a>
+                                        <a href="#" class="btn btn-outline-primary" id="startlogin" onclick="depressionCheck()">START</a>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +215,7 @@
                                         <p class="py-3 mb-0" data-zanim='{"delay":0.2}'>스트레스 자가진단 테스트! <p> 나의 스트레스 지수는 몇 점일까?</p>
                                     </div>
                                     <div class="overflow-hidden">
-                                        <a href="${pageContext.request.contextPath}/psy/stress" class="btn btn-outline-primary">START</a>
+                                        <a href="#" class="btn btn-outline-primary" id="startlogin" onclick="stressCheck()">START</a>
                                     </div>
                                 </div>
                             </div>
@@ -198,6 +223,8 @@
                     </div>
                     <!--/.row-->
                 </div>
+                        
+									    
                 <!--/.container-->
             </section>
             <section class=" background-primary py-6">
@@ -319,5 +346,6 @@
         <script src="/assets/js/inertia.js"></script>
         <script src="/assets/js/core.js"></script>
         <script src="/assets/js/main.js"></script>
+        
     </body>
 </html>

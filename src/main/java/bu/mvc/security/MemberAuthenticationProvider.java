@@ -58,15 +58,25 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 		if(!passwordEncoder.matches(pass, member.getPassword())) {	
 			throw new UsernameNotFoundException("비밀번호 오류 입니다..");
 		}
-		//List<Authority> authList = authorityRep.selectAuthorityByUserName(0);
+		if(member.getMemberState()==2) {
+			throw new UsernameNotFoundException("정지 당한 계정입니다..");
+		}
+		if(member.getMemberState()==3) {
+			throw new UsernameNotFoundException("탈퇴한 계정입니다..");
+		}
+		
+	
+		List<String> authList = authorityRep.selectAuthority(member.getMemberCode());
+		
+		 //System.out.println(aut);
 		
 		List<SimpleGrantedAuthority> simpleAuthList = new ArrayList<SimpleGrantedAuthority>();
-		//for(Authority au : authList) {
-		//	simpleAuthList.add(new SimpleGrantedAuthority(au.getRole()));	// DB의 권한을 Security의 권한타입에 맞게 변환하는 과정
-		//}
 		
-		simpleAuthList.add(new SimpleGrantedAuthority("ROLE_USER"));
-		
+		for(String role : authList) {
+			simpleAuthList.add(new SimpleGrantedAuthority(role));	// DB의 권한을 Security의 권한타입에 맞게 변환하는 과정
+	}
+	
+    System.out.println("authList : " + authList);		
 		return new UsernamePasswordAuthenticationToken(member, null, simpleAuthList);
 	}
 

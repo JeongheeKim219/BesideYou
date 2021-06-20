@@ -2,22 +2,25 @@ package bu.mvc.domain;
 
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@ToString
+//@ToString
 @Entity
 @Setter
 @Getter
@@ -41,10 +44,15 @@ public class Counselor {
 	@Column(name="counselor_state")
 	private int counselorState;
 	
-	@ManyToOne
+
+	@OneToMany(mappedBy = "counselor", cascade = CascadeType.ALL)
+	private List<Speciality> speciality;
+
+	@OneToOne
 	@JoinColumn(name="member_code")
 	private Member member; // 회원코드
-
+	
+	
 	public Counselor(Long counselorCode) {
 		super();
 		this.counselorCode = counselorCode;

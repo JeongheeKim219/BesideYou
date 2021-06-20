@@ -43,24 +43,21 @@
 	<div class="scrollbar-sidebar">
 		<div class="app-sidebar__inner">
 			<ul class="vertical-nav-menu">
-				<li class="app-sidebar__heading">Dashboards</li>
-				<li><a href="index.html" class="mm-active"> <i
-						class="metismenu-icon pe-7s-rocket"></i> Dashboard Example 1
+				<li class="app-sidebar__heading">관리자 메뉴</li>
+				<li><a href="${pageContext.request.contextPath}/admin/index" class="mm-active"> 
+				<i class="metismenu-icon fa fa-cog icon-gradient bg-deep-blue fa-lg"> </i> 대쉬보드
 				</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/admin/memberView"> <i
-						class="metismenu-icon pe-7s-users"></i> 회원관리 <i
+						class="metismenu-icon pe-7s-users"></i>회원관리 <i
 						class="metismenu-state-icon pe-7s-users-down caret-left"></i>
 				</a>
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/admin/memberSummary"> <i
-								class="metismenu-icon"></i> 전체회원통계
-						</a></li>
 						<li><a href="${pageContext.request.contextPath}/admin/memberView"> <i
-								class="metismenu-icon"> </i> 일반회원목록
+								class="metismenu-icon"> </i> 전체회원조회
 						</a></li>
-						<li><a href="elements-icons.html"> <i
-								class="metismenu-icon"> </i>Icons
+						<li><a href="${pageContext.request.contextPath}/admin/viewCounselorState">상담사승인<i
+								class="metismenu-icon"> </i>
 						</a></li>
 						<li><a href="elements-badges-labels.html"> <i
 								class="metismenu-icon"> </i>Badges
@@ -83,10 +80,10 @@
 				</a>
 					<ul>
 						<li><a href="components-tabs.html"> <i
-								class="metismenu-icon"> </i>Tabs
+								class="metismenu-icon"> </i>전체결제통계
 						</a></li>
 						<li><a href="components-accordions.html"> <i
-								class="metismenu-icon"> </i>Accordions
+								class="metismenu-icon"> </i>전체결제목록
 						</a></li>
 						<li><a href="components-notifications.html"> <i
 								class="metismenu-icon"> </i>Notifications

@@ -2,11 +2,13 @@ package bu.mvc.domain;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -34,7 +36,7 @@ public class ContactReply { //1:1문의 답변
 	@CreationTimestamp
 	private Date contactReplyDate; //문의글 답변 작성일
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "contact_code")
 	private Contact contact;
 
