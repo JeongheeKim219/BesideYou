@@ -43,7 +43,7 @@
         			alert("우편번호를 입력하세요");				
         			return false;
         		}	
-        		if($("#registerForm :input[name=address]").val().trim()==""){
+        		if($("#registerForm :input[name=firstAddr]").val().trim()==""){
         			alert("주소를 입력하세요");				
         			return false;
         		}	
@@ -63,6 +63,11 @@
         			alert("아이디 중복확인을 하세요");
         			return false;
         		}	 
+        		 var addr = "";
+         		addr += $("#sample6_address").val();
+         		addr += " ";
+         		addr += $("#sample6_detailAddress").val();
+         		$("input[name=memberAddr]").val(addr);
         		
         	});//submit
         	
@@ -227,14 +232,16 @@
                                             <input class="form-control" type="text" placeholder="Email Address"  name = "email" aria-label="Text input with dropdown button">
                                         </div>
                                         <div class="col-12 mt-4">
-                                        <input type="text" id="sample6_postcode" name = "postcode" placeholder="우편번호">
-										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                                        <input type="text" id="sample6_postcode" name = "postcode" placeholder="우편번호" readonly="readonly">
+										<input class="btn btn-secondary" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 										</div>
 										
 										<div class="col-12 mt-4">
-										<input class="form-control" type="text" id="sample6_address" name = "memberAddr" placeholder="주소">
+										<input class="form-control" type="text" id="sample6_address" name = "firstAddr" placeholder="주소" readonly="readonly">
 										<input class="form-control" type="text" id="sample6_detailAddress" name = "detailAddress" placeholder="상세주소">
-										<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목">
+										<input type="hidden" name = "memberAddr">
+										<input  class="form-control" type="text" id="sample6_extraAddress" name = "extraAddress" placeholder="참고항목" readonly="readonly">
+										
 										</div>
                                         
                                         <div class="col-12 mt-4">

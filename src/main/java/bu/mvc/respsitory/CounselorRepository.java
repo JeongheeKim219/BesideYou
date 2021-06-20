@@ -30,4 +30,11 @@ public interface CounselorRepository extends JpaRepository<Counselor, Long>{
 	Page<Counselor> findByCounselorState(int state, Pageable pageable);
 
 	
+	/**
+	 * 상담사정보 수정하기
+	 * */
+/*	@Query("update Counselor c set  c.career=?1 where c.counselorCode=?2")
+	@Modifying
+	void updateCounselor(String career, Long counselorCode);*/
+	
 }

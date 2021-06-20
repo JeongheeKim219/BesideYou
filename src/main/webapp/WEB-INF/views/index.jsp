@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,13 @@
 	function read() {
 		document.getElementById("readForm").submit();
 	}
+	function counselorRead(){
+		document.getElementById("counselorReadForm").submit();
+	}
+	function counselorJoin(){
+		document.getElementById("counselorJoinForm").submit();
+	}
+	
 </script>
 
 <!--  -->
@@ -181,62 +189,78 @@
 									<li><a href="components-slider.html">Slider</a></li>
 									<li><a href="components-typography.html">Typography</a></li>
 								</ul></li>
-								<li><a href="${pageContext.request.contextPath}/psy/list">Self Test</a>
-								<ul class="dropdown fs--1">
-									<li><a href="${pageContext.request.contextPath}/psy/lo/depression">우울증 검사</a></li>
-									<li><a href="${pageContext.request.contextPath}/psy/lo/stress">스트레스 검사</a></li>
-									<li><a href="${pageContext.request.contextPath}/psy/art">그림 검사</a></li>
-								</ul></li>
-								<sec:authorize access="isAuthenticated()">
-								<li><a href="#">My Page</a>
-								<ul class="dropdown fs--1">
-									<li><a href="${pageContext.request.contextPath}/psy/lo/result">결과목록</a></li>
-									<li><a href="${pageContext.request.contextPath}/psy/lo/answerList">그림검사 답변</a></li>
-								</ul></li>
-								<!-- 상담사일때만 나오게 -->
-								<li><a href="#">Counselor</a>
-								<ul class="dropdown fs--1">
-									<li><a href="${pageContext.request.contextPath}/psy/lo/signupArt">그림상담사 등록</a></li>
-									<li><a href="${pageContext.request.contextPath}/psy/lo/requestList">그림검사 요청목록</a></li>
-									<li><a href="${pageContext.request.contextPath}/psy/lo/cancle">그림상담사 해지</a></li>
-								</ul></li>
-								</sec:authorize>
 							<li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
 						</ul>
-						<ul class="navbar-nav ml-lg-auto">
 						
+						<ul class="navbar-nav ml-0" style="font-align : right; ">
 							<!-- 인증 안됐으면 -->
+							
 							<sec:authorize access="isAnonymous()">
+							
 								<!-- 또는 !isAuthenticated() 로 비교해도 된다.  로그인을 하지 않은 사용자-->
 
 								<li><a
 									href="${pageContext.request.contextPath}/member/login">Login</a></li>
 								<li><a
 									href="${pageContext.request.contextPath}/member/joinForm">Join</a></li>
+							
 							</sec:authorize>
-
+						
+							
 							<!-- 인증 됐으면 -->
 							<sec:authorize access="isAuthenticated()">
 
 								<!-- 일반회원이거나 관리자인 경우. 두개 이상의 role을 비교할 때 hasAnyRole() -->
-								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+								
 								</sec:authorize>
-								<li>
+								
+								<!-- 일반회원인 경우 -->
+								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN') and !hasRole('ROLE_COUNSELOR')">
+									 <li>
 									<p>
 										<sec:authentication property="principal.name" />
 										님 환영합니다.
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
+								
 								<li><a href="javascript:read();">회원정보</a></li>
-								<li><a href="javascript:logout();">로그아웃</a></li>
+								<li><a href="javascript:counselorJoin();">상담사 신청</a></li>
+								<li><a href="javascript:logout();">로그아웃</a></li> 
+
+								</sec:authorize>
+								
+								 <!-- 관리자인 경우 -->
+								 <sec:authorize access="hasRole('ROLE_ADMIN')">
+									 <li>
+									<p>
+										<sec:authentication property="principal.name" />
+										님 환영합니다.
+										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+								</li>
+								<!-- <li><a href="javascript:read();">회원정보</a></li> -->
+								<li><a href="admin/index">관리자페이지</a>
+								<li><a href="javascript:logout();">로그아웃</a></li> 
+
+								</sec:authorize>  
+								
+								<!--  상담사인 경우 -->
+								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+								   <sec:authentication property="principal.name" />상담사님 안녕하세요.
+								   <li><a href="${pageContext.request.contextPath}/counselor/read">상담사 정보</a>
+								    <li><a href="javascript:read();">회원정보</a></li> 
+								   <a href="javascript:logout();">로그아웃</a></li>
+								   
+								</sec:authorize>
 								
 								
-								<form id="logoutForm"
+						<form id="logoutForm"
 							action="${pageContext.request.contextPath}/member/logout"
 							method="post" style="display: none">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
+						
 						<form id="readForm"
 							action="${pageContext.request.contextPath}/member/read"
 							method="post" style="display: none">
@@ -245,6 +269,16 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
+							
+						
+						<form id="counselorJoinForm"
+							action="${pageContext.request.contextPath}/counselor/CounselorJoin"
+							method="post" style="display: none">
+							<input type="hidden" name="memberCode"
+								value="<sec:authentication property="principal.memberCode" />" />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>  
 						
 							</sec:authorize>
 						</ul>
