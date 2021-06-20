@@ -160,16 +160,18 @@ public class AdminController {
 	 * 11. 회원 정보 상세보기 페이지로 이동
 	 */
 	@RequestMapping("/memberDetailView/{memberCode}")
-	public String viewMemberDetail(@PathVariable Long memberCode, Model model) {
+	public String viewMemberDetail(@RequestParam(defaultValue = "0") int currentPage,  @PathVariable Long memberCode, Model model) {
 		Member member = adminService.selectMember(memberCode);
 		model.addAttribute("member", member);
+		Pageable ticketPageable = PageRequest.of(currentPage, 10, Direction.DESC, "ticketCode");
+		Pageable ticketLinesPageable = PageRequest.of(currentPage, 10, Direction.DESC, "ticketLinesCode");
 		
 		//멤버코드에 해당하는 결제내역
-		List<Ticket> ticket = adminService.findByMemberMemberCode(memberCode);
+		Page<Ticket> ticket = adminService.findByMemberMemberCode(ticketPageable, memberCode);
 		model.addAttribute("ticket", ticket);
 		
 		//사용내역
-		List<TicketLines> ticketLines = adminService.findByTicketMemberMemberCode(memberCode);
+		Page<TicketLines> ticketLines = adminService.findByTicketMemberMemberCode(ticketLinesPageable, memberCode);
 		model.addAttribute("ticketLines", ticketLines);
 		
 		//리뷰

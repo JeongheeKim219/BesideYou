@@ -112,6 +112,7 @@
 											double totalPrice = price * (1 - (rate * 0.01));
 											pageContext.setAttribute("totalPrice", totalPrice);
 											%>
+											
 											<tbody>
 												<tr>
 													<th scope="row">${tkList.member.id}</th>
