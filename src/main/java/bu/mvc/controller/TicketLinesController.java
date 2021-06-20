@@ -25,11 +25,17 @@ public class TicketLinesController {
 	/**
 	 * 상담권 사용 내역 전체보기 : 관리자
 	 * */
-	@RequestMapping("/list")
+	@RequestMapping("/viewTicketLines")
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
 		Page<TicketLines> tlList = ticketLinesService.selectAll(pageable);
-		return new ModelAndView("ticket/ticketLinesAdmin", "tlList", tlList);
+		ModelAndView mv = new ModelAndView("ticketLines/ticketLineView", "tlList", tlList);
+		
+		if(tlList.getNumberOfElements() == 0) {
+			mv.addObject("errorMessage", "상담권 사용내역이 없습니다.");
+		}
+		
+		return mv;
 	}
 	
 	/**

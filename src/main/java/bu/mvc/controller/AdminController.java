@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,10 +30,13 @@ import bu.mvc.domain.ContactReply;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Ticket;
+import bu.mvc.domain.TicketLines;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.service.AdminService;
+import bu.mvc.service.TicketLinesService;
 import bu.mvc.service.TicketService;
 
 @Controller
@@ -44,13 +48,15 @@ public class AdminController {
 
 	@Autowired
 	private MemberRepository memberRep;
-	
+
 	@Autowired
 	private CounselorRepository counselorRep;
-	
+
 	@Autowired
 	private TicketService ticketService;
-	
+
+	@Autowired
+	private TicketLinesService ticketLinesService;
 	
 	/**
 	 * 1. 어드민 인덱스로 이동
@@ -69,10 +75,11 @@ public class AdminController {
 		model.addAttribute("dayIncome", incomeToday());
 		model.addAttribute("stateMap", countCounselByState());
 		model.addAttribute("registerStateMap", counselorByState());
-		
+
 		return "admin/index";
 	}
 
+		
 	
 	/**
 	 * 2. 신규 회원 타입별 가입자 인원수 조회
@@ -81,7 +88,6 @@ public class AdminController {
 		return adminService.selectNewMemberList(memberType);
 	}
 
-	
 	/**
 	 * 3. 회원 통계 페이지로 이동 !!!!!!!!!!!!!!!!!!!!!!!!!!세부 데이터 필요!!!!!!!!!!!!!!!!!!!!!!!!
 	 */
@@ -90,7 +96,6 @@ public class AdminController {
 
 		return "admin/memberSummary";
 	}
-
 
 	/**
 	 * 4. 회원 전체 보기 페이지로 이동 1) 전체 회원 조회 2) 페이징
@@ -104,7 +109,6 @@ public class AdminController {
 		return "admin/memberView";
 	}
 
-	
 	/**
 	 * 5. 해당 월 상담상태별 조회
 	 */
@@ -149,21 +153,172 @@ public class AdminController {
 		return adminService.countMemberJoin2(ajaxData.getWeekList());
 	}
 
-
+	
+	
+//////////////////////////////////////////수현님 소스////////////////////////////////////////////////////////////////	
+	
 	/**
 	 * 11. 회원 정보 상세보기 페이지로 이동
 	 */
 	@RequestMapping("/memberDetailView/{memberCode}")
-	public String viewMemberDetail(@PathVariable Long memberCode, Model model) {
+	public String viewMemberDetail(@PathVariable Long memberCode, Model model
+			,@RequestParam(defaultValue = "1") int nowTicketPage
+			,@RequestParam(defaultValue = "1") int nowTicketLinesPage
+			,@RequestParam(defaultValue = "1") int nowReviewPage
+			,@RequestParam(defaultValue = "1") int nowCounselPage
+			,@RequestParam(defaultValue = "0") int currentPage
+			) {
 		Member member = adminService.selectMember(memberCode);
 		model.addAttribute("member", member);
+		
+		//멤버코드에 해당하는 결제내역
+		Pageable pageableTicket = PageRequest.of((nowTicketPage-1), 3, Direction.DESC, "ticketDate");
+		Page<Ticket> ticket = adminService.findByMemberMemberCode(pageableTicket, memberCode);
+		int ticketBlock = 5;
+		int ticketTemp = (nowTicketPage-1) % ticketBlock;
+		int ticketStartPage = nowTicketPage - ticketTemp;
+		model.addAttribute("ticket", ticket);
+		model.addAttribute("ticketBlock", ticketBlock);
+		model.addAttribute("nowTicketPage", nowTicketPage);
+		model.addAttribute("ticketStartPage", ticketStartPage);
+		
+		//사용내역
+		/*Pageable pageableTicketLines = PageRequest.of((nowTicketLinesPage-1), 3, Direction.DESC, "ticketDate");
+		Page<TicketLines> ticketLines = adminService.findByTicketMemberMemberCode(pageableTicketLines, memberCode);
+		int ticketLinesBlock = 5;
+		int ticketLinesTemp = (nowTicketLinesPage-1) % ticketLinesBlock;
+		int ticketLinesStartPage = nowTicketLinesPage - ticketLinesTemp;
+		model.addAttribute("ticketLines", ticketLines);
+		model.addAttribute("ticketLinesBlock", ticketLinesBlock);
+		model.addAttribute("nowTicketLinesPage", nowTicketLinesPage);
+		model.addAttribute("ticketLinesStartPage", ticketLinesStartPage);*/
+		
+		//리뷰
+		Pageable pageableReview = PageRequest.of((nowReviewPage-1), 3, Direction.DESC, "reviewDate");
+		Page<ReviewStar> reviewStar = adminService.findReviewByMemberMemberCode(pageableReview, memberCode);
+		int reviewBlock = 5;
+		int reviewTemp = (nowReviewPage-1) % reviewBlock;
+		int reviewStartPage = nowReviewPage - reviewTemp;
+		model.addAttribute("reviewStar", reviewStar);
+		model.addAttribute("reviewBlock", reviewBlock);
+		model.addAttribute("nowReviewPage", nowReviewPage);
+		model.addAttribute("reviewStartPage", reviewStartPage);
+		
+		//상담
+		Pageable pageableCounsel = PageRequest.of((nowCounselPage-1), 3, Direction.DESC, "counselReqDate");
+		Page<Counsel> counsel = adminService.findCounselByMemberMemberCode(pageableCounsel, memberCode);
+		int counselBlock = 5;
+		int counselTemp = (nowCounselPage-1) % counselBlock;
+		int counselStartPage = nowCounselPage - counselTemp;
+		model.addAttribute("counsel", counsel);
+		model.addAttribute("counselBlock", counselBlock);
+		model.addAttribute("nowCounselPage", nowCounselPage);
+		model.addAttribute("counselStartPage", counselStartPage);
+		
+		//일대일문의
+		Pageable pageableContact = PageRequest.of(currentPage, 7, Direction.DESC, "contactCode");
+		Page<Contact> contactPage = adminService.findContactByMemberMemberCode(pageableContact, memberCode);
+		model.addAttribute("contactPage", contactPage);
+		
+		if(contactPage.hasNext()) {
+			model.addAttribute("next", 1);
+		}
+		
+		if(contactPage.hasPrevious()) {
+			model.addAttribute("previous", 1);
+		}
+		
+		
+		
+		
+		
+		
+		System.out.println(pageableContact.hasPrevious());
+		System.out.println(pageableContact.next());
+		System.out.println(pageableContact.getPageNumber());
+		
+		
+		//테스트
+		/*List<Psychology> psychology = adminService.findPsychologyByMemberMemberCode(memberCode);
+		model.addAttribute("psychology", psychology);*/
+		
 		return "admin/memberDetailView";
 	}
 
+/////////////////////////////////////////////////수현님 소스 끝////////////////////////////////////////////////////////////////	
+	
+	
+	
+	
+	
+	/*	*//**
+			 * 11. 회원 정보 상세보기 페이지로 이동
+			 *//*
+				 * @RequestMapping("/memberDetailView/{memberCode}") public String
+				 * viewMemberDetail(@PathVariable Long memberCode, Model model
+				 * ,@RequestParam(defaultValue = "1") int nowTicketPage
+				 * ,@RequestParam(defaultValue = "1") int nowTicketLinesPage
+				 * ,@RequestParam(defaultValue = "1") int nowReviewPage
+				 * ,@RequestParam(defaultValue = "1") int nowCounselPage ) {
+				 * 
+				 * Member member = adminService.selectMember(memberCode);
+				 * model.addAttribute("member", member); Pageable ticketPageable =
+				 * PageRequest.of(currentPage, 10, Direction.DESC, "ticketCode"); Pageable
+				 * ticketLinesPageable = PageRequest.of(currentPage, 10, Direction.DESC,
+				 * "ticketLinesCode");
+				 * 
+				 * //멤버코드에 해당하는 결제내역 Page<Ticket> ticket =
+				 * adminService.findByMemberMemberCode(ticketPageable, memberCode); Pageable
+				 * pageableTicket = PageRequest.of((nowTicketPage-1), 3, Direction.DESC,
+				 * "ticketDate"); Page<Ticket> ticket =
+				 * adminService.findByMemberMemberCode(pageableTicket, memberCode); int
+				 * ticketBlock = 5; int ticketTemp = (nowTicketPage-1) % ticketBlock; int
+				 * ticketStartPage = nowTicketPage - ticketTemp;
+				 * 
+				 * model.addAttribute("ticket", ticket); model.addAttribute("ticketBlock",
+				 * ticketBlock); model.addAttribute("nowTicketPage", nowTicketPage);
+				 * model.addAttribute("ticketStartPage", ticketStartPage);
+				 * 
+				 * Page<TicketLines> ticketLines =
+				 * adminService.findByTicketMemberMemberCode(ticketLinesPageable, memberCode);
+				 * 
+				 * model.addAttribute("ticketLines", ticketLines);
+				 * model.addAttribute("ticketLinesBlock", ticketLinesBlock);
+				 * model.addAttribute("nowTicketLinesPage", nowTicketLinesPage);
+				 * model.addAttribute("ticketLinesStartPage", ticketLinesStartPage);
+				 */
+/*
+	// 리뷰
+	Pageable pageableReview = PageRequest.of((nowReviewPage - 1), 3, Direction.DESC, "reviewDate");
+	Page<ReviewStar> reviewStar = adminService.findReviewByMemberMemberCode(pageableReview, memberCode);
+	int reviewBlock = 5;
+	int reviewTemp = (nowReviewPage - 1) % reviewBlock;
+	int reviewStartPage = nowReviewPage
+			- reviewTemp;model.addAttribute("reviewStar",reviewStar);model.addAttribute("reviewBlock",reviewBlock);model.addAttribute("nowReviewPage",nowReviewPage);model.addAttribute("reviewStartPage",reviewStartPage);
+
+	// 상담
+	Pageable pageableCounsel = PageRequest.of((nowCounselPage - 1), 3, Direction.DESC, "counselReqDate");
+	Page<Counsel> counsel = adminService.findCounselByMemberMemberCode(pageableCounsel, memberCode);
+	int counselBlock = 5;
+	int counselTemp = (nowCounselPage - 1) % counselBlock;
+	int counselStartPage = nowCounselPage
+			- counselTemp;model.addAttribute("counsel",counsel);model.addAttribute("counselBlock",counselBlock);model.addAttribute("nowCounselPage",nowCounselPage);model.addAttribute("counselStartPage",counselStartPage);
+
+	// 일대일문의
+	List<Contact> contact = adminService
+			.findContactByMemberMemberCode(memberCode);model.addAttribute("contact",contact);
+
+	// 테스트
+	List<Psychology> psychology = adminService
+			.findPsychologyByMemberMemberCode(memberCode);model.addAttribute("psychology",psychology);
+
+	return"admin/memberDetailView";
+	}
+
+	*/
+	
 	
 
-
-	
 	/**
 	 * 14. 답변작성
 	 */
@@ -173,29 +328,27 @@ public class AdminController {
 		return "redirect:/admin/viewContactDetail/{contactCode}";
 	}
 
-
 	/**
 	 * (차트) 15.해당 월 기준 12개월간 상담 건수
 	 */
 	@ResponseBody
 	@RequestMapping("/countCounselByMonth")
-	public AjaxData countCounselByMonth(){
+	public AjaxData countCounselByMonth() {
 		return adminService.countCounselByMonth();
 	}
-	
-	
+
 	/**
-	 * 회원상태, 회원타입 업데이트
-	 * */
+	 * 회원상태 업데이트
+	 */
 	@RequestMapping("/update/{memberCode}")
 	public String update(@PathVariable Long memberCode, Integer state, Integer type) {
-		//System.out.println(state +", "+type);
-		adminService.updateMember(memberCode, state, type);
-		
+		// System.out.println(state +", "+type);
+
+		adminService.updateMember(memberCode, state);
+
 		return "redirect:/admin/memberView";
 	}
-	
-	
+
 	/**
 	 * 16. 해당 월 상담사 순위 조회(신청일, 상담건수 기준)
 	 */
@@ -204,44 +357,44 @@ public class AdminController {
 	public AjaxDataTwo rankCouselorAjaxData() {
 		AjaxDataTwo ajaxDataTwo = adminService.rankCounselor();
 		return ajaxDataTwo;
-	
+
 	}
-	
+
 	/**
 	 * 17. 상담사 등록용 전체 상담사 조회
 	 */
-	@RequestMapping("/viewCounselorState")
-	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage){
-		
+	@RequestMapping({ "/viewCounselorState", "/viewCounselorState/{counselorState}" })
+	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage,
+			@PathVariable Optional<Integer> counselorState) {
 		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "counselorCode");
-		Page<Counselor> requestList  = adminService.updateByCounselorState(0, pageable);
-		Page<Counselor> deniedList = adminService.updateByCounselorState(1, pageable);
-		Page<Counselor> approvedList  = adminService.updateByCounselorState(2, pageable);
-		Page<Counselor> revokedList  = adminService.updateByCounselorState(3, pageable);
+		Page<Counselor> pageList = adminService.findAllCounselor(pageable);
+		Integer state = (counselorState.isPresent()) ? counselorState.get() : 4;
 
-		
-		model.addAttribute("requestList", requestList);
-		model.addAttribute("deniedList", deniedList);
-		model.addAttribute("approvedList", approvedList);
-		model.addAttribute("revokedList", revokedList);
-		
+		if (state == 4) {
+			model.addAttribute("pageList", pageList);
+		} else {
+			model.addAttribute("pageList", adminService.updateByCounselorState(state, pageable));
+		}
+
+		if (pageList.getTotalPages() == 0) {
+			model.addAttribute("errorMessage", "조회된 상담사 회원이 없습니다.");
+		}
+
 		return "admin/counselorView";
 	}
-	
-	
+
 	/**
 	 * 18. 자격증 다운로드
 	 */
 	@RequestMapping("/download")
 	public ModelAndView download(String fileName, HttpSession session) {
-		
+
 		String path = session.getServletContext().getRealPath("/save");
-		File file = new File(path + "/" + fileName); 
-		
+		File file = new File(path + "/" + fileName);
+
 		return new ModelAndView("downLoadView", "fname", file);
 	}
-		
-	
+
 	/**
 	 * 19. 상담사 승인/ 반려
 	 */
@@ -249,40 +402,52 @@ public class AdminController {
 	public String approvalDenial(@PathVariable Long memberCode, @PathVariable int state) {
 		Member member = adminService.findMember(memberCode);
 		Counselor counselor = adminService.findCounselorByMemberCode(memberCode);
-	
-		counselor.setCounselorState(state);
-		member.setMemberType(1);
-		
-		adminService.updateCounselorState(counselor);
-		adminService.updateMemberType(member);
-		adminService.addAuthority(member);		
-		
-		return "redirect:/admin/viewCounselorState";	
+
+		if (state == 2) {
+
+			counselor.setCounselorState(state);
+			member.setMemberType(1);
+
+			adminService.updateCounselorState(counselor);
+			adminService.addAuthority(member);
+
+		} else if (state == 1) {
+			adminService.updateMemberType(member);
+
+			counselor.setCounselorState(state);
+			adminService.updateCounselorState(counselor);
+		}
+
+		return "redirect:/admin/viewCounselorState";
 	}
-	
-	
+
 	/**
 	 * 20. 회원 이름/가명 검색
 	 */
-	  @RequestMapping("/selectByNameAndAlias") 
-	  public String selectByNameAndAlias(String keyword, @RequestParam(defaultValue = "0") int currentPage, Model model) {
-		  Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "memberCode");
-		  Page<Member> pageList = adminService.findByAliasAndName(pageable, keyword);
-		  model.addAttribute("pageList", pageList);
-		  
-		  if(pageList.getNumberOfElements() == 0) {
-			  model.addAttribute("errorMessage", "검색결과가 없습니다.");
-		  }
-		  
-		  return "admin/memberView";
-	  }
-	  
-	  
+	@RequestMapping("/selectByNameAndAlias")
+	public String selectByNameAndAlias(String keyword, @RequestParam(defaultValue = "0") int currentPage, Model model) {
+		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "memberCode");
+		Page<Member> pageList = adminService.findByAliasAndName(pageable, keyword);
+		model.addAttribute("pageList", pageList);
+
+		if (pageList.getTotalPages() == 0) {
+			model.addAttribute("errorMessage", "검색결과가 없습니다.");
+		}
+
+		return "admin/memberView";
+	}
+
+	/**
+	 * 결제내역 조회
+	 * 
+	 * @param nowPage
+	 * @return ModelAndView
+	 */
 	@RequestMapping("/ticketView")
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "ticketCode");
+		Pageable pageable = PageRequest.of(nowPage, 15, Direction.DESC, "ticketCode");
 		Page<Ticket> tkList = ticketService.selectAll(pageable);
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/ticketView");
 		mv.addObject("tkList", tkList);
@@ -291,7 +456,20 @@ public class AdminController {
 		return mv;
 	}
 	
+	/**
+	 * 상담권 사용 내역 전체보기 : 관리자
+	 * */
+	@RequestMapping("/viewTicketLines")
+	public String ticketLinesList(@RequestParam(defaultValue = "0") int nowPage, Model model) {
+		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketLinesDate");
+		Page<TicketLines> tlList = ticketLinesService.selectAll(pageable);
+		
+		if(tlList.getTotalPages() == 0) {
+			model.addAttribute("errorMessage", "상담권 사용내역이 없습니다.");
+		}
+		
+		return "admin/ticketLineView";
+	}
+	
+
 }
-
-
-

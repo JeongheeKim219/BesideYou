@@ -12,15 +12,25 @@ import org.springframework.test.annotation.Commit;
 import bu.mvc.domain.Art;
 import bu.mvc.domain.ArtAnswer;
 import bu.mvc.domain.ArtCounselor;
+import bu.mvc.domain.Contact;
+import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Psychology;
+import bu.mvc.domain.ReviewStar;
+import bu.mvc.domain.Ticket;
+import bu.mvc.domain.TicketLines;
 import bu.mvc.respsitory.ArtAnswerRepository;
 import bu.mvc.respsitory.ArtCounselorRepository;
 import bu.mvc.respsitory.ArtRepository;
+import bu.mvc.respsitory.ContactRepository;
+import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.PsychologyRepository;
+import bu.mvc.respsitory.ReviewRepository;
+import bu.mvc.respsitory.TicketLinesRepository;
+import bu.mvc.respsitory.TicketRepository;
 
 @SpringBootTest
 @Transactional
@@ -44,6 +54,66 @@ public class ArtTest {
 	
 	@Autowired
 	private CounselorRepository cRep;
+	
+	@Autowired
+	private TicketLinesRepository tRep;
+	
+	@Autowired
+	private TicketRepository ticketRep;
+	
+	@Autowired
+	private ReviewRepository reRep;
+	
+	@Autowired
+	private CounselRepository coRep;
+	
+	@Autowired
+	private ContactRepository contactRep;
+	
+	@Test
+	void werq() {
+		List<Psychology> list= psyRep.findByMemberMemberCode(82L);
+		System.out.println("size"+list.size());
+		list.forEach(a->System.out.println(a));
+	}
+	
+	@Test
+	void asdgser() {
+		List<Contact> list= contactRep.findByMemberMemberCode(218L);
+		System.out.println("size"+list.size());
+		list.forEach(a->System.out.println(a));
+	}
+	
+	@Test
+	void aasdgawe() {
+		List<Counsel> list= coRep.findByMemberMemberCode(179L);
+		System.out.println("size"+list.size());
+		list.forEach(a->System.out.println(a));
+	}
+	
+	@Test
+	void adsdf() {
+		List<ReviewStar> list = reRep.findByMemberMemberCode(179L);
+		System.out.println("size"+list.size());
+		list.forEach(a->System.out.println(a));
+	}
+	
+	@Test
+	void aaaaa() {
+		List<Ticket> list= ticketRep.findByMemberMemberCode(215L);
+		System.out.println("size"+list.size());
+		list.forEach(a->System.out.println(a));
+	}
+	
+	@Test
+	void ttt() {
+		List<TicketLines> list = tRep.findByTicketMemberMemberCode(215L);
+		System.out.println("size"+list.size());
+		list.forEach(a->System.out.println(a));
+	}
+	
+	
+	
 	
 	@Test
 	void test() {

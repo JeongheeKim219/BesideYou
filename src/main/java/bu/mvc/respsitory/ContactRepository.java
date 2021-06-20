@@ -28,10 +28,11 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 	 */
 	Page<Contact> findAll(Pageable pageable);
 
-
 	
 	
 	Page<Contact> findByMemberMemberCode(Pageable pageable, Long memberCode);
+	
+	List<Contact> findByMemberMemberCode(Long memberCode);
 	
 	
 }

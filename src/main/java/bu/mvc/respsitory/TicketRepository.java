@@ -31,4 +31,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
 	List<Ticket> findByMemberMemberCode(Long memberCode);
 
+	Page<Ticket> findByMemberMemberCode(Pageable pageable, Long memberCode);
+	
+
 }

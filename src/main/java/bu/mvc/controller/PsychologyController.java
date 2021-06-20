@@ -237,6 +237,11 @@ public class PsychologyController {
 	public String signArt(HttpServletRequest request, Model model) {
 		//회원정보를 가져와서 그림상담사 등록되어있는지
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Counselor co = psyService.selectByMem(member.getMemberCode());
+		if(co.getCounselorState()!=1) {
+			model.addAttribute("co", co);
+			return "/psy/signupArt";
+		}
 		ArtCounselor ac = psyService.selectByCounselorCode(psyService.selectByMem(member.getMemberCode()));
 		model.addAttribute("info", ac);
 		return "/psy/signupArt";
@@ -292,7 +297,11 @@ public class PsychologyController {
 		Member mem = new Member(member.getMemberCode());
 		//System.out.println("member : "+member.getMemberCode());
 		//멤버코드로 카운슬러코드 찾기
-		Counselor co = psyService.selectByMem(mem.getMemberCode());
+		Counselor co = psyService.selectByMem(member.getMemberCode());
+		if(co.getCounselorState()!=1) {
+			model.addAttribute("co", co);
+			return "/psy/requestList";
+		}
 		//카운슬러코드로 아트카운슬러 찾기
 		ArtCounselor ac = psyService.selectByCounselorCode(co);
 		
@@ -336,7 +345,7 @@ public class PsychologyController {
 	@RequestMapping("/lo/write")
 	public String write(Long artCode, String artAnsContent) {
 		psyService.insertAnswer(artCode, artAnsContent);
-		return "redirect:/psy/requestList";
+		return "redirect:/psy/lo/requestList";
 	}
 	
 	/**
@@ -362,6 +371,10 @@ public class PsychologyController {
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//멤버가 상담사인지 아닌지
 		Counselor co = psyService.selectByMem(member.getMemberCode());
+		if(co.getCounselorState()!=1) {
+			model.addAttribute("co", co);
+			return "/psy/cancle";
+		}
 		//그림상담사인지 안닌지
 		ArtCounselor ac = psyService.selectByCounselorCode(co);
 		model.addAttribute("ac", ac);

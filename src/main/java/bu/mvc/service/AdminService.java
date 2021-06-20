@@ -24,15 +24,19 @@ import bu.mvc.domain.Contact;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
+import bu.mvc.domain.Psychology;
 import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Ticket;
+import bu.mvc.domain.TicketLines;
 import bu.mvc.respsitory.AdminRepository;
 import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.ReviewRepository;
+import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.MemberRepository;
+import bu.mvc.respsitory.PsychologyRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service
@@ -62,6 +66,12 @@ public class AdminService {
 	
 	@Autowired
 	private MemberRepository memRep;
+	
+	@Autowired
+	private TicketLinesRepository ticketLinesRep;
+	
+	@Autowired
+	private PsychologyRepository psychologyRep;
 
 
 	private LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(23, 59, 59));
@@ -411,10 +421,10 @@ public class AdminService {
 	/**
 	 * 멤버코드에 해당하는 멤버상태, 멤버타입 업데이트
 	 * */
-	public void updateMember(Long memberCode, int memberState, int memberType) {
+	public void updateMember(Long memberCode, int memberState) {
 		 Member member = memRep.findById(memberCode).orElse(null);
 		 member.setMemberState(memberState);
-		 member.setMemberType(memberType);
+
 	}
 	
 	/**
@@ -446,6 +456,58 @@ public class AdminService {
 		return adminRep.findByAliasContainingOrNameContaining(pageable, keyword, keyword);
 	}
 
+	/**
+	 * 20. 전체 상담사 회원 조회
+	 */
+	public Page<Counselor> findAllCounselor(Pageable pageable){
+		return counselorRep.findAll(pageable);
+	}
+	
+	/**
+	 * 멤버코드에 해당하는 상담권 결제내역 조회
+	 * */
+	public Page<Ticket> findByMemberMemberCode(Pageable pageable, Long memberCode){
+		return ticketRep.findByMemberMemberCode(pageable, memberCode);
+	}
+	
+	/**
+	 * 멤버코드에 해당하는 상담권 사용내역 조회
+	 * */
+	public Page<TicketLines> findByTicketMemberMemberCode(Pageable pageable, Long memberCode) {
+		//return ticketLinesRep.findByTicketMemberMemberCode(pageable, memberCode);
+		return ticketLinesRep.findByTicket_Member_MemberCode(pageable, memberCode);
+	}
+	
+	/**
+	 * 리뷰별점
+	 * */
+	public Page<ReviewStar> findReviewByMemberMemberCode(Pageable pageable, Long memberCode){
+		return reviewRep.findByMemberMemberCode(pageable, memberCode);
+	}
+	
+	/**
+	 * 상담
+	 * */
+	public Page<Counsel> findCounselByMemberMemberCode(Pageable pageable, Long memberCode){
+		return counselRep.findByMemberMemberCode(pageable, memberCode);
+	}
+
+	/**
+	 * 일대일문의
+	 * */
+	/*public Page<Contact> findContactByMemberMemberCode(Pageable pageable, Long memberCode){
+		return contactRep.findByMemberMemberCode(pageable, memberCode);
+	}*/
+	public Page<Contact> findContactByMemberMemberCode(Pageable pageable, Long memberCode){
+		return contactRep.findByMemberMemberCode(pageable, memberCode);
+	}
+	
+	/**
+	 * 테스트
+	 * */
+	public Page<Psychology> findPsychologyByMemberMemberCode(Pageable pageable, Long memberCode){
+		return psychologyRep.findByMemberMemberCode(pageable, memberCode); 
+	}
 }
 
 

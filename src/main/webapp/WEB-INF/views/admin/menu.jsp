@@ -79,38 +79,11 @@
 						매출관리<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul>
-						<li><a href="components-tabs.html"> <i
-								class="metismenu-icon"> </i>전체결제통계
-						</a></li>
-						<li><a href="components-accordions.html"> <i
+						<li><a href="${pageContext.request.contextPath}/admin/ticketView"> <i
 								class="metismenu-icon"> </i>전체결제목록
 						</a></li>
-						<li><a href="components-notifications.html"> <i
-								class="metismenu-icon"> </i>Notifications
-						</a></li>
-						<li><a href="components-modals.html"> <i
-								class="metismenu-icon"> </i>Modals
-						</a></li>
-						<li><a href="components-progress-bar.html"> <i
-								class="metismenu-icon"> </i>Progress Bar
-						</a></li>
-						<li><a href="components-tooltips-popovers.html"> <i
-								class="metismenu-icon"> </i>Tooltips &amp; Popovers
-						</a></li>
-						<li><a href="components-carousel.html"> <i
-								class="metismenu-icon"> </i>Carousel
-						</a></li>
-						<li><a href="components-calendar.html"> <i
-								class="metismenu-icon"> </i>Calendar
-						</a></li>
-						<li><a href="components-pagination.html"> <i
-								class="metismenu-icon"> </i>Pagination
-						</a></li>
-						<li><a href="components-scrollable-elements.html"> <i
-								class="metismenu-icon"> </i>Scrollable
-						</a></li>
-						<li><a href="components-maps.html"> <i
-								class="metismenu-icon"> </i>Maps
+						<li><a href="${pageContext.request.contextPath}/admin/viewTicketLines"> <i
+								class="metismenu-icon"> </i>상담권사용내역
 						</a></li>
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/admin/contactView"> <i

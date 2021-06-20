@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -56,5 +58,7 @@ public interface CounselRepository extends JpaRepository<Counsel, Long> {
 	 * 3. 상담신청된 상담의 유형 조회
 	 */
 	List<Counsel> findByCounselCategory(int category);
+	
+	Page<Counsel> findByMemberMemberCode(Pageable pageable, Long memberCode);
 	
 }
