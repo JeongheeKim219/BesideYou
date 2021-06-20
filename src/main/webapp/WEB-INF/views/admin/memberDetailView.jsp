@@ -278,168 +278,429 @@ $(function(){
 										</c:choose>
 									</div>
 								</div>
+								<div class="main-card mb-3 card">
+									<div class="card">
+										<div class="main-card mb-3 card">
+											<div class="card-body">
+												<form class="">
+													<h5 class="card-title">리뷰 별점내역</h5>
+													<c:forEach items="${reviewStar.content}" var="reviewStar"
+														varStatus="status">
+												${status.count} <p>상담사이름 :
+															${reviewStar.counselor.member.name} / 상담일 :
+															${reviewStar.counsel.counselDate}
+														<p>리뷰작성날짜 : ${reviewStar.reviewDate} / 별점 :
+															${reviewStar.star}
+														<p>
+															리뷰내용 :
+															<c:if test="${empty reviewStar.reviewContent}">
+												내용없음</c:if>
+															${reviewStar.reviewContent}
+														<p>
+													</c:forEach>
+											</div>
+											</form>
+											<!-- 페이징처리 -->
+											<div class="col-auto mx-auto mt-4">
+												<nav class="font-1 mt-5"
+													aria-label="Page navigation example">
+													<ul class="pagination pagination justify-content-center">
+														<c:set var="doneLoop" value="false" />
+
+														<c:if test="${(reviewStartPage-reviewBlock) >0 }">
+															<li class="page-item"><a class="page-link"
+																href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${reviewStartPage-1}"
+																aria-label="Previous"><span aria-hidden="true">«</span><span
+																	class="sr-only">Previous</span></a></li>
+														</c:if>
+
+														<c:forEach var="i" begin="${reviewStartPage}"
+															end="${(reviewStartPage-1)+reviewBlock}">
+															<c:if test="${(i-1)>=reviewStar.getTotalPages()}">
+																<c:set var="doneLoop" value="true" />
+															</c:if>
+
+
+															<c:if test="${not doneLoop}">
+																<li class="page-item"><a class="page-link"
+																	id="page${i}"
+																	href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${i}">${i}</a>
+																</li>
+															</c:if>
+
+
+														</c:forEach>
+
+														<c:if
+															test="${(reviewStartPage+reviewBlock)<=reviewStar.getTotalPages()}">
+															<li class="page-item"><a class="page-link"
+																href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${reviewStartPage+reviewBlock}"
+																aria-label="Next"><span aria-hidden="true">»</span><span
+																	class="sr-only">Next</span></a></li>
+														</c:if>
+
+													</ul>
+												</nav>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<!-- 리뷰 별점 끝 -->
 							</div>
 						</div>
 					</div>
-		
-				<div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Input Groups</h5>
-                                                <div>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">@</span></div>
-                                                        <input placeholder="username" type="text" class="form-control"></div>
-                                                    <br>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text"><input aria-label="Checkbox for following text input" type="checkbox" class=""></span></div>
-                                                        <input placeholder="Check it out" type="text" class="form-control"></div>
-                                                    <br>
-                                                    <div class="input-group"><input placeholder="username" type="text" class="form-control">
-                                                        <div class="input-group-append"><span class="input-group-text">@example.com</span></div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">$</span><span class="input-group-text">$</span></div>
-                                                        <input placeholder="Dolla dolla billz yo!" type="text" class="form-control">
-                                                        <div class="input-group-append"><span class="input-group-text">$</span><span class="input-group-text">$</span></div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                        <input placeholder="Amount" step="1" type="number" class="form-control">
-                                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Input Group Button Dropdown</h5>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary">Button Dropdown</button>
-                                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu"><h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                                            <button type="button" disabled="" tabindex="-1" class="disabled dropdown-item">Action</button>
-                                                            <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                                            <div tabindex="-1" class="dropdown-divider"></div>
-                                                            <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                                        </div>
-                                                    </div>
-                                                    <input type="text" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Input Group Button Shorthand</h5>
-                                                <div>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-secondary">To the Left!</button>
-                                                        </div>
-                                                        <input type="text" class="form-control"></div>
-                                                    <br>
-                                                    <div class="input-group"><input type="text" class="form-control">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-secondary">To the Right!</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-danger">To the Left!</button>
-                                                        </div>
-                                                        <input placeholder="and..." type="text" class="form-control">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-success">To the Right!</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Input Group Sizing</h5>
-                                                <div>
-                                                    <div class="input-group input-group-lg">
-                                                        <div class="input-group-prepend"><span class="input-group-text">@lg</span></div>
-                                                        <input type="text" class="form-control"></div>
-                                                    <br>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">@normal</span></div>
-                                                        <input type="text" class="form-control"></div>
-                                                    <br>
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-prepend"><span class="input-group-text">@sm</span></div>
-                                                        <input type="text" class="form-control"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Input Group Addon</h5>
-                                                <div>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">To the Left!</span></div>
-                                                        <input type="text" class="form-control"></div>
-                                                    <br>
-                                                    <div class="input-group"><input type="text" class="form-control">
-                                                        <div class="input-group-append"><span class="input-group-text">To the Right!</span></div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">To the Left!</span></div>
-                                                        <input placeholder="and..." type="text" class="form-control">
-                                                        <div class="input-group-append"><span class="input-group-text">To the Right!</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Input Group Button</h5>
-                                                <div>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-secondary">I'm a button</button>
-                                                        </div>
-                                                        <input type="text" class="form-control"></div>
-                                                    <br>
-                                                    <div class="input-group"><input type="text" class="form-control">
-                                                        <div class="input-group-append">
-                                                            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary">Button Dropdown</button>
-                                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu"><h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                                                <button type="button" disabled="" tabindex="-1" class="disabled dropdown-item">Action</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                                                <div tabindex="-1" class="dropdown-divider"></div>
-                                                                <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-secondary">Split Button</button>
-                                                            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle dropdown-toggle-split btn btn-outline-secondary"><span
-                                                                    class="sr-only">Toggle Dropdown</span></button>
-                                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu"><h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                                                <button type="button" disabled="" tabindex="-1" class="disabled dropdown-item">Action</button>
-                                                                <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                                                <div tabindex="-1" class="dropdown-divider"></div>
-                                                                <button type="button" tabindex="0" class="dropdown-item">Another Action</button>
-                                                            </div>
-                                                        </div>
-                                                        <input placeholder="and..." type="text" class="form-control">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-secondary">I'm a button</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-						<%-- <div class="tab-pane tabs-animation fade" id="tab-content-1"
+
+					<div class="tab-pane tabs-animation fade" id="tab-content-1"
+						role="tabpanel">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="main-card lg-6-card">
+									<div class="card-body">
+										<h5 class="card-title">결제내역</h5>
+										<div class="table-responsive">
+											<table class="mb-0 table">
+												<thead>
+													<tr>
+														<th>상담권 코드</th>
+														<th>상담권 종류</th>
+														<th>상담권 수량</th>
+														<th>할인률</th>
+														<th>결제금액</th>
+														<th>상담권 구매일</th>
+													</tr>
+												</thead>
+												<c:choose>
+													<c:when test="${fn:length(ticket.content) == 0}">
+														<tr>
+															<td colspan="5"><p align="center">결제내역이 없습니다.</p></td>
+														</tr>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${requestScope.ticket.content}"
+															var="ticketList" varStatus="state">
+															<c:set value="${ticketList.discount.discountRate}"
+																var="rate"></c:set>
+															<c:set value="${ticketList.ticketPrice}" var="price"></c:set>
+
+															<%
+															int rate = (int) pageContext.getAttribute("rate");
+															int price = (int) pageContext.getAttribute("price");
+
+															double totalPrice = price * (1 - (rate * 0.01));
+															pageContext.setAttribute("totalPrice", totalPrice);
+															%>
+
+															<tbody>
+
+																<tr>
+																	<th scope="row">${ticketList.ticketCode}</th>
+
+																	<c:choose>
+																		<c:when test="${ticketList.ticketField==0}">
+																			<td>${ticketList.counselor.member.name}-대면</td>
+																		</c:when>
+																		<c:when test="${ticketList.ticketField==1}">
+																			<td>${ticketList.counselor.member.name}-전화</td>
+																		</c:when>
+																		<c:when test="${ticketList.ticketField==2}">
+																			<td>${ticketList.counselor.member.name}-채팅</td>
+																		</c:when>
+																		<c:when test="${ticketList.ticketField==3}">
+																			<td>${ticketList.counselor.member.name}-텍스트</td>
+																		</c:when>
+																	</c:choose>
+																	<td>${ticketList.ticketAmount}</td>
+																	<c:choose>
+																		<c:when
+																			test="${ticketList.discount.discountRate == 0}">
+																			<td>해당없음</td>
+																		</c:when>
+																		<c:otherwise>
+																			<td>${ticketList.discount.discountRate}%</td>
+																		</c:otherwise>
+																	</c:choose>
+																	<c:choose>
+																		<c:when
+																			test="${ticketList.discount.discountRate == 0}">
+																			<td><span><fmt:formatNumber
+																						type="currency" value="${totalPrice}" /></span></td>
+																		</c:when>
+																		<c:otherwise>
+																			<td><span><fmt:formatNumber
+																						type="currency" value="${totalPrice}" /></span><br>
+																				<span
+																				style="text-decoration: line-through; font-size: x-small;"><fmt:formatNumber
+																						type="currency" value="${ticketList.ticketPrice}" /></span>
+																			</td>
+																		</c:otherwise>
+																	</c:choose>
+																	<fmt:parseDate var="parseDate"
+																		pattern="yyyy-MM-dd'T'HH:mm"
+																		value="${ticketList.ticketDate}" type="both" />
+																	<td><fmt:formatDate value="${parseDate}"
+																			pattern="yyyy-MM-dd HH:mm" /></td>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="main-card lg-6-card">
+									<div class="card-body">
+										<h5 class="card-title">상담권 사용내역</h5>
+										<div class="table-responsive">
+											<table class="mb-0 table table-hover">
+												<thead>
+													<tr>
+														<th>사용내역 코드</th>
+														<th>사용자</th>
+														<th>잔여량</th>
+														<th>상담권 사용일</th>
+													</tr>
+												</thead>
+												<c:choose>
+													<c:when test="${fn:length(ticketLines.content) == 0}">
+														<tr>
+															<td colspan="5"><p align="center">결제내역이 없습니다.</p></td>
+														</tr>
+													</c:when>
+												
+													<c:otherwise>
+														<c:forEach items="${requestScope.ticketLines}" var="tlList">
+															<tbody>
+																<tr>
+																	<th scope="row">${tlList.ticket.ticketCode}-${tlList.ticketLinesCode}</th>
+																	<td>${tlList.ticket.member.id}</td>
+																	<td>${tlList.ticket.ticketRemain}</td>
+
+																	<fmt:parseDate var="parseDate"
+																		pattern="yyyy-MM-dd'T'HH:mm"
+																		value="${tlList.ticketLinesDate}" type="both" />
+																	<td><fmt:formatDate value="${parseDate}"
+																			pattern="yyyy-MM-dd HH:mm" /></td>
+																</tr>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+											</table>
+											<c:choose>
+												<c:when test="${fn:length(ticketLines.content) == 0}">
+													<ul class="pagination">
+														<li class="page-item"><a href="javascript:void(0);"
+															class="page-link" aria-label="Previous"><span
+																aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
+														<c:forEach begin="0" end="${tlList.totalPages-1}"
+															var="i">
+															<c:choose>
+																<c:when test="${tlList.number==i}">
+																	<li class="page-item active"><a
+																		href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${i}"
+																		class="page-link">${i+1}</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li class="page-item"><a
+																		href="${pageContext.request.contextPath}admin/memberDetailView/${member.memberCode}?nowReviewPage=${i}"
+																		class="page-link">${i+1}</a></li>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>
+														<li class="page-item"><a href="javascript:void(0);"
+															class="page-link" aria-label="Next"><span
+																aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
+													</ul>
+												</c:when>
+											</c:choose>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="main-card mb-3 card">
+							<div class="card-body">
+								<h5 class="card-title">Input Group Button Dropdown</h5>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<button type="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false"
+											class="dropdown-toggle btn btn-secondary">Button
+											Dropdown</button>
+										<div tabindex="-1" role="menu" aria-hidden="true"
+											class="dropdown-menu">
+											<h6 tabindex="-1" class="dropdown-header">Header</h6>
+											<button type="button" disabled="" tabindex="-1"
+												class="disabled dropdown-item">Action</button>
+											<button type="button" tabindex="0" class="dropdown-item">Another
+												Action</button>
+											<div tabindex="-1" class="dropdown-divider"></div>
+											<button type="button" tabindex="0" class="dropdown-item">Another
+												Action</button>
+										</div>
+									</div>
+									<input type="text" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="main-card mb-3 card">
+							<div class="card-body">
+								<h5 class="card-title">Input Group Button Shorthand</h5>
+								<div>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<button class="btn btn-secondary">To the Left!</button>
+										</div>
+										<input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group">
+										<input type="text" class="form-control">
+										<div class="input-group-append">
+											<button class="btn btn-secondary">To the Right!</button>
+										</div>
+									</div>
+									<br>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<button class="btn btn-danger">To the Left!</button>
+										</div>
+										<input placeholder="and..." type="text" class="form-control">
+										<div class="input-group-append">
+											<button class="btn btn-success">To the Right!</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="main-card mb-3 card">
+							<div class="card-body">
+								<h5 class="card-title">Input Group Sizing</h5>
+								<div>
+									<div class="input-group input-group-lg">
+										<div class="input-group-prepend">
+											<span class="input-group-text">@lg</span>
+										</div>
+										<input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">@normal</span>
+										</div>
+										<input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group input-group-sm">
+										<div class="input-group-prepend">
+											<span class="input-group-text">@sm</span>
+										</div>
+										<input type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="main-card mb-3 card">
+							<div class="card-body">
+								<h5 class="card-title">Input Group Addon</h5>
+								<div>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">To the Left!</span>
+										</div>
+										<input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group">
+										<input type="text" class="form-control">
+										<div class="input-group-append">
+											<span class="input-group-text">To the Right!</span>
+										</div>
+									</div>
+									<br>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">To the Left!</span>
+										</div>
+										<input placeholder="and..." type="text" class="form-control">
+										<div class="input-group-append">
+											<span class="input-group-text">To the Right!</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="main-card mb-3 card">
+							<div class="card-body">
+								<h5 class="card-title">Input Group Button</h5>
+								<div>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<button class="btn btn-secondary">I'm a button</button>
+										</div>
+										<input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group">
+										<input type="text" class="form-control">
+										<div class="input-group-append">
+											<button type="button" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle btn btn-secondary">Button
+												Dropdown</button>
+											<div tabindex="-1" role="menu" aria-hidden="true"
+												class="dropdown-menu">
+												<h6 tabindex="-1" class="dropdown-header">Header</h6>
+												<button type="button" disabled="" tabindex="-1"
+													class="disabled dropdown-item">Action</button>
+												<button type="button" tabindex="0" class="dropdown-item">Another
+													Action</button>
+												<div tabindex="-1" class="dropdown-divider"></div>
+												<button type="button" tabindex="0" class="dropdown-item">Another
+													Action</button>
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<button class="btn btn-outline-secondary">Split
+												Button</button>
+											<button type="button" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle dropdown-toggle-split btn btn-outline-secondary">
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+											<div tabindex="-1" role="menu" aria-hidden="true"
+												class="dropdown-menu">
+												<h6 tabindex="-1" class="dropdown-header">Header</h6>
+												<button type="button" disabled="" tabindex="-1"
+													class="disabled dropdown-item">Action</button>
+												<button type="button" tabindex="0" class="dropdown-item">Another
+													Action</button>
+												<div tabindex="-1" class="dropdown-divider"></div>
+												<button type="button" tabindex="0" class="dropdown-item">Another
+													Action</button>
+											</div>
+										</div>
+										<input placeholder="and..." type="text" class="form-control">
+										<div class="input-group-append">
+											<button class="btn btn-secondary">I'm a button</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%-- <div class="tab-pane tabs-animation fade" id="tab-content-1"
 									role="tabpanel">
 									<div class="row">
 										<div class="col-md-6">
@@ -1063,16 +1324,15 @@ $(function(){
 															</form>
 														</div>
 													</div> --%>
-					
-				</div>
-			</div>
-		</div>
-		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript">
+
+	</div>
+	</div>
+	</div>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 		
 	</script>
 </body>
