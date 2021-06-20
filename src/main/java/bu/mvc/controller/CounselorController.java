@@ -211,7 +211,10 @@ public class CounselorController {
 		return new ModelAndView("counselor/updateSuccess");
 	}
 	
-	
+	@RequestMapping("/counselorJoinList")
+	public void List() {
+		
+	}
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ModelAndView error(RuntimeException e) {
