@@ -36,10 +36,6 @@
 <body>
 	<%@include file="./header.jsp"%>
 	<%@include file="./menu.jsp"%>
-
-
-
-
 	<div class="app-main">
 		<div class="app-main__outer">
 			<div class="app-main__inner">
@@ -57,7 +53,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-12">
+				<div class="col-lg-9">
 					<div class="main-card mb-3 card">
 						<div class="card-header" style="justify-content: flex-end;">
 							<div class="widget-content widget-content-right">
@@ -84,77 +80,37 @@
 							<table class="mb-0 table table-hover">
 								<thead>
 									<tr>
-										<th>구매자</th>
-										<th>상담권 종류</th>
-										<th>상담권 수량</th>
-										<th>할인률</th>
-										<th>결제금액</th>
-										<th>상담권 구매일</th>
+										<th>사용내역 코드</th>
+										<th>사용자</th>
+										<th>잔여량</th>
+										<th>상담권 사용일</th>
 									</tr>
 								</thead>
 								<c:choose>
-									<c:when test="${empty requestScope.tkList}">
+									<c:when test="${empty requestScope.tlList}">
 										<tr>
-											<td colspan="6"><p align="center">결제내역이 없습니다.</p></td>
+											<td colspan="4"><p align="center">상담권 사용내역이 없습니다.</p></td>
 										</tr>
 									</c:when>
 									<c:when test="${not empty requestScope.errorMessage}">
 										<tr>
-											<td colspan="6"><p align="center">${requestScope.errorMessage}</p></td>
+											<td colspan="4"><p align="center">${requestScope.errorMessage}</p></td>
 										</tr>
 									</c:when>
 									<c:otherwise>
-										<c:forEach items="${requestScope.tkList.content}" var="tkList"
-											varStatus="state">
-											<c:set value="${tkList.discount.discountRate}" var="rate"></c:set>
-											<c:set value="${tkList.ticketPrice}" var="price"></c:set>
-
-											<%
-											int rate = (int) pageContext.getAttribute("rate");
-											int price = (int) pageContext.getAttribute("price");
-
-											double totalPrice = price * (1 - (rate * 0.01));
-											pageContext.setAttribute("totalPrice", totalPrice);
-											%>
-											<tbody>
-												<tr>
-													<th scope="row">${tkList.member.id}</th>
-													<td><c:choose>
-															<c:when test="${tkList.ticketField==0}">
-                                           			대면 상담권
-                                            	</c:when>
-															<c:when test="${tkList.ticketField==1}">
-                                            		전화 상담권
-                                            	</c:when>
-															<c:when test="${tkList.ticketField==2}">
-                                            		채팅 상담권
-                                            	</c:when>
-															<c:when test="${tkList.ticketField==3}">
-                                            		텍스트 상담권
-                                            	</c:when>
-														</c:choose></td>
-													<td>${tkList.ticketAmount}</td>
-													<c:choose>
-														<c:when test="${tkList.discount.discountRate == 0}">
-															<td>해당없음</td>
-														</c:when>
-														<c:otherwise>
-															<td>${tkList.discount.discountRate}%</td>
-														</c:otherwise>
-													</c:choose>
-													<c:choose>
-														<c:when test="${tkList.discount.discountRate == 0}">
-															<td><span><fmt:formatNumber type="currency" value="${totalPrice}"/></span></td>
-														</c:when>
-														<c:otherwise>	
-															<td>
-																<span><fmt:formatNumber type="currency" value="${totalPrice}"/></span><br>
-																<span style="text-decoration: line-through; font-size: x-small;"><fmt:formatNumber type="currency" value="${totalPrice}"/>원</span>
-															</td>
-													</c:otherwise>
-													</c:choose>
-													<td>${tkList.ticketDate}</td>
-										</c:forEach>
+									<c:forEach items="${requestScope.tlList}" var="tlList">
+										<tbody>
+											<tr>
+												<th scope="row">${tlList.ticket.ticketCode}-${tlList.ticketLinesCode}</th>
+												<td>${tlList.ticket.member.id}</td>
+												<td>${tlList.ticket.ticketRemain}</td>
+												
+												<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm"
+													value="${tlList.ticketLinesDate}" type="both" />
+												<td><fmt:formatDate value="${parseDate}"
+														pattern="yyyy-MM-dd HH:mm" /></td>
+												</tr>		
+									</c:forEach>
 									</c:otherwise>
 								</c:choose>
 							</table>
@@ -164,16 +120,16 @@
 										<li class="page-item"><a href="javascript:void(0);"
 											class="page-link" aria-label="Previous"><span
 												aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-										<c:forEach begin="0" end="${tkList.totalPages-1}" var="i">
+										<c:forEach begin="0" end="${tlList.totalPages}" var="i">
 											<c:choose>
-												<c:when test="${tkList.number==i}">
+												<c:when test="${tlList.totalPages==i}">
 													<li class="page-item active"><a
-														href="${pageContext.request.contextPath}/admin/ticketView?nowPage=${i}"
+														href="${pageContext.request.contextPath}/admin/ticketLineView?nowPage=${i}"
 														class="page-link">${i+1}</a></li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item"><a
-														href="${pageContext.request.contextPath}/admin/ticketView?nowPage=${i}"
+														href="${pageContext.request.contextPath}/admin/ticketLineView?nowPage=${i}"
 														class="page-link">${i+1}</a></li>
 												</c:otherwise>
 											</c:choose>

@@ -1028,10 +1028,14 @@
 					}
 				});
 			}
-
-			countNewMember();
-			countCounselByMonth();
-			rankCounselor();
+	
+			
+				
+				countNewMember();
+				countCounselByMonth();
+				rankCounselor();
+				
+			
 
 		})//JQuery Ready 끝
 	</script>

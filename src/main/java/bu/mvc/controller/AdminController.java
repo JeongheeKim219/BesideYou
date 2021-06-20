@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -31,14 +30,13 @@ import bu.mvc.domain.ContactReply;
 import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
-import bu.mvc.domain.Ticket;
-import bu.mvc.domain.Psychology;
 import bu.mvc.domain.ReviewStar;
+import bu.mvc.domain.Ticket;
 import bu.mvc.domain.TicketLines;
-
 import bu.mvc.respsitory.CounselorRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.service.AdminService;
+import bu.mvc.service.TicketLinesService;
 import bu.mvc.service.TicketService;
 
 @Controller
@@ -57,6 +55,9 @@ public class AdminController {
 	@Autowired
 	private TicketService ticketService;
 
+	@Autowired
+	private TicketLinesService ticketLinesService;
+	
 	/**
 	 * 1. 어드민 인덱스로 이동
 	 */
@@ -78,6 +79,8 @@ public class AdminController {
 		return "admin/index";
 	}
 
+		
+	
 	/**
 	 * 2. 신규 회원 타입별 가입자 인원수 조회
 	 */
@@ -373,7 +376,7 @@ public class AdminController {
 			model.addAttribute("pageList", adminService.updateByCounselorState(state, pageable));
 		}
 
-		if (pageList.getNumberOfElements() == 0) {
+		if (pageList.getTotalPages() == 0) {
 			model.addAttribute("errorMessage", "조회된 상담사 회원이 없습니다.");
 		}
 
@@ -427,7 +430,7 @@ public class AdminController {
 		Page<Member> pageList = adminService.findByAliasAndName(pageable, keyword);
 		model.addAttribute("pageList", pageList);
 
-		if (pageList.getNumberOfElements() == 0) {
+		if (pageList.getTotalPages() == 0) {
 			model.addAttribute("errorMessage", "검색결과가 없습니다.");
 		}
 
@@ -442,7 +445,7 @@ public class AdminController {
 	 */
 	@RequestMapping("/ticketView")
 	public ModelAndView list(@RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketCode");
+		Pageable pageable = PageRequest.of(nowPage, 15, Direction.DESC, "ticketCode");
 		Page<Ticket> tkList = ticketService.selectAll(pageable);
 
 		ModelAndView mv = new ModelAndView();
@@ -452,5 +455,21 @@ public class AdminController {
 		mv.addObject("next", pageable.next().getPageNumber());
 		return mv;
 	}
+	
+	/**
+	 * 상담권 사용 내역 전체보기 : 관리자
+	 * */
+	@RequestMapping("/viewTicketLines")
+	public String ticketLinesList(@RequestParam(defaultValue = "0") int nowPage, Model model) {
+		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketLinesDate");
+		Page<TicketLines> tlList = ticketLinesService.selectAll(pageable);
+		
+		if(tlList.getTotalPages() == 0) {
+			model.addAttribute("errorMessage", "상담권 사용내역이 없습니다.");
+		}
+		
+		return "admin/ticketLineView";
+	}
+	
 
 }

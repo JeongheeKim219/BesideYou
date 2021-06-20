@@ -80,6 +80,7 @@
 							<table class="mb-0 table table-hover">
 								<thead>
 									<tr>
+										<th>사용 상담권</th>
 										<th>구매자</th>
 										<th>상담권 종류</th>
 										<th>상담권 수량</th>
@@ -91,12 +92,12 @@
 								<c:choose>
 									<c:when test="${empty requestScope.tkList}">
 										<tr>
-											<td colspan="6"><p align="center">결제내역이 없습니다.</p></td>
+											<td colspan="7"><p align="center">결제내역이 없습니다.</p></td>
 										</tr>
 									</c:when>
 									<c:when test="${not empty requestScope.errorMessage}">
 										<tr>
-											<td colspan="6"><p align="center">${requestScope.errorMessage}</p></td>
+											<td colspan="7"><p align="center">${requestScope.errorMessage}</p></td>
 										</tr>
 									</c:when>
 									<c:otherwise>
@@ -114,22 +115,24 @@
 											%>
 											
 											<tbody>
+												
 												<tr>
-													<th scope="row">${tkList.member.id}</th>
-													<td><c:choose>
+													<th scope="row">${tkList.ticketCode}</th>
+													<td>${tkList.member.id}</td>
+													<c:choose>
 															<c:when test="${tkList.ticketField==0}">
-                                           			대면 상담권
+                                           			<td>대면(${tkList.counselor.member.name})</td>
                                             	</c:when>
 															<c:when test="${tkList.ticketField==1}">
-                                            		전화 상담권
+                                            		<td>전화(${tkList.counselor.member.name})</td>
                                             	</c:when>
 															<c:when test="${tkList.ticketField==2}">
-                                            		채팅 상담권
+                                            		<td>채팅(${tkList.counselor.member.name})</td>
                                             	</c:when>
 															<c:when test="${tkList.ticketField==3}">
-                                            		텍스트 상담권
+                                            		<td>텍스트(${tkList.counselor.member.name})</td>
                                             	</c:when>
-														</c:choose></td>
+														</c:choose>
 													<td>${tkList.ticketAmount}</td>
 													<c:choose>
 														<c:when test="${tkList.discount.discountRate == 0}">
