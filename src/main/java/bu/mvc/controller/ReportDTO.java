@@ -10,5 +10,6 @@ public class ReportDTO {
 	private String reviewCode;
 	private String reportOption;
 	private String reviewContent;
+	private String counselor;
 
 }

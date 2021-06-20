@@ -1,25 +1,18 @@
 package bu.mvc.controller;
 
-import javax.print.attribute.standard.Media;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import bu.mvc.domain.Member;
+import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Report;
 import bu.mvc.domain.ReviewStar;
 import bu.mvc.service.ReportService;
@@ -36,39 +29,18 @@ public class ReportController {
 	/**
 	 * 신고 등록
 	 * */
-	//@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	@ResponseBody
+	
+	
 	@RequestMapping("/report/insert")
-	public String insert(@RequestBody ReportDTO reportDTO) {
-		System.out.println("insertCall...");
-		System.out.println("aa : "+reportDTO.getReviewCode());
-		System.out.println("a: "+reportDTO.getMemberCode());
-		System.out.println("aaaa: "+reportDTO.getReportOption());
-		System.out.println("ReviewContent: "+reportDTO.getReviewContent());
+	public String insert(Report report ) {
 		
-		
-		Report r = new Report();
-		Member m = new Member();
-		ReviewStar rs = new ReviewStar();
-		
-		
-		
-		rs.setReviewCode(Long.parseLong(reportDTO.getReviewCode()));
-
-		r.setReviewStar(rs);
-		
-		m.setMemberCode(Long.parseLong(reportDTO.getMemberCode()));
-		r.setMember(m);
-		
-		r.setReportOption(reportDTO.getReportOption());
-		r.setReviewContent(reportDTO.getReviewContent());
-				
-		reportService.insert(r);
-		return "redirect:/review/reviewByCode/{counselorCode}";
-				
+		reportService.insert(report);
+		Counselor cs = report.getReviewStar().getCounselor();
+		Long a = cs.getCounselorCode();
+		return "redirect:/review/reviewByCode/"+a;		
 	}
 	
-	
+
 	
 	/**
 	 * 신고확인(관리자)
@@ -106,6 +78,7 @@ public class ReportController {
 	 * */
 	@RequestMapping("/report/delete" )
 	public String deleteAdmin( Report report) {	
+		
 		Long a =report.getReportCode();
 		ReviewStar rsn =report.getReviewStar();
 		System.out.println(a);
