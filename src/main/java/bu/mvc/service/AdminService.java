@@ -498,8 +498,8 @@ public class AdminService {
 	/*public Page<Contact> findContactByMemberMemberCode(Pageable pageable, Long memberCode){
 		return contactRep.findByMemberMemberCode(pageable, memberCode);
 	}*/
-	public List<Contact> findContactByMemberMemberCode(Long memberCode){
-		return contactRep.findByMemberMemberCode(memberCode);
+	public Page<Contact> findContactByMemberMemberCode(Pageable pageable, Long memberCode){
+		return contactRep.findByMemberMemberCode(pageable, memberCode);
 	}
 	
 	/**

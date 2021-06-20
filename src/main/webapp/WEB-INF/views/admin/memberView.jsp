@@ -194,13 +194,6 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function (){
-			
-/* 
-			$("button[tabindex='0']").click(function (){
-				$("#keyfield").();
-			
-			});	
-			 */
 		
 			
 			
