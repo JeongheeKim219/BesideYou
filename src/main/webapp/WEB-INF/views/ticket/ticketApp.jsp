@@ -265,17 +265,18 @@
                                     <div class="overflow-hidden">
                                         <div data-zanim='{"delay":0.5}'>
                                         	<form name="payment" id="payment" method="post" action="">
-	                                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
 	                                        	<input type="hidden" name="ticketField" value="${counselCategory}"/>
-							            		<input type="hidden" name="counselorCode" value="${counselor.counselorCode}"/>
+							            		<input type="hidden" name="counselorCode" value="${counselorCode}"/>
+							            		<%-- <input type="hidden" name="memberCode" value="${member.memberCode}"/>
 							            		<input type="hidden" name="name" value="${member.name}"/>
 							            		<input type="hidden" name="phone" value="${member.phone}"/>
 							            		<input type="hidden" name="email" value="${member.email}"/>
-							            		<input type="hidden" name="addr" value="${member.memberAddr}"/>
+							            		<input type="hidden" name="addr" value="${member.memberAddr}"/> --%>
 							            		<input type="hidden" name="ticketAmount" value="0"/>
 							            		<input type="hidden" name="ticketRemain" value="0"/>
 							            		<input type="hidden" name="discountCode" value="0"/>
 							            		<input type="hidden" name="ticketPrice" value="0"/>
+							            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
             		
 		                                        <input type="button" id="card" value="카드결제" class="btn btn-info mr-3 mb-3"/>
 		                                        <input type="button" id="phone" value="휴대폰결제" class="btn btn-info mr-3 mb-3"/>

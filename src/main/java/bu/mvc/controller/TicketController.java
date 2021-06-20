@@ -98,12 +98,11 @@ public class TicketController {
 	@RequestMapping("/ticketApp")
 	public ModelAndView paymentApp(HttpServletRequest request, Long counselorCode, int counselCategory) {
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Counselor counselor = counselService.getCounselor(counselorCode);
 		int price = priceService.findPrice(counselorCode, counselCategory);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ticket/ticketApp");
-		mv.addObject("counselor", counselor);
+		mv.addObject("counselorCode", counselorCode);
 		mv.addObject("member", member);
 		mv.addObject("counselCategory", counselCategory);
 		mv.addObject("price", price);
