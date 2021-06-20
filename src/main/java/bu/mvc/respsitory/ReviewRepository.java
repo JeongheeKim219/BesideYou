@@ -11,20 +11,19 @@ import bu.mvc.domain.Counselor;
 import bu.mvc.domain.ReviewStar;
 
 public interface ReviewRepository extends JpaRepository<ReviewStar, Long> {
-	@Query("select r from ReviewStar r where r.counselorCode.counselorCode=?1")
+	@Query("select r from ReviewStar r where r.counselor.counselorCode=?1")
 	//List<ReviewStar> selectByCounCode(Long counselorCode);
 	List<ReviewStar> selectByCounCode(Long counselorCode, Pageable pageable);
 	
 	
 	
 	
-	@Query("select round(avg(star),1) from ReviewStar r where r.counselorCode.counselorCode=?1")
+	@Query("select round(avg(star),1) from ReviewStar r where r.counselor.counselorCode=?1")
 	Double selectStarAvg(Long counselorCode);
 
 /////6월 18일 정희 추가///////////////////////////////////////////////////////////////////////////////////////
 	
-	
-	List<ReviewStar> findByCounselorCode(Counselor counselor);
+	List<ReviewStar> findByCounselor(Counselor counselor);
 	
 	
 //////////////////////////////////////////////////////////////////////////////////////////////
