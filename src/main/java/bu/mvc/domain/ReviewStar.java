@@ -1,7 +1,5 @@
 package bu.mvc.domain;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -11,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,11 +32,11 @@ public class ReviewStar {
 	
 	@ManyToOne
 	@JoinColumn(name = "COUNSELOR_CODE")
-	private Counselor counselorCode; // 상담사 코드
+	private Counselor counselor; // 상담사 코드
 	
 	@ManyToOne
 	@JoinColumn(name = "COUNSEL_CODE")
-	private Counsel counselCode; // 상담코드
+	private Counsel counsel; // 상담코드
 	
 	//@CreationTimestamp
 	private LocalDateTime reviewDate; // 리뷰작성날짜
@@ -50,13 +46,13 @@ public class ReviewStar {
 	
 	
 
-	public ReviewStar(Long reviewCode, Member member, Counselor counselorCode, Counsel counselCode, double star,
+	public ReviewStar(Long reviewCode, Member member, Counselor counselor, Counsel counsel, double star,
 			String reviewContent) {
 		super();
 		this.reviewCode = reviewCode;
 		this.member = member;
-		this.counselorCode = counselorCode;
-		this.counselCode = counselCode;
+		this.counselor = counselor;
+		this.counsel = counsel;
 		this.star = star;
 		this.reviewContent = reviewContent;
 	}

@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -32,7 +32,7 @@ public class TicketLines {
 	@CreationTimestamp
 	private LocalDateTime ticketLinesDate; //상담권 사용 일자
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="ticket_code") //상담권 코드
 	private Ticket ticket;
 

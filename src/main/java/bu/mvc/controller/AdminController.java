@@ -376,7 +376,7 @@ public class AdminController {
 			model.addAttribute("pageList", adminService.updateByCounselorState(state, pageable));
 		}
 
-		if (pageList.getTotalPages() == 0) {
+		if (pageList.getContent().size() == 0) {
 			model.addAttribute("errorMessage", "조회된 상담사 회원이 없습니다.");
 		}
 
@@ -430,7 +430,7 @@ public class AdminController {
 		Page<Member> pageList = adminService.findByAliasAndName(pageable, keyword);
 		model.addAttribute("pageList", pageList);
 
-		if (pageList.getTotalPages() == 0) {
+		if (pageList.getContent().size() == 0) {
 			model.addAttribute("errorMessage", "검색결과가 없습니다.");
 		}
 
@@ -464,8 +464,15 @@ public class AdminController {
 		Pageable pageable = PageRequest.of(nowPage, 10, Direction.DESC, "ticketLinesDate");
 		Page<TicketLines> tlList = ticketLinesService.selectAll(pageable);
 		
-		if(tlList.getTotalPages() == 0) {
+		model.addAttribute(tlList);
+			
+		if(tlList.getContent().size() == 0) {
 			model.addAttribute("errorMessage", "상담권 사용내역이 없습니다.");
+		}
+		
+		for(TicketLines tl : tlList.getContent()) {
+			System.out.println(tl);
+			
 		}
 		
 		return "admin/ticketLineView";
