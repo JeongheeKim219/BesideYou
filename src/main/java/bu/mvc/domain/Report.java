@@ -16,70 +16,36 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Report {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_seq")
 	@SequenceGenerator(sequenceName = "report_seq", allocationSize = 1, name = "report_seq")
-	
 	private Long reportCode;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "member_code")
-	private Member member; // 회원코드
+	private Member memberCode; // 회원코드
 	
 	
 	@ManyToOne
 	@JoinColumn(name = "REVIEW_CODE")
-	private ReviewStar reviewStar; // 리뷰코드
-	
-
-	private String reviewContent;
+	private ReviewStar reviewACode; // 리뷰코드
 	
 	@CreationTimestamp
-	private Date reportDate; // 신고날자
-	
-	private String reportOption; // 신고 사유
+	private Date reportDate; // 리뷰작성날짜
 
-	
-
-	public Report(Long reportCode) {
-		
-		this.reportCode = reportCode;
-	}
-
-
-
-	public Report(Long reportCode, Member member, ReviewStar reviewStar, String reviewContent, String reportOption) {
+	public Report(Long reportCode, Member memberCode, ReviewStar reviewACode) {
 		super();
 		this.reportCode = reportCode;
-		this.member = member;
-		this.reviewStar = reviewStar;
-		this.reviewContent = reviewContent;
-		this.reportOption = reportOption;
+		this.memberCode = memberCode;
+		this.reviewACode = reviewACode;
 	}
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-	
 	
 	
 	
