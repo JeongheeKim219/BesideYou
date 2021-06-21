@@ -42,5 +42,7 @@ public interface CounselorRepository extends JpaRepository<Counselor, Long>{
 
 	
 
-	
+	////////기현
+	@Query("select c from Counselor c where c.counselorState=2")
+	Page<Counselor> selectCounselor(Pageable pageable);
 }

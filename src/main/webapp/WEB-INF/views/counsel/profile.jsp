@@ -69,7 +69,11 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 </head>
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
 	<main>
@@ -103,55 +107,44 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNavDropdown">
 						<ul class="navbar-nav fs-0 fw-700">
-							<li><a href="JavaScript:void(0)">상담사검색</a>
-								<ul class="dropdown fs--1">
-									<li><a href="index.html">Slider Header</a></li>
-									<li><a href="index--header-slider-classic.html">Slider
-											Classic</a></li>
-									<li><a href="index--header-static.html">Static Header</a></li>
-									<li><a href="index--header-static-classic.html">Static
-											Classic</a></li>
-									<li><a href="index--header-youtube-video.html">Youtube
-											Background </a></li>
-									<li><a href="index--header-youtube-video-classic.html">Youtube
-											Classic</a></li>
-									<li><a href="index--header-selfhosted-video.html">Self-hosted
-											Video</a></li>
-									<li><a href="index--header-selfhosted-video-classic.html">Self-hosted
-											Classic</a></li>
-								</ul></li>
-							<li><a href="JavaScript:void(0)">테스트/검사</a>
-								<ul class="dropdown fs--1">
-									<li><a href="services.html">Services</a></li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="alumni.html">Alumni</a></li>
-									<li><a href="blank.html">Blank Page</a></li>
-									<li><a href="404.html">404 Page</a></li>
-									<li><a href="login.html">Login</a></li>
-									<li><a href="registration.html">Registration</a></li>
-								</ul></li>
-							<li><a href="JavaScript:void(0)">마이페이지</a>
-								<ul class="dropdown fs--1">
-									<li><a href="newsroom.html">Newsroom</a></li>
-									<li><a href="news.html">Single News</a></li>
-								</ul></li>
-<%-- 							<sec:authorize access="hasRole('ROLE_COUNSELOR')"> --%>
-								<li><a href="JavaScript:void(0)">상담사메뉴</a>
-									<ul class="dropdown fs--1">
-										<li><a href="components-buttons.html">Buttons</a></li>
-										<li><a href="components-colors.html">Colors</a></li>
-										<li><a href="components-googlemap.html">Google Map</a></li>
-										<li><a href="components-grid.html">Grid</a></li>
-										<li><a href="components-icons.html">Icons</a></li>
-										<li><a href="components-layouthelpers.html">Layout
-												Helpers</a></li>
-										<li><a href="components-modal-video.html">Modal Video</a></li>
-										<li><a href="components-owlcarousal.html">Owl Carousal</a></li>
-										<li><a href="components-slider.html">Slider</a></li>
-										<li><a href="components-typography.html">Typography</a></li>
-									</ul>
+							<li><a href="${pageContext.request.contextPath}/counsel/counselorList">상담사검색</a>
 								</li>
-<%-- 							</sec:authorize> --%>
+							<li><a href="#">테스트/검사</a>
+								<ul class="dropdown fs--1">
+									<li><a href="${pageContext.request.contextPath}/psy/list">자가진단 테스트</a></li>
+									<li><a href="${pageContext.request.contextPath}/psy/art">그림 심리검사</a></li>
+								</ul></li>
+							<li><a href="#">마이페이지</a>
+								<ul class="dropdown fs--1">
+									<li><a href="${pageContext.request.contextPath}/member/read">내 정보</a></li>
+									<sec:authorize access="!hasRole('ROLE_COUNSELOR')">
+										<li><a href="${pageContext.request.contextPath}/counsel/myCounselList?field=-1">내 상담예약</a></li>
+										<li><a href="${pageContext.request.contextPath}/counsel/myCounselList?field=3">내 상담글</a></li>
+										<li><a href="${pageContext.request.contextPath}/ticket/mylist">상담권 구매내역</a></li>
+										<li><a href="${pageContext.request.contextPath}/psy/lo/result">테스트 결과</a></li>
+										<li><a href="${pageContext.request.contextPath}/psy/lo/answerList">그림 심리검사 결과</a></li>
+									</sec:authorize>
+								</ul></li>
+							<li><a href="#">고객센터</a>
+								<ul class="dropdown fs--1">
+									<li><a href="${pageContext.request.contextPath}/contact/list">1:1문의</a></li>
+									<li><a href="${pageContext.request.contextPath}/faq/list">FAQ</a></li>
+									<li><a href="${pageContext.request.contextPath}/notice/list">공지사항</a></li>
+								</ul></li>
+							<li><a href="#">상담사메뉴</a>
+								<ul class="dropdown fs--1">
+									<sec:authorize access="!hasRole('ROLE_COUNSELOR')">
+										<li><a href="${pageContext.request.contextPath}/counselor/CounselorJoin">상담사 신청</a></li>
+									</sec:authorize>
+									<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+										<li><a href="${pageContext.request.contextPath}/counselor/read">상담사 등록 정보</a></li>
+										<li><a href="${pageContext.request.contextPath}/psy/lo/signupArt">그림상담사 신청</a></li>
+										<li><a href="${pageContext.request.contextPath}/psy/lo/cancle">그림상담사 해지</a></li>
+										<li><a href="${pageContext.request.contextPath}/psy/lo/requestList">그림검사 요청목록</a></li>
+										<li><a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=-1">상담예약 요청목록</a></li>
+										<li><a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=3">상담글 요청목록</a></li>
+									</sec:authorize>
+								</ul></li>
 						</ul>
 						<ul class="navbar-nav ml-lg-auto">
 							<sec:authorize access="isAnonymous()">
@@ -165,8 +158,10 @@
 							<sec:authorize access="isAuthenticated()">
 								<li style="vertical-align: middle;">
 									<h6 style="margin-bottom: 0 !important; color: #2A3855">
-										<sec:authentication property="principal.name"  />
-										님 환영합니다.
+										<sec:authentication property="principal.name"/>님 
+										<sec:authorize access="hasRole('ROLE_COUNSELOR')">
+											(상담사)
+										</sec:authorize>
 										</h6>
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
@@ -182,35 +177,6 @@
 				</nav>
 			</div>
 		</div>
-		<section>
-			<div>
-				<div class="background-holder overlay"
-					style="background-image:url(${pageContext.request.contextPath}/assets/images/counsel/bggh2.png);background-position: center bottom;">
-				</div>
-				<!--/.background-holder-->
-				<div class="container">
-					<div class="row pt-6" data-inertia='{"weight":1.5}'>
-						<div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}"
-							data-zanim-trigger="scroll">
-							<div class="overflow-hidden">
-								<h1 class="color-white fs-4 fs-md-5 mb-0 zopacity"
-									data-zanim='{"delay":0}'>상담사 상세보기</h1>
-								<!-- 								<div class="nav zopacity" aria-label="breadcrumb" -->
-								<!-- 									role="navigation" data-zanim='{"delay":0.1}'> -->
-								<!-- 									<ol class="breadcrumb fs-1 pl-0 fw-700"> -->
-								<!-- 										<li class="breadcrumb-item"><a class="color-white" -->
-								<!-- 											href="#">Home</a></li> -->
-								<!-- 										<li class="breadcrumb-item active" aria-current="page">About</li> -->
-								<!-- 									</ol> -->
-								<!-- 								</div> -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
 		<section class="background-11" style="padding-bottom: 10px !important">
 			<div class="container">
 				<div class="row text-center">

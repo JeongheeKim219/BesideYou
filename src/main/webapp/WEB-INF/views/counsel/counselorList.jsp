@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -71,12 +70,10 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
 </script>
-<style type="text/css">
-tr{
-	height: 70px; 
-}
-</style>
 </head>
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
 	<main>
@@ -180,109 +177,58 @@ tr{
 				</nav>
 			</div>
 		</div>
-		<section class="background-11">
-			<div class="container">
-				<div class="row mt-6" style="margin-top: 10px !important">
-					<div class="col"></div>
-					<div class="col-12">
-						<div
-							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary"
-							style="margin-top: 20px !important">
-							<h3 class="text-center fs-2 fs-md-3">요청 정보</h3>
+		
+		<section class="background-11 text-center">
+		<h3 class="text-center fs-2 fs-md-3">상담사검색</h3>
 							<hr class="short"
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
-								<table style="width: 100%; vertical-align: middle;">
-									<tr>
-										<td style="width: 30%">
-											<h5>이름(가명)</h5>
-										</td>										
-										<td>
-											<h5>${counsel.member.alias}</h5>
-										</td>										
-									</tr>
-									<tr>
-										<td>
-											<h5>상담 유형</h5>
-										</td>
-										<c:choose>
-											<c:when test="${counsel.counselCategory==0}">
-												<td><h5>대면상담</h5></td>
-											</c:when>
-											<c:when test="${counsel.counselCategory==1}">
-												<td><h5>전화상담</h5></td>
-											</c:when>
-											<c:when test="${counsel.counselCategory==2}">
-												<td><h5>채팅상담</h5></td>
-											</c:when>
-										</c:choose>
-									</tr>
-									<tr>
-										<td>
-											<h5>진행상황</h5>
-										</td>										
-										<td>
-											<c:choose>
-												<c:when test="${counsel.counselState==0}">
-													<h5 style="color: #FDD428">승인 대기중</h5>
-												</c:when>
-												<c:when test="${counsel.counselState==1}">
-													<h5 style="color: #B33641">반려</h5>
-												</c:when>
-												<c:when test="${counsel.counselState==2}">
-													<h5 style="color: #3680B3">승인</h5>
-												</c:when>
-												<c:when test="${counsel.counselState==3}">
-													<h5 style="color: #36B36A">완료</h5>
-												</c:when>
-											</c:choose>
-										</td>										
-									</tr>
-									<tr>
-										<td>
-											<h5>전화번호</h5>
-										</td>										
-										<td>
-											<h5>${counsel.member.phone}</h5>
-										</td>										
-									</tr>
-									<tr>
-										<td>
-											<h5>상담 요청일</h5>
-										</td>										
-										<td>
-											<h5>${fn:substring(counsel.counselReqDate,0,10)}</h5>
-										</td>										
-									</tr>
-									<tr>
-										<td>
-											<h5>상담 희망일시</h5>
-										</td>										
-										<td>
-											<h5>${fn:substring(counsel.counselReqDate,0,4)}년 ${fn:substring(counsel.counselReqDate,5,7)}월 ${fn:substring(counsel.counselReqDate,8,10)}일
-										${fn:substring(counsel.counselReqDate,11,16)}</h5>
-										</td>										
-									</tr>
-								</table>
-								<div>
-									<c:if test="${counsel.counselState==2}">
-										<h5 style="color: red">※완료되지 않은 상담을 임의로 완료처리하는 경우에는 불이익을 받을 수 있습니다.</h5>
-									</c:if>
+							<br>
+			<div class="container">
+				<div class="row">
+					<c:forEach items="${pageList.content}" var="counselor">
+						<div class="col-sm-6 col-lg-4"
+							style="padding-top: 30px; padding-bottom: 30px">
+							<div class="background-white pb-4 h-100 radius-secondary">
+								<img class="mb-4 radius-tr-secondary radius-tl-secondary"
+									src="/assets/images/portrait-3.jpg" alt="Profile Picture" />
+								<div class="px-4" data-zanim-timeline="{}"
+									data-zanim-trigger="scroll">
+									<div class="overflow-hidden">
+										<h4 data-zanim='{"delay":0}'>"${counselor.member.name}"
+											상담사</h4>
+									</div>
+									<div class="overflow-hidden">
+										<p class="py-3 mb-0" data-zanim='{"delay":0.2}'>${counselor.career}</p>
+									</div>
+									<div>
+										<a class="btn btn-outline-primary btn-sm"
+											href="${pageContext.request.contextPath}/counsel/profile?counselorCode=${counselor.counselorCode}">자세히
+											알아보기</a>
+									</div>
 								</div>
-								<div style="text-align: right;">
-									<c:choose>
-										<c:when test="${counsel.counselState==0}">
-											<a class="btn btn-info" href="${pageContext.request.contextPath}/counsel/approve?counselCode=${counsel.counselCode}">승인</a>
-											<a class="btn btn-danger" href="${pageContext.request.contextPath}/counsel/reject?counselCode=${counsel.counselCode}">반려</a>
-										</c:when>
-										<c:when test="${counsel.counselState==2}">
-											 <a class="btn btn-success " href="${pageContext.request.contextPath}/counsel/complete?counselCode=${counsel.counselCode}">완료</a>
-										</c:when>
-									</c:choose>
-								</div>
+							</div>
 						</div>
-					</div>
+					</c:forEach>
 				</div>
+				<nav class="font-1 mt-5" aria-label="Page navigation example">
+					<ul class="pagination pagination justify-content-center">
+						<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
+							<c:choose>
+								<c:when test="${pageList.number==i}">
+									<li class="page-item active"><a class="page-link"
+										href="${pageContext.request.contextPath}/counsel/counselorList?nowPage=${i}">${i+1}</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="${pageContext.request.contextPath}/counsel/counselorList?nowPage=${i}">${i+1}</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</ul>
+				</nav>
 				<!--/.row-->
 			</div>
 			<!--/.container-->
@@ -291,16 +237,15 @@ tr{
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md">
-						<h3 class="color-white mb-0">
-							슬프고 우울한 날에도 당신의 곁에 Beside-U
-						</h3>
+						<h3 class="color-white mb-0">슬프고 우울한 날에도 당신의 곁에 Beside-U</h3>
 					</div>
 				</div>
 				<!--/.row-->
 				<br>
 				<div>
 					<h6 style="color: #949494">상호명:(주)BU | 대표:박기현</h6>
-					<h6 style="color: #949494">사업장소재지:(13637) 경기도 성남시 분당구 성남대로 34 6층(구미동 하나프라자빌딩)</h6>
+					<h6 style="color: #949494">사업장소재지:(13637) 경기도 성남시 분당구 성남대로 34
+						6층(구미동 하나프라자빌딩)</h6>
 					<h6 style="color: #949494">사업자등록번호:199-4082-3</h6>
 					<h6 style="color: #949494">대표메일:mooyaho@kosta.com</h6>
 					<h6 style="color: #949494">© BU All rights reserved.</h6>

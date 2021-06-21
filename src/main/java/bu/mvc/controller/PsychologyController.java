@@ -238,7 +238,7 @@ public class PsychologyController {
 		//회원정보를 가져와서 그림상담사 등록되어있는지
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Counselor co = psyService.selectByMem(member.getMemberCode());
-		if(co.getCounselorState()!=1) {
+		if(co.getCounselorState()!=2) {
 			model.addAttribute("co", co);
 			return "/psy/signupArt";
 		}
