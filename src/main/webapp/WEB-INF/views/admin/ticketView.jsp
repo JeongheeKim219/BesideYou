@@ -31,7 +31,112 @@
     -->
 <link href="${pageContext.request.contextPath}/adminCss/main.css"
 	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/adminCss/jquery-ui.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/adminCss/jquery-ui.theme.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/adminCss/jquery-ui.theme.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
 
+		fn_default_datepicker();
+
+	})//제이 쿼리 Ready
+
+	function fn_default_datepicker() {
+		var start = $("#from").datepicker(
+				{
+					dateFormat : 'yy-mm-dd' //Input Display Format 변경
+					,
+					showOtherMonths : true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+					,
+					showMonthAfterYear : true //년도 먼저 나오고, 뒤에 월 표시
+					,
+					changeYear : true //콤보박스에서 년 선택 가능
+					,
+					changeMonth : true //콤보박스에서 월 선택 가능                
+					//,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+					//,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+					//,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+					,
+					buttonText : "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+					,
+					yearSuffix : "년" //달력의 년도 부분 뒤에 붙는 텍스트
+					,
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 텍스트
+					,
+					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+							'8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
+					,
+					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 부분 텍스트
+					,
+					dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
+							'토요일' ] //달력의 요일 부분 Tooltip 텍스트
+					/* ,
+					minDate : "-1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+					,
+					maxDate : "-1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)    */             
+				});
+
+		var end = $("#to").datepicker(
+				{
+					dateFormat : 'yy-mm-dd' //Input Display Format 변경
+					,
+					showOtherMonths : true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+					,
+					showMonthAfterYear : true //년도 먼저 나오고, 뒤에 월 표시
+					,
+					changeYear : true //콤보박스에서 년 선택 가능
+					,
+					changeMonth : true //콤보박스에서 월 선택 가능                
+					//,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+					//,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+					//,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+					,
+					buttonText : "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+					,
+					yearSuffix : "년" //달력의 년도 부분 뒤에 붙는 텍스트
+					,
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 텍스트
+					,
+					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+							'8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
+					,
+					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 부분 텍스트
+					,
+					dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
+							'토요일' ] //달력의 요일 부분 Tooltip 텍스트
+					,
+					/* minDate : "-1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+					,
+					maxDate : "-1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+					, */
+					defaultDate : "+1w"
+				});
+
+		//초기값을 오늘 날짜로 설정
+		$('#from').datepicker('setDate', '-7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+		$('#to').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+	}
+
+	function getDate(element) {
+		var date;
+		var dateFormat = "yy-mm-dd";
+		try {
+			date = $.datepicker.parseDate(dateFormat, element.value);
+		} catch (error) {
+			date = null;
+		}
+		return date;
+	}
+</script>
 </head>
 <body>
 	<%@include file="./header.jsp"%>
@@ -58,19 +163,16 @@
 						<div class="card-header" style="justify-content: flex-end;">
 							<div class="widget-content widget-content-right">
 								<form
-									action="${pageContext.request.contextPath}/admin/selectByNameAndAlias"
+									action="${pageContext.request.contextPath}/admin/selectTicketBetween"
 									method="get">
 									<div class="input-group">
-										<input type="text" class="form-control form-control"
-											name="keyword">
+										<label for="from"></label> <input type="text" id="from"
+											name="from"> <label for="to"> ~ </label> <input
+											type="text" id="to" name="to">
 										<div class="input-group-append">
-											<button type="button" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="false"
-												class="dropdown-toggle btn btn-secondary">이름/가명</button>
-											<div role="menu" aria-hidden="true" class="dropdown-menu">
-												<button type="button" tabindex="0" class="dropdown-item">아이디</button>
-
-											</div>
+											<input type="submit" aria-haspopup="true"
+												aria-expanded="false"
+												class="btn btn-secondary" value="기간">
 										</div>
 									</div>
 								</form>
@@ -113,26 +215,26 @@
 											double totalPrice = price * (1 - (rate * 0.01));
 											pageContext.setAttribute("totalPrice", totalPrice);
 											%>
-											
+
 											<tbody>
-												
+
 												<tr>
 													<th scope="row">${tkList.ticketCode}</th>
 													<td>${tkList.member.id}</td>
 													<c:choose>
-															<c:when test="${tkList.ticketField==0}">
-                                           			<td>대면(${tkList.counselor.member.name})</td>
-                                            	</c:when>
-															<c:when test="${tkList.ticketField==1}">
-                                            		<td>전화(${tkList.counselor.member.name})</td>
-                                            	</c:when>
-															<c:when test="${tkList.ticketField==2}">
-                                            		<td>채팅(${tkList.counselor.member.name})</td>
-                                            	</c:when>
-															<c:when test="${tkList.ticketField==3}">
-                                            		<td>텍스트(${tkList.counselor.member.name})</td>
-                                            	</c:when>
-														</c:choose>
+														<c:when test="${tkList.ticketField==0}">
+															<td>대면상담</td>
+														</c:when>
+														<c:when test="${tkList.ticketField==1}">
+															<td>전화상담</td>
+														</c:when>
+														<c:when test="${tkList.ticketField==2}">
+															<td>채팅상담</td>
+														</c:when>
+														<c:when test="${tkList.ticketField==3}">
+															<td>텍스트 테라피</td>
+														</c:when>
+													</c:choose>
 													<td>${tkList.ticketAmount}</td>
 													<c:choose>
 														<c:when test="${tkList.discount.discountRate == 0}">
@@ -144,17 +246,20 @@
 													</c:choose>
 													<c:choose>
 														<c:when test="${tkList.discount.discountRate == 0}">
-															<td><span><fmt:formatNumber type="currency" value="${totalPrice}"/></span></td>
+															<td><span><fmt:formatNumber type="currency"
+																		value="${totalPrice}" /></span></td>
 														</c:when>
-														<c:otherwise>	
-															<td>
-																<span><fmt:formatNumber type="currency" value="${totalPrice}"/></span><br>
-																<span style="text-decoration: line-through; font-size: x-small;"><fmt:formatNumber type="currency" value="${tkList.ticketPrice}"/></span>
-															</td>
-													</c:otherwise>
+														<c:otherwise>
+															<td><span><fmt:formatNumber type="currency"
+																		value="${totalPrice}" /></span><br> <span
+																style="text-decoration: line-through; font-size: x-small;"><fmt:formatNumber
+																		type="currency" value="${tkList.ticketPrice}" /></span></td>
+														</c:otherwise>
 													</c:choose>
-													<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm" value="${tkList.ticketDate}" type="both"/>
-													<td><fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+													<fmt:parseDate var="parseDate" pattern="yyyy-MM-dd'T'HH:mm"
+														value="${tkList.ticketDate}" type="both" />
+													<td><fmt:formatDate value="${parseDate}"
+															pattern="yyyy-MM-dd HH:mm" /></td>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
@@ -195,16 +300,26 @@
 		</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		$(function() {
-
-			/* 
-			 $("button[tabindex='0']").click(function (){
-			 $("#keyfield").();
-			
-			 });	
-			 */
-
+			$("#from").on("click",function(){
+		        
+		    });
+		 
+		     $("#from").on("change",function(e){
+		         var end = $( "#to" ).datepicker( "option", "today", getDate( e.target ) );
+		     });
+		     
+		     $("#from").on("change",function(e){
+		         
+		     });
+		     
+		     /* $("#date_search").on("click",function(){
+		         var start = $("#datepicker_start").val();
+		         var end = $("#datepicker_end").val();
+		     });     */		
 		})//제이 쿼리 Ready
 	</script>
 </body>

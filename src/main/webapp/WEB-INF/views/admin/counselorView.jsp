@@ -119,6 +119,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">상담사코드</th>
+									<th class="text-center">ID</th>
 									<th class="text-center">이름</th>
 									<th class="text-center">전문분야</th>
 									<th class="text-center">자격증</th>	
@@ -154,6 +155,7 @@
 											</div>
 										</div>
 									</td>
+									<td>${newCounselor.member.name}</td>
 									<c:set value="${newCounselor.speciality}" var="totalSpec"/>
 									<td class="text-center">
 										<c:forEach items="${totalSpec}" var="spec" varStatus="state">

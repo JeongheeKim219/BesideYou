@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.AjaxData;
+import bu.mvc.domain.AjaxDataThree;
 import bu.mvc.domain.AjaxDataTwo;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.ContactReply;
@@ -471,5 +472,17 @@ public class AdminController {
 		return "admin/ticketLineView";
 	}
 	
-
-}
+	/**
+	 * 21. 기간별 매출액조회
+	 */
+	/*
+	 * @RequestMapping("/selectTicketBetween") public String
+	 * selectTicketBetween(@RequestParam(defaultValue = "0")int currentPage, String
+	 * from, String to, Model model) { Pageable pageable =
+	 * PageRequest.of(currentPage, 10,s ) Page<Ticket> tickets =
+	 * adminService.selectSalesBetween(from, to);
+	 * model.addAttribute("ticketsBetween", tickets);
+	 * 
+	 * return "admin/ticketView"; }
+	 */
+}	

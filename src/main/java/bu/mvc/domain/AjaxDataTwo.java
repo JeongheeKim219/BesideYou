@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AjaxDataTwo {
 
+	//상감사 순위 도메인
+	
 	List<String> counselorNameList;
 
 	List<Integer> sessionList; 
