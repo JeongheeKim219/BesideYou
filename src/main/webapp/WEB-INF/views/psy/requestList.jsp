@@ -169,8 +169,12 @@
          </div>
       </div>
 		<section class="background-11 text-center">
-			<h3>그림검사 요청목록</h3>
 			<div class="container">
+			<div class="row mt-6">
+					<div class="col">
+						<h3 class="text-center fs-2 fs-md-3">그림상담사 요청목록</h3>
+					</div>
+				</div>
 				<div>
 					<table class="table table-hover">
 						<thead>

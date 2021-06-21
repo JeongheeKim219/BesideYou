@@ -251,7 +251,7 @@
 						<div class="container">
 							<div class="row mt-6">
 								<div class="col">
-									<h3 class="text-center fs-2 fs-md-3">그림상담사 해지안내</h3>
+									<h4 class="text-center fs-2 fs-md-3 color-4">그림상담사 해지안내</h4>
 								</div>
 								<div class="col-12">
 									<div

@@ -177,7 +177,7 @@
          </div>
       </div>
 		<section class="background-11 text-center">
-			<h3 class="text-center fs-2 fs-md-3">그림상담 답변</h3>
+			<h3 class="text-center fs-2 fs-md-3 mb-5">그림상담 답변</h3>
 			<div class="container">
 				<div>
 					<table class="table table-hover">
