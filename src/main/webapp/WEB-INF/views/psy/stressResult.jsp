@@ -285,7 +285,7 @@
 					      title: 'BU_당신의 스트레스 점수는 몇 점?',
 					      description: '간단한 심리검사로 알아보는 지금 나의 스트레스 점수는 몇 점?',
 					      imageUrl:
-					        'https://ifh.cc/g/PsZ0A6.jpg',
+					        'https://ifh.cc/g/0cg2Zq.jpg',
 					      link: {
 					        mobileWebUrl: 'https://developers.kakao.com',
 					        webUrl: 'http://localhost:9000/psy/stressResult?no='+${code},
@@ -326,7 +326,7 @@
 									전문가에게 상담받으세요!</h5>
 								<br>
 								<div style="text-align: center;">
-									<a href="${pageContext.request.contextPath}/index"
+									<a href="${pageContext.request.contextPath}/counsel/counselorList"
 										class="btn btn-outline-primary btn-capsule">심리상담 알아보기</a>
 								</div>
 							</blockquote>
