@@ -2,8 +2,11 @@ package bu.mvc.respsitory;
 
 import java.util.List;
 
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -29,6 +32,7 @@ public interface CounselorRepository extends JpaRepository<Counselor, Long>{
 	Page<Counselor> findByCounselorState(int state, Pageable pageable);
 
 	
+
 	/**
 	 * 상담사정보 수정하기
 	 * */
@@ -36,9 +40,7 @@ public interface CounselorRepository extends JpaRepository<Counselor, Long>{
 	@Modifying
 	void updateCounselor(String career, Long counselorCode);*/
 
-	/**
-	 * 3. 상담사 전체 조회
-	 */
-	Page<Counselor> findAll(Pageable pageable);
+	
+
 	
 }

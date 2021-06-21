@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.jdbc.IncorrectResultSetColumnCountException;
 import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.AjaxData;
@@ -33,10 +32,10 @@ import bu.mvc.respsitory.AuthorityRepository;
 import bu.mvc.respsitory.ContactRepository;
 import bu.mvc.respsitory.CounselRepository;
 import bu.mvc.respsitory.CounselorRepository;
-import bu.mvc.respsitory.ReviewRepository;
-import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.MemberRepository;
 import bu.mvc.respsitory.PsychologyRepository;
+import bu.mvc.respsitory.ReviewRepository;
+import bu.mvc.respsitory.TicketLinesRepository;
 import bu.mvc.respsitory.TicketRepository;
 
 @Service

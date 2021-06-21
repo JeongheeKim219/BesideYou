@@ -15,12 +15,8 @@
 	function logout() {
 		document.getElementById("logoutForm").submit();
 	}
-	function read() {
-		document.getElementById("readForm").submit();
-	}
-	function counselorRead(){
-		document.getElementById("counselorReadForm").submit();
-	}
+	
+	
 	function counselorJoin(){
 		document.getElementById("counselorJoinForm").submit();
 	}
@@ -224,8 +220,8 @@
 										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								</li>
 								
-								<li><a href="javascript:read();">회원정보</a></li>
-								<li><a href="javascript:counselorJoin();">상담사 신청</a></li>
+								<li><a href="${pageContext.request.contextPath}/member/read">회원정보</a></li>
+								<li><a href="${pageContext.request.contextPath}/counselor/CounselorJoin">상담사 신청</a></li>
 								<li><a href="javascript:logout();">로그아웃</a></li> 
 
 								</sec:authorize>
@@ -248,7 +244,7 @@
 								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
 								   <sec:authentication property="principal.name" />상담사님 안녕하세요.
 								   <li><a href="${pageContext.request.contextPath}/counselor/read">상담사 정보</a>
-								    <li><a href="javascript:read();">회원정보</a></li> 
+								   <li><a href="${pageContext.request.contextPath}/member/read">회원정보</a></li>
 								   <a href="javascript:logout();">로그아웃</a></li>
 								   
 								</sec:authorize>
@@ -261,24 +257,10 @@
 								value="${_csrf.token}" />
 						</form>
 						
-						<form id="readForm"
-							action="${pageContext.request.contextPath}/member/read"
-							method="post" style="display: none">
-							<input type="hidden" name="memberCode"
-								value="<sec:authentication property="principal.memberCode" />" />
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-						</form>
+						
 							
 						
-						<form id="counselorJoinForm"
-							action="${pageContext.request.contextPath}/counselor/CounselorJoin"
-							method="post" style="display: none">
-							<input type="hidden" name="memberCode"
-								value="<sec:authentication property="principal.memberCode" />" />
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-						</form>  
+						
 						
 							</sec:authorize>
 						</ul>
