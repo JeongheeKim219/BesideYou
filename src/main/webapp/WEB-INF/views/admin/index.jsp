@@ -441,7 +441,7 @@
 					</div>
 				</div>
 				<!-- 월별 상담/ 상담신청 건수 차트 끝 -->
-				<div class="row py-3"">
+				<div class="row py-3">
 					<div class="col-md-6 col-lg-3">
 						<div
 							class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
@@ -551,26 +551,6 @@
 	<script type="text/javascript">
 		$(function() {
 			
-			//Token
-			// using jQuery
-			/* function getCookie(name) {
-			    var cookieValue = null;
-			    if (document.cookie && document.cookie !== '') {
-			        var cookies = document.cookie.split(';');
-			        for (var i = 0; i < cookies.length; i++) {
-			            var cookie = jQuery.trim(cookies[i]);
-			            // Does this cookie string begin with the name we want?
-			            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-			                break;
-			            }
-			        }
-			    }
-			    return cookieValue;
-			}
-			var csrftoken = getCookie('csrftoken'); */
-			///////////////////////////////////////////////////
-			
 			var weekList = [];
 			var monthList = [];
 			var today = new Date();
@@ -615,12 +595,18 @@
 						$.each(result, function(index, item) {
 							newJoinMember.push(item);
 						});
+						
+						console.log(newJoinMember)
 						drawNewMemberChart();
 					},
 					error : function(err) {
 						alert("error");
 					}
 				});
+				
+				//setTimeout(countNewMember , 3000);
+				console.log(1)
+				
 			}
 
 			
@@ -685,24 +671,24 @@
                             		str += "</div>";
 								}else {
 									str += "<div class='mb-3 progress'>";
-                            		str +=  "<div class='progress-bar bg-danger' role='progressbar' aria-valuenow='" + result.starList[index] +"' aria-valuemin='0' aria-valuemax='5' style='width: " + 100 + "%;'>" + result.starList[index] + "</div>";
+                            		str +=  "<div class='progress-bar bg-danger' role='progressbar' aria-valuenow='" + result.starList[index] + "' aria-valuemin='0' aria-valuemax='5' style='width: " + 100 + "%;'>" + result.starList[index] + "</div>";
                             		str += "</div>";
 								}
 							} else if (result.starList[index] < 2){
    	                            str += "<div class='mb-3 progress'>";
-   	                            str +=  "<div class='progress-bar bg-warning' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + " (" + result.starCountList[index] + ")</div>";
+   	                            str +=  "<div class='progress-bar bg-warning' role='progressbar' aria-valuenow='" + result.starList[index] + "' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + "</div>";
    	                            str += "</div>";
 	    					} else if (result.starList[index] < 3){
 	                            str += "<div class='mb-3 progress'>";
-		                        str +=  "<div class='progress-bar' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + " (" + result.starCountList[index] + ")</div>";
+		                        str +=  "<div class='progress-bar' role='progressbar' aria-valuenow='" + result.starList[index] + "</div>";
 		                        str += "</div>";
 		    				} else if (result.starList[index] < 4){
 	                            str += "<div class='mb-3 progress'>";
-			                    str +=  "<div class='progress-bar bg-info' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] +  "(" +  result.starCountList[index] + ")</div>";
+			                    str +=  "<div class='progress-bar bg-info' role='progressbar' aria-valuenow='" + result.starList[index] + "' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" + result.starList[index] + "</div>";
 			                    str += "</div>";
 		    				} else if (result.starList[index] >= 4){
 			 	                str += "<div class='mb-3 progress'>";
-		                        str +=  "<div class='progress-bar bg-success' role='progressbar' aria-valuenow='" + result.starList[index] + " (" + result.starCountList[index] + ")' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" +  result.starList[index] + "(" + result.starCountList[index] + ")</div>";
+		                        str +=  "<div class='progress-bar bg-success' role='progressbar' aria-valuenow='" + result.starList[index] +  "' aria-valuemin='0' aria-valuemax='5' style='width: " + result.starList[index] * 20 + "%;'>" +  result.starList[index] + "</div>";
 		                        str += "</div>";
 		    				}
         					str += "</div>";
@@ -737,6 +723,7 @@
 			
 			//신규 멤버 일자별 차트 그리기
 			function drawNewMemberChart() {
+				
 				var newMemeberChart = $("#newMemeberChart");
 				var barChart = new Chart(newMemeberChart, {
 					type : 'bar',
@@ -768,7 +755,10 @@
 						}
 					}
 				});
-			}
+				
+				
+				
+			}//drawNewMemberChart
 
 			
 			// 상담/상담신청 월별 증감 추이 차트 그리기
@@ -793,7 +783,7 @@
 						} ]
 					},
 					options : {
-						//responsive : true,
+						responsive : true,
 						plugins : {
 							legend : {
 								position : 'top',
@@ -831,7 +821,6 @@
 				});
 			}
 	
-			
 				countNewMember();
 				countCounselByMonth();
 				rankCounselor();

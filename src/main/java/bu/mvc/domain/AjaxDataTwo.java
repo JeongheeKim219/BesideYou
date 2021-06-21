@@ -21,6 +21,6 @@ public class AjaxDataTwo {
 	
 	List<Double> starList;
 	
-	List<Integer> starCountList;
+	//List<Integer> starCountList;
 
 }

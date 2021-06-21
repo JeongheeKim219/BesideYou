@@ -30,5 +30,8 @@ public interface ReviewRepository extends JpaRepository<ReviewStar, Long> {
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 	Page<ReviewStar> findByMemberMemberCode(Pageable pageable, Long memberCode);
+
+
+
 }
 

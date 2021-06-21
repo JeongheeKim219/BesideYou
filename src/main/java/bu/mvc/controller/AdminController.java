@@ -68,9 +68,6 @@ public class AdminController {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String now = formatter.format(date);
-
-		
-		
 		
 		model.addAttribute("now", now);
 		model.addAttribute("newRegularCount", selectNewByType(0).size());
@@ -511,6 +508,10 @@ public class AdminController {
 		return result;
 	}
 
+	
+	/**
+	 * 23. 매출액 통계
+	 */
 
 
 

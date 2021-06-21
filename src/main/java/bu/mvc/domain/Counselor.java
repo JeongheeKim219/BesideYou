@@ -54,6 +54,9 @@ public class Counselor {
 	private Member member; // 회원코드
 	
 	
+	//List<ReviewStar> reviewStars
+	
+	
 	public Counselor(Long counselorCode) {
 		super();
 		this.counselorCode = counselorCode;
