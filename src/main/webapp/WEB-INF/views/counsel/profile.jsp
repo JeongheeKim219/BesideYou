@@ -364,11 +364,80 @@
 							<hr class="short"
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
-						</div>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
+								<div align="center">
+								<form name="requestForm" method="get" id="requestForm" action="${pageContext.request.contextPath}/review/reviewByCode?counselorCode=${counselor.counselorCode}" >
+		
+									<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
+									<input type="hidden" id="memberCode" name="memberCode" value=""/>
+									<input type="hidden" id ="reviewContent" name="reviewContent" value=""/>
+									<input type="hidden" id ="counselor" name="counselor" value=""/>
+									 <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+									<c:choose>
+										<c:when test="${empty requestScope.revList}">
+											<div class="panel panel-default" style="width: 600px;">
+													<!-- Default panel contents -->
+													<div class="panel-heading"><b>리뷰 번호 :</b> ${review.reviewCode}</div>
+													<!-- Table -->
+													<table class="table" align="center">
+														<tr>
+															<td>회원 번호 : </td>
+															<td>상담번호 :</td>
+															<td>별점 : </td>
+															<td>리뷰날짜: </td>
+														</tr>
+														<tr>
+															<td colspan="4">
+																<p align="center"><b><span style="font-size: 12px;">등록된 리뷰가 없습니다.</span></b></p>
+															</td>
+														</tr>
+														<tr></tr>
+													</table>
+												</div>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${requestScope.revList}" var="review"
+												varStatus="num">
+												<div class="panel panel-default" style="width: 1000px;">
+													<!-- Default panel contents -->
+													<div class="panel-heading" >리뷰 번호 : ${review.reviewCode}</div>
+													<!-- Table -->
+													<table class="table">
+														<tr >
+															<td>회원 번호 : ${review.member.memberCode}</td>
+															<td>상담번호 : ${review.counsel.counselCode}</td>
+															<td>별점 : ${review.star}</td>
+															<td>리뷰날짜: ${review.reviewDate}</td>
+															<td>상담사 번호 :${review.counselor.counselorCode}</td>
+														</tr>
+														<tr>
+															<td colspan="5">${review.reviewContent}</td>
+														</tr>
+														<tr>
+															<td style="border-top: hidden;" colspan="5" align="right">
+																<input type="button" id="btn_${num.index}" name="btn" value="신고하기" > 
+																<sec:authorize access="hasRole('ROLE_MEMBER')">
+																<input type="button" id="reviewDelete_${num.index}" name="reviewDelete" value="리뷰삭제"> 
+																<input type="button" id="reviewChange_${num.index}" name=reviewChange value="리뷰수정"> 
+																</sec:authorize>
+																<input type="hidden" id="reviewCode_${num.index}" value="${review.reviewCode}">
+																<input type="hidden" id="reviewContent_${num.index}" value="${review.reviewContent}">
+																<input type="hidden" id="counselor_${num.index}" name="counselor" value="${review.counselor.counselorCode}">
+																<input type="hidden" id="memberCode_${num.index}" name="memberCode" value="${review.member.id}">
+															</td>
+														</tr>
+													</table>
+												</div>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+									</form>
+										<a href="?page=${previous}">Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?page=${next}">Next</a>
+									</div>
+													</div>
+												</div>
+											</div>
+											<!--/.row-->
+										</div>
 			<!--/.container-->
 		</section>
 		
