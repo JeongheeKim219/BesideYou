@@ -108,7 +108,7 @@ public class CounselorController {
 			//파일을 저장(업로드)
 			Calendar calendar = Calendar.getInstance();
 			Date date = calendar.getTime();
-			String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(date)+"_"+ file.getOriginalFilename();
+			String fileName = file.getOriginalFilename();
 			
 			file.transferTo(new File(path+"/"+fileName));
 		
@@ -195,15 +195,6 @@ public class CounselorController {
 			 return new ModelAndView("counselor/updateSuccess");
 	}
 	
-	@RequestMapping("/counselorJoinList")
-	public void list(Model model,@RequestParam(defaultValue = "0") int nowPage) {
-		Pageable pageble = PageRequest.of(nowPage, 10,Direction.DESC,"bno");// --> dao영역(jap영역에서)전체레코드 수 구해서 /10나누고 전체 페이지 구하고 그 페이지중에서 전달받은 nowPage에 해당하는 레코드만 검색해서 content 검색한다.
-		Page<Counselor> pageList = counselorService.selectAll(pageble);
-		
-		
-		
-		model.addAttribute("pageList",pageList);//뷰페이지에서 ${pageList.메소드이름}
-	}
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ModelAndView error(RuntimeException e) {

@@ -236,7 +236,7 @@
 								</li>
 								<!-- <li><a href="javascript:read();">회원정보</a></li> -->
 								<li><a href="admin/index">관리자페이지</a>
-								<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li> 
+								<li><a href="javascript:logout();">로그아웃</a></li> 
 
 								</sec:authorize>  
 								

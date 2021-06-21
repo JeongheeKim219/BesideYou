@@ -129,16 +129,5 @@ public class CounselorServiceImpl implements CounselorService {
 		
 	}
 
-	@Override
-	public List<Counselor> selectAll() {
-		
-		return counselorRep.selectAll();
-	}
-
-	@Override
-	public Page<Counselor> selectAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return counselorRep.findAll(pageable);
-	}
-
+	
 }
