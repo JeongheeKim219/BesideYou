@@ -224,4 +224,17 @@ public class CounselController {
 		mv.addObject("speList", speList);
 		return mv;
 	}
+	
+	@RequestMapping("/counselorList")
+	public ModelAndView counselorList(@RequestParam(defaultValue = "0") int nowPage) {
+		ModelAndView mv = new ModelAndView();
+		
+		Pageable pageable = PageRequest.of(nowPage, 6, Direction.DESC, "counselorCode");
+		
+		
+		Page<Counselor> pageList = counselService.counselorList(pageable);
+		mv.setViewName("/counsel/counselorList");
+		mv.addObject("pageList", pageList);
+		return mv;
+	}
 }

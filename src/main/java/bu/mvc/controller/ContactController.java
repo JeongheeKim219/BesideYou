@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.Member;
-import bu.mvc.hs.service.ContactService;
+import bu.mvc.service.ContactService;
 
 @Controller
 public class ContactController {

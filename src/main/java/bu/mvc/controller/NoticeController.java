@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Notice;
-import bu.mvc.hs.service.NoticeService;
+import bu.mvc.service.NoticeService;
 
 @Controller
 @RequestMapping("/notice")

@@ -172,5 +172,10 @@ public class CounselServiceImpl implements CounselService {
 		return tagRepository.findByCounselor(counselor);
 	}
 
+	@Override
+	public Page<Counselor> counselorList(Pageable pageable) {
+		return counselorRepository.selectCounselor(pageable);
+	}
+
 
 }

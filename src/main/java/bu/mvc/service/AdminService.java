@@ -3,6 +3,7 @@ package bu.mvc.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import bu.mvc.domain.AjaxData;
+import bu.mvc.domain.AjaxDataThree;
 import bu.mvc.domain.AjaxDataTwo;
 import bu.mvc.domain.Authority;
 import bu.mvc.domain.Contact;
@@ -507,6 +509,17 @@ public class AdminService {
 	public Page<Psychology> findPsychologyByMemberMemberCode(Pageable pageable, Long memberCode){
 		return psychologyRep.findByMemberMemberCode(pageable, memberCode); 
 	}
+
+	/**
+	 * 21. (통계용)기간별 매출 조회
+	 */
+	public Page<Ticket> selectSalesBetween(Pageable pageable, String from, String to) {
+		
+		Page<Ticket> pageList = ticketRep.selectTicketBetween(pageable, from, to);
+		pageList.forEach(p -> System.out.println(p));
+		return pageList;
+	}
+
 }
 
 
