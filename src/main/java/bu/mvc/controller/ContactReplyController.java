@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.ContactReply;
-import bu.mvc.hs.service.ContactReplyService;
+import bu.mvc.service.ContactReplyService;
 
 @Controller
 public class ContactReplyController {

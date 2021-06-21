@@ -1,4 +1,4 @@
-package bu.mvc.hs.service;
+package bu.mvc.service;
 
 import java.util.List;
 
