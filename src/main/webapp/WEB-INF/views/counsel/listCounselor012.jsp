@@ -231,6 +231,13 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:choose>
+									<c:when test="${empty pageList.content}">
+										<tr>
+											<td colspan="6"><h5>아직 요청된 상담이 없습니다.</h5></td>
+										</tr>
+									</c:when>
+									<c:otherwise>
 									<c:forEach items="${pageList.content}" var="counsel" varStatus="status">
 										<tr>
 											<c:choose>
@@ -265,9 +272,12 @@
 												<a href="${pageContext.request.contextPath}/counsel/seeDetail?counselCode=${counsel.counselCode}" class="btn btn-outline-info btn-xs">상세보기</a>
 											</td>
 										</tr>		
-									</c:forEach>									
+									</c:forEach>
+									</c:otherwise>	
+									</c:choose>								
 								</tbody>
 							</table>
+							<c:if test="${!empty pageList.content}">
 							<nav class="font-1 mt-5" aria-label="Page navigation example">
 								<ul class="pagination pagination justify-content-center">
 									<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
@@ -286,6 +296,7 @@
 									</c:forEach>
 								</ul>
 							</nav>
+							</c:if>
 						</div>
 					</div>
 				</div>
