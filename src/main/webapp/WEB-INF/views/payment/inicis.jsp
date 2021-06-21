@@ -43,7 +43,7 @@
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
     		name : 'BesideU 대면상담권',
-    		amount : '1000'<%-- <%=price%> --%>,  //필수항목
+    		amount : <%=price%>,  //필수항목
     		buyer_email : 'pkh@gmail.com',
     		buyer_name : '박기현',
     		buyer_tel : '010-1234-5678',  //필수항목

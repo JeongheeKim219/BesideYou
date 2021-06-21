@@ -244,7 +244,7 @@
 								<div class="col-md-6 col-lg-4 py-0 mt-4">
 									<div class="background-white pb-4 h-100 radius-secondary">
 										<img class="w-100 radius-tr-secondary radius-tl-secondary"
-											src="${pageContext.request.contextPath}/assets/images/9.jpg"
+											src="${pageContext.request.contextPath}/assets/counselor/${ticket.counselor.picture}"
 											alt="${ticket.counselor.picture}" />
 										<div class="px-4 pt-4" data-zanim-timeline="{}"
 											data-zanim-trigger="scroll">

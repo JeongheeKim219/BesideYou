@@ -248,7 +248,7 @@
 					<div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height: 400px;">
 						<div
 							class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0"
-							style="background-image:url(${pageContext.request.contextPath}/assets/images/6.jpg);">
+							style="background-image:url(${pageContext.request.contextPath}/assets/counselor/${ticket.counselor.picture});">
 						</div>
 						<!--/.background-holder-->
 					</div>
