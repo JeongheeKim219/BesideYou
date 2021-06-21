@@ -29,15 +29,15 @@ public class ReportController {
 	/**
 	 * 신고 등록
 	 * */
-	
-	
-	@RequestMapping("/report/insert")
-	public String insert(Report report ) {
-		
-		reportService.insert(report);
-		Counselor cs = report.getReviewStar().getCounselor();
-		Long a = cs.getCounselorCode();
-		return "redirect:/review/reviewByCode/"+a;		
+	@RequestMapping("/report/insert" )
+	public String insert( Report report) {		 
+		 
+		System.out.println("aa");
+		System.out.println(report.getReportOption());
+//		reportService.insert(report);
+//		Counselor cs = report.getReviewStar().getCounselor();
+//		Long a = cs.getCounselorCode();
+		return "";	
 	}
 	
 
@@ -78,7 +78,7 @@ public class ReportController {
 	 * */
 	@RequestMapping("/report/delete" )
 	public String deleteAdmin( Report report) {	
-		
+		System.out.println(report.getReportCode());
 		Long a =report.getReportCode();
 		ReviewStar rsn =report.getReviewStar();
 		System.out.println(a);
