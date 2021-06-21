@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <!-- 모든 리뷰보기는 나중에 삭제할 기능입니다. -->
@@ -188,7 +189,7 @@
 	    </div>
 	    <!--/.container-->
 	</section>
-	<form name="requestForm" method="post" id="requestForm" vertical>
+	<form name="requestForm" method="post" id="requestForm" >
 		<div align="center">
 		<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
 		<input type="hidden" id="memberCode" name="memberCode" value=""/>
@@ -238,8 +239,10 @@
 							<tr>
 								<td style="border-top: hidden;" colspan="5" align="right">
 									<input type="button" id="btn_${num.index}" name="btn" value="신고하기" > 
+									<sec:authorize access="hasRole('ROLE_MEMBER')">
 									<input type="button" id="reviewDelete_${num.index}" name="reviewDelete" value="리뷰삭제"> 
 									<input type="button" id="reviewChange_${num.index}" name=reviewChange value="리뷰수정"> 
+									</sec:authorize>
 									<input type="hidden" id="reviewCode_${num.index}" value="${review.reviewCode}">
 									<input type="hidden" id="reviewContent_${num.index}" value="${review.reviewContent}">
 									<input type="hidden" id="counselor_${num.index}" name="counselor" value="${review.counselor.counselorCode}">
@@ -270,7 +273,7 @@
 					신고자
 						
 					</td>
-					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
+					<td width="450" height="20" align="left"><b><span style="font-size: 9pt; margin: 2px;">
 								<input id="member" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 								
 								
@@ -373,7 +376,7 @@
 				</tr>
 				<tr>
 					<td width="450" height="20" colspan="2"><b><span style="font-size: 9pt; margin: 2px;">
-								<textarea cols="55" rows="5" id="tgreviewContent" name="reviewContent"></textarea>
+								<textarea cols="55" rows="5" id="tgreviewContent" name="reviewContent22"></textarea>
 								
 						</span></b></td>
 				</tr>
@@ -381,7 +384,7 @@
 					<td width="450" height="20" colspan="2" align="center">
 						<b>
 						<span style="font-size: 9pt;">
-						<input type="button" id="reportBtn2" value=리뷰수정 >
+						<input type="button" id="reviewBtn2" value=리뷰수정 >
 						<input type="button" id="backBtn2" value="돌아가기">
 						</span>
 						</b>
@@ -447,20 +450,30 @@
 				
 		$("input[name='reviewChange']").click(function() {
 			var s = $("input[name='reviewChange']").index(this);
-			$('#reviewCode').val($('#reviewCode_'+ s).val());
+			//$('#reviewCode').val($('#reviewCode_'+ s).val());
 			$('#reviewContent').val($('#reviewContent_'+ s).val());
 			$('#memberCode').val($('#memberCode_'+s).val());
 			$('#counselor').val($('#counselor_'+ s).val());
 			$('#tgmemberCode').val($('#memberCode').val());
-			$('#tgreviewCode').val($('#reviewCode').val());
+			//$('#tgreviewCode').val($('#reviewCode').val());
+			
 			$('#tgreviewContent').val($('#reviewContent').val());
+			
 			$('#reviewContent').val("");
 			$('#modal2').fadeIn();
+			alert(1)
 		});
 		
-		$("#reportBtn2").click(function() {
+		$("#reviewBtn2").click(function() {
+			alert(2)
 			var param = document.getElementById('requestForm');
-			param.reviewContent.value = $('#tgreviewContent').val();
+			alert("33 ="+$('#tgreviewContent').val()+"/")
+			alert('param.reviewContent22.value'+param.reviewContent22)
+			alert("before:param.reviewContent22.value="+param.reviewContent22.value)
+			
+			param.reviewContent22.value = $('#tgreviewContent').val();
+			
+			alert("after:param.reviewContent22.value="+param.reviewContent22.value +"/")
 			param.method = "POST";
 			param.action = "${pageContext.request.contextPath}/review/reviewUpdate";
 			param.submit(); 
