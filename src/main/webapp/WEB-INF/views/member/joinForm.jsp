@@ -257,7 +257,7 @@
 		</div>
 		<section class="text-center py">
 			<div class="background-holder overlay overlay-1"
-				style="background-image: url(/assets/images/background-1.jpg);">
+				style="background-image: url(/assets/images/배경화면21.jpg);">
 			</div>
 			<!--/.background-holder-->
 			<div class="container">
@@ -266,11 +266,11 @@
 						data-zanim-trigger="scroll">
 						<div data-zanim='{"delay":0}'>
 							<a href="${pageContext.request.contextPath}/"><img
-								src="/assets/images/logo-light.png" alt=""></a>
+								src="/assets/images/BUlogo_nobg5.png" width="70" alt=""></a>
 						</div>
 						<div class="background-white radius-secondary p-4 p-md-5 mt-5"
 							data-zanim='{"delay":0.1}'>
-							<h4 class="text-uppercase fs-0 fs-md-1">Create your elixir
+							<h4 class="text-uppercase fs-0 fs-md-1">Create your
 								account</h4>
 							<c:if test="${not empty requestScope.errorMessage}">
 								<span style="color: red">${requestScope.errorMessage}</span>
@@ -342,8 +342,8 @@
 								<div class="row align-items-center mt-3">
 									<div class="col-md-6 mt-3"></div>
 									<div class="col-md-6 mt-3">
-										<button class="btn btn-primary btn-block" type="submit">Create
-											Account</button>
+										<button class="btn btn-primary btn-block" type="submit">CREATE
+											</button>
 										<!-- <button class="btn btn-primary btn-block" type="reset">reset</button> -->
 									</div>
 								</div>

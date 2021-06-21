@@ -9,18 +9,26 @@
         <!--  -->
         <!--    Document Title-->
         <!-- =============================================-->
-        <title>Elixir | Beautiful Site Template for Agencies &amp; Professionals</title>
-        <!--  -->
-        <!--    Favicons-->
-        <!--    =============================================-->
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicons/favicon.ico">
-        <link rel="manifest" href="/assets/images/favicons/manifest.json">
-        <link rel="mask-icon" href="/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileImage" content="/assets/images/favicons/mstile-150x150.png">
-        <meta name="theme-color" content="#ffffff">
+        <title>BU - Beside U</title>
+<!--  -->
+<!--    Favicons-->
+<!--    =============================================-->
+<link rel="apple-touch-icon" sizes="180x180"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="32x32"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="16x16"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="shortcut icon" type="image/x-icon"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="manifest"
+   href="${pageContext.request.contextPath}/assets/images/favicons/manifest.json">
+<link rel="mask-icon"
+   href="${pageContext.request.contextPath}/assets/images/favicons/safari-pinned-tab.svg"
+   color="#5bbad5">
+<meta name="msapplication-TileImage"
+   content="${pageContext.request.contextPath}/assets/images/favicons/mstile-150x150.png">
+<meta name="theme-color" content="#ffffff">
         <!--  -->
         <!--    Stylesheets-->
         <!--    =============================================-->
@@ -52,15 +60,15 @@
                 </div>
             </div>
             <section class="text-center py-0">
-                <div class="background-holder overlay overlay-2" style="background-image:url(/assets/images/header-5.jpg);">
+                <div class="background-holder overlay overlay-2" style="background-image:url(/assets/images/배경화면21.jpg);">
                 </div>
                 <!--/.background-holder-->
                 <div class="container">
                     <div class="row h-full align-items-center">
                         <div class="col-md-8 col-lg-5 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt="" /></a></div>
+                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/BUlogo_nobg5.png" width="70" alt="" /></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
-                                <h4 class="text-uppercase fs-0 fs-md-1">login with elixir</h4>
+                                <h4 class="text-uppercase fs-0 fs-md-1">login with BU</h4>
                                 <c:if test="${not empty requestScope.errorMessage}">
 									<span style="color:red">${requestScope.errorMessage}</span>
 								</c:if>

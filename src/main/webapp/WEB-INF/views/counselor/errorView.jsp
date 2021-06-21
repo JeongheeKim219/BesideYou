@@ -13,18 +13,26 @@
         <!--  -->
         <!--    Document Title-->
         <!-- =============================================-->
-        <title>Elixir | Beautiful Site Template for Agencies &amp; Professionals</title>
-        <!--  -->
-        <!--    Favicons-->
-        <!--    =============================================-->
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicons/favicon.ico">
-        <link rel="manifest" href="/assets/images/favicons/manifest.json">
-        <link rel="mask-icon" href="/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileImage" content="/assets/images/favicons/mstile-150x150.png">
-        <meta name="theme-color" content="#ffffff">
+        <title>BU - Beside U</title>
+<!--  -->
+<!--    Favicons-->
+<!--    =============================================-->
+<link rel="apple-touch-icon" sizes="180x180"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="32x32"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="16x16"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="shortcut icon" type="image/x-icon"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="manifest"
+   href="${pageContext.request.contextPath}/assets/images/favicons/manifest.json">
+<link rel="mask-icon"
+   href="${pageContext.request.contextPath}/assets/images/favicons/safari-pinned-tab.svg"
+   color="#5bbad5">
+<meta name="msapplication-TileImage"
+   content="${pageContext.request.contextPath}/assets/images/favicons/mstile-150x150.png">
+<meta name="theme-color" content="#ffffff">
         <!--  -->
         <!--    Stylesheets-->
         <!--    =============================================-->

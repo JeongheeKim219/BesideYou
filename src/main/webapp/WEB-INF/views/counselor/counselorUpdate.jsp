@@ -89,7 +89,7 @@
                 <div class="container">
                     <div class="row h-100vh align-items-center">
                         <div class="col-md-12 col-lg-8 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/BUlogo_nobg.png" width="70" alt=""></a></div>
+                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/BUlogo_nobg5.png" width="70" alt=""></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
                                 <h4 class="text-uppercase fs-0 fs-md-1">Update your account</h4>
 								<sec:authorize access="isAuthenticated()">
@@ -108,6 +108,8 @@
 										3.<input type="checkbox" name="specialityName" value="섭식장애">섭식장애
 										4.<input type="checkbox" name="specialityName" value="청소년">청소년
 										5.<input type="checkbox" name="specialityName" value="강박">강박
+										</div>
+										 <div class="col-12 mt-3">
 										6.<input type="checkbox" name="specialityName" value="스트레스">스트레스
 										7.<input type="checkbox" name="specialityName" value="직장">직장
 										8.<input type="checkbox" name="specialityName" value="진로">진로
@@ -123,14 +125,17 @@
 										3.<input type="checkbox" name="tagName" value="공감">공감
 										4.<input type="checkbox" name="tagName" value="긍정에너지">긍정에너지
 										5.<input type="checkbox" name="tagName" value="경험">경험
+										</div>
+										 <div class="col-12 mt-3">
 										6.<input type="checkbox" name="tagName" value="이해">이해
 										7.<input type="checkbox" name="tagName" value="해외생활">해외생활
 										8.<input type="checkbox" name="tagName" value="친구">친구
 										9.<input type="checkbox" name="tagName" value="따듯함">따듯함
+											</div>
 
 										
 									</div>
-                                        <div class="col-12 mt-3">
+                                        <div class="col-14 mt-3">
 										<h6>대면상담 가격 입력해주세요. (권장가격 10000 ~ 20000)</h6>
 										<input type="text"  name = "price0"  ><p>
 										<h6>전화상담 가격 입력해주세요. (권장가격 10000 ~ 15000)</h6>
@@ -144,10 +149,9 @@
                                         
                                     </div>
                                     <div class="row align-items-center mt-3">
-                                        <div class="col-md-6 mt-3">
-                                           
-                                        </div>
-                                        <div class="col-md-6 mt-3">
+                                   
+                                      
+                                        <div class="col-md-12 mt-3">
                                             <button class="btn btn-primary btn-block" type="submit">Modify</button>
                                             <!-- <button class="btn btn-primary btn-block" type="reset">reset</button> -->
                                         </div>

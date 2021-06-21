@@ -168,7 +168,7 @@
                 <div class="container">
                     <div class="row h-100vh align-items-center">
                         <div class="col-md-12 col-lg-8 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/BUlogo_nobg.png" width="70" alt=""></a></div>
+                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/BUlogo_nobg5.png" width="70" alt=""></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
                                 <h4 class="text-uppercase fs-0 fs-md-1">Create Counselor</h4>
                                 <c:if test="${not empty requestScope.errorMessage}">
@@ -184,7 +184,7 @@
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
                                        		<textarea rows="7" cols="70" name="career" placeholder="커리어 작성해주세요."></textarea><br>
                                         	<select name = "degree">
-                                            	<option selected>--학사 선택--
+                                            	<option selected>--학위 선택--
                                             	<option value = "석사">석사
                                             	<option value = "박사">박사
                                             </select>
@@ -252,11 +252,9 @@
                                         
                                         
                                     </div>
-                                    <div class="row align-items-center mt-3">
-                                        <div class="col-md-6 mt-3">
+                                    <div class="col-12 mt-3" style="text-align: right;">
                                             <input class="btn btn-success" style = "float: right;" width="50" type="button" value="Create" id="sub"/>
                                             <!-- <button class="btn btn-primary btn-block" type="reset">reset</button> -->
-                                        </div>
                                     </div>
                                 </form>
                             </div>
