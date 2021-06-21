@@ -344,13 +344,27 @@ public class AdminService {
 		List<Double> starList= new ArrayList<Double>();
 		List<Integer> starCountList = new ArrayList<Integer>();
 		
+		System.out.println("리뷰 통계");
+		
+		
 		for(Map<String, Object> mapThis : listThisMonth) {
 			Long counselorCode = Long.valueOf(String.valueOf((mapThis.get("COUNSELOR"))));
-			Counselor counselor =  counselorRep.findById(counselorCode).orElse(null);
+			Counselor counselor =  counselorRep.findById(141L).orElse(null);
 			String name = counselor.getMember().getName();			
 		 	int countThisMonth =  Integer.parseInt(String.valueOf(mapThis.get("COUNT")));
-		 	Double avgStar = reviewRep.selectStarAvg(counselorCode);
+		 	Double avgStar = reviewRep.selectStarAvg(141L);
+		 	avgStar = (avgStar == null)? 0 : avgStar;
 		 	List <ReviewStar> starCount= reviewRep.findByCounselor(counselor);
+		 	
+		 	System.out.println(counselor);
+		 	
+		 	for (ReviewStar star : starCount) {
+		 		System.out.println(star);
+		 	}
+		 	
+		 	
+		 	
+		 	
 		 	starCountList.add(starCount.size());
 		 	
 		 	int gap = 0;
@@ -511,7 +525,7 @@ public class AdminService {
 	}
 
 	/**
-	 * 21. (통계용)기간별 매출 조회
+	 * 21_1. (통계용)기간별 매출 조회
 	 */
 	public Page<Ticket> selectSalesBetween(Pageable pageable, String from, String to) {
 		
@@ -519,6 +533,61 @@ public class AdminService {
 		pageList.forEach(p -> System.out.println(p));
 		return pageList;
 	}
+
+	
+	/**
+	 * 21_2. 인덱스 대쉬보드용
+	 */
+	public List<Ticket> selectSalesThisMonth(String month){
+		return ticketRep.selectTicketThisMonth(month);
+	}
+	
+	
+	
+	/**
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	public List<Ticket> selectSalesListBetween(String from, String to){
+		return ticketRep.selectTicketBetween(from, to);
+	}
+	
+	/**
+	 * 22. 해당 월의 총 매출액
+	 * @return
+	 */
+	
+	public int incomeMonth() {
+		int fromMonth = LocalDate.now().getMonthValue();
+		int fromYear = LocalDate.now().getYear();
+		String month = fromYear + "/" + fromMonth;
+		
+
+		if(fromMonth < 10) {
+			month = fromYear + "/" + "0" + fromMonth;
+		}
+		
+
+			
+		System.out.println("인컴!!!!!!");
+		System.out.println(month);
+		
+		
+		List<Ticket> ticketList = ticketRep.selectTicketThisMonth(month);
+		int income = 0;
+
+		for (Ticket ticket : ticketList) {
+			
+		  income += (ticket.getTicketAmount() * ticket.getTicketPrice()) * (1 - (ticket.getDiscount().getDiscountRate() * 0.01));
+			 
+		  	System.out.println("인컴!!!!!!");
+			System.out.println(income);
+		}
+		return income;
+	}
+	
+
 
 }
 

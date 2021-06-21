@@ -2,6 +2,7 @@ package bu.mvc.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +69,9 @@ public class AdminController {
 		Date date = new Date();
 		String now = formatter.format(date);
 
+		
+		
+		
 		model.addAttribute("now", now);
 		model.addAttribute("newRegularCount", selectNewByType(0).size());
 		model.addAttribute("newCounselorCount", selectNewByType(1).size());
@@ -76,7 +80,8 @@ public class AdminController {
 		model.addAttribute("dayIncome", incomeToday());
 		model.addAttribute("stateMap", countCounselByState());
 		model.addAttribute("registerStateMap", counselorByState());
-
+		model.addAttribute("monthIncome", selectSalesThisMonth());
+		
 		return "admin/index";
 	}
 
@@ -367,7 +372,7 @@ public class AdminController {
 	@RequestMapping({ "/viewCounselorState", "/viewCounselorState/{counselorState}" })
 	public String updateCounselorState(Model model, @RequestParam(defaultValue = "0") int currentPage,
 			@PathVariable Optional<Integer> counselorState) {
-		Pageable pageable = PageRequest.of(currentPage, 10, Direction.DESC, "counselorCode");
+		Pageable pageable = PageRequest.of(currentPage, 7, Direction.DESC, "counselorCode");
 		Page<Counselor> pageList = adminService.findAllCounselor(pageable);
 		Integer state = (counselorState.isPresent()) ? counselorState.get() : 4;
 
@@ -485,4 +490,28 @@ public class AdminController {
 	 * 
 	 * return "admin/ticketView"; }
 	 */
+	
+	
+	
+	/**
+	 * 22. (리스트) 해당월 매출액 조회
+	 */
+	public String selectSalesThisMonth(){
+		int monthIncome = adminService.incomeMonth();
+		String result = null;
+		double income = 0.0;
+		
+		if (monthIncome >= 10000000) {
+			income = (monthIncome/10000000);
+			result = income + "M";	
+		} else if (monthIncome >= 1000) {
+			income = (monthIncome/1000);
+			result = income + "K";
+		}
+		return result;
+	}
+
+
+
+
 }	

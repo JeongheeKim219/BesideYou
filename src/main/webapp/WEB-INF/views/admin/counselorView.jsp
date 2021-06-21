@@ -31,12 +31,10 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
-<link href="${pageContext.request.contextPath}/adminCss/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/adminCss/main.css"
+	rel="stylesheet">
 
 <style>
-
-
-
 </style>
 </head>
 <body>
@@ -52,9 +50,10 @@
 								<i class="pe-7s-car icon-gradient bg-mean-fruit"> </i>
 							</div>
 							<div>
-								Analytics Dashboard
-								<div class="page-title-subheading">This is an example
-									dashboard created using build-in elements and components.</div>
+								상담사 승인페이지
+								<div class="page-title-subheading">
+								상담사 회원이 상담사 자격이 있는지 확인하고 승인/ 반려합니다.
+								상담사의 상태(신청/ 반려/ 승인/ 정지)에 따라 조회할 수 있습니다.</div>
 							</div>
 						</div>
 						<div class="page-title-actions">
@@ -98,209 +97,235 @@
 							</div>
 						</div>
 					</div>
-				</div>		
-		<div class="row">
-			<div class="col-md-12">
-				<div class="main-card mb-3 card">
-					<div class="card-header">
-						상담사 등록 현황
-						<div class="btn-actions-pane-right">
-							<div role="group" class="btn-group-sm btn-group">
-								<button class="btn btn-gray" id="all">전체</button>
-								<button class="btn btn-light" id="request">등록신청</button>
-								<button class="btn btn-light" id="denied">반려</button>
-								<button class="btn btn-light" id="approval">승인</button>	
-								<button class="btn btn-light" id="revoked">자격정지</button>	
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="main-card mb-3 card">
+							<div class="card-header">
+								상담사 등록 현황
+								<div class="btn-actions-pane-right">
+									<div role="group" class="btn-group-sm btn-group">
+										<button class="btn btn-gray" id="all">전체</button>
+										<button class="btn btn-light" id="request">등록신청</button>
+										<button class="btn btn-light" id="denied">반려</button>
+										<button class="btn btn-light" id="approval">승인</button>
+										<button class="btn btn-light" id="revoked">자격정지</button>
+									</div>
+								</div>
+							</div>
+							<div class="table-responsive">
+								<table
+									class="align-middle mb-0 table table-borderless table-striped table-hover">
+									<thead>
+										<tr>
+											<th class="text-center">상담사 코드</th>
+											<th class="text-center">프로필</th>
+											<th class="text-center">ID</th>
+											<th class="text-center">전문분야</th>
+											<th class="text-center">자격증</th>
+											<th class="text-center">확인/반려</th>
+											<th class="text-center">상태</th>
+										</tr>
+									</thead>
+									<c:choose>
+										<c:when test="${not empty requestScope.errorMessage}">
+											<tr>
+												<td colspan="8"><p align="center">${requestScope.errorMessage}</p></td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<tbody>
+												<c:forEach items="${requestScope.pageList.content}"
+													var="newCounselor" varStatus="reqState">
+
+													<tr>
+														<td class="text-center text-muted">
+															#${newCounselor.counselorCode}
+														</td>
+														<td>
+															<div class="widget-content widget-content-fluid p-0">
+																<div class="widget-content-wrapper pl-5">
+																	<img width="40" class="rounded-circle"
+																		src="${pageContext.request.contextPath}/assets/counselor/${newCounselor.picture}"
+																		alt="${newCounselor.picture}">
+																	<div class="widget-content-left pl-3 flex2">
+																		<div class="widget-heading">${newCounselor.member.name}</div>
+																		<div class="widget-subheading opacity-7">${newCounselor.degree}</div>
+																	</div>
+																</div>
+															</div>
+														</td>
+														<td class="text-center px-0">${newCounselor.member.id}</td>
+														<c:set value="${newCounselor.speciality}" var="totalSpec" />
+														<td class="text-center">
+														<c:forEach
+																items="${totalSpec}" var="spec" varStatus="state">
+																<c:choose>
+																	<c:when test="${state.last}">
+																		<span>${spec.specialityName}</span>
+																	</c:when>
+																	<c:otherwise>
+																		<span>${spec.specialityName}, </span>
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach></td>
+														<td class="item-center"><a
+															href="${pageContext.request.contextPath}/admin/download?fileName=${newCounselor.cerificate}"
+															class="btn btn-primary btn-sm">다운로드 </a></td>
+														<td>
+															<div class="dropdown d-inline-block">
+																<button type="button" aria-haspopup="true"
+																	aria-expanded="false" data-toggle="dropdown"
+																	class="mb-2 mr-2 dropdown-toggle btn btn-focus btn-sm">인증</button>
+																<div tabindex="-1" role="menu" aria-hidden="true"
+																	class="dropdown-menu">
+																	<button type="button" tabindex="1"
+																		class="dropdown-item" id="approval"
+																		value="${newCounselor.member.memberCode}">승인</button>
+																	<button type="button" tabindex="2"
+																		class="dropdown-item" id="denial"
+																		value="${newCounselor.member.memberCode}">반려</button>
+																</div>
+															</div>
+														</td>
+														<td><c:choose>
+																<c:when test="${newCounselor.counselorState == 0}">
+																	<div class="mb-3 mr-3 badge badge-info">대기</div>
+																</c:when>
+																<c:when test="${newCounselor.counselorState == 1}">
+																	<div class="mb-2 mr-2 badge badge-warning">반려</div>
+																</c:when>
+																<c:when test="${newCounselor.counselorState == 2}">
+																	<div class="mb-2 mr-2 badge badge-success">승인</div>
+																</c:when>
+																<c:when test="${newCounselor.counselorState == 3}">
+																	<div class="mb-2 mr-2 badge badge-secondary">정지</div>
+																</c:when>
+															</c:choose></td>
+													</tr>
+
+												</c:forEach>
+											</tbody>
+										</c:otherwise>
+									</c:choose>
+								</table>
+								<c:choose>
+									<c:when test="${empty requestScope.errorMessage}">
+										<ul class="pagination">
+											<li class="page-item"><a href="javascript:void(0);"
+												class="page-link" aria-label="Previous"><span
+													aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
+											<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
+												<c:choose>
+													<c:when test="${pageList.number==i}">
+														<li class="page-item active"><a
+															href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
+															class="page-link">${i+1}</a></li>
+													</c:when>
+													<c:otherwise>
+														<li class="page-item"><a
+															href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
+															class="page-link">${i+1}</a></li>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+
+											<li class="page-item"><a href="javascript:void(0);"
+												class="page-link" aria-label="Next"><span
+													aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
+										</ul>
+									</c:when>
+								</c:choose>
 							</div>
 						</div>
 					</div>
-					<div class="table-responsive">
-						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
-							<thead>
-								<tr>
-									<th class="text-center">상담사코드</th>
-									<th class="text-center">ID</th>
-									<th class="text-center">이름</th>
-									<th class="text-center">전문분야</th>
-									<th class="text-center">자격증</th>	
-									<th class="text-center">확인/반려</th>																	
-									<th class="text-center">상태</th>	
-								</tr>
-							</thead>
-					<c:choose>
-						<c:when test="${not empty requestScope.errorMessage}">
-							<tr>
-								<td colspan="6"><p align="center">${requestScope.errorMessage}</p></td>
-							</tr>
-						</c:when>
-					<c:otherwise>
-					<tbody>
-					<c:forEach items="${requestScope.pageList.content}" var="newCounselor" varStatus="reqState">
-							
-								<tr>
-									<td class="text-center text-muted"># ${newCounselor.counselorCode}</td>
-									<td>
-										<div class="widget-content p-0">
-											<div class="widget-content-wrapper">
-												<div class="widget-content-left mr-3">
-													<div class="widget-content-left">
-														<img width="40" class="rounded-circle"
-															src="${pageContext.request.contextPath}/assets/profileSave/${newCounselor.picture}" alt="${newCounselor.picture}">
-													</div>
-												</div>
-												<div class="widget-content-left flex2">
-													<div class="widget-heading">${newCounselor.member.name}</div>
-													<div class="widget-subheading opacity-7">${newCounselor.degree}</div>
-												</div>
-											</div>
-										</div>
-									</td>
-									<td>${newCounselor.member.name}</td>
-									<c:set value="${newCounselor.speciality}" var="totalSpec"/>
-									<td class="text-center">
-										<c:forEach items="${totalSpec}" var="spec" varStatus="state">
-											<c:choose>
-												<c:when test="${state.last}">
-													<span>${spec.specialityName}</span>
-												</c:when>
-												<c:otherwise>
-													<span>${spec.specialityName}, </span>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-									</td>
-									<td class="text-center">
-											<a href="${pageContext.request.contextPath}/admin/download?fileName=${newCounselor.cerificate}" class="btn btn-primary btn-sm">다운로드
-											</a>
-									</td>
-									<td>
-									 <div class="dropdown d-inline-block">
-                                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-focus btn-sm">인증</button>
-                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                                <button type="button" tabindex="1" class="dropdown-item" id="approval" value="${newCounselor.member.memberCode}">승인</button>
-                                                <button type="button" tabindex="2" class="dropdown-item" id="denial" value="${newCounselor.member.memberCode}">반려</button>                                                
-                                            </div>
-                                        </div>
-									</td>
-									<td>
-									<c:choose>
-										<c:when test="${newCounselor.counselorState == 0}">
-											<div class="mb-3 mr-3 badge badge-info">대기</div>
-										</c:when>
-										<c:when test="${newCounselor.counselorState == 1}">
-											<div class="mb-2 mr-2 badge badge-warning">반려</div>
-										</c:when>
-										<c:when test="${newCounselor.counselorState == 2}">
-											<div class="mb-2 mr-2 badge badge-success">승인</div>
-										</c:when>
-										<c:when test="${newCounselor.counselorState == 3}">
-											<div class="mb-2 mr-2 badge badge-secondary">정지</div>
-										</c:when>
-									</c:choose>
-									</td>
-									</tr>
-									
-									</c:forEach>
-									</tbody>
-								</c:otherwise>
-							</c:choose>
-						</table>
-						<c:choose>
-						<c:when test ="${empty requestScope.errorMessage}">
-						<ul class="pagination">
-								<li class="page-item"><a href="javascript:void(0);"
-									class="page-link" aria-label="Previous"><span
-										aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-								<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
-									<c:choose>
-										<c:when test="${pageList.number==i}">
-											<li class="page-item active"><a
-												href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
-												class="page-link">${i+1}</a></li>
-										</c:when>
-										<c:otherwise>
-											<li class="page-item"><a
-												href="${pageContext.request.contextPath}/admin/viewCounselorState?currentPage=${i}"
-												class="page-link">${i+1}</a></li>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-
-								<li class="page-item"><a href="javascript:void(0);"
-									class="page-link" aria-label="Next"><span
-										aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
-							</ul>
-							</c:when>
-						</c:choose>
-					</div>
 				</div>
+
 			</div>
 		</div>
-		
-	</div>
-	</div>
 	</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
 	<!-- Chart.js -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 	<script type="text/javascript"></script>
 	<script>
 		$(function() {
-		
-			
-			
-			$("button[tabindex='1']").click(function (){		
-				var answer = confirm("상담사 자격을 승인하시겠습니까?"); 
-				var memberCode = $(this).val();
-				if(answer){
-					location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/" + memberCode +"/2";
-				
-				}		
-			});	
-			
-			$("button[tabindex='2']").click(function (){
-				var answer = confirm("상담사 자격 신청을 반려하시겠습니까?"); 
-				var memberCode = $(this).val();
-				alert(memberCode);
-				if(answer){
-					location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/" + memberCode +"/1";
-				}		
-			});
-			
 
-			$("#all").click(function (){
-				$(".active btn btn-focus").removeClass("active");
-				$(this).addClass("active btn btn-focus");
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/4";
-			});
+			$("button[tabindex='1']")
+					.click(
+							function() {
+								var answer = confirm("상담사 자격을 승인하시겠습니까?");
+								var memberCode = $(this).val();
+								if (answer) {
+									location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/"
+											+ memberCode + "/2";
 
-			$("#request").click(function (){
-				$(".active btn btn-focus").removeClass("active");
-				$(this).addClass("active btn btn-focus");
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/0";
-			});
-			
-			$("#denied").click(function (){
-				$(".btn btn-focus active").removeClass("btn btn-focus active").addClass("btn btn-focus");
-				$(this).addClass("btn btn-focus active");
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/1";
-			});
-			
-			$("#approval").click(function (){
-				$(".btn btn-focus active").removeClass("btn btn-focus active").addClass("btn btn-focus");
-				$(this).addClass("btn btn-focus active");
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/2";
-			});
-			
-			$("#revoked").click(function (){
-				$(".btn btn-focus active").removeClass("btn btn-focus active").addClass("btn btn-focus");
-				$(this).addClass("btn btn-focus active");
-				location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/3";
-			});
-			
-			
+								}
+							});
+
+			$("button[tabindex='2']")
+					.click(
+							function() {
+								var answer = confirm("상담사 자격 신청을 반려하시겠습니까?");
+								var memberCode = $(this).val();
+								alert(memberCode);
+								if (answer) {
+									location.href = "${pageContext.request.contextPath}/admin/updateCounselorState/"
+											+ memberCode + "/1";
+								}
+							});
+
+			$("#all")
+					.click(
+							function() {
+								$(".active btn btn-focus")
+										.removeClass("active");
+								$(this).addClass("active btn btn-focus");
+								location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/4";
+							});
+
+			$("#request")
+					.click(
+							function() {
+								$(".active btn btn-focus")
+										.removeClass("active");
+								$(this).addClass("active btn btn-focus");
+								location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/0";
+							});
+
+			$("#denied")
+					.click(
+							function() {
+								$(".btn btn-focus active").removeClass(
+										"btn btn-focus active").addClass(
+										"btn btn-focus");
+								$(this).addClass("btn btn-focus active");
+								location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/1";
+							});
+
+			$("#approval")
+					.click(
+							function() {
+								$(".btn btn-focus active").removeClass(
+										"btn btn-focus active").addClass(
+										"btn btn-focus");
+								$(this).addClass("btn btn-focus active");
+								location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/2";
+							});
+
+			$("#revoked")
+					.click(
+							function() {
+								$(".btn btn-focus active").removeClass(
+										"btn btn-focus active").addClass(
+										"btn btn-focus");
+								$(this).addClass("btn btn-focus active");
+								location.href = "${pageContext.request.contextPath}/admin/viewCounselorState/3";
+							});
+
 		})//JQuery Ready 끝
 	</script>
 </body>
