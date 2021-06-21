@@ -361,26 +361,30 @@
 							class="background-white px-3 mt-6 px-0 py-5 px-lg-5 radius-secondary"
 							style="margin-top: 20px !important">
 							<h3 class="text-center fs-2 fs-md-3">상담사 리뷰</h3>
-							<h3>평 점 : ${point}</h3>
 							<hr class="short"
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
 								<div align="center">
-								<form name="requestForm" id="requestForm" >
-								<div align="center">
-								<%-- <input type="hidden" id="memberCode" name="memberCode" value="<sec:authentication property="principal.memberCode" />"> --%>
-								<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
-								<input type="hidden" id ="reviewContent" name="reviewContent" value=""/>
-								<input type="hidden" id ="counselor" name="counselor" value=""/>
-								<input type="hidden" id="memberCode" name="memberCode" value="<sec:authentication property="principal.memberCode" />">
-								 <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+								<form name="requestForm" method="get" id="requestForm" action="${pageContext.request.contextPath}/review/reviewByCode?counselorCode=${counselor.counselorCode}" >
+		
+									<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
+									<input type="hidden" id="memberCode" name="memberCode" value=""/>
+									<input type="hidden" id ="reviewContent" name="reviewContent" value=""/>
+									<input type="hidden" id ="counselor" name="counselor" value=""/>
+									 <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
 									<c:choose>
-										<c:when test="${empty review}">
+										<c:when test="${empty requestScope.revList}">
 											<div class="panel panel-default" style="width: 600px;">
 													<!-- Default panel contents -->
+													<div class="panel-heading"><b>리뷰 번호 :</b> ${review.reviewCode}</div>
 													<!-- Table -->
 													<table class="table" align="center">
-
+														<tr>
+															<td>회원 번호 : </td>
+															<td>상담번호 :</td>
+															<td>별점 : </td>
+															<td>리뷰날짜: </td>
+														</tr>
 														<tr>
 															<td colspan="4">
 																<p align="center"><b><span style="font-size: 12px;">등록된 리뷰가 없습니다.</span></b></p>
@@ -391,7 +395,7 @@
 												</div>
 										</c:when>
 										<c:otherwise>
-											<c:forEach items="${review}" var="review"
+											<c:forEach items="${requestScope.revList}" var="review"
 												varStatus="num">
 												<div class="panel panel-default" style="width: 1000px;">
 													<!-- Default panel contents -->
@@ -418,7 +422,7 @@
 																<input type="hidden" id="reviewCode_${num.index}" value="${review.reviewCode}">
 																<input type="hidden" id="reviewContent_${num.index}" value="${review.reviewContent}">
 																<input type="hidden" id="counselor_${num.index}" name="counselor" value="${review.counselor.counselorCode}">
-																
+																<input type="hidden" id="memberCode_${num.index}" name="memberCode" value="${review.member.id}">
 															</td>
 														</tr>
 													</table>
@@ -426,21 +430,14 @@
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>
-									<a href="?page=${previous}">Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?page=${next}">Next</a>
-								</div>
-		
-	</form>
-							
-							
-								
-						<!-- -->		
-						</div>
-					</div>
-				</div>
+									</form>
+										<a href="?page=${previous}">Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?page=${next}">Next</a>
+									</div>
+													</div>
+												</div>
+											</div>
 											<!--/.row-->
-		</div>
-		
-		
+										</div>
 			<!--/.container-->
 		</section>
 		
@@ -465,143 +462,6 @@
 			</div>
 			<!--/.container-->
 		</section>
-		
-		
-		<div class="modal" id="modal1">
-			<h2 align="center">신고하기</h2>
-			
-			<table border="1">
-				<tr>
-					<td height="20" colspan="2" bgcolor="#DEDCDC">
-						<p align="center">
-							<font color="black" size="3"><b>신고내용</b></font>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td width="150" height="20" style="vertical-align: center;">
-					신고자
-						
-					</td>
-					<td width="450" height="20" align="left"><b><span style="font-size: 9pt; margin: 2px;">
-								<input type="text"  id="rtgmember" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-								
-								
-						</span></b></td>
-				</tr>
-				<tr>
-					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
-						리뷰번호
-					
-					</td>
-					<td width="450" height="20"><b><span style="font-size: 9pt;">
-						<input type="text" id="tgReviewNo" name="reviewStar" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-					</span></b></td>
-				</tr>
-				
-				<tr>
-					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
-					신고사유
-						
-					</td>
-					<td width="450" height="20"><b><span style="font-size: 9pt;">
-								<select name="reportOption" id="reportOption" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-									<option value="">신고사유 선택</option>
-									<option value="스팸홍보도배글">스팸홍보도배글</option>
-									<option value="음란물">음란물</option>
-									<option value="불법정보를 포함하고 있습니다">불법정보를 포함하고 있습니다</option>
-									<option value="차별적표현">차별적표현</option>
-									<option value="개인정보 노출">개인정보 노출</option>
-									<option value="불쾌한 표현">불쾌한 표현</option>
-								</select>
-						</span></b></td>
-				</tr>
-				<tr>
-					<td width="450" height="20" colspan="2" align="center">
-						<b>
-						<span style="font-size: 9pt;">
-						<input type="button" id="reportBtn" value=신고등록 >
-						<input type="button" id="backBtn" value="돌아가기">
-						</span>
-						</b>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="modal" id="modal2">
-			<h2 align="center">리뷰수정</h2>
-			
-			<table border="1">
-				<tr>
-					<td height="20" colspan="2" bgcolor="#DEDCDC">
-						<p align="center">
-							<font color="black" size="3"><b>리뷰 수정하기</b></font>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td width="150" height="20" style="vertical-align: center;">
-					작성자
-						
-					</td>
-					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
-								<input type="text" id="tgmember" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-							
-						</span></b></td>
-				</tr>
-				<tr>
-					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
-						리뷰번호
-						
-					</td>
-					<td width="450" height="20"><b><span style="font-size: 9pt;">
-						<input type="text" id="tgreviewCode" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-					</span></b></td>
-				</tr>
-				
-				<tr>
-					<td width="150" height="20">
-						<p align="right">
-							<b><span style="font-size: 9pt;">평점</span></b>
-						</p>
-					</td>
-					<td width="450" height="20"><b><span style="font-size: 9pt;">
-							<select name="star" id="star">
-								<option value="1.0">★</option>
-								<option value="2.0">★★</option>
-								<option value="3.0">★★★</option>
-								<option value="4.0">★★★★</option>
-								<option value="5.0">★★★★★</option>
-							</select>
-					</span></b></td>
-			</tr>
-				
-				<tr>
-					<td width="150" height="20" style="vertical-align: center; margin: 2px;" colspan="2">
-					리뷰 내용
-						
-					</td>
-				</tr>
-				<tr>
-					<td width="450" height="20" colspan="2"><b><span style="font-size: 9pt; margin: 2px;">
-								<textarea cols="55" rows="5" id="tgreviewContent" name="reviewContent22"></textarea>
-								
-						</span></b></td>
-				</tr>
-				<tr>
-					<td width="450" height="20" colspan="2" align="center">
-						<b>
-						<span style="font-size: 9pt;">
-						<input type="button" id="reviewBtn2" value=리뷰수정 >
-						<input type="button" id="backBtn2" value="돌아가기">
-						</span>
-						</b>
-					</td>
-				</tr>
-			</table>
-		</div>
-		
-		
 	</main>
 	<!--  -->
 	<!--    JavaScripts-->
@@ -632,104 +492,5 @@
 		src="${pageContext.request.contextPath}/assets/lib/remodal/dist/remodal.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-	
-	<!-- 모달창 스타일/ 스크립트 -->
-	<style>
-	.modal{position: absolute;width: 65%;height: 14%;background: rgba(223,255,255,255);top:69%;left:5%;display: none;}
-	#modal2{position: absolute;width: 40%;height: 55%;background: rgba(255,255,255,255);top:40%;left:35%;display: none;}
-</style>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("input[name='btn']").click(function() {
-			var s = $("input[name='btn']").index(this);
-			$('#reviewCode').val($('#reviewCode_'+ s).val());
-			$('#reviewContent').val($('#reviewContent_'+ s).val());
-			$('#counselor').val($('#counselor_'+ s).val());
-			$('#tgReviewNo').val($('#reviewCode').val());
-			$('#rtgmember').val($('#memberCode').val());
-			alert($('#rtgmember').val());
-			$('#modal1').fadeIn();
-		});
-		
-		
-		
-		$("input[name='reviewDelete']").click(function() {
-			var s = $("input[name='reviewDelete']").index(this);
-			
-			$('#reviewCode').val($('#reviewCode_'+ s).val());
-			$('#reviewContent').val($('#reviewContent_'+ s).val());
-			$('#counselor').val($('#counselor_'+ s).val());
-			alert($('#reviewCode').val());
-			
-			 var param = document.getElementById('requestForm');
-			param.method = "POST";
-			param.action = "${pageContext.request.contextPath}/review/reviewDelete";
-			param.submit(); 
-
-		});
-		
-		
-		$("#reportBtn").click(function() {
-			var param = document.getElementById('requestForm');
-			
-			 if($("#reportOption").val() ==""){
-				alert("신고 사유를 선택하세요");
-				return false; 
-				}
-			 alert(param.reviewCode.value);
-			param.method = "POST";
-			param.action = "${pageContext.request.contextPath}/report/insert";
-		    param.submit(); 
-			
-		
-			
-		}); 
-				
-		$("input[name='reviewChange']").click(function() {
-			var s = $("input[name='reviewChange']").index(this);
-			//$('#reviewCode').val($('#reviewCode_'+ s).val());
-			$('#reviewContent').val($('#reviewContent_'+ s).val());
-			$('#tgmember').val($('#memberCode').val());
-			$('#counselor').val($('#counselor_'+ s).val());
-			$('#tgreviewCode').val($('#reviewCode_'+s).val());
-			$('#tgreviewContent').val($('#reviewContent').val());
-			$('#reviewContent').val("");
-			$('#modal2').fadeIn();
-			
-		});
-		
-		$("#reviewBtn2").click(function() {
-			alert(2)
-			var param = document.getElementById('requestForm');
-			/* alert("33 ="+$('#tgreviewContent').val()+"/")
-			alert('param.reviewContent22.value'+param.reviewContent22)
-			alert("before:param.reviewContent22.value="+param.reviewContent22.value) */
-			
-			param.reviewContent22.value = $('#tgreviewContent').val();
-			
-			/* alert("after:param.reviewContent22.value="+param.reviewContent22.value +"/") */
-			param.method = "GET";
-			param.action = "${pageContext.request.contextPath}/review/reviewUpdate";
-			param.submit(); 
-			
-
-		});
-		
-		
-		
-		$('#backBtn2, #backBtn').click(function(){
-			$('.modal').fadeOut();
-		});
-		
-		
-	
-	/* 	$('#backBtn').click(function(){
-			$('.modal').fadeOut();
-		}); */
-		
-	});
-</script>
-	
 </body>
 </html>

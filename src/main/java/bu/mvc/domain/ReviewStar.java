@@ -23,6 +23,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class ReviewStar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")

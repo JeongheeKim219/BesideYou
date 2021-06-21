@@ -1,6 +1,7 @@
 package bu.mvc.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,11 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +33,6 @@ import bu.mvc.domain.Tag;
 import bu.mvc.service.CounselorService;
 import bu.mvc.service.MemberService;
 import bu.mvc.service.PriceService;
-import bu.mvc.service.ReviewService;
 import bu.mvc.service.SpecialityService;
 import bu.mvc.service.TagService;
 
@@ -52,10 +58,6 @@ public class CounselorController {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	@Autowired
-	private ReviewService rs; // 리뷰 로딩을 위한
-	
 	/**
 	 * 신청 폼
 	 * */
@@ -141,7 +143,6 @@ public class CounselorController {
 		List<Tag> tag = tagService.selectByCounselor(counselor.getCounselorCode());
 		List<Price> price = priceService.selectByCounselor(counselor.getCounselorCode());
 		//System.out.println(speciality);
-	    
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("counselor/read");
@@ -151,8 +152,6 @@ public class CounselorController {
 		mv.addObject("price", price);
 		return mv;
 	}
-	
-	
 	/**
 	 * 상담사 정보 수정 폼
 	 * */
