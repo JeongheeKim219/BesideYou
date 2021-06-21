@@ -112,18 +112,26 @@
         <!--  -->
         <!--    Document Title-->
         <!-- =============================================-->
-        <title>Elixir | Beautiful Site Template for Agencies &amp; Professionals</title>
-        <!--  -->
-        <!--    Favicons-->
-        <!--    =============================================-->
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicons/favicon.ico">
-        <link rel="manifest" href="/assets/images/favicons/manifest.json">
-        <link rel="mask-icon" href="/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileImage" content="/assets/images/favicons/mstile-150x150.png">
-        <meta name="theme-color" content="#ffffff">
+        <title>BU - Beside U</title>
+<!--  -->
+<!--    Favicons-->
+<!--    =============================================-->
+<link rel="apple-touch-icon" sizes="180x180"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="32x32"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="16x16"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="shortcut icon" type="image/x-icon"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="manifest"
+   href="${pageContext.request.contextPath}/assets/images/favicons/manifest.json">
+<link rel="mask-icon"
+   href="${pageContext.request.contextPath}/assets/images/favicons/safari-pinned-tab.svg"
+   color="#5bbad5">
+<meta name="msapplication-TileImage"
+   content="${pageContext.request.contextPath}/assets/images/favicons/mstile-150x150.png">
+<meta name="theme-color" content="#ffffff">
         <!--  -->
         <!--    Stylesheets-->
         <!--    =============================================-->
@@ -154,13 +162,13 @@
                 </div>
             </div>
             <section class="text-center py">
-                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/background-1.jpg); padding-bottom: 0px;padding-top: 0px;height: 1000;height: 1500px;">
+                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/배경화면21.jpg); padding-bottom: 0px;padding-top: 0px;height: 1000;height: 1500px;">
                 </div>
                 <!--/.background-holder-->
                 <div class="container">
                     <div class="row h-100vh align-items-center">
                         <div class="col-md-12 col-lg-8 mx-auto" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt=""></a></div>
+                            <div data-zanim='{"delay":0}'><a href="${pageContext.request.contextPath}/"><img src="/assets/images/BUlogo_nobg.png" width="70" alt=""></a></div>
                             <div class="background-white radius-secondary p-4 p-md-5 mt-5" data-zanim='{"delay":0.1}'>
                                 <h4 class="text-uppercase fs-0 fs-md-1">Create Counselor</h4>
                                 <c:if test="${not empty requestScope.errorMessage}">
@@ -197,34 +205,39 @@
                                         </div>
                                      <div class="col-12 mt-3">
 										<h6>전문분야</h6>
-										1.<input type="checkbox" name="specialityName" value="우울">우울
-										2.<input type="checkbox" name="specialityName" value="불안">불안
-										3.<input type="checkbox" name="specialityName" value="섭식장애">섭식장애
-										4.<input type="checkbox" name="specialityName" value="청소년">청소년
-										5.<input type="checkbox" name="specialityName" value="강박">강박
-										6.<input type="checkbox" name="specialityName" value="스트레스">스트레스
-										7.<input type="checkbox" name="specialityName" value="직장">직장
-										8.<input type="checkbox" name="specialityName" value="진로">진로
-										9.<input type="checkbox" name="specialityName" value="중독">중독
-										9.<input type="checkbox" name="specialityName" value="감정조절">감정조절
+										1.<input type="checkbox" name="specialityName" value="우울">우울&nbsp;
+										2.<input type="checkbox" name="specialityName" value="불안">불안&nbsp;
+										3.<input type="checkbox" name="specialityName" value="섭식장애">섭식장애&nbsp;
+										4.<input type="checkbox" name="specialityName" value="청소년">청소년&nbsp;
+										5.<input type="checkbox" name="specialityName" value="강박">강박&nbsp;
+									</div>	
+									 <div class="col-12 mt-3">
+										6.<input type="checkbox" name="specialityName" value="스트레스">스트레스&nbsp;
+										7.<input type="checkbox" name="specialityName" value="직장">직장&nbsp;
+										8.<input type="checkbox" name="specialityName" value="진로">진로&nbsp;
+										9.<input type="checkbox" name="specialityName" value="중독">중독&nbsp;
+										9.<input type="checkbox" name="specialityName" value="감정조절">감정조절&nbsp;
 
 										
 									</div>
 
 									<div class="col-12 mt-3">
 										<h6>상담사 특징,성격 태그선택</h6>
-										1.<input type="checkbox" name="tagName" value="열정">열정
-										2.<input type="checkbox" name="tagName" value="상냥함">상냥함
-										3.<input type="checkbox" name="tagName" value="공감">공감
-										4.<input type="checkbox" name="tagName" value="긍정에너지">긍정에너지
-										5.<input type="checkbox" name="tagName" value="경험">경험
-										6.<input type="checkbox" name="tagName" value="이해">이해
-										7.<input type="checkbox" name="tagName" value="해외생활">해외생활
-										8.<input type="checkbox" name="tagName" value="친구">친구
-										9.<input type="checkbox" name="tagName" value="따듯함">따듯함
+										1.<input type="checkbox" name="tagName" value="열정">열정&nbsp;
+										2.<input type="checkbox" name="tagName" value="상냥함">상냥함&nbsp;
+										3.<input type="checkbox" name="tagName" value="공감">공감&nbsp;
+										4.<input type="checkbox" name="tagName" value="긍정에너지">긍정에너지&nbsp;
+										5.<input type="checkbox" name="tagName" value="경험">경험&nbsp;
+								</div>
+								<div class="col-12 mt-3">
+										6.<input type="checkbox" name="tagName" value="이해">이해&nbsp;
+										7.<input type="checkbox" name="tagName" value="해외생활">해외생활&nbsp;
+										8.<input type="checkbox" name="tagName" value="친구">친구&nbsp;
+										9.<input type="checkbox" name="tagName" value="따듯함">따듯함&nbsp;
+								</div>	
 
 										
-									</div>
+									
 									<div class="col-12 mt-3">
 										<h6>대면상담 가격 입력해주세요. (권장가격 10000 ~ 20000)</h6>
 										<input type="text"  name = "price0"  ><p>
@@ -241,7 +254,7 @@
                                     </div>
                                     <div class="row align-items-center mt-3">
                                         <div class="col-md-6 mt-3">
-                                            <input class="btn btn-success" style = "float: right;" type="button" value="Create" id="sub"/>
+                                            <input class="btn btn-success" style = "float: right;" width="50" type="button" value="Create" id="sub"/>
                                             <!-- <button class="btn btn-primary btn-block" type="reset">reset</button> -->
                                         </div>
                                     </div>
