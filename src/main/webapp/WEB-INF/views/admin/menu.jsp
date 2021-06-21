@@ -59,21 +59,7 @@
 						<li><a href="${pageContext.request.contextPath}/admin/viewCounselorState">상담사승인<i
 								class="metismenu-icon"> </i>
 						</a></li>
-						<li><a href="elements-badges-labels.html"> <i
-								class="metismenu-icon"> </i>Badges
-						</a></li>
-						<li><a href="elements-cards.html"> <i
-								class="metismenu-icon"> </i>Cards
-						</a></li>
-						<li><a href="elements-list-group.html"> <i
-								class="metismenu-icon"> </i>List Groups
-						</a></li>
-						<li><a href="elements-navigation.html"> <i
-								class="metismenu-icon"> </i>Navigation Menus
-						</a></li>
-						<li><a href="elements-utilities.html"> <i
-								class="metismenu-icon"> </i>Utilities
-						</a></li>
+						
 					</ul></li>
 				<li><a href="#"> <i class="metismenu-icon pe-7s-car"></i>
 						매출관리<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
@@ -89,30 +75,7 @@
 				<li><a href="${pageContext.request.contextPath}/admin/contactView"> <i
 						class="metismenu-icon pe-7s-display2"></i> 문의관리
 				</a></li>
-				<li class="app-sidebar__heading"></li>
-				<li><a href="dashboard-boxes.html"> <i
-						class="metismenu-icon pe-7s-display2"></i> Dashboard Boxes
-				</a></li>
-				<li class="app-sidebar__heading">Forms</li>
-				<li><a href="forms-controls.html"> <i
-						class="metismenu-icon pe-7s-mouse"> </i>Forms Controls
-				</a></li>
-				<li><a href="forms-layouts.html"> <i
-						class="metismenu-icon pe-7s-eyedropper"> </i>Forms Layouts
-				</a></li>
-				<li><a href="forms-validation.html"> <i
-						class="metismenu-icon pe-7s-pendrive"> </i>Forms Validation
-				</a></li>
-				<li class="app-sidebar__heading">Charts</li>
-				<li><a href="charts-chartjs.html"> <i
-						class="metismenu-icon pe-7s-graph2"> </i>ChartJS
-				</a></li>
-				<li class="app-sidebar__heading">PRO Version</li>
-				<li><a
-					href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/"
-					target="_blank"> <i class="metismenu-icon pe-7s-graph2"> </i>
-						Upgrade to PRO
-				</a></li>
+
 			</ul>
 		</div>
 	</div>
