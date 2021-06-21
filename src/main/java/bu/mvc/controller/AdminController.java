@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.AjaxData;
+import bu.mvc.domain.AjaxDataThree;
 import bu.mvc.domain.AjaxDataTwo;
 import bu.mvc.domain.Contact;
 import bu.mvc.domain.ContactReply;
@@ -172,7 +173,7 @@ public class AdminController {
 		model.addAttribute("member", member);
 		
 		//멤버코드에 해당하는 결제내역
-		Pageable pageableTicket = PageRequest.of((nowTicketPage-1), 3, Direction.DESC, "ticketDate");
+		Pageable pageableTicket = PageRequest.of((nowTicketPage-1), 7, Direction.DESC, "ticketDate");
 		Page<Ticket> ticket = adminService.findByMemberMemberCode(pageableTicket, memberCode);
 		int ticketBlock = 5;
 		int ticketTemp = (nowTicketPage-1) % ticketBlock;
@@ -183,7 +184,7 @@ public class AdminController {
 		model.addAttribute("ticketStartPage", ticketStartPage);
 		
 		//사용내역
-		/*Pageable pageableTicketLines = PageRequest.of((nowTicketLinesPage-1), 3, Direction.DESC, "ticketDate");
+		Pageable pageableTicketLines = PageRequest.of((nowTicketLinesPage-1), 3, Direction.DESC, "ticketDate");
 		Page<TicketLines> ticketLines = adminService.findByTicketMemberMemberCode(pageableTicketLines, memberCode);
 		int ticketLinesBlock = 5;
 		int ticketLinesTemp = (nowTicketLinesPage-1) % ticketLinesBlock;
@@ -191,7 +192,7 @@ public class AdminController {
 		model.addAttribute("ticketLines", ticketLines);
 		model.addAttribute("ticketLinesBlock", ticketLinesBlock);
 		model.addAttribute("nowTicketLinesPage", nowTicketLinesPage);
-		model.addAttribute("ticketLinesStartPage", ticketLinesStartPage);*/
+		model.addAttribute("ticketLinesStartPage", ticketLinesStartPage);
 		
 		//리뷰
 		Pageable pageableReview = PageRequest.of((nowReviewPage-1), 3, Direction.DESC, "reviewDate");
@@ -471,5 +472,17 @@ public class AdminController {
 		return "admin/ticketLineView";
 	}
 	
-
-}
+	/**
+	 * 21. 기간별 매출액조회
+	 */
+	/*
+	 * @RequestMapping("/selectTicketBetween") public String
+	 * selectTicketBetween(@RequestParam(defaultValue = "0")int currentPage, String
+	 * from, String to, Model model) { Pageable pageable =
+	 * PageRequest.of(currentPage, 10,s ) Page<Ticket> tickets =
+	 * adminService.selectSalesBetween(from, to);
+	 * model.addAttribute("ticketsBetween", tickets);
+	 * 
+	 * return "admin/ticketView"; }
+	 */
+}	

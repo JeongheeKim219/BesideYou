@@ -33,5 +33,21 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
 	Page<Ticket> findByMemberMemberCode(Pageable pageable, Long memberCode);
 	
+	
+	/**
+	 * 3_1. 기간별 매출 조회(차트용)
+	 */
+	@Query("select t from Ticket t where t.ticketDate between to_date(?1, 'yyyy-mm-dd') and to_date(?2, 'yyyy-mm-dd')")
+	List<Ticket> selectTicketBetween(String from, String to);
 
+	/**
+	 * 3_2. 기간별 매출 조회(페이징)
+	 * @param pageable
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	@Query("select t from Ticket t where t.ticketDate between to_date(?1, 'yyyy-mm-dd') and to_date(?2, 'yyyy-mm-dd')")
+	Page<Ticket> selectTicketBetween(Pageable pageable, String from, String to);
+	
 }
