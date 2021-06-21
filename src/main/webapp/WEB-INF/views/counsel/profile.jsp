@@ -121,7 +121,6 @@
 										<li><a href="${pageContext.request.contextPath}/counsel/myCounselList?field=-1">내 상담예약</a></li>
 										<li><a href="${pageContext.request.contextPath}/counsel/myCounselList?field=3">내 상담글</a></li>
 										<li><a href="${pageContext.request.contextPath}/ticket/mylist">상담권 구매내역</a></li>
-										<li><a href="#">상담권 사용내역</a></li>
 										<li><a href="${pageContext.request.contextPath}/psy/lo/result">테스트 결과</a></li>
 										<li><a href="${pageContext.request.contextPath}/psy/lo/answerList">그림 심리검사 결과</a></li>
 									</sec:authorize>
