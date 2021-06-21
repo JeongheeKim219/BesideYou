@@ -275,7 +275,7 @@
 								</td>
 								<td width="450" height="20" colspan="3"><span
 									style="font-size: 9pt;"><b>
-									<img class="mb-4 radius-tr-secondary radius-tl-secondary" width ="200" src="/assets/images/${requestScope.counselor.picture}" alt="${requestScope.counselor.picture}">
+									<img class="mb-4 radius-tr-secondary radius-tl-secondary" width ="200" src="/assets/counselor/${requestScope.counselor.picture}" alt="${requestScope.counselor.picture}">
 									</b></span>
 								</td>
 							</tr>

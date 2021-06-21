@@ -172,7 +172,7 @@
 								   
                                     <div class="row align-items-center">
                                    		<div class="col-12 mt-4">
-                                            프로필사진<p><input  type="file" placeholder="상담사사진"  name = "file" accept=".zip"aria-label="Text input with dropdown button"> <br>  <br>  
+                                            프로필사진<p><input  type="file" placeholder="상담사사진"  name = "file" aria-label="Text input with dropdown button"> <br>  <br>  
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
                                        		<textarea rows="7" cols="70" name="career" placeholder="커리어 작성해주세요."></textarea><br>
                                         	<select name = "degree">

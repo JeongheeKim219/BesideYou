@@ -108,7 +108,7 @@ public class CounselorController {
 			//파일을 저장(업로드)
 			Calendar calendar = Calendar.getInstance();
 			Date date = calendar.getTime();
-			String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(date)+"_"+ file.getOriginalFilename();
+			String fileName = file.getOriginalFilename();
 			
 			file.transferTo(new File(path+"/"+fileName));
 		
