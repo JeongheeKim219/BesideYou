@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,24 +26,25 @@
 <!--  -->
 <!--    Document Title-->
 <!-- =============================================-->
-<title>Elixir | Beautiful Site Template for Agencies &amp;
-	Professionals</title>
+<title>BU - Beside U</title>
 <!--  -->
 <!--    Favicons-->
 <!--    =============================================-->
 <link rel="apple-touch-icon" sizes="180x180"
-	href="/assets/images/favicons/apple-touch-icon.png">
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
 <link rel="icon" type="image/png" sizes="32x32"
-	href="/assets/images/favicons/favicon-32x32.png">
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
 <link rel="icon" type="image/png" sizes="16x16"
-	href="/assets/images/favicons/favicon-16x16.png">
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
 <link rel="shortcut icon" type="image/x-icon"
-	href="/assets/images/favicons/favicon.ico">
-<link rel="manifest" href="/assets/images/favicons/manifest.json">
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="manifest"
+   href="${pageContext.request.contextPath}/assets/images/favicons/manifest.json">
 <link rel="mask-icon"
-	href="/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+   href="${pageContext.request.contextPath}/assets/images/favicons/safari-pinned-tab.svg"
+   color="#5bbad5">
 <meta name="msapplication-TileImage"
-	content="/assets/images/favicons/mstile-150x150.png">
+   content="${pageContext.request.contextPath}/assets/images/favicons/mstile-150x150.png">
 <meta name="theme-color" content="#ffffff">
 <!--  -->
 <!--    Stylesheets-->
@@ -210,11 +213,12 @@
 				</nav>
 			</div>
 		</div>
-		<section>
-			<h3 class="text-center fs-2 fs-md-3">그림상담 답변하기</h3>
-			<hr class="short"
-				data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
-				data-zanim-trigger="scroll" />
+			<section style="text-align :center; padding-bottom:0px !important">
+				<h3>그림 상담 답변하기</h3>
+				<hr class="short"
+								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
+								data-zanim-trigger="scroll" />
+			</section>
 			<c:choose>
 				<c:when test="${art.artState!=0}">
 					<section class="background-11 ">
@@ -288,7 +292,6 @@
 					</section>
 				</c:otherwise>
 			</c:choose>
-		</section>
 		<section class=" background-primary py-6">
 			<div class="container">
 				<div class="row align-items-center">
