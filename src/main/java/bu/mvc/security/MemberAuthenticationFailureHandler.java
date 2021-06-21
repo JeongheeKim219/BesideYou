@@ -24,7 +24,7 @@ public class MemberAuthenticationFailureHandler implements AuthenticationFailure
 		
 		request.setAttribute("errorMessage", exception.getMessage());
 		
-		request.getRequestDispatcher("/WEB-INF/views/member/loginForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
 		
 	}
 
