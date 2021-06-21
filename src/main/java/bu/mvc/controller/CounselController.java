@@ -7,10 +7,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +25,11 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Requests;
+import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Speciality;
 import bu.mvc.domain.Tag;
 import bu.mvc.service.CounselService;
+import bu.mvc.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -33,6 +38,9 @@ import lombok.RequiredArgsConstructor;
 public class CounselController {
 
 	private final CounselService counselService;
+	
+	@Autowired
+	private ReviewService reviewService; // 리뷰 불러와야함
 	
 	/**
 	 * 신청 폼 이동 (* 연결할 때 input param 필요
@@ -213,15 +221,22 @@ public class CounselController {
 	}
 	
 	@RequestMapping("/profile")
-	public ModelAndView profile(Long counselorCode) {
+	public ModelAndView profile(Long counselorCode, @PageableDefault(size = 5, sort = "reviewCode", direction = Sort.Direction.DESC) Pageable pageable) {
 		ModelAndView mv = new ModelAndView();
 		Counselor counselor = counselService.getCounselor(counselorCode);
 		List<Tag> tagList = counselService.getTag(counselor);
 		List<Speciality> speList = counselService.getSpecialities(counselor);
+		System.out.println(counselorCode);
+		List<ReviewStar> review = reviewService.selectByCounselorCode(counselorCode, pageable);
+		Double point = reviewService.avgStar(counselorCode);
+		System.out.println(review.size());
+
 		mv.setViewName("/counsel/profile");
 		mv.addObject("counselor", counselor);
 		mv.addObject("tagList", tagList);
 		mv.addObject("speList", speList);
+		mv.addObject("review", review);
+		mv.addObject("point", point);
 		return mv;
 	}
 	
