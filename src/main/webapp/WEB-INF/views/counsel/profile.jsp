@@ -365,7 +365,7 @@
 								data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
 								data-zanim-trigger="scroll" />
 								<div align="center">
-								<form name="requestForm" method="post" id="requestForm" action="${pageContext.request.contextPath}/review/reviewByCode" >
+								<form name="requestForm" method="get" id="requestForm" action="${pageContext.request.contextPath}/review/reviewByCode?counselorCode=${counselor.counselorCode}" >
 		
 									<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
 									<input type="hidden" id="memberCode" name="memberCode" value=""/>
@@ -430,6 +430,7 @@
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>
+									</form>
 										<a href="?page=${previous}">Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?page=${next}">Next</a>
 									</div>
 													</div>
