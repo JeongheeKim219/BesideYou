@@ -334,7 +334,7 @@ public class AdminService {
 	 */
 	public AjaxDataTwo rankCounselor(){
 		int counselorsNumber = adminRep.findByMemberType(1).size();
-		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 6);
+		List<Map<String, Object>> listThisMonth = adminRep.selectCounselorByRanking(end.toLocalDate(), 10);
 		List<Map<String, Object>> listLastMonth = adminRep.selectCounselorByRanking(LocalDate.now().minusMonths(1), counselorsNumber);
 
 		AjaxDataTwo ajaxDataTwo = new AjaxDataTwo();
@@ -349,10 +349,10 @@ public class AdminService {
 		
 		for(Map<String, Object> mapThis : listThisMonth) {
 			Long counselorCode = Long.valueOf(String.valueOf((mapThis.get("COUNSELOR"))));
-			Counselor counselor =  counselorRep.findById(141L).orElse(null);
+			Counselor counselor =  counselorRep.findById(counselorCode).orElse(null);
 			String name = counselor.getMember().getName();			
 		 	int countThisMonth =  Integer.parseInt(String.valueOf(mapThis.get("COUNT")));
-		 	Double avgStar = reviewRep.selectStarAvg(141L);
+		 	Double avgStar = reviewRep.selectStarAvg(counselorCode);
 		 	avgStar = (avgStar == null)? 0 : avgStar;
 		 	List <ReviewStar> starCount= reviewRep.findByCounselor(counselor);
 		 	
@@ -361,11 +361,6 @@ public class AdminService {
 		 	for (ReviewStar star : starCount) {
 		 		System.out.println(star);
 		 	}
-		 	
-		 	
-		 	
-		 	
-		 	starCountList.add(starCount.size());
 		 	
 		 	int gap = 0;
 		 	

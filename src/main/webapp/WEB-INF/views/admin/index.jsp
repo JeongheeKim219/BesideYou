@@ -53,8 +53,8 @@
 <body>
 	
 	<%@include file="./header.jsp"%>
-	<%@include file="./menu.jsp"%>
 	<div class="app-main">
+	<%@include file="./menu.jsp"%>
 		<div class="app-main__outer">
 			<div class="app-main__inner">
 				<div class="app-page-title">
@@ -358,12 +358,14 @@
 							</div>
 							<div class="card-body">
 								<div class="widget-chart p-0">
-									<canvas id="newMemeberChart" style="height:40vh; width:50vw"></canvas>
+									<canvas id="newMemeberChart"></canvas>
 								</div>
 							</div>
 						</div>
+						</div>
 						<!-- 일별 신규 가입회원 차트 끝 -->
 						<!-- 상담사별 순위 조회 -->
+						<div class="main-card mb-6 card">
 						<div class="mb-6 card">
 							<div
 								class="card-header-tab card-header-tab-animation card-header">
@@ -417,7 +419,7 @@
 						</div>
 						</div>
 					</div>
-					<!-- 일별 신규 가입회원 차트 끝 -->
+					<!-- 상담사별 순위 조회 끝 -->
 					<!-- 월별 상담/ 상담신청 건수 차트 시작 -->
 					<div class="col-md-12 col-lg-6">
 						<div class="mb-12 card">
@@ -431,8 +433,8 @@
 							<div class="tab-content">
 								<div class="tab-pane fade active show" id="tab-eg-55">
 									<div class="widget-chart p-3">
-										<div style="height: 350px">
-											<canvas id="newCounselByMonth"  style="height:50vh; width:30vw"></canvas>
+										<div>
+											<canvas id="newCounselByMonth"></canvas>
 										</div>
 									</div>
 								</div>
@@ -441,7 +443,7 @@
 					</div>
 				</div>
 				<!-- 월별 상담/ 상담신청 건수 차트 끝 -->
-				<div class="row py-3"">
+				<div class="row py-3">
 					<div class="col-md-6 col-lg-3">
 						<div
 							class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
@@ -542,34 +544,14 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
 	<!-- Chart.js -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			
-			//Token
-			// using jQuery
-			/* function getCookie(name) {
-			    var cookieValue = null;
-			    if (document.cookie && document.cookie !== '') {
-			        var cookies = document.cookie.split(';');
-			        for (var i = 0; i < cookies.length; i++) {
-			            var cookie = jQuery.trim(cookies[i]);
-			            // Does this cookie string begin with the name we want?
-			            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-			                break;
-			            }
-			        }
-			    }
-			    return cookieValue;
-			}
-			var csrftoken = getCookie('csrftoken'); */
-			///////////////////////////////////////////////////
+		
 			
 			var weekList = [];
 			var monthList = [];
@@ -793,7 +775,7 @@
 						} ]
 					},
 					options : {
-						//responsive : true,
+						responsive : true,
 						plugins : {
 							legend : {
 								position : 'top',
