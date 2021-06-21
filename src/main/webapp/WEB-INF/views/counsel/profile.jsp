@@ -407,7 +407,7 @@
 													<tr>
 														<td style="border-top: hidden;" colspan="5" align="right">
 															<input type="button" id="btn_${num.index}" name="btn" value="신고하기" > 
-															<sec:authorize access="hasRole('ROLE_MEMBER')">
+															<sec:authorize access="isAuthenticated()">
 															<input type="button" id="reviewDelete_${num.index}" name="reviewDelete" value="리뷰삭제"> 
 															<input type="button" id="reviewChange_${num.index}" name=reviewChange value="리뷰수정"> 
 															</sec:authorize>

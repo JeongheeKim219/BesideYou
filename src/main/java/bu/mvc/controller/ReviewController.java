@@ -138,7 +138,7 @@ public class ReviewController {
 		
 		
 		
-		return "redirect:/review/reviewByCode/"+cscode;
+		return "redirect:/counsel/profile?counselorCode="+cscode;
 	}
 	
 	
