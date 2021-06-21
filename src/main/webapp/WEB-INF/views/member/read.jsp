@@ -205,7 +205,7 @@
 					<div class="col-12 px-0">
 
 						<table align="center" cellpadding="18" cellspacing="8" width="600">
-							<h2>가입된 정보</h2>
+							<h2>가입된 정보</h2><br><br><br>
 
 							<tr>
 								<td width="100" height="20">
@@ -332,8 +332,8 @@
 								
 						</form>-->
 
-						<a href="javascript:update();">수정하기</a>
-						<a href ="javascript:memberDelete();">탈퇴하기</a>
+						<a class="btn btn-outline-info mr-3 mb-3" href="javascript:update();">수정하기</a>
+						<a class="btn btn-outline-danger mr-3 mb-3" href ="javascript:memberDelete();">탈퇴하기</a>
 					</div>
 
 				</div>

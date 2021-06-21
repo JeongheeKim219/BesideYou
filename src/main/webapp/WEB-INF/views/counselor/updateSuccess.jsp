@@ -11,18 +11,26 @@
         <!--  -->
         <!--    Document Title-->
         <!-- =============================================-->
-        <title>Elixir | Beautiful Site Template for Agencies &amp; Professionals</title>
-        <!--  -->
-        <!--    Favicons-->
-        <!--    =============================================-->
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicons/favicon.ico">
-        <link rel="manifest" href="/assets/images/favicons/manifest.json">
-        <link rel="mask-icon" href="/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileImage" content="/assets/images/favicons/mstile-150x150.png">
-        <meta name="theme-color" content="#ffffff">
+        <title>BU - Beside U</title>
+<!--  -->
+<!--    Favicons-->
+<!--    =============================================-->
+<link rel="apple-touch-icon" sizes="180x180"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="32x32"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="icon" type="image/png" sizes="16x16"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="shortcut icon" type="image/x-icon"
+   href="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png">
+<link rel="manifest"
+   href="${pageContext.request.contextPath}/assets/images/favicons/manifest.json">
+<link rel="mask-icon"
+   href="${pageContext.request.contextPath}/assets/images/favicons/safari-pinned-tab.svg"
+   color="#5bbad5">
+<meta name="msapplication-TileImage"
+   content="${pageContext.request.contextPath}/assets/images/favicons/mstile-150x150.png">
+<meta name="theme-color" content="#ffffff">
         <!--  -->
         <!--    Stylesheets-->
         <!--    =============================================-->
@@ -42,150 +50,105 @@
     <body data-spy="scroll" data-target=".inner-link" data-offset="60">
         <main>
             <div class="loading" id="preloader">
-                <div class="loader h-100 d-flex align-items-center justify-content-center">
-                    <div class="line-scale">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
+         <div
+            class="loader h-100 d-flex align-items-center justify-content-center">
+            <div class="line-scale">
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
             </div>
-            <section class="background-primary py-3 d-none d-sm-block">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-auto d-none d-lg-block"><span class="fa fa-map-marker color-warning fw-800 icon-position-fix"></span>
-                            <p class="ml-2 mb-0 fs--1 d-inline color-white fw-700">1010 Avenue, New York, NY 10018 US. </p>
-                        </div>
-                        <div class="col-auto ml-md-auto order-md-2 d-none d-sm-block"><span class="fa fa-clock-o color-warning fw-800 icon-position-fix"></span>
-                            <p class="ml-2 mb-0 fs--1 d-inline color-white fw-700">Mon-Sat, 8.00-18.00. Sunday CLOSED</p>
-                        </div>
-                        <div class="col-auto"><span class="fa fa-phone color-warning fw-800 icon-position-fix"></span><a class="ml-2 mb-0 fs--1 d-inline color-white fw-700" href="tel:2123865575">212 386 5575, 212 386 5576</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
-            <div class="znav-white znav-container sticky-top navbar-elixir" id="znav-container">
-                <div class="container">
-                    <nav class="navbar navbar-expand-lg"><a class="navbar-brand overflow-hidden pr-3" href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-dark.png" alt="" /></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <div class="hamburger hamburger--emphatic">
-                                <div class="hamburger-box">
-                                    <div class="hamburger-inner"></div>
-                                </div>
-                            </div>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul class="navbar-nav fs-0 fw-700">
-                                <li><a href="JavaScript:void(0)">Home</a>
-                                    <ul class="dropdown fs--1">
-                                        <li><a href="${pageContext.request.contextPath}/">Slider Header</a></li>
-                                        <li><a href="index--header-slider-classic.html">Slider Classic</a></li>
-                                        <li><a href="index--header-static.html">Static Header</a></li>
-                                        <li><a href="index--header-static-classic.html">Static Classic</a></li>
-                                        <li><a href="index--header-youtube-video.html">Youtube Background </a></li>
-                                        <li><a href="index--header-youtube-video-classic.html">Youtube Classic</a></li>
-                                        <li><a href="index--header-selfhosted-video.html">Self-hosted Video</a></li>
-                                        <li><a href="index--header-selfhosted-video-classic.html">Self-hosted Classic</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="JavaScript:void(0)">Pages</a>
-                                    <ul class="dropdown fs--1">
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="alumni.html">Alumni</a></li>
-                                        <li><a href="blank.html">Blank Page</a></li>
-                                        <li><a href="404.html">404 Page</a></li>
-                                        <li><a href="login.html">Login</a></li>
-                                        <li><a href="registration.html">Registration</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="JavaScript:void(0)">News</a>
-                                    <ul class="dropdown fs--1">
-                                        <li><a href="newsroom.html">Newsroom</a></li>
-                                        <li><a href="news.html">Single News</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="JavaScript:void(0)">Elements</a>
-                                    <ul class="dropdown fs--1">
-                                        <li><a href="components-buttons.html">Buttons</a></li>
-                                        <li><a href="components-colors.html">Colors</a></li>
-                                        <li><a href="components-googlemap.html">Google Map</a></li>
-                                        <li><a href="components-grid.html">Grid</a></li>
-                                        <li><a href="components-icons.html">Icons</a></li>
-                                        <li><a href="components-layouthelpers.html">Layout Helpers</a></li>
-                                        <li><a href="components-modal-video.html">Modal Video</a></li>
-                                        <li><a href="components-owlcarousal.html">Owl Carousal</a></li>
-                                        <li><a href="components-slider.html">Slider</a></li>
-                                        <li><a href="components-typography.html">Typography</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="d-block mr-md-9" href="contact.html">Contact</a></li>
-                            </ul>
-                            <ul class="navbar-nav ml-lg-auto">
-                               <!-- 인증 안됐으면 -->
-							
-							<sec:authorize access="isAnonymous()">
-							
-								<!-- 또는 !isAuthenticated() 로 비교해도 된다.  로그인을 하지 않은 사용자-->
-
-								<li><a
-									href="${pageContext.request.contextPath}/member/login">Login</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/member/joinForm">Join</a></li>
-							
-							</sec:authorize>
-						
-							
-							<!-- 인증 됐으면 -->
-							<sec:authorize access="isAuthenticated()">
-
-								<!-- 일반회원이거나 관리자인 경우. 두개 이상의 role을 비교할 때 hasAnyRole() -->
-								<sec:authorize access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
-								
-								</sec:authorize>
-								
-								<!-- 일반회원인 경우 -->
-								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN')and !hasRole('ROLE_COUNSELOR')">
-									 <li>
-									<p>
-										<sec:authentication property="principal.name" />
-										님 환영합니다.
-										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
-								</li>
-								<li><a href="javascript:read();">회원정보</a></li>
-								<li><a href="javascript:logout();">로그아웃</a></li> 
-
-								</sec:authorize>
-								
-								 <!-- 관리자인 경우 -->
-								 <sec:authorize access="hasRole('ROLE_ADMIN')">
-									 <li>
-									<p>
-										<sec:authentication property="principal.name" />
-										님 환영합니다.
-										<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
-								</li>
-								<!-- <li><a href="javascript:read();">회원정보</a></li> -->
-								<li><a href="admin/index">관리자페이지</a>
-								<li><a href="javascript:logout();">로그아웃</a></li> 
-
-								</sec:authorize>  
-								<!--  상담사인 경우 -->
-								<sec:authorize access="hasRole('ROLE_COUNSELOR')">
-								   <sec:authentication property="principal.name" />상담사님 안녕하세요.
-								  
-								   <a href="javascript:logout();">로그아웃</a></li>
-								   
-								</sec:authorize>
-								</sec:authorize>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+         </div>
+      </div>
+      <div class="znav-white znav-container sticky-top navbar-elixir"
+         id="znav-container">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg">
+               <a class="navbar-brand overflow-hidden pr-3" href="${pageContext.request.contextPath}/"><img
+                  src="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png"
+                  alt="" style="width: 50px; height: 50px" /></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                  aria-expanded="false" aria-label="Toggle navigation">
+                  <div class="hamburger hamburger--emphatic">
+                     <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                     </div>
+                  </div>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav fs-0 fw-700">
+                     <li><a href="${pageContext.request.contextPath}/counsel/counselorList">상담사검색</a>
+                        </li>
+                     <li><a href="#">테스트/검사</a>
+                        <ul class="dropdown fs--1">
+                           <li><a href="${pageContext.request.contextPath}/psy/list">자가진단 테스트</a></li>
+                           <li><a href="${pageContext.request.contextPath}/psy/art">그림 심리검사</a></li>
+                        </ul></li>
+                     <li><a href="#">마이페이지</a>
+                        <ul class="dropdown fs--1">
+                           <li><a href="${pageContext.request.contextPath}/member/read">내 정보</a></li>
+                           <sec:authorize access="!hasRole('ROLE_COUNSELOR')">
+                              <li><a href="${pageContext.request.contextPath}/counsel/myCounselList?field=-1">내 상담예약</a></li>
+                              <li><a href="${pageContext.request.contextPath}/counsel/myCounselList?field=3">내 상담글</a></li>
+                              <li><a href="${pageContext.request.contextPath}/ticket/mylist">상담권 구매내역</a></li>
+                              <li><a href="${pageContext.request.contextPath}/psy/lo/result">테스트 결과</a></li>
+                              <li><a href="${pageContext.request.contextPath}/psy/lo/answerList">그림 심리검사 결과</a></li>
+                           </sec:authorize>
+                        </ul></li>
+                     <li><a href="#">고객센터</a>
+                        <ul class="dropdown fs--1">
+                           <li><a href="${pageContext.request.contextPath}/contact/list">1:1문의</a></li>
+                           <li><a href="${pageContext.request.contextPath}/faq/list">FAQ</a></li>
+                           <li><a href="${pageContext.request.contextPath}/notice/list">공지사항</a></li>
+                        </ul></li>
+                     <li><a href="#">상담사메뉴</a>
+                        <ul class="dropdown fs--1">
+                           <sec:authorize access="!hasRole('ROLE_COUNSELOR')">
+                              <li><a href="${pageContext.request.contextPath}/counselor/CounselorJoin">상담사 신청</a></li>
+                           </sec:authorize>
+                           <sec:authorize access="hasRole('ROLE_COUNSELOR')">
+                              <li><a href="${pageContext.request.contextPath}/counselor/read">상담사 등록 정보</a></li>
+                              <li><a href="${pageContext.request.contextPath}/psy/lo/signupArt">그림상담사 신청</a></li>
+                              <li><a href="${pageContext.request.contextPath}/psy/lo/cancle">그림상담사 해지</a></li>
+                              <li><a href="${pageContext.request.contextPath}/psy/lo/requestList">그림검사 요청목록</a></li>
+                              <li><a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=-1">상담예약 요청목록</a></li>
+                              <li><a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=3">상담글 요청목록</a></li>
+                           </sec:authorize>
+                        </ul></li>
+                  </ul>
+                  <ul class="navbar-nav ml-lg-auto">
+                     <sec:authorize access="isAnonymous()">
+                        <!-- 또는 !isAuthenticated() 로 비교해도 된다.  로그인을 하지 않은 사용자-->
+                        <li><a
+                           href="${pageContext.request.contextPath}/member/login">Login</a></li>
+                        <li><a
+                           href="${pageContext.request.contextPath}/member/joinForm">Join</a></li>
+                     </sec:authorize>
+                     
+                     <sec:authorize access="isAuthenticated()">
+                        <li style="vertical-align: middle;">
+                           <h6 style="margin-bottom: 0 !important; color: #2A3855">
+                              <sec:authentication property="principal.name"/>님 
+                              <sec:authorize access="hasRole('ROLE_COUNSELOR')">
+                                 (상담사)
+                              </sec:authorize>
+                              </h6>
+                              <!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+                        </li>
+                        <li style="vertical-align: middle;"><a href="javascript:logout();" style="color: #2A3855;padding-top: 0 !important;padding-bottom: 0 !important">logout</a></li>
+                        
+                        
+                        <form id="logoutForm" action="${pageContext.request.contextPath}/member/logout" method="post" style="display: none">
+                           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        </form>
+                     </sec:authorize>
+                  </ul>
+               </div>
+            </nav>
+         </div>
+      </div>
             <section class=" background-11 py-0 text-center">
                 <div class="container">
                     <div class="row h-full align-items-center">
@@ -194,7 +157,7 @@
                             
                             
 	
-	<p><a href="${pageContext.request.contextPath}/">메인페이지로 가기</a>
+	<p><a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/">메인페이지로 가기</a>
 	
                         </div>
                     </div>
@@ -202,19 +165,27 @@
                 </div>
                 <!--/.container-->
             </section>
-            <section class="background-primary text-center py-4">
-                <div class="container">
-                    <div class="row align-items-center" style="opacity: 0.85">
-                        <div class="col-sm-3 text-sm-left"><a href="${pageContext.request.contextPath}/"><img src="/assets/images/logo-light.png" alt="" /></a></div>
-                        <div class="col-sm-6 mt-3 mt-sm-0">
-                            <p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018 Elixir Inc.</p>
-                        </div>
-                        <div class="col text-sm-right mt-3 mt-sm-0"><a class="color-white" href="https://themewagon.com/" target="_blank"> Designed by Themewagon</a></div>
-                    </div>
-                    <!--/.row-->
-                </div>
-                <!--/.container-->
-            </section>
+           <section class=" background-primary py-6">
+         <div class="container">
+            <div class="row align-items-center">
+               <div class="col-md">
+                  <h3 class="color-white mb-0">
+                     슬프고 우울한 날에도 당신의 곁에 Beside-U
+                  </h3>
+               </div>
+            </div>
+            <!--/.row-->
+            <br>
+            <div>
+               <h6 style="color: #949494">상호명:(주)BU | 대표:박기현</h6>
+               <h6 style="color: #949494">사업장소재지:(13637) 경기도 성남시 분당구 성남대로 34 6층(구미동 하나프라자빌딩)</h6>
+               <h6 style="color: #949494">사업자등록번호:199-4082-3</h6>
+               <h6 style="color: #949494">대표메일:mooyaho@kosta.com</h6>
+               <h6 style="color: #949494">© BU All rights reserved.</h6>
+            </div>
+         </div>
+         <!--/.container-->
+      </section>
         </main>
         <!--  -->
         <!--    JavaScripts-->
