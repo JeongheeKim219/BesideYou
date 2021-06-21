@@ -245,7 +245,7 @@
 															<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 															<input type="hidden" name="counselorCode" value="${counsel.counselor.counselorCode}">
 															<input type="hidden" name="counselCode" value="${counsel.counselCode}">
-															<input type="submit" class="btn btn-outline-primary btn-xs" value="리뷰작성">
+															<input type="button" id="reviMo" class="btn btn-outline-primary btn-xs" value="리뷰작성">
 														</form>
 													</td>
 												</c:when>

@@ -42,6 +42,7 @@ public class ReviewStar {
 	private Date reviewDate; // 리뷰작성날짜
 	
 	private double star; // 별점
+	
 	@JoinColumn(name = "REVIEW_CONTENT")
 	private String reviewContent; // 리뷰 내용
 	

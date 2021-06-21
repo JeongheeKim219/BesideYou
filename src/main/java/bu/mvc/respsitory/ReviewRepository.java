@@ -23,7 +23,6 @@ public interface ReviewRepository extends JpaRepository<ReviewStar, Long> {
 
 /////6월 18일 정희 추가///////////////////////////////////////////////////////////////////////////////////////
 	
-	
 	List<ReviewStar> findByCounselor(Counselor counselor);
 	
 	

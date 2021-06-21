@@ -43,39 +43,65 @@
 	<div class="scrollbar-sidebar">
 		<div class="app-sidebar__inner">
 			<ul class="vertical-nav-menu">
-				<li class="app-sidebar__heading">°ü¸®ÀÚ ¸Þ´º</li>
+				<li class="app-sidebar__heading">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½</li>
 				<li><a href="${pageContext.request.contextPath}/admin/index" class="mm-active"> 
-				<i class="metismenu-icon fa fa-cog icon-gradient bg-deep-blue fa-lg"> </i> ´ë½¬º¸µå
+				<i class="metismenu-icon fa fa-cog icon-gradient bg-deep-blue fa-lg"> </i> ï¿½ë½¬ï¿½ï¿½ï¿½ï¿½
 				</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/admin/memberView"> <i
-						class="metismenu-icon pe-7s-users"></i>È¸¿ø°ü¸® <i
+						class="metismenu-icon pe-7s-users"></i>È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ <i
 						class="metismenu-state-icon pe-7s-users-down caret-left"></i>
 				</a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/admin/memberView"> <i
-								class="metismenu-icon"> </i> ÀüÃ¼È¸¿øÁ¶È¸
+								class="metismenu-icon"> </i> ï¿½ï¿½Ã¼È¸ï¿½ï¿½ï¿½ï¿½È¸
 						</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/viewCounselorState">»ó´ã»ç½ÂÀÎ<i
+						<li><a href="${pageContext.request.contextPath}/admin/viewCounselorState">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<i
 								class="metismenu-icon"> </i>
 						</a></li>
 						
 					</ul></li>
 				<li><a href="#"> <i class="metismenu-icon pe-7s-car"></i>
-						¸ÅÃâ°ü¸®<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+						ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
 				</a>
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/admin/ticketView"> <i
-								class="metismenu-icon"> </i>ÀüÃ¼°áÁ¦¸ñ·Ï
+								class="metismenu-icon"> </i>ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						</a></li>
 						<li><a href="${pageContext.request.contextPath}/admin/viewTicketLines"> <i
-								class="metismenu-icon"> </i>»ó´ã±Ç»ç¿ë³»¿ª
+								class="metismenu-icon"> </i>ï¿½ï¿½ï¿½Ç»ï¿½ë³»ï¿½ï¿½
 						</a></li>
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/admin/contactView"> <i
-						class="metismenu-icon pe-7s-display2"></i> ¹®ÀÇ°ü¸®
+						class="metismenu-icon pe-7s-display2"></i> ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
 				</a></li>
-
+				<li><a href="${pageContext.request.contextPath}/admin/reportView"> <i
+						class="metismenu-icon pe-7s-display2"></i> ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½
+				</a></li>
+				<li class="app-sidebar__heading"></li>
+				<li><a href="dashboard-boxes.html"> <i
+						class="metismenu-icon pe-7s-display2"></i> Dashboard Boxes
+				</a></li>
+				<li class="app-sidebar__heading">Forms</li>
+				<li><a href="forms-controls.html"> <i
+						class="metismenu-icon pe-7s-mouse"> </i>Forms Controls
+				</a></li>
+				<li><a href="forms-layouts.html"> <i
+						class="metismenu-icon pe-7s-eyedropper"> </i>Forms Layouts
+				</a></li>
+				<li><a href="forms-validation.html"> <i
+						class="metismenu-icon pe-7s-pendrive"> </i>Forms Validation
+				</a></li>
+				<li class="app-sidebar__heading">Charts</li>
+				<li><a href="charts-chartjs.html"> <i
+						class="metismenu-icon pe-7s-graph2"> </i>ChartJS
+				</a></li>
+				<li class="app-sidebar__heading">PRO Version</li>
+				<li><a
+					href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/"
+					target="_blank"> <i class="metismenu-icon pe-7s-graph2"> </i>
+						Upgrade to PRO
+				</a></li>
 			</ul>
 		</div>
 	</div>
