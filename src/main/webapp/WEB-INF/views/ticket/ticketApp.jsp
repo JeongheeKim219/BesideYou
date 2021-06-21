@@ -267,11 +267,13 @@
                                         	<form name="payment" id="payment" method="post" action="">
 	                                        	<input type="hidden" name="ticketField" value="${counselCategory}"/>
 							            		<input type="hidden" name="counselorCode" value="${counselorCode}"/>
+							            		
 							            		<%-- <input type="hidden" name="memberCode" value="${member.memberCode}"/>
 							            		<input type="hidden" name="name" value="${member.name}"/>
 							            		<input type="hidden" name="phone" value="${member.phone}"/>
 							            		<input type="hidden" name="email" value="${member.email}"/>
-							            		<input type="hidden" name="addr" value="${member.memberAddr}"/> --%>
+							            		<input type="hidden" name="memberAddr" value="${member.memberAddr}"/> --%>
+							            		
 							            		<input type="hidden" name="ticketAmount" value="0"/>
 							            		<input type="hidden" name="ticketRemain" value="0"/>
 							            		<input type="hidden" name="discountCode" value="0"/>

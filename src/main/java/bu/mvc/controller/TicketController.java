@@ -114,8 +114,9 @@ public class TicketController {
 	 * 상담권 구매 완료 (결제 성공시)
 	 * */
 	@RequestMapping("/buy")
-	public ModelAndView buyTicket(HttpServletRequest request, HttpSession session) {
+	public ModelAndView buyTicket(HttpServletRequest request) {
 		
+		HttpSession session = request.getSession();
 		int ticketField = (int)session.getAttribute("ticketField");
 		Long counselorCode = (Long)session.getAttribute("counselorCode");
 		int ticketAmount = (int)session.getAttribute("ticketAmount");
