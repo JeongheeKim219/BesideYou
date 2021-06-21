@@ -145,7 +145,7 @@
 												<div class="widget-content-left mr-3">
 													<div class="widget-content-left">
 														<img width="40" class="rounded-circle"
-															src="${pageContext.request.contextPath}/assets/profileSave/${newCounselor.picture}" alt="${newCounselor.picture}">
+															src="${pageContext.request.contextPath}/assets/counselor/${newCounselor.picture}" alt="${newCounselor.picture}">
 													</div>
 												</div>
 												<div class="widget-content-left flex2">
