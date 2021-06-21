@@ -185,7 +185,7 @@
 			<div class="container">
 				<div class="row text-center mb-5">
 					<div class="col">
-						<h3 class="fs-2 fs-md-3 fw-600">심리테스트 결과 목록</h3>
+						<h3 class="fs-2 fs-md-3 fw-600">자가진단 테스트 결과 목록</h3>
 					</div>
 				</div>
 				<div>
