@@ -191,7 +191,7 @@
 							style="padding-top: 30px; padding-bottom: 30px">
 							<div class="background-white pb-4 h-100 radius-secondary">
 								<img class="mb-4 radius-tr-secondary radius-tl-secondary"
-									src="/assets/images/portrait-3.jpg" alt="Profile Picture" />
+									src="/assets/counselor/${counselor.picture}" alt="Profile Picture" />
 								<div class="px-4" data-zanim-timeline="{}"
 									data-zanim-trigger="scroll">
 									<div class="overflow-hidden">

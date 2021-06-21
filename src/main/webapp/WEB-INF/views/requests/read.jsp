@@ -196,7 +196,7 @@
 						style="min-height: 400px; background-position: top">
 						<div
 							class="background-holder radius-tl-secondary radius-bl-lg-secondary radius-tr-secondary radius-tr-lg-0"
-							style="background-image:url(${pageContext.request.contextPath}/assets/images/ceo.jpg);">
+							style="background-image:url(${pageContext.request.contextPath}/assets/counselor/${counsel.counselor.picture});">
 						</div>
 						<!--/.background-holder-->
 					</div>
