@@ -298,7 +298,7 @@ public class PsychologyController {
 		//System.out.println("member : "+member.getMemberCode());
 		//멤버코드로 카운슬러코드 찾기
 		Counselor co = psyService.selectByMem(member.getMemberCode());
-		if(co.getCounselorState()!=1) {
+		if(co.getCounselorState()!=2) {
 			model.addAttribute("co", co);
 			return "/psy/requestList";
 		}
@@ -371,7 +371,7 @@ public class PsychologyController {
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//멤버가 상담사인지 아닌지
 		Counselor co = psyService.selectByMem(member.getMemberCode());
-		if(co.getCounselorState()!=1) {
+		if(co.getCounselorState()!=2) {
 			model.addAttribute("co", co);
 			return "/psy/cancle";
 		}

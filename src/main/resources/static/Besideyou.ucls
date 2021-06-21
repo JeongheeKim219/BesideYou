@@ -1,0 +1,1880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="bu.mvc.controller.ContactReplyController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/ContactReplyController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="213" x="3827" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="bu.mvc.controller.NoticeController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/NoticeController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="213" x="1741" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="bu.mvc.controller.AdminController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/AdminController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="466" width="360" x="12405" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="bu.mvc.controller.PaymentController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/PaymentController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="327" x="4890" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="bu.mvc.controller.CounselController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/CounselController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="445" x="5850" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="bu.mvc.controller.CounselorController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/CounselorController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="614" x="2522" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="bu.mvc.controller.DiscountController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/DiscountController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="164" x="4686" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="bu.mvc.controller.ContactController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/ContactController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="273" x="10965" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="bu.mvc.controller.TicketController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/TicketController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="553" x="5257" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="bu.mvc.controller.IndexController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/IndexController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="135" x="1335" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="bu.mvc.controller.MemberController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="413" x="9590" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="bu.mvc.controller.RequestsController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/RequestsController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="234" x="7155" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="bu.mvc.controller.TicketLinesController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/TicketLinesController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="215" x="4339" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="bu.mvc.controller.PsychologyController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/PsychologyController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="502" width="493" x="10043" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="bu.mvc.controller.FaqController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/FaqController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="215" x="3380" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="bu.mvc.controller.RefundController" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/controller/RefundController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="325" x="12038" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="bu.mvc.service.CounselorService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/CounselorService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="424" x="1744" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="18" language="java" name="bu.mvc.service.PsychologyService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/PsychologyService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="328" x="8991" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="19" language="java" name="bu.mvc.service.RefundService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/RefundService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="281" x="12084" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="20" language="java" name="bu.mvc.service.TicketService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/TicketService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="276" x="12405" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="21" language="java" name="bu.mvc.service.SpecialityService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/SpecialityService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="269" x="2532" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="22" language="java" name="bu.mvc.service.TicketLinesService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/TicketLinesService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="307" x="4339" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="23" language="java" name="bu.mvc.service.DiscountService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/DiscountService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="198" x="4728" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="24" language="java" name="bu.mvc.service.ReviewService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/ReviewService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="336" x="15734" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="25" language="java" name="bu.mvc.service.AdminService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/AdminService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="682" width="466" x="12848" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="26" language="java" name="bu.mvc.service.PriceService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/PriceService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="242" x="3309" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="27" language="java" name="bu.mvc.service.RequestService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/RequestService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="225" x="6895" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="28" language="java" name="bu.mvc.service.MemberService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="211" x="8740" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="29" language="java" name="bu.mvc.service.TagService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/TagService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="232" x="1472" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="30" language="java" name="bu.mvc.service.CounselService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/CounselService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="363" x="5850" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="31" language="java" name="bu.mvc.service.RoleConstants" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/RoleConstants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="191" x="1510" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="32" language="java" name="bu.mvc.hs.service.ContactService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/ContactService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="375" x="10816" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="33" language="java" name="bu.mvc.hs.service.FaqService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/FaqService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="164" x="3380" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="34" language="java" name="bu.mvc.hs.service.NoticeService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/NoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="213" x="1459" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="35" language="java" name="bu.mvc.hs.service.ContactReplyService" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/ContactReplyService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="174" x="3827" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="36" language="java" name="bu.mvc.hs.service.ContactReplyServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/ContactReplyServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="203" x="3584" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="bu.mvc.hs.service.NoticeServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/NoticeServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="213" x="1994" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="bu.mvc.hs.service.FaqServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/FaqServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="164" x="3176" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="bu.mvc.hs.service.ContactServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/hs/service/ContactServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="375" x="11278" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="bu.mvc.service.PsychologyServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/PsychologyServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="328" x="10576" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="bu.mvc.service.SpecialityServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/SpecialityServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="269" x="2213" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="bu.mvc.service.TagServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/TagServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="232" x="723" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="bu.mvc.service.MemberServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/MemberServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="242" x="14670" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="bu.mvc.service.CounselorServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/CounselorServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="424" x="995" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="bu.mvc.service.CounselServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/CounselServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="930" x="7975" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="bu.mvc.service.RefundServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/RefundServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="342" x="13354" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="bu.mvc.service.TicketServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/TicketServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="363" x="12445" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="bu.mvc.service.ReviewServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/ReviewServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="336" x="15517" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="bu.mvc.service.DiscountServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/DiscountServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="198" x="4080" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="bu.mvc.service.PriceServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/PriceServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="242" x="1712" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="bu.mvc.service.RequestServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/RequestServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="506" x="7429" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="bu.mvc.service.TicketLinesServiceImpl" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/service/TicketLinesServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="307" x="8579" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="bu.mvc.domain.Report" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Report.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="248" x="4594" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="bu.mvc.domain.Requests" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Requests.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="282" x="6833" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="bu.mvc.domain.Ticket" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Ticket.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="556" width="425" x="8275" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="bu.mvc.domain.Refund" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Refund.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="287" x="9263" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="bu.mvc.domain.Discount" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Discount.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="187" x="8275" y="1861"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="bu.mvc.domain.Speciality" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Speciality.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="219" x="7373" y="2583"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="bu.mvc.domain.Authority" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Authority.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="202" x="3729" y="1861"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="bu.mvc.domain.ArtAnswer" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/ArtAnswer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="271" x="16464" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="bu.mvc.domain.Psychology" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Psychology.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="307" x="3971" y="1861"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="bu.mvc.domain.Price" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Price.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="194" x="3075" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="bu.mvc.domain.Art" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Art.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="448" width="417" x="16424" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="bu.mvc.domain.Contact" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Contact.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="538" width="382" x="6228" y="3611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="bu.mvc.domain.Tag" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Tag.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="194" x="2841" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="bu.mvc.domain.Notice" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Notice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="394" width="224" x="1071" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="bu.mvc.domain.Counsel" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Counsel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="502" width="436" x="6398" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="bu.mvc.domain.Faq" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Faq.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="179" x="662" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="bu.mvc.domain.Member" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Member.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="988" width="956" x="6377" y="2583"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="bu.mvc.domain.AjaxData" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/AjaxData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="256" x="64" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="bu.mvc.domain.ContactReply" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/ContactReply.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="258" x="6079" y="2583"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="bu.mvc.domain.Counselor" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/Counselor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="682" width="561" x="7094" y="1861"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="bu.mvc.domain.ReviewStar" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/ReviewStar.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="466" width="458" x="6335" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="bu.mvc.domain.TicketLines" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/TicketLines.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="257" x="8966" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="bu.mvc.domain.AjaxDataTwo" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/AjaxDataTwo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="262" x="360" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="bu.mvc.domain.RequestAns" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/RequestAns.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="381" x="8926" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="bu.mvc.domain.ArtCounselor" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/domain/ArtCounselor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="293" x="16110" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="78" language="java" name="bu.mvc.respsitory.AdminRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/AdminRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="566" x="13680" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="79" language="java" name="bu.mvc.respsitory.ArtAnswerRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/ArtAnswerRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="308" x="9769" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="80" language="java" name="bu.mvc.respsitory.ContactReplyRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/ContactReplyRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="70" width="196" x="3591" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="81" language="java" name="bu.mvc.respsitory.ArtRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/ArtRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="280" x="10117" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="82" language="java" name="bu.mvc.respsitory.AuthorityRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/AuthorityRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="224" x="14670" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="83" language="java" name="bu.mvc.respsitory.ArtCounselorRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/ArtCounselorRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="370" x="9359" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="84" language="java" name="bu.mvc.respsitory.CounselRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/CounselRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="496" x="7718" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="85" language="java" name="bu.mvc.respsitory.CounselorRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/CounselorRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="339" x="10437" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="86" language="java" name="bu.mvc.respsitory.ContactRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/ContactRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="375" x="11231" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="87" language="java" name="bu.mvc.respsitory.FaqRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/FaqRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="164" x="3176" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="88" language="java" name="bu.mvc.respsitory.DiscountRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/DiscountRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="70" width="164" x="4080" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="89" language="java" name="bu.mvc.respsitory.MemberRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/MemberRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="326" x="14934" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="90" language="java" name="bu.mvc.respsitory.NoticeRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/NoticeRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="179" x="1994" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="91" language="java" name="bu.mvc.respsitory.PsychologyRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/PsychologyRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="398" x="11646" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="92" language="java" name="bu.mvc.respsitory.PriceRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/PriceRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="405" x="1027" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="93" language="java" name="bu.mvc.respsitory.RefundRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/RefundRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="344" x="14286" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="94" language="java" name="bu.mvc.respsitory.ReportRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/ReportRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="70" width="150" x="881" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="95" language="java" name="bu.mvc.respsitory.RequestAnsRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/RequestAnsRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="255" x="7160" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="96" language="java" name="bu.mvc.respsitory.RequestRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/RequestRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="223" x="7455" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="97" language="java" name="bu.mvc.respsitory.ReviewRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/ReviewRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="394" x="15300" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="98" language="java" name="bu.mvc.respsitory.SpecialityRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/SpecialityRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="284" x="2208" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="99" language="java" name="bu.mvc.respsitory.TagRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/TagRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="247" x="740" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="100" language="java" name="bu.mvc.respsitory.TicketLinesRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/TicketLinesRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="445" x="12721" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="101" language="java" name="bu.mvc.respsitory.TicketRepository" project="Besideyou" 
+    file="/Besideyou/src/main/java/bu/mvc/respsitory/TicketRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="434" x="13206" y="1265"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="102">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="103" name="speRepository"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="98" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="106" name="ticketLinesService"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="108">    
+    <end type="SOURCE" refId="49"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="109">    
+    <bendpoint x="10934" y="543"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="110" name="counselorRep"/>      
+      <multiplicity id="111" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="112">    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="113" name="requests"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="115">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <association id="116">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="117" name="specialityService"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <bendpoint x="4308" y="543"/>    
+    <bendpoint x="4308" y="1265"/>    
+    <bendpoint x="4308" y="1861"/>    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="120" name="memberCode"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="123" name="contactReplyService"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="126" name="artRepository"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="81" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="129" name="counsel"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="67" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="131">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="132" name="memberService"/>      
+      <multiplicity id="133" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="135" name="reviewACode"/>      
+      <multiplicity id="136" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="137">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="138" name="tagRepository"/>      
+      <multiplicity id="139" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="99" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="140">    
+    <bendpoint x="6365" y="1861"/>    
+    <bendpoint x="6365" y="1265"/>    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="141" name="reviewStarsList"/>      
+      <multiplicity id="142" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="143">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="144" name="counselorRep"/>      
+      <multiplicity id="145" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="146">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="147" name="counselService"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="149">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="150" name="refundService"/>      
+      <multiplicity id="151" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="152">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="153" name="contactReply"/>      
+      <multiplicity id="154" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="71" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="155">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="156" name="ticketRepository"/>      
+      <multiplicity id="157" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="101" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="158">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="159">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="160" name="memRep"/>      
+      <multiplicity id="161" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="89" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="162">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="163" name="priceService"/>      
+      <multiplicity id="164" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="165">    
+    <end type="SOURCE" refId="58" navigable="false">      
+      <attribute id="166" name="counselor"/>      
+      <multiplicity id="167" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="168">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="169" name="counselRepository"/>      
+      <multiplicity id="170" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="84" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="171">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="33"/>  
+  </realization>  
+  <association id="172">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="173" name="coRepository"/>      
+      <multiplicity id="174" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="175">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="176" name="ticketRepository"/>      
+      <multiplicity id="177" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="101" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="178">    
+    <bendpoint x="12414" y="543"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="179" name="ticketService"/>      
+      <multiplicity id="180" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="181">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="182" name="requestService"/>      
+      <multiplicity id="183" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="184">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="185" name="acRepository"/>      
+      <multiplicity id="186" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="83" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="187">    
+    <end type="SOURCE" refId="67" navigable="false">      
+      <attribute id="188" name="counselor"/>      
+      <multiplicity id="189" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="190">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="191" name="counselService"/>      
+      <multiplicity id="192" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="193">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="194" name="counselorRep"/>      
+      <multiplicity id="195" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="196">    
+    <end type="SOURCE" refId="63" navigable="false">      
+      <attribute id="197" name="artAnswer"/>      
+      <multiplicity id="198" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="60" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="199">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="200" name="ticketLinesRepository"/>      
+      <multiplicity id="201" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="100" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="202">    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="203" name="ticket"/>      
+      <multiplicity id="204" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="205">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="206" name="authorityRep"/>      
+      <multiplicity id="207" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="82" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="208">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="209" name="counselorRepository"/>      
+      <multiplicity id="210" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="211">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="212" name="reviewRep"/>      
+      <multiplicity id="213" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="97" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="214">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="215" name="specialityRap"/>      
+      <multiplicity id="216" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="98" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="217">    
+    <bendpoint x="7685" y="1861"/>    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="218" name="member"/>      
+      <multiplicity id="219" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="220">    
+    <bendpoint x="16433" y="1265"/>    
+    <bendpoint x="16433" y="1861"/>    
+    <end type="SOURCE" refId="63" navigable="false">      
+      <attribute id="221" name="member"/>      
+      <multiplicity id="222" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="223">    
+    <end type="SOURCE" refId="48" navigable="false">      
+      <attribute id="224" name="reviewRepository"/>      
+      <multiplicity id="225" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="97" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="226">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="227" name="faqService"/>      
+      <multiplicity id="228" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="229">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <association id="230">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="231" name="adminRep"/>      
+      <multiplicity id="232" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="233">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="34"/>  
+  </realization>  
+  <association id="234">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="235" name="member"/>      
+      <multiplicity id="236" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="237">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <association id="238">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="239" name="tagService"/>      
+      <multiplicity id="240" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="241">    
+    <bendpoint x="6407" y="1861"/>    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="242" name="counselList"/>      
+      <multiplicity id="243" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="67" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="244">    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="245" name="member"/>      
+      <multiplicity id="246" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="247">    
+    <bendpoint x="6344" y="1265"/>    
+    <bendpoint x="6344" y="1861"/>    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="248" name="member"/>      
+      <multiplicity id="249" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="250">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="251" name="adminService"/>      
+      <multiplicity id="252" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="253">    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="254" name="speciality"/>      
+      <multiplicity id="255" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="58" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="256">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="257" name="requestRepository"/>      
+      <multiplicity id="258" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="96" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="259">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="260" name="ticketLinesRep"/>      
+      <multiplicity id="261" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="100" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="262">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="263" name="contactService"/>      
+      <multiplicity id="264" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="265">    
+    <bendpoint x="8935" y="543"/>    
+    <bendpoint x="8244" y="1265"/>    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="266" name="counselor"/>      
+      <multiplicity id="267" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="268">    
+    <bendpoint x="6864" y="1265"/>    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="269" name="counselor"/>      
+      <multiplicity id="270" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="271">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="272" name="counselor"/>      
+      <multiplicity id="273" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="274">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <realization id="275">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="32"/>  
+  </realization>  
+  <association id="276">    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="277" name="tagRap"/>      
+      <multiplicity id="278" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="99" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="279">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <association id="280">    
+    <bendpoint x="7706" y="1861"/>    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="281" name="ticketList"/>      
+      <multiplicity id="282" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="283">    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="284" name="counsel"/>      
+      <multiplicity id="285" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="67" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="286">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <association id="287">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="288" name="tagRepository"/>      
+      <multiplicity id="289" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="99" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="290">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="291" name="art"/>      
+      <multiplicity id="292" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="63" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="293">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="294" name="refundService"/>      
+      <multiplicity id="295" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="296">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="297" name="ticketService"/>      
+      <multiplicity id="298" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="299">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="300" name="counselRep"/>      
+      <multiplicity id="301" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="84" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="302">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="303" name="counselor"/>      
+      <multiplicity id="304" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="305">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="306" name="ticket"/>      
+      <multiplicity id="307" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="308">    
+    <bendpoint x="6386" y="1861"/>    
+    <end type="SOURCE" refId="67" navigable="false">      
+      <attribute id="309" name="member"/>      
+      <multiplicity id="310" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="311">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="312" name="authorityRep"/>      
+      <multiplicity id="313" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="82" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="314">    
+    <end type="SOURCE" refId="41" navigable="false">      
+      <attribute id="315" name="specialityRap"/>      
+      <multiplicity id="316" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="98" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="317">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="318" name="memberRep"/>      
+      <multiplicity id="319" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="89" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="320">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="321" name="ticketLinesService"/>      
+      <multiplicity id="322" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="323">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="324" name="ticketService"/>      
+      <multiplicity id="325" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="326">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="327" name="contactReplyRepository"/>      
+      <multiplicity id="328" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="329">    
+    <bendpoint x="12393" y="543"/>    
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="330" name="ticketLinesRepository"/>      
+      <multiplicity id="331" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="100" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="332">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="333" name="psyService"/>      
+      <multiplicity id="334" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="335">    
+    <end type="SOURCE" refId="52"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <association id="336">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="337" name="refundRepository"/>      
+      <multiplicity id="338" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="93" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="339">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="340" name="counselRepository"/>      
+      <multiplicity id="341" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="84" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="342">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="343" name="contactRepository"/>      
+      <multiplicity id="344" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="86" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="345">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="346" name="discount"/>      
+      <multiplicity id="347" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="348">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="349" name="ticketRep"/>      
+      <multiplicity id="350" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="101" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="351">    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="352" name="priceRap"/>      
+      <multiplicity id="353" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="92" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="354">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="355" name="noticeRepository"/>      
+      <multiplicity id="356" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="357">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="358" name="requestRepository"/>      
+      <multiplicity id="359" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="96" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="360">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="361" name="asRepository"/>      
+      <multiplicity id="362" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="363">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="364" name="counselorService"/>      
+      <multiplicity id="365" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="366">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <association id="367">    
+    <bendpoint x="14942" y="543"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="368" name="memberRep"/>      
+      <multiplicity id="369" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="89" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="370">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="371" name="psychologyRep"/>      
+      <multiplicity id="372" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="91" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="373">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="374" name="priceService"/>      
+      <multiplicity id="375" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="376">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="377" name="ticketLinesRepository"/>      
+      <multiplicity id="378" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="100" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="379">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="380" name="faqRepository"/>      
+      <multiplicity id="381" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="87" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="382">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="383" name="discountService"/>      
+      <multiplicity id="384" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="385">    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="386" name="contactList"/>      
+      <multiplicity id="387" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="64" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="388">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="389" name="member"/>      
+      <multiplicity id="390" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="391">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="392">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="393" name="discountService"/>      
+      <multiplicity id="394" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="395">    
+    <end type="SOURCE" refId="50"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <association id="396">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="397" name="contactRepository"/>      
+      <multiplicity id="398" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="86" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="399">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="400" name="counselService"/>      
+      <multiplicity id="401" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="402">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="403" name="counselor"/>      
+      <multiplicity id="404" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="405">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="406" name="noticeService"/>      
+      <multiplicity id="407" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="408">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="409" name="psyRepository"/>      
+      <multiplicity id="410" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="91" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="411">    
+    <end type="SOURCE" refId="77" navigable="false">      
+      <attribute id="412" name="counselor"/>      
+      <multiplicity id="413" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="414">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="415" name="contact"/>      
+      <multiplicity id="416" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="64" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="417">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="418" name="priceRap"/>      
+      <multiplicity id="419" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="92" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="420">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="20"/>  
+  </realization>  
+  <association id="421">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="422" name="dcRepository"/>      
+      <multiplicity id="423" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="88" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="424">    
+    <end type="SOURCE" refId="63" navigable="false">      
+      <attribute id="425" name="artCounselor"/>      
+      <multiplicity id="426" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="427">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="428" name="ticketRepository"/>      
+      <multiplicity id="429" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="101" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="430">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="431" name="member"/>      
+      <multiplicity id="432" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="433">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="434" name="discountService"/>      
+      <multiplicity id="435" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="436">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="437" name="contactRep"/>      
+      <multiplicity id="438" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="86" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="439">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="440" name="requestAnsRepository"/>      
+      <multiplicity id="441" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="95" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="442">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="443" name="memberService"/>      
+      <multiplicity id="444" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="445">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="30"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
