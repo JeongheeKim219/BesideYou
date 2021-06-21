@@ -46,8 +46,7 @@ public class ReviewController {
 		System.out.println(b);
 		reviewService.insert(reviewStar);
 		
-		//return "redirect:/review/reviewByCode/"+b;
-		return "redirect:/counsel/myCounselList";
+		return "redirect:/counsel/myCounselList?field=-1";
 	}
 	
 	
