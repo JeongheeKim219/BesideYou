@@ -310,7 +310,7 @@
 					<div class="col-lg-6 py-3 py-lg-0 mb-0" style="min-height: 400px;">
 						<div
 							class="background-holder radius-tl-secondary radius-tr-secondary radius-tr-lg-0"
-							style="background-image:url(${pageContext.request.contextPath}/assets/images/6.jpg);">
+							style="background-image:url(${pageContext.request.contextPath}/assets/images/image.webp);">
 						</div>
 						<!--/.background-holder-->
 					</div>
@@ -320,16 +320,16 @@
 							<div data-zanim-timeline="{}" data-zanim-trigger="scroll">
 								<div class="overflow-hidden">
 									<c:choose>
-										<c:when test="0">
+										<c:when test="${counselCategory==0}">
 											<h4 data-zanim='{"delay":0}'>대면상담</h4>
 										</c:when>
-										<c:when test="1">
+										<c:when test="${counselCategory==1}">
 											<h4 data-zanim='{"delay":0}'>전화상담</h4>
 										</c:when>
-										<c:when test="2">
+										<c:when test="${counselCategory==2}">
 											<h4 data-zanim='{"delay":0}'>채팅상담</h4>
 										</c:when>
-										<c:when test="3">
+										<c:when test="${counselCategory==3}">
 											<h4 data-zanim='{"delay":0}'>텍스트상담</h4>
 										</c:when>
 									</c:choose>
