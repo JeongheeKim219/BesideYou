@@ -20,13 +20,11 @@ import org.springframework.web.servlet.view.AbstractView;
  * */
 
 @Component("downLoadView") //생성 <bean class=""  id="downLoadView"/> 대신
-public class DownLoadCustomView extends AbstractView{ //ViewResolver의 종류이다 (뷰페이지)
-	//AbstractView랑 HttpServlet 같은 역할  -> 뷰페이지
-	//@WebServlet("/test") class DownLoadCustonView extends HttpServlet{}
-		
+public class DownLoadCustomView extends AbstractView{ //ViewResolver의 종류이다.(뷰페이지)
+
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> map,
-		HttpServletRequest request, HttpServletResponse response) throws Exception {//서블릿  HttpServlet 상속받으면 service재정의 request, response
+		HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		File file = (File) map.get("fname");//파일객체....(다운로드할 파일객체)
 		
@@ -34,11 +32,11 @@ public class DownLoadCustomView extends AbstractView{ //ViewResolver의 종류�
 		response.setContentLength((int)file.length());
 	
 		
-		String userAgent = request.getHeader("User-Agent");//브라우저 정보
+		String userAgent = request.getHeader("User-Agent");
 		
 		boolean isInternetExplorer = userAgent.indexOf("MSIE") > -1;
 		String fileName = null;
-		//익스플로러인지 아닌지에 대한 인코딩처리
+		
 		if(isInternetExplorer)
 			fileName = URLEncoder.encode(file.getName() , "UTF-8");
 		else
@@ -48,11 +46,12 @@ public class DownLoadCustomView extends AbstractView{ //ViewResolver의 종류�
 		response.setHeader("Content-Disposition","attachment;filename=\"" + fileName.replace("+", "%20") + "\";");
 		//response.setHeader("Content-Transfer-Encoding", "binary");
 		
-		OutputStream out = response.getOutputStream(); //쓰기=저장
+		
+		OutputStream out = response.getOutputStream(); //쓰기 = 저장
 		FileInputStream fis = null;
 		try{
 			fis = new FileInputStream(file);
-			FileCopyUtils.copy(fis, out);//카피카피
+			FileCopyUtils.copy(fis, out);
 			
 		}catch(Exception e){
 			//map.put("error", e.toString());
