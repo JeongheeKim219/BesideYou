@@ -148,12 +148,11 @@
 					<div class="page-title-wrapper">
 						<div class="page-title-heading">
 							<div class="page-title-icon">
-								<i class="fa fa-address-book icon-gradient bg-mean-fruit"> </i>
+								<i class="fa pe-7s-wallet icon-gradient bg-mean-fruit"> </i>
 							</div>
 							<div>
-								전체 회원 목록
-								<div class="page-title-subheading">일반 회원, 상담사 회원 모두 조회
-									가능합니다.</div>
+							 	매출관리
+								<div class="page-title-subheading">상담권 결제 내역은 기간별로 조회합니다.</div>
 							</div>
 						</div>
 					</div>

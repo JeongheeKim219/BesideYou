@@ -45,9 +45,10 @@
 								<i class="pe-7s-car icon-gradient bg-mean-fruit"> </i>
 							</div>
 							<div>
-								Analytics Dashboard
-								<div class="page-title-subheading">This is an example
-									dashboard created using build-in elements and components.</div>
+								문의관리
+								<div class="page-title-subheading">
+								전체문의를 조회하고 답변을 달 수 있습니다.
+								</div>
 							</div>
 						</div>
 						<div class="page-title-actions">

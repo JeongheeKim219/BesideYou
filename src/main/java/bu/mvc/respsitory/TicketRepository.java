@@ -50,4 +50,15 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	@Query("select t from Ticket t where t.ticketDate between to_date(?1, 'yyyy-mm-dd') and to_date(?2, 'yyyy-mm-dd')")
 	Page<Ticket> selectTicketBetween(Pageable pageable, String from, String to);
 	
+	/**
+	 * 4. 해당 월 매출 조회 
+	 */
+	
+	@Query("select t from Ticket t where to_char(t.ticketDate, 'yyyy/mm') = ?1")
+	List<Ticket> selectTicketThisMonth(String month);
+	
+	
+	
+	
+	
 }
