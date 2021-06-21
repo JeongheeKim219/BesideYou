@@ -2,6 +2,8 @@ package bu.mvc.respsitory;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +15,8 @@ public interface PsychologyRepository extends JpaRepository<Psychology, Long> {
 	/**
 	 * 멤버코드에 해당하는 테스트 검색
 	 * */
-	@Query("select p from Psychology p where p.member=?1")
-	List<Psychology> seacrchPsyByMember(Member member);
+	@Query("select p from Psychology p where p.member=?1 order by p.testDate desc")
+	Page<Psychology> seacrchPsyByMember(Member member, Pageable pageable);
 	
+	Page<Psychology> findByMemberMemberCode(Pageable pageable, Long memberCode);
 }

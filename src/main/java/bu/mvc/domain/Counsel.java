@@ -1,7 +1,6 @@
 package bu.mvc.domain;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Entity
 @Setter
 @Getter
@@ -40,18 +41,21 @@ public class Counsel {
 	
 	private int counselCategory;
 	private int counselState;
-	
+
 	@CreationTimestamp
-	private Date counselReqDate;
+	private LocalDateTime counselReqDate;
 	
-	private Date counselDate;
+	private LocalDateTime counselDate;
+	
 
 	public Counsel(Long counselCode) {
 		this.counselCode = counselCode;
 	}
+	
+
 
 	public Counsel(Long counselCode, Member member, Counselor counselor, int counselCategory, int counselState,
-			Date counselDate) {
+			LocalDateTime counselDate) {
 		this.counselCode = counselCode;
 		this.member = member;
 		this.counselor = counselor;
@@ -59,8 +63,6 @@ public class Counsel {
 		this.counselState = counselState;
 		this.counselDate = counselDate;
 	}
-	
-	
 	
 	
 }

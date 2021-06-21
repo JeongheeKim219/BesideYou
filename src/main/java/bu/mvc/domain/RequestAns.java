@@ -1,5 +1,6 @@
 package bu.mvc.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ public class RequestAns {
 	private String ansContent;
 	
 	@CreationTimestamp
-	private Date ansDate;
+	private LocalDateTime ansDate;
 
 	public RequestAns(Long ansCode, Requests requests, Counselor counselor, String ansContent) {
 		this.ansCode = ansCode;

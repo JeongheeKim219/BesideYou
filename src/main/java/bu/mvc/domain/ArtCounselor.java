@@ -24,7 +24,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+//@ToString
 public class ArtCounselor {
 
 	@Id
@@ -34,6 +34,7 @@ public class ArtCounselor {
 	
 	private String question;
 	private String detail;
+	private int artCounselorState;
 	
 	@OneToOne
 	@JoinColumn(name = "counselor_code")

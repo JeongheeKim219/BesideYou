@@ -41,132 +41,164 @@
 					<div class="page-title-wrapper">
 						<div class="page-title-heading">
 							<div class="page-title-icon">
-								<i class="pe-7s-car icon-gradient bg-mean-fruit"> </i>
+								<i class="fa fa-address-book icon-gradient bg-mean-fruit"> </i>
 							</div>
 							<div>
-								Analytics Dashboard
-								<div class="page-title-subheading">This is an example
-									dashboard created using build-in elements and components.</div>
+								전체 회원 목록
+								<div class="page-title-subheading">일반 회원, 상담사 회원 모두 조회
+									가능합니다.</div>
 							</div>
 						</div>
-						<div class="page-title-actions">
-							<button type="button" data-toggle="tooltip"
-								title="Example Tooltip" data-placement="bottom"
-								class="btn-shadow mr-3 btn btn-dark">
-								<i class="fa fa-star"></i>
-							</button>
-							<div class="d-inline-block dropdown">
-								<button type="button" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"
-									class="btn-shadow dropdown-toggle btn btn-info">
-									<span class="btn-icon-wrapper pr-2 opacity-7"> <i
-										class="fa fa-business-time fa-w-20"></i>
-									</span> Buttons
-								</button>
-								<div tabindex="-1" role="menu" aria-hidden="true"
-									class="dropdown-menu dropdown-menu-right">
-									<ul class="nav flex-column">
-										<li class="nav-item"><a href="javascript:void(0);"
-											class="nav-link"> <i class="nav-link-icon lnr-inbox"></i>
-												<span> Inbox </span>
-												<div class="ml-auto badge badge-pill badge-secondary">86</div>
-										</a></li>
-										<li class="nav-item"><a href="javascript:void(0);"
-											class="nav-link"> <i class="nav-link-icon lnr-book"></i>
-												<span> Book </span>
-												<div class="ml-auto badge badge-pill badge-danger">5</div>
-										</a></li>
-										<li class="nav-item"><a href="javascript:void(0);"
-											class="nav-link"> <i class="nav-link-icon lnr-picture"></i>
-												<span> Picture </span>
-										</a></li>
-										<li class="nav-item"><a disabled
-											href="javascript:void(0);" class="nav-link disabled"> <i
-												class="nav-link-icon lnr-file-empty"></i> <span> File
-													Disabled </span>
-										</a></li>
-									</ul>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="main-card mb-3 card">
+						<div class="card-header" style="justify-content: flex-end;">
+						<div class="widget-content widget-content-right">
+						<form action="${pageContext.request.contextPath}/admin/selectByNameAndAlias" method="get">
+							<div class="input-group">
+								<input type="text" class="form-control form-control" name="keyword">
+								<div class="input-group-append">
+									<button type="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"
+										class="dropdown-toggle btn btn-secondary">
+										이름/가명</button>
+									<div role="menu" aria-hidden="true" class="dropdown-menu">
+										<button type="button" tabindex="0" class="dropdown-item">아이디</button>
+										
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-					<div class="col-lg-12">
-						<div class="main-card mb-3 card">
-							<div class="card-body">
-								<h5 class="card-title" align="center">전체 회원 목록</h5>
-								<table class="mb-0 table table-hover">
-									<thead>
-										<tr>
-											<th>번호</th>
-											<th>회원코드</th>
-											<th>ID</th>
-											<th>이름/가명</th>
-											<th>핸드폰 번호</th>
-											<th>상품권 보유 수</th>
-										</tr>
-									</thead>
-									<c:choose>
-										<c:when test="${empty requestScope.pageList}">
-											<tr>
-												<td colspan="6"><p align="center">조회된 회원이 없습니다.</p></td>
-											</tr>
-										</c:when>
-										<c:otherwise>
-											<c:forEach items="${requestScope.pageList.content}"
-												var="member" varStatus="state">
-												<tbody>
-													<tr>
-														<th scope="row">${state.count}</th>
-														<td>${member.memberCode}</td>
-														<td>${member.id}</td>
-														<c:choose>
-															<c:when test="${empty member.alias}">
-																<td>${member.name}</td>
-															</c:when>
-															<c:otherwise>
-																<td>${member.alias}</td>
-															</c:otherwise>
-														</c:choose>
-														<td>${member.phone}</td>
-														<%-- <td>${member.ticket}</td> --%>
-													</tr>
-												</tbody>
-											</c:forEach>
-										</c:otherwise>
-									</c:choose>
-								</table>
-									<ul class="pagination">
-										<li class="page-item"><a href="javascript:void(0);"
-											class="page-link" aria-label="Previous"><span
-												aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-										<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
-											<c:choose>
-												<c:when test="${pageList.number==i}">
-													<li class="page-item active"><a
-														href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
-														class="page-link">${i+1}</a></li>
-												</c:when>
-												<c:otherwise>
-													<li class="page-item"><a
-														href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
-														class="page-link">${i+1}</a></li>
-												</c:otherwise>
-												</c:choose>
-												</c:forEach>
-												
-										<li class="page-item"><a href="javascript:void(0);"
-											class="page-link" aria-label="Next"><span
-												aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
-									</ul>
+							</form>
 							</div>
 						</div>
+						<div class="card-body">
+							<table class="mb-0 table table-hover">
+								<thead>
+									<tr>
+										<th>회원코드</th>
+										<th>ID</th>
+										<th>이름/가명</th>
+										<th>핸드폰 번호</th>
+										<th>회원유형</th>
+										<th>활동상태</th>
+									</tr>
+								</thead>
+								<c:choose>
+									<c:when test="${empty requestScope.pageList}">
+										<tr>
+											<td colspan="6"><p align="center">조회된 회원이 없습니다.</p></td>
+										</tr>
+									</c:when>
+									<c:when test ="${not empty requestScope.errorMessage}">
+										<tr>
+											<td colspan="6"><p align="center">${requestScope.errorMessage}</p></td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${requestScope.pageList.content}"
+											var="member" varStatus="state">
+											<tbody>
+												<tr>
+													<th scope="row">${member.memberCode}</th>
+													<td><a
+														href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}">${member.id}</a></td>
+													<c:choose>
+														<c:when test="${empty member.alias}">
+															<td>${member.name}</td>
+														</c:when>
+														<c:otherwise>
+															<td>${member.alias}</td>
+														</c:otherwise>
+													</c:choose>
+													<td>${member.phone}</td>
+													<td><c:choose>
+															<c:when test="${member.memberType == 0}">
+																<div class="mb-3 mr-3 badge badge-success">일반</div>
+															</c:when>
+															<c:when test="${member.memberType == 1}">
+																<div class="mb-2 mr-2 badge badge-info">상담사</div>
+															</c:when>
+															<c:when test="${member.memberType == 2}">
+																<div class="mb-2 mr-2 badge badge-primary">관리자</div>
+															</c:when>
+														</c:choose></td>
+													<td><c:choose>
+															<c:when test="${member.memberState == 0}">
+																<button
+																	class="mb-2 mr-2 border-0 btn-transition btn btn-outline-success">
+																	<b>정상</b>
+																</button>
+															</c:when>
+															<c:when test="${member.memberState == 1}">
+																<button
+																	class="mb-2 mr-2 border-0 btn-transition btn btn-outline-warning">
+																	<b>경고</b>
+																</button>
+															</c:when>
+															<c:when test="${member.memberState == 2}">
+																<button
+																	class="mb-2 mr-2 border-0 btn-transition btn btn-outline-danger active">
+																	<b>정지</b>
+																</button>
+															</c:when>
+															<c:when test="${member.memberState == 3}">
+																<button
+																	class="mb-2 mr-2 border-0 btn-transition btn btn-outline-secondary">
+																	<b>탈퇴</b>
+																</button>
+															</c:when>
+														</c:choose></td>
+											</tbody>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							</table>
+							<c:choose>
+							<c:when test ="${empty requestScope.errorMessage}">
+										
+									
+							<ul class="pagination">
+								<li class="page-item"><a href="javascript:void(0);"
+									class="page-link" aria-label="Previous"><span
+										aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
+								<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
+									<c:choose>
+										<c:when test="${pageList.number==i}">
+											<li class="page-item active"><a
+												href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
+												class="page-link">${i+1}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a
+												href="${pageContext.request.contextPath}/admin/memberView?currentPage=${i}"
+												class="page-link">${i+1}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<li class="page-item"><a href="javascript:void(0);"
+									class="page-link" aria-label="Next"><span
+										aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
+							</ul>
+						</c:when>
+						</c:choose>	
+						</div>
 					</div>
 				</div>
-
-
 			</div>
+
+
 		</div>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
+	</div>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script>
+		$(function (){
+		
+			
+			
+			
+		})//제이 쿼리 Ready
+	</script>
 </body>
 </html>

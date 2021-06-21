@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,7 +25,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+//@ToString
 public class Art {
 
 	@Id
@@ -45,10 +46,15 @@ public class Art {
 	@JoinColumn(name = "art_counselor_code")
 	private ArtCounselor artCounselor;
 
+	@OneToOne(mappedBy = "art")
+	private ArtAnswer artAnswer;
+	
 	public Art(Long artCode) {
 		super();
 		this.artCode = artCode;
 	}
+	
+	
 
 	
 

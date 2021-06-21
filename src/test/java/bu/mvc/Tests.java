@@ -27,10 +27,20 @@ class Tests {
 	@Autowired
 	private ContactRepository rep;
 	
+	@Autowired
+	private NoticeRepository notRep;
+	
 	@Test
 	void insert() {
 		for(int i=0; i<=100; i++) {
 			rep.save(new Contact(null, 0, "제목_"+i, "내용_"+i, 0, new Member(4L)));
+		}
+	}
+	
+	@Test
+	void noticeInsert() {
+		for(int i=0; i<=20; i++) {
+			notRep.save(new Notice(null, "제목_"+i, "내용_"+i, 0));
 		}
 	}
 

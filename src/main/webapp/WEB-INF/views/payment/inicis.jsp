@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	/* String title = (String)request.getParameter("artName");
-	String artist = (String)request.getParameter("artistName");
-	String id = (String)request.getParameter("sucBidId");
-	String sucBidCode = (String)request.getParameter("sucBidCode");
-	String sucBidCost = (String)request.getParameter("sucBidCost");
-	int totalPrice = Integer.parseInt(sucBidCost); */
+	/* String name = (String)request.getParameter("name");
+	String phone = (String)request.getParameter("phone");
+	String email = (String)request.getParameter("email");
+	String addr = (String)request.getParameter("addr");
+	String type = (String)request.getParameter("ticketType");
+	
+	String ticketField = (String)request.getParameter("ticketField");
+	int field = Integer.parseInt(ticketField);
+	String totalPrice = (String)request.getParameter("ticketPrice");
+	int price = Integer.parseInt(totalPrice);
+	
+	String counselorCode = (String)request.getParameter("counselorCode");
+	String discountCode = (String)request.getParameter("discountCode");
+	String ticketAmount = (String)request.getParameter("ticketAmount");
+	String ticketRemain = (String)request.getParameter("ticketRemain"); */
+	
+	String totalPrice = (String)request.getParameter("ticketPrice");
+	int price = Integer.parseInt(totalPrice);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -18,6 +31,7 @@
 </head>
 <body>
     <script>
+    
     $(function(){
         var IMP = window.IMP;
         IMP.init('imp75728843'); //가맹점 식별코드
@@ -28,12 +42,12 @@
             pg : 'html5_inicis', //다수의 PG 사용시 필수
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
-    		name : 'Beside-You 상담권',
-    		amount : '1000', <%-- <%=totalPrice%>, --%>  //필수항목
-    		buyer_email : 'aaa1234@email.com',
-    		buyer_name : '김동현',
+    		name : 'BesideU 대면상담권',
+    		amount : <%=price%>,  //필수항목
+    		buyer_email : 'pkh@gmail.com',
+    		buyer_name : '박기현',
     		buyer_tel : '010-1234-5678',  //필수항목
-    		buyer_addr : '서울특별시 강남구 삼성동',
+    		buyer_addr : '경기도 성남시'
     		//buyer_postcode : '123-456'
     		//m_redirect_url : 'https://shop.yourservice.com/payments/complete'
             
@@ -64,20 +78,14 @@
                     }
                 });
                 //성공시 이동할 페이지
-                <%-- location.href='<%=request.getContextPath()%>/payment/paySuccess?msg='+msg; --%>
-                <%-- location.href="<%=request.getContextPath()%>/front?key=sucBid&methodName=changeState&sucBidCode="+sucBidCode; --%>
-
-                <%-- var code = <%=sucBidCode%>;
-                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
-                
-                location.href="${pageContext.request.contextPath}/payment/paySuccess.jsp"
+                location.href="${pageContext.request.contextPath}/payment/buy";
                 
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
                 <%-- location.href="<%=request.getContextPath()%>/payment/payFail"; --%>
-                location.href="${pageContext.request.contextPath}/payment/payFail.jsp";
+                location.href="${pageContext.request.contextPath}/payment/fail";
                 //alert(msg);
             }
         });

@@ -1,5 +1,6 @@
 package bu.mvc.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +24,14 @@ public class Price {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "price_seq")
 	@SequenceGenerator(sequenceName = "price_seq",allocationSize = 1,name = "price_seq")
+	@Column(name = "price_code")
 	private Long priceCode;
+	@Column(name="counselor_field")
 	private int counselorField;
+	@Column(name = "counselor_price")
 	private int counselorPrice;
 	
 	@OneToOne
 	@JoinColumn(name = "counselor_code")
-	private Counselor counselorCode;
+	private Counselor counselor;
 }

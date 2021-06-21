@@ -92,16 +92,18 @@ class BesideYouApplicationTests {
 
 
 	
-	@Test
-	void newMember() {
-		LocalDateTime start = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
-		LocalDateTime end = LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,59));
-		
-		List<Member> newMemeberList =  adminRep.findByDateOfRegBetween(start, end);
-		newMemeberList.forEach(m -> System.out.println(m));
-	
-
-	}
+	/*
+	 * @Test void newMember() { LocalDateTime start =
+	 * LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(0,0,0));
+	 * LocalDateTime end = LocalDateTime.of(LocalDate.now(),
+	 * LocalTime.of(23,59,59));
+	 * 
+	 * List<Member> newMemeberList = adminRep.findByDateOfRegBetween(start, end);
+	 * newMemeberList.forEach(m -> System.out.println(m));
+	 * 
+	 * 
+	 * }
+	 */
 	
 	
 
