@@ -196,7 +196,7 @@
 								<div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
 									<div class="background-white pb-4 h-100 radius-secondary">
 										<img class="w-100 radius-tr-secondary radius-tl-secondary"
-											src="/save/${list.counselor.cerificate}" alt="Profile Image" />
+											src="/save/${list.counselor.picture}" alt="Profile Image" />
 										<div class="px-4 pt-4" data-zanim-timeline="{}"
 											data-zanim-trigger="scroll">
 											<div class="overflow-hidden">
