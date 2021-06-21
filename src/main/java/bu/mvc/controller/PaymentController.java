@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PaymentController {
 
+	private final TicketService ticketService;
 	private final CounselService counselService;
 	private final DiscountService discountService;
 	
@@ -32,32 +33,69 @@ public class PaymentController {
 	@RequestMapping("/payment/inicis")
 	public void inicis(HttpServletRequest request, Long counselorCode, Long discountCode, Ticket ticket) {
 		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		String ticketType = null;
-		if(ticket.getTicketField()==0) {
-			ticketType = "BesideU 대면상담권";
-		}else if(ticket.getTicketField()==1) {
-			ticketType = "BesideU 전화상담권";
-		}else if(ticket.getTicketField()==2) {
-			ticketType = "BesideU 채팅상담권";
-		}else if(ticket.getTicketField()==3) {
-			ticketType = "BesideU 간편텍스트상담권";
-		}
+		Counselor counselor = counselService.getCounselor(counselorCode);
+		Discount discount = discountService.selectByCode(discountCode);
+		ticket.setCounselor(counselor);
+		ticket.setDiscount(discount);
+		ticket.setMember(member);
+		ticketService.insert(ticket);
+	}
+	
+	/**
+	 * 임시 이동 페이지
+	 * */
+	@RequestMapping("/payment/buy")
+	public String ticketBuy() {
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("name", member.getName());
-		mv.addObject("phone", member.getPhone());
-		mv.addObject("email", member.getEmail());
-		mv.addObject("addr", member.getMemberAddr());
-		mv.addObject("ticketType", ticketType);
-		mv.addObject("ticketField", ticket.getTicketField());
-		mv.addObject("counselorCode", counselorCode);
-		mv.addObject("ticketAmount", ticket.getTicketAmount());
-		mv.addObject("ticketRemain", ticket.getTicketRemain());
-		mv.addObject("discountCode", discountCode);
-		mv.addObject("ticketPrice", ticket.getTicketPrice());
-		
+		mv.addObject("counselorCode", 52L);
+		mv.addObject("counselCategory", 0);
+		return "redirect:/counsel/apply";
 	}
+	
+	/**
+	 * 신용/체크카드 결제 API 연결
+	 * */
+//	@RequestMapping("/payment/inicis")
+//	public void inicis(HttpServletRequest request, Long counselorCode, Long discountCode, Ticket ticket) {
+//		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		
+//		String name = member.getName();
+//		String phone = member.getPhone();
+//		String email = member.getEmail();
+//		String addr = member.getMemberAddr();
+//		
+//		System.out.println(member);
+//		System.out.println(name);
+//		System.out.println(phone);
+//		System.out.println(email);
+//		System.out.println(addr);
+//		
+//		String ticketType = null;
+//		if(ticket.getTicketField()==0) {
+//			ticketType = "BesideU 대면상담권";
+//		}else if(ticket.getTicketField()==1) {
+//			ticketType = "BesideU 전화상담권";
+//		}else if(ticket.getTicketField()==2) {
+//			ticketType = "BesideU 채팅상담권";
+//		}else if(ticket.getTicketField()==3) {
+//			ticketType = "BesideU 간편텍스트상담권";
+//		}
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("name", name);
+//		mv.addObject("phone", phone);
+//		mv.addObject("email", email);
+//		mv.addObject("addr", addr);
+//		mv.addObject("ticketType", ticketType);
+//		mv.addObject("ticketField", ticket.getTicketField());
+//		mv.addObject("counselorCode", counselorCode);
+//		mv.addObject("ticketAmount", ticket.getTicketAmount());
+//		mv.addObject("ticketRemain", ticket.getTicketRemain());
+//		mv.addObject("discountCode", discountCode);
+//		mv.addObject("ticketPrice", ticket.getTicketPrice());
+//		
+//	}
 	
 	/**
 	 * 휴대폰 결제 API 연결
