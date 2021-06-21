@@ -83,8 +83,9 @@ public class ReviewController {
 	 * 상담사 코드에따른 리뷰 출력
 	 * */
 	
-		@RequestMapping("/review/reviewByCode/{counselorCode}")
+		@RequestMapping("/review/reviewByCode")
 		public ModelAndView selectByCounselor(@PathVariable Long counselorCode, @PageableDefault(size = 5, sort = "reviewCode", direction = Sort.Direction.DESC) Pageable pageable) {
+			System.out.println("aa");
 			List<ReviewStar> revList = reviewService.selectByCounselorCode(counselorCode, pageable);
 			Double point = reviewService.avgStar(counselorCode);
 			System.out.println(point);

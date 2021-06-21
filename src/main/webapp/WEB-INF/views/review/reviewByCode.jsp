@@ -204,10 +204,10 @@
 						<!-- Table -->
 						<table class="table" align="center">
 							<tr>
-								<td>회원 번호 : ${review.member.memberCode}</td>
-								<td>상담번호 : ${review.counselCode.counselCode}</td>
-								<td>별점 : ${review.star}</td>
-								<td>리뷰날짜: ${review.reviewDate}</td>
+								<td>회원 번호 : </td>
+								<td>상담번호 : </td>
+								<td>별점 : </td>
+								<td>리뷰날짜: </td>
 							</tr>
 							<tr>
 								<td colspan="4">
