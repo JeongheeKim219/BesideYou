@@ -188,7 +188,7 @@
 	    </div>
 	    <!--/.container-->
 	</section>
-	<form name="requestForm" method="post" id="requestForm" vertical>
+	<form name="requestForm" method="post" id="requestForm">
 		<div align="center">
 		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
         	   <%-- <input type="hidden" name="member.memberCode" value="<sec:authentication property="principal.memberCode" />" /> --%>
@@ -339,6 +339,7 @@
 			$('#memberId').val($('#memberId_'+ s).val());
 			$('#member').val($('#memberCode_'+ s).val());
 			$('#counsel').val($('#counselCode_'+s).val());
+			
 			$('#modal1').fadeIn();
 		});
 		
@@ -348,11 +349,11 @@
 					alert("별점을 선택하세요");
 					return false;
 				}
-			param.method = "POST";
+			param.method = "GET";
 			param.action = "${pageContext.request.contextPath}/review/insert";
 		    param.submit(); 
 			$('.modal').fadeOut();
-			$('#btn').attr("disabled", true);
+			
 		});	
 		
 		

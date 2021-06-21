@@ -42,9 +42,12 @@ public class ReviewController {
 		System.out.println(reviewStar.toString());
 		System.out.println(reviewStar.getMember().toString());
 		Counselor a = reviewStar.getCounselor();
-		//reviewService.insert(reviewStar);
+		Long b= a.getCounselorCode();
+		System.out.println(b);
+		reviewService.insert(reviewStar);
 		
-		return "redirect:/review/reviewForm"+a;
+		//return "redirect:/review/reviewByCode/"+b;
+		return "redirect:/counsel/myCounselList";
 	}
 	
 	
@@ -100,11 +103,17 @@ public class ReviewController {
 	 * 리뷰코드에 해당하는 리뷰 수정
 	 * */
 		@RequestMapping("/review/reviewUpdate")
-		public String updateReview(ReviewStar review ) {
+		public String updateReview(ReviewStar review , String reviewContent22) {//reviewContent
+			String content = review.getReviewContent();
+			
+			review.setReviewContent(reviewContent22);
+			
+			System.out.println("content :: "+ content);
+			System.out.println("reviewContent22 :: "+ reviewContent22);
+			
 			Counselor cs = review.getCounselor();
 			Long cscode = cs.getCounselorCode();
-			String content = review.getReviewContent();
-			System.out.println("content :: "+ content);
+			
 			reviewService.update(review);
 			return "redirect:/review/reviewByCode/"+cscode;
 		}

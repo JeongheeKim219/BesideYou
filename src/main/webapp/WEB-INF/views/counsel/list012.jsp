@@ -253,6 +253,10 @@
 							<a href="${pageContext.request.contextPath}/counsel/myCounselList?field=1" class="btn btn-outline-info btn-capsule">전화</a>&nbsp;&nbsp;
 							<a href="${pageContext.request.contextPath}/counsel/myCounselList?field=2" class="btn btn-outline-info btn-capsule">채팅</a>
 							<br><br>
+							<form  method="post" name="reviewW" id="reviewW">
+								<input type="hidden" id="memberCode" name="memberCode" value=""/>
+								<input type="hidden" id ="counselCode" name="counselCode" value=""/>
+								<input type="hidden" id ="counselorCode" name="counselorCode" value=""/>
 							<table>
 								<thead>
 									<tr>
@@ -265,7 +269,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${pageList.content}" var="counsel" varStatus="status">
+									<c:forEach items="${pageList.content}" var="counsel" varStatus="num">
 										<tr>
 											<c:choose>
 												<c:when test="${counsel.counselCategory==0}">
@@ -296,25 +300,118 @@
 												</c:when>
 											</c:choose>
 											<c:choose>
-												<c:when test="${counsel.counselState==3}">
+												<c:when test="${counsel.counselState==3}"> 
 													<td>
-														<form action="#" method="get">
-															<input type="hidden" name="memberCode" value="<sec:authentication property="principal.memberCode" />">
-															<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-															<input type="hidden" name="counselorCode" value="${counsel.counselor.counselorCode}">
-															<input type="hidden" name="counselCode" value="${counsel.counselCode}">
-															<input type="submit" class="btn btn-outline-primary btn-xs" value="리뷰작성">
-														</form>
+														<input type="button" id="modalBtn_${num.index}" name="modalBtn" class="btn btn-outline-primary btn-xs" value="리뷰작성">
+														<input type="hidden" id="memberCode_${num.index}"  name="memberCode" value="<sec:authentication property="principal.memberCode" />">
+														<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+														<input type="hidden" id="counselorCode_${num.index}" name="counselorCode" value="${counsel.counselor.counselorCode}">
+														<input type="hidden" id="counselCode_${num.index}" name="counselCode" value="${counsel.counselCode}">
 													</td>
 												</c:when>
 												<c:otherwise>
-													<td> </td>
+													<td><input type="hidden" id="modalBtn_${num.index}" name="modalBtn" class="btn btn-outline-primary btn-xs" value="리뷰작성">
+													
+													</td>
 												</c:otherwise>
+								
 											</c:choose>
 										</tr>		
 									</c:forEach>									
 								</tbody>
 							</table>
+							<!-- Modal -->
+	<div class="modal" id="modal1">
+	<input type="hidden" id="tgmemberCode" name="member" size="30" value="">
+	<input type="hidden" id="tgcounselorCode" name="counselor" size="30" value="">
+			<table border="1">
+				<tr>
+					<td height="15" style="padding: 5px" colspan="2" bgcolor="#DEDCDC">
+						<p align="center" style="margin-bottom: 0rem">
+							<font color="black" size="3"><b>리뷰등록</b></font>
+						</p>
+					</td>
+				</tr>
+				<!-- <tr>
+					<td width="150" height="20" style="vertical-align: center;">
+					작성자
+						
+					</td>
+					<td width="450" height="20"><b><span style="font-size: 9pt; margin: 2px;">
+								<input type="hidden" id="tgmemberCode" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+						</span></b></td>
+				</tr> -->
+				
+				<!-- <tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
+						상담사
+					</td>
+					<td width="450" height="20"><b><span style="font-size: 9pt;">
+						
+						<input type="hidden" id="tgcounselorCode" name="counselor" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+						
+					</span></b></td>
+				
+				</tr> -->
+				
+				
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
+						상담번호
+					
+					</td>
+					<td width="450" height="20" align="left"><b><span style="font-size: 9pt;">
+						<input type="text" id="tgcounselCode" name="counsel" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+					</span></b></td>
+				
+				</tr>
+				
+				
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
+					별 점
+						
+					</td>
+					<td width="450" height="20"><b><span style="font-size: 9pt;">
+						<select name="star">
+							<option value="">별점선택</option>
+							<option value="1.0">★</option>
+							<option value="2.0">★★</option>
+							<option value="3.0">★★★</option>
+							<option value="4.0">★★★★</option>
+							<option value="5.0">★★★★★</option>
+						</select>
+				</span></b></td>
+				</tr>
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;" colspan="2">
+					리뷰 내용
+						
+					</td>
+				</tr>
+				<tr>
+					<td width="450" height="20" colspan="2"><b><span style="font-size: 9pt; margin: 2px;">
+								<textarea cols="55" rows="5"  name="reviewContent"></textarea>
+								
+						</span></b></td>
+				</tr>
+				<tr>
+					<td width="450" height="20" colspan="2" align="center">
+						<b>
+						<span style="font-size: 9pt;">
+						<input type="button" id="reviewBtn" value=리뷰등록 >
+						<input type="button" id="backBtn" value="돌아가기">
+						</span>
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>	
+							
+	</form>
+							
+							
+							
 							<nav class="font-1 mt-5" aria-label="Page navigation example">
 								<ul class="pagination pagination justify-content-center">
 									<c:forEach begin="0" end="${pageList.totalPages-1}" var="i">
@@ -464,6 +561,8 @@
 			<!--/.container-->
 		</section>
 	</main>
+	
+	
 	<!--  -->
 	<!--    JavaScripts-->
 	<!--    =============================================-->
@@ -493,5 +592,62 @@
 		src="${pageContext.request.contextPath}/assets/lib/remodal/dist/remodal.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+	       <!--모달 --> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <!--  -->
+	<style>
+	.modal{position: absolute;width: 100%;height: 60%;background: rgba(255,255,255,255);top:15%;left:35%;display: none;}
+	
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/* $("input[name='modalBtn']").click(function() {
+				var s = $("[name='modalBtn']").index(this)
+				console.log(s); 
+				console.log($('#memberCode_'+s).val());
+				
+				$('#tgmemberCode').val($('#memberCode_'+s).val());
+				$('#tgcounselCode').val($('#counselor_'+s).val());
+				$('#modal1').fadeIn();
+			}); */
+			
+			$(document).on("click","[name='modalBtn']", function(){
+				var s = $("[name='modalBtn']").index(this)
+				alert($("[name='modalBtn']").index(this));
+				 console.log(s); 
+				console.log($('#memberCode_'+s).val()); 
+				console.log($('#counselCode_'+s).val());
+				console.log($('#counselorCode_'+s).val());
+				
+				$('#tgmemberCode').val($('#memberCode_'+s).val());
+				$('#tgcounselCode').val($('#counselCode_'+s).val());
+				$('#tgcounselorCode').val($('#counselorCode_'+s).val());
+				
+				$('#modal1').fadeIn();
+				
+			})
+		
+			$('#reviewBtn').click(function(){
+				var param = document.getElementById('reviewW');
+					if(reviewW.star.value == ""){
+						alert("별점을 선택하세요");
+						return false;
+					}
+					param.method = "GET";
+					param.action = "${pageContext.request.contextPath}/review/insert";
+				    param.submit(); 
+					$('#modal1').fadeOut();
+						
+				});	
+			
+			$('#backBtn').click(function(){
+				$('#modal1').fadeOut();
+			});
+				
+		});
+</script>
 </body>
+
 </html>
