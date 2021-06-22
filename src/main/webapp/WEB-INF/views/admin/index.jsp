@@ -366,8 +366,8 @@
 						</div>
 						<!-- 일별 신규 가입회원 차트 끝 -->
 						<!-- 상담사별 순위 조회 -->
-						<div class="col-md-6">
-						<div class="main-card mb-6 card">
+				<div class="col-md-6">
+					<div class="main-card mb-6 card">
 						<div class="mb-6 card">
 							<div
 								class="card-header-tab card-header-tab-animation card-header">
@@ -454,14 +454,14 @@
 								<div class="card-header-title">
 									<i
 										class="header-icon lnr-rocket icon-gradient bg-tempting-azure">
-									</i> 월별 상담/ 상담신청 건수
+									</i> 상담타입별 매출비중
 								</div>
 							</div>
 							<div class="tab-content">
 								<div class="tab-pane fade active show" id="tab-eg-55">
 									<div class="widget-chart p-3">
 										<div>
-											<canvas id="newCounselByMonth"></canvas>
+											<canvas id="ratioSales"></canvas>
 										</div>
 									</div>
 								</div>
@@ -742,12 +742,46 @@
 					}
 				});
 			}
+					
+			
+			//매출 차지 비중
+			function drawPieChart() {
+				var ratioSales = $("#ratioSales");
+				var pieChart = new Chart(ratioSales, {
+					type : 'pie',
+					data : {
+						labels : ['대면상담', '텍스트 테라피', '전화상담', '채팅상담', '그림테스트'],
+						datasets : [ {
+							label : '상담 타입',
+							data : newJoinMember,
+							backgroundColor : [ 
+									'rgba(255, 99, 132, 0.6)',
+									'rgba(54, 162, 235, 0.6)',
+									'rgba(255, 206, 86, 0.6)',
+									'rgba(75, 192, 192, 0.6)',
+									'rgba(153, 102, 255, 0.6)',
+									'rgba(255, 159, 64, 0.6)',
+									'rgba(255, 99, 132, 0.6)' ]
+						} ]
+					}
+				});
+			}
 	
 			
 				countNewMember();
 				countCounselByMonth();
 				rankCounselor();
 			
+			
+			
+			
+				countNewMember();
+				countCounselByMonth();
+				rankCounselor();
+			
+				
+				
+				
 
 		})//JQuery Ready 끝
 	</script>
