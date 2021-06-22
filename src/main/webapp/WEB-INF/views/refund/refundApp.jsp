@@ -206,48 +206,19 @@
 				</nav>
 			</div>
 		</div>
-		<section>
-			<div>
-				<div class="background-holder overlay"
-					style="background-image:url(${pageContext.request.contextPath}/assets/images/background-2.jpg);background-position: center bottom;">
-				</div>
-				<!--/.background-holder-->
-				<div class="container">
-					<div class="row pt-6" data-inertia='{"weight":1.5}'>
-						<div class="col-md-8 px-md-0 color-white" data-zanim-timeline="{}"
-							data-zanim-trigger="scroll">
-							<div class="overflow-hidden">
-								<h1 class="color-white fs-4 fs-md-5 mb-0 zopacity"
-									data-zanim='{"delay":0}'>Refund Application</h1>
-								<div class="nav zopacity" aria-label="breadcrumb"
-									role="navigation" data-zanim='{"delay":0.1}'>
-									<ol class="breadcrumb fs-1 pl-0 fw-700">
-										<li class="breadcrumb-item"><a class="color-white"
-											href="#">Home</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Contact</li>
-									</ol>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
 		<section class="background-11">
 			<div class="container">
 				<div class="row align-items-stretch justify-content-center">
 					<div class="col-lg-4 mb-4 mb-lg-0">
 						<div class="h-100 px-5 py-4 background-white radius-secondary">
-							<h5 class="mb-3">Melbourne Office</h5>
-							121 King Street,<br>Melbourne 1200,<br>Australia
+							<h5 class="mb-3">구체적인 환불 신청 사유를 작성해주세요.</h5>
+							<div style="font-size: 15px">상담사와의 일정 조율이 필요한 경우, 해당 상담사의 상담 센터로 연락해주시기 바랍니다.</div>
 						</div>
 					</div>
 					<div class="col-lg-4 mb-4 mb-lg-0">
 						<div class="h-100 px-5 py-4 background-white radius-secondary">
-							<h5 class="mb-3">Sydney Office</h5>
-							62 Collins Street West,<br>Sydney 3000, <br>Australia
+							<h5 class="mb-3">서류 접수가 필요한 경우는 아래 주소로 보내주세요.</h5>
+							<div style="font-size: 15px">(13637) 경기도 성남시 분당구 성남대로 34 6층(구미동 하나프라자빌딩) (주)BU</div>
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -265,13 +236,13 @@
 					</div>
 					<div class="col-12 mt-4">
 						<div class="background-white p-5 h-100 radius-secondary">
-							<h5>Refund Reason</h5>
+							<h5>환불 신청 사유</h5>
 							<form name="refund" id="refund" method="get"
 								action="${pageContext.request.contextPath}/refund/request">
 								<div class="row">
 									<div class="col-12 mt-4">
 										<textarea class="form-control background-white" rows="11"
-											name="refundReason" placeholder="환불 신청 사유를 작성해주세요." required></textarea>
+											name="refundReason" placeholder="환불 신청 사유를 작성해주세요.(필수)" required></textarea>
 										<input class="form-control" type="hidden" name="ticketCode"
 											value="${ticket.ticketCode}">
 										<!-- <input class="form-control" type="hidden" name="refundState" value="0">
@@ -282,7 +253,7 @@
 										<div class="row">
 											<div class="col-auto">
 												<button class="btn btn-md-lg btn-primary" type="submit">
-													<span class="color-white fw-600">Send Now</span>
+													<span class="color-white fw-600">환불 신청</span>
 												</button>
 											</div>
 											<div class="col">
