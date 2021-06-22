@@ -33,6 +33,7 @@
 <meta name="msapplication-TileImage"
 	content="${pageContext.request.contextPath}/assets/images/favicons/mstile-150x150.png">
 <meta name="theme-color" content="#ffffff">
+
 <!--  -->
 <!--    Stylesheets-->
 <!--    =============================================-->
@@ -234,6 +235,12 @@
 		})
 	   
 	})
+	
+</script>
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
 </script>
 
 

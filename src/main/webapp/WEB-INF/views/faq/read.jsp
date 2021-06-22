@@ -66,6 +66,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 <SCRIPT language=javascript>
 	$(function() {
 		$("#update")
