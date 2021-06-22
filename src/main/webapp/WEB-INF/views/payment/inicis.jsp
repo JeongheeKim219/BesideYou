@@ -41,6 +41,7 @@
     		//m_redirect_url : 'https://shop.yourservice.com/payments/complete'
             
         }, function(rsp) {
+        	//alert("rsp : " + rsp.success);
         	//alert("결제가 완료되었습니다.");
         	
             if ( rsp.success ) {
