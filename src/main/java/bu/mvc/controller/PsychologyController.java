@@ -171,7 +171,7 @@ public class PsychologyController {
 	 * */
 	@RequestMapping("/lo/artCounselor")
 	public String artCounselor(Model model , @RequestParam(defaultValue = "1") int nowPage) {
-		Pageable pageable = PageRequest.of((nowPage-1), 6, Direction.ASC, "artCounselorCode");
+		Pageable pageable = PageRequest.of((nowPage-1), 6, Direction.DESC, "artCounselorCode");
 		Page<ArtCounselor> list= psyService.selectArtCounselor(pageable);
 		
 		int blockCount = 5;

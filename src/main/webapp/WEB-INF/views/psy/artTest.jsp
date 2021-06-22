@@ -9,6 +9,12 @@
 <script type="text/javascript">
 	$(function() {
 		$("#form").submit(function() {
+			
+			if ($('input[name=file]').val().length == 0) {
+				alert("파일을 첨부해주세요.");
+				return false;
+			}
+			
 			alert("그림테스트 요청이 완료되었습니다.");
 		});
 
