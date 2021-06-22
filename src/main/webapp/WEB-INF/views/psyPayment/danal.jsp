@@ -29,11 +29,11 @@
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
     		name : 'Beside-You 그림 심리 검사',
-    		amount : '35000', <%-- <%=totalPrice%>, --%>  //필수항목
+    		amount : '1000',  //필수항목
     		buyer_email : 'aaa1234@email.com',
     		buyer_name : '김동현',
     		buyer_tel : '010-1234-5678',  //필수항목
-    		//buyer_addr : '서울특별시 강남구 삼성동',
+    		buyer_addr : '서울특별시 강남구 삼성동'
     		//buyer_postcode : '123-456'
     		//m_redirect_url : 'https://shop.yourservice.com/payments/complete'
             

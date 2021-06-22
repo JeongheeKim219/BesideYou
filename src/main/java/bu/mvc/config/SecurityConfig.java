@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/ticket/mylist/**").authenticated()
 		.antMatchers("/payment/**").authenticated()
 		.antMatchers("/refund/list/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/ticket/list/**").access("hasRole('ROLE_ADMIN')")
 
 		.and()
 		//.csrf().disable()
