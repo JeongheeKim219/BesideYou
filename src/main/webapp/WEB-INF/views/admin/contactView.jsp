@@ -34,8 +34,9 @@
 </head>
 <body>
 	<%@include file="./header.jsp"%>
-	<%@include file="./menu.jsp"%>
+
 	<div class="app-main">
+		<%@include file="./menu.jsp"%>
 		<div class="app-main__outer">
 			<div class="app-main__inner">
 				<div class="app-page-title">

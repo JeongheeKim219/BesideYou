@@ -53,8 +53,8 @@
 <body>
 	
 	<%@include file="./header.jsp"%>
-	<%@include file="./menu.jsp"%>
 	<div class="app-main">
+	<%@include file="./menu.jsp"%>
 		<div class="app-main__outer">
 			<div class="app-main__inner">
 				<div class="app-page-title">
@@ -346,7 +346,7 @@
 				<!-- 상담사 등록 상태 위젯 끝 -->
 				<!-- 일별 신규 가입회원 차트 시작 -->
 				<div class="row">
-					<div class="col-md-12 col-lg-6">
+					<div class="col-md-6">
 					<div class="main-card mb-6 card">
 						<div class="mb-6 card">
 							<div
@@ -358,12 +358,16 @@
 							</div>
 							<div class="card-body">
 								<div class="widget-chart p-0">
-									<canvas id="newMemeberChart" style="height:40vh; width:50vw"></canvas>
+									<canvas id="newMemeberChart"></canvas>
 								</div>
 							</div>
 						</div>
+						</div>
+						</div>
 						<!-- 일별 신규 가입회원 차트 끝 -->
 						<!-- 상담사별 순위 조회 -->
+						<div class="col-md-6">
+						<div class="main-card mb-6 card">
 						<div class="mb-6 card">
 							<div
 								class="card-header-tab card-header-tab-animation card-header">
@@ -381,7 +385,7 @@
 											id="rank-table">
 											<!-- Ajax로 구현될 영역-->
 
-											<!-- ----------------- -->
+											
 											<c:forEach var="counselor"
 												items="${requestScope.counselorList}">
 												<li class="list-group-item">
@@ -415,11 +419,12 @@
 								</div>
 							</div>
 						</div>
-						</div>
 					</div>
-					<!-- 일별 신규 가입회원 차트 끝 -->
+				</div>
+					<!-- 상담사별 순위 조회 끝 -->
 					<!-- 월별 상담/ 상담신청 건수 차트 시작 -->
-					<div class="col-md-12 col-lg-6">
+				<div class="col-md-6">
+					<div class="main-card mb-6 card">
 						<div class="mb-12 card">
 							<div class="card-header-tab card-header">
 								<div class="card-header-title">
@@ -431,8 +436,8 @@
 							<div class="tab-content">
 								<div class="tab-pane fade active show" id="tab-eg-55">
 									<div class="widget-chart p-3">
-										<div style="height: 350px">
-											<canvas id="newCounselByMonth"  style="height:50vh; width:30vw"></canvas>
+										<div>
+											<canvas id="newCounselByMonth"></canvas>
 										</div>
 									</div>
 								</div>
@@ -441,135 +446,42 @@
 					</div>
 				</div>
 				<!-- 월별 상담/ 상담신청 건수 차트 끝 -->
-				<div class="row py-3"">
-					<div class="col-md-6 col-lg-3">
-						<div
-							class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
-							<div class="widget-content">
-								<div class="widget-content-outer">
-									<div class="widget-content-wrapper">
-										<div class="widget-content-left pr-2 fsize-1">
-											<div class="widget-numbers mt-0 fsize-3 text-danger">71%</div>
-										</div>
-										<div class="widget-content-right w-100">
-											<div class="progress-bar-xs progress">
-												<div class="progress-bar bg-danger" role="progressbar"
-													aria-valuenow="71" aria-valuemin="0" aria-valuemax="100"
-													style="width: 71%;"></div>
-											</div>
-										</div>
-									</div>
-									<div class="widget-content-left fsize-1">
-										<div class="text-muted opacity-6">상담 달성률</div>
-									</div>
+				<!-- 상담타입별 매출 차지 비중-->
+				<div class="col-md-6">
+					<div class="main-card mb-6 card">
+						<div class="mb-12 card">
+							<div class="card-header-tab card-header">
+								<div class="card-header-title">
+									<i
+										class="header-icon lnr-rocket icon-gradient bg-tempting-azure">
+									</i> 월별 상담/ 상담신청 건수
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div
-							class="card-shadow-success mb-3 widget-chart widget-chart2 text-left card">
-							<div class="widget-content">
-								<div class="widget-content-outer">
-									<div class="widget-content-wrapper">
-										<div class="widget-content-left pr-2 fsize-1">
-											<div class="widget-numbers mt-0 fsize-3 text-success">54%</div>
+							<div class="tab-content">
+								<div class="tab-pane fade active show" id="tab-eg-55">
+									<div class="widget-chart p-3">
+										<div>
+											<canvas id="newCounselByMonth"></canvas>
 										</div>
-										<div class="widget-content-right w-100">
-											<div class="progress-bar-xs progress">
-												<div class="progress-bar bg-success" role="progressbar"
-													aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"
-													style="width: 54%;"></div>
-											</div>
-										</div>
-									</div>
-									<div class="widget-content-left fsize-1">
-										<div class="text-muted opacity-6">대면상담</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div
-							class="card-shadow-warning mb-3 widget-chart widget-chart2 text-left card">
-							<div class="widget-content">
-								<div class="widget-content-outer">
-									<div class="widget-content-wrapper">
-										<div class="widget-content-left pr-2 fsize-1">
-											<div class="widget-numbers mt-0 fsize-3 text-warning">32%</div>
-										</div>
-										<div class="widget-content-right w-100">
-											<div class="progress-bar-xs progress">
-												<div class="progress-bar bg-warning" role="progressbar"
-													aria-valuenow="32" aria-valuemin="0" aria-valuemax="100"
-													style="width: 32%;"></div>
-											</div>
-										</div>
-									</div>
-									<div class="widget-content-left fsize-1">
-										<div class="text-muted opacity-6">전화상담</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div
-							class="card-shadow-info mb-3 widget-chart widget-chart2 text-left card">
-							<div class="widget-content">
-								<div class="widget-content-outer">
-									<div class="widget-content-wrapper">
-										<div class="widget-content-left pr-2 fsize-1">
-											<div class="widget-numbers mt-0 fsize-3 text-info">89%</div>
-										</div>
-										<div class="widget-content-right w-100">
-											<div class="progress-bar-xs progress">
-												<div class="progress-bar bg-info" role="progressbar"
-													aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"
-													style="width: 89%;"></div>
-											</div>
-										</div>
-									</div>
-									<div class="widget-content-left fsize-1">
-										<div class="text-muted opacity-6">텍스트 테라피</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- 월별 상담/ 상담신청 건수 차트 끝 -->
+				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/adminCss/assets/scripts/main.js"></script>
 	<!-- Chart.js -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			
-			//Token
-			// using jQuery
-			/* function getCookie(name) {
-			    var cookieValue = null;
-			    if (document.cookie && document.cookie !== '') {
-			        var cookies = document.cookie.split(';');
-			        for (var i = 0; i < cookies.length; i++) {
-			            var cookie = jQuery.trim(cookies[i]);
-			            // Does this cookie string begin with the name we want?
-			            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-			                break;
-			            }
-			        }
-			    }
-			    return cookieValue;
-			}
-			var csrftoken = getCookie('csrftoken'); */
-			///////////////////////////////////////////////////
+		
 			
 			var weekList = [];
 			var monthList = [];
@@ -793,7 +705,7 @@
 						} ]
 					},
 					options : {
-						//responsive : true,
+						responsive : true,
 						plugins : {
 							legend : {
 								position : 'top',

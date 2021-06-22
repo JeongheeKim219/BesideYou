@@ -140,8 +140,9 @@
 </head>
 <body>
 	<%@include file="./header.jsp"%>
+		<div class="app-main">
 	<%@include file="./menu.jsp"%>
-	<div class="app-main">
+
 		<div class="app-main__outer">
 			<div class="app-main__inner">
 				<div class="app-page-title">
@@ -156,6 +157,13 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div style="visibility: hidden;">
+				<table class="mb-0 table table-bordered">
+					<tr>
+						<td>test</td>
+					</tr>
+				</table>
 				</div>
 				<div class="col-lg-12">
 					<div class="main-card mb-3 card">
@@ -269,7 +277,7 @@
 										<li class="page-item"><a href="javascript:void(0);"
 											class="page-link" aria-label="Previous"><span
 												aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-										<c:forEach begin="0" end="${tkList.totalPages-1}" var="i">
+										<c:forEach begin="0" end="${tkList.totalPages}" var="i">
 											<c:choose>
 												<c:when test="${tkList.number==i}">
 													<li class="page-item active"><a

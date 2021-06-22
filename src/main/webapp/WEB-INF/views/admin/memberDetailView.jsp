@@ -63,8 +63,9 @@ $(function(){
 </head>
 <body>
 	<%@include file="./header.jsp"%>
+		<div class="app-main">
 	<%@include file="./menu.jsp"%>
-	<div class="app-main">
+
 		<div class="app-main__outer">
 			<div class="app-main__inner">
 				<ul
