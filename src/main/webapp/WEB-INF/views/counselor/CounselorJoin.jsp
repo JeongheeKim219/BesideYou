@@ -11,6 +11,11 @@
        	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee2a08e1e6666ba0c1489f7bcaf6d75a&libraries=services"></script>
        	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
        	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+       	<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
         <script type="text/javascript">
         
         $(document).ready(function(){

@@ -8,7 +8,11 @@
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.name" var="sessionName" />
 </sec:authorize>
-
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 <script type="text/javascript">
 	function stressCheck() {
 		var loginId = "${sessionName}";

@@ -59,7 +59,11 @@
 		alert(1)
 	})
 </SCRIPT>
-
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 </HEAD>
 <div class="loading" id="preloader">
 	<div

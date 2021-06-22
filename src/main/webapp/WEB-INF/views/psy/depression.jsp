@@ -11,6 +11,11 @@
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
+<script type="text/javascript">
 	$(function() {
 
 		$('input:radio[name^="ques"]').on('click', function() {

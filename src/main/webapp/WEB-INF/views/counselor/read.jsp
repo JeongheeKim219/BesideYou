@@ -37,6 +37,11 @@
 	
 	
 </script>
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 
 <!--  -->
 <!--    Document Title-->
