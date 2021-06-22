@@ -62,6 +62,11 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/custom.css"
 	rel="stylesheet">
+	<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 </head>
 <body data-spy="scroll" data-target=".inner-link" data-offset="60">
 	<main>
