@@ -57,15 +57,7 @@
 <link href="${pageContext.request.contextPath}/adminCss/main.css"
 	rel="stylesheet">
 
-<style type="text/css">
-input[type=button] {
-	background-color: #50BCDF;
-	border: none;
-	border-radius: 5px;
-	color: #fff;
-	width: 100px;
-}
-</style>
+
 
 </HEAD>
 <body>
