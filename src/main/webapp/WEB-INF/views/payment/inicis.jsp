@@ -1,26 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	/* String name = (String)request.getParameter("name");
-	String phone = (String)request.getParameter("phone");
-	String email = (String)request.getParameter("email");
-	String addr = (String)request.getParameter("addr");
-	String type = (String)request.getParameter("ticketType");
-	
-	String ticketField = (String)request.getParameter("ticketField");
-	int field = Integer.parseInt(ticketField);
-	String totalPrice = (String)request.getParameter("ticketPrice");
-	int price = Integer.parseInt(totalPrice);
-	
-	String counselorCode = (String)request.getParameter("counselorCode");
-	String discountCode = (String)request.getParameter("discountCode");
-	String ticketAmount = (String)request.getParameter("ticketAmount");
-	String ticketRemain = (String)request.getParameter("ticketRemain"); */
-	
-	String totalPrice = (String)request.getParameter("ticketPrice");
-	int price = Integer.parseInt(totalPrice);
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,28 +9,40 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
+<%-- \${ticketPrice}=${ticketPrice} --%>
     <script>
     
     $(function(){
+    	
         var IMP = window.IMP;
         IMP.init('imp75728843'); //가맹점 식별코드
         var msg;
+        
+        /* alert("${email}")
+        alert("${ticketType}")
+        alert("${name}")
+        alert("${phone}")
+        alert("${addr}")
+        alert(Number("${ticketPrice}")) */
         
         IMP.request_pay({
             
             pg : 'html5_inicis', //다수의 PG 사용시 필수
           	pay_method : 'card',
    			merchant_uid : 'merchant_' + new Date().getTime(),  //필수항목
-    		name : 'BesideU 대면상담권',
-    		amount : <%=price%>,  //필수항목
-    		buyer_email : 'pkh@gmail.com',
-    		buyer_name : '박기현',
-    		buyer_tel : '010-1234-5678',  //필수항목
-    		buyer_addr : '경기도 성남시'
+    		name : "${ticketType}",
+    		amount : "1000"/* Number("${ticketPrice}") */,  //필수항목
+    		buyer_email :"${email}",
+    		buyer_name : "${name}",
+    		buyer_tel : "${phone}",  //필수항목
+    		buyer_addr : "${addr}"
+    		
     		//buyer_postcode : '123-456'
     		//m_redirect_url : 'https://shop.yourservice.com/payments/complete'
             
         }, function(rsp) {
+        	//alert("결제가 완료되었습니다.");
+        	
             if ( rsp.success ) {
                 //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
                 jQuery.ajax({
@@ -77,14 +68,21 @@
                     	alert(msg);
                     }
                 });
-                //성공시 이동할 페이지
-                location.href="${pageContext.request.contextPath}/payment/buy";
+                //결제 성공시
+                var frd = Number("${ticketField}") ;
+                var cscode = "${counselorCode}" ;
+                var amt = Number("${ticketAmount}") ;
+                var rmn = Number("${ticketRemain}") ;
+                var dc = "${discountCode}" ;
+                var prc = Number("${ticketPrice}");
+                
+                location.href="${pageContext.request.contextPath}/ticket/buy?ticketField="+frd+"&counselorCode="+cscode
+                		+"&ticketAmount="+amt+"&ticketRemain="+rmn+"&discountCode="+dc+"&ticketPrice="+prc;
                 
             } else {
-                msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-                //실패시 이동할 페이지
-                <%-- location.href="<%=request.getContextPath()%>/payment/payFail"; --%>
+                //실패시
+            	//msg = '결제에 실패하였습니다.';
+                //msg += '에러내용 : ' + rsp.error_msg;
                 location.href="${pageContext.request.contextPath}/payment/fail";
                 //alert(msg);
             }
