@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -218,21 +220,38 @@ public class CounselController {
 		return "redirect:/counsel/listForCounselor?field=-1";
 	}
 	
+//	@RequestMapping("/profile")
+//	public ModelAndView profile(Long counselorCode, @RequestParam(defaultValue = "0")int currentPage ) {
+//		ModelAndView mv = new ModelAndView();
+//		Counselor counselor = counselService.getCounselor(counselorCode);
+//		List<Tag> tagList = counselService.getTag(counselor);
+//		List<Speciality> speList = counselService.getSpecialities(counselor);
+//
+//		System.out.println("counselorCOde : " + counselorCode);
+//		List<ReviewStar> review = reviewService.selectByCounselorCode(counselorCode, currentPage);
+//		mv.setViewName("/counsel/profile");
+//		mv.addObject("counselor", counselor);
+//		mv.addObject("tagList", tagList);
+//		mv.addObject("speList", speList);
+//		mv.addObject("review", review); // 리뷰 리스트 가져오기
+//
+//		return mv;
+//	}
+	
+	
 	@RequestMapping("/profile")
-	public ModelAndView profile(Long counselorCode, @RequestParam(defaultValue = "0")int currentPage ) {
+	public ModelAndView profile(Long counselorCode, @PageableDefault(size = 5, sort = "reviewCode", direction = Sort.Direction.DESC) Pageable pageable) {
 		ModelAndView mv = new ModelAndView();
 		Counselor counselor = counselService.getCounselor(counselorCode);
 		List<Tag> tagList = counselService.getTag(counselor);
 		List<Speciality> speList = counselService.getSpecialities(counselor);
-
 		System.out.println("counselorCOde : " + counselorCode);
-		List<ReviewStar> review = reviewService.selectByCounselorCode(counselorCode, currentPage);
+		List<ReviewStar> review = reviewService.selectByCounselorCode(counselorCode, pageable);
 		mv.setViewName("/counsel/profile");
 		mv.addObject("counselor", counselor);
 		mv.addObject("tagList", tagList);
 		mv.addObject("speList", speList);
 		mv.addObject("review", review); // 리뷰 리스트 가져오기
-
 		return mv;
 	}
 	
