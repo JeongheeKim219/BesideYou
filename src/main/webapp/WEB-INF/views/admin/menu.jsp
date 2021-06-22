@@ -67,6 +67,9 @@
 				<li><a href="${pageContext.request.contextPath}/admin/contactView"> <i
 						class="metismenu-icon pe-7s-display2"></i> 巩狼包府
 				</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/reportView"> <i
+						class="metismenu-icon pe-7s-display2"></i> 脚绊包府
+				</a></li>
 
 			</ul>
 		</div>
