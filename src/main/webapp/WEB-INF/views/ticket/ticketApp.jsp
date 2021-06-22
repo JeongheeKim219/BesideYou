@@ -105,21 +105,6 @@
 			   $("#payment").attr("action", "${pageContext.request.contextPath}/payment/inicis");
 			   $("#payment").submit();
 			   
-			   //전송되는 값 확인
-			   /* console.log($("input[name=ticketField]").val());
-			   console.log($("input[name=counselorCode]").val());
-			   
-			   console.log($("input[name=memberCode]").val());
-			   console.log($("input[name=name]").val());
-			   console.log($("input[name=email]").val());
-			   console.log($("input[name=phone]").val());
-			   console.log($("input[name=memberAddr]").val()); */
-			   
-			   console.log($("input[name=ticketAmount]").val());
-			   console.log($("input[name=ticketRemain]").val());
-			   console.log($("input[name=discountCode]").val());
-			   console.log($("input[name=ticketPrice]").val());
-			   
 		   }
 	   })
 	   

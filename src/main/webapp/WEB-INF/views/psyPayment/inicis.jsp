@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	/* String title = (String)request.getParameter("artName");
-	String artist = (String)request.getParameter("artistName");
-	String id = (String)request.getParameter("sucBidId");
-	String sucBidCode = (String)request.getParameter("sucBidCode");
-	String sucBidCost = (String)request.getParameter("sucBidCost");
-	int totalPrice = Integer.parseInt(sucBidCost); */
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,19 +56,12 @@
                     }
                 });
                 //성공시 이동할 페이지
-                <%-- location.href='<%=request.getContextPath()%>/payment/paySuccess?msg='+msg; --%>
-                <%-- location.href="<%=request.getContextPath()%>/front?key=sucBid&methodName=changeState&sucBidCode="+sucBidCode; --%>
-
-                <%-- var code = <%=sucBidCode%>;
-                location.href="${path}/front?key=sucBid&methodName=changeState&sucBidCode="+code;  --%>
-                
                 location.href="${pageContext.request.contextPath}/psy/lo/artCounselor";
                 
             } else {
-                msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-                //실패시 이동할 페이지
-                <%-- location.href="<%=request.getContextPath()%>/payment/payFail"; --%>
+            	//실패시 이동할 페이지
+                //msg = '결제에 실패하였습니다.';
+                //msg += '에러내용 : ' + rsp.error_msg;
                 location.href="${pageContext.request.contextPath}/psyPayment/fail";
                 //alert(msg);
             }

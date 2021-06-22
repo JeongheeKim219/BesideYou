@@ -251,11 +251,9 @@
 										<img class="w-100 radius-tr-secondary radius-tl-secondary"
 											src="${pageContext.request.contextPath}/assets/counselor/${ticket.counselor.picture}"
 											alt="${ticket.counselor.picture}" />
-										<div class="px-4 pt-4" data-zanim-timeline="{}"
-											data-zanim-trigger="scroll">
+										<div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
 											<div class="overflow-hidden">
-												<a
-													href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}">
+												<a href="${pageContext.request.contextPath}/ticket/read/${ticket.ticketCode}">
 													<c:choose>
 														<c:when test="${ticket.ticketField==0}">
 															<h4 data-zanim='{"delay":0}'>대면 상담권</h4>
@@ -279,8 +277,7 @@
 												</p>
 											</div>
 											<div class="overflow-hidden">
-												<p class="color-7" data-zanim='{"delay":0.2}'>Remain :
-													${ticket.ticketRemain}</p>
+												<p class="color-7" data-zanim='{"delay":0.2}'>Remain : ${ticket.ticketRemain}</p>
 											</div>
 											<%-- <div class="overflow-hidden">
                                     	<c:choose>

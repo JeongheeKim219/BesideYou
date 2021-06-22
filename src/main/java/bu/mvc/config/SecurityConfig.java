@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//동현
 		.antMatchers("/ticket/mylist/**").authenticated()
 		.antMatchers("/payment/**").authenticated()
+		.antMatchers("/psyPayment/**").authenticated()
 		.antMatchers("/refund/list/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/ticket/list/**").access("hasRole('ROLE_ADMIN')")
 

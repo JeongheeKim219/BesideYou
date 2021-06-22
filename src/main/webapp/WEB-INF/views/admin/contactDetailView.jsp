@@ -30,27 +30,26 @@
 <link href="${pageContext.request.contextPath}/adminCss/main.css"
 	rel="stylesheet">
 
-	
-	<script type="text/javascript">
-	function checkValid(){
+
+<script type="text/javascript">
+	function checkValid() {
 		var f = window.document.writeForm;
-		
-		if ( f.contactReplyContent.value == "") {
-		    alert( "내용을 입력해 주세요." );
-		    f.contactReplyContent.focus();
+
+		if (f.contactReplyContent.value == "") {
+			alert("내용을 입력해 주세요.");
+			f.contactReplyContent.focus();
 			return false;
-	    }
+		}
 		return true;
-		
-		
+
 	}
 </script>
 </head>
 <body>
 	<%@include file="./header.jsp"%>
-	
-	<div class="app-main">
-	<%@include file="./menu.jsp"%>
+
+	<div class="app-main" style="height: 750px">
+		<%@include file="./menu.jsp"%>
 		<div class="app-main__outer">
 			<div class="app-main__inner">
 				<div class="app-page-title">
@@ -154,34 +153,39 @@
 											<th scope="row">작성일자</th>
 											<td>${contact.contactDate}</td>
 										</tr>
-						</tbody>
+									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="main-card mb-3 card">
-						<div class="card-body">
-							<h5 class="card-title"># ${contact.contactCode}에 대한 답변</h5>
+							<div class="card-body">
+								<h5 class="card-title"># ${contact.contactCode}에 대한 답변</h5>
 
 
-							<form class="contactReply" action="${pageContext.request.contextPath}/admin/insertContactReply" method="post" onsubmit="return checkValid()" name="writeForm">
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-								<div class="position-relative row form-group">
-									<div class="col-sm-10">
-										<textarea  name="contactReplyContent" class="form-control" rows="10"></textarea>
+								<form class="contactReply"
+									action="${pageContext.request.contextPath}/admin/insertContactReply"
+									method="post" onsubmit="return checkValid()" name="writeForm">
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+									<div class="position-relative row form-group">
+										<div class="col-sm-10">
+											<textarea name="contactReplyContent" class="form-control"
+												rows="10"></textarea>
+										</div>
 									</div>
-								</div>
-								<div class="position-relative row form-check">
-									<div class="col-sm-10 offset-sm-6">
-										<button class="btn btn-primary">답변작성</button>
+									<div class="position-relative row form-check">
+										<div class="col-sm-10 offset-sm-6">
+											<button class="btn btn-primary">답변작성</button>
+										</div>
 									</div>
-								</div>
-								<input type="hidden" name="contactCode" value="${contact.contactCode}"/>
-							</form>
+									<input type="hidden" name="contactCode"
+										value="${contact.contactCode}" />
+								</form>
 
+							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</div>
