@@ -10,6 +10,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
        	<script src="/assets/lib/jquery/dist/jquery.min.js"></script>
        	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+       	<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
         <script type="text/javascript">
         
         $(document).ready(function(){
