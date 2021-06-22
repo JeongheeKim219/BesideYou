@@ -275,7 +275,7 @@
 					<a id="create-kakao-link-btn" href="javascript:;"> <img
 						src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
 					</a>
-					<p class="fw-lighter mt-3">심리검사 공유하기</p>
+					<p class="fw-lighter mt-3">친구에게 내 결과 공유하기</p>
 				</div>
 				<script type="text/javascript">
 					  Kakao.Link.createDefaultButton({
