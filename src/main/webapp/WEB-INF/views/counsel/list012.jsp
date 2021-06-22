@@ -289,7 +289,7 @@
 	<div class="modal" id="modal1">
 	<input type="hidden" id="tgmemberCode" name="member" size="30" value="">
 	<input type="hidden" id="tgcounselorCode" name="counselor" size="30" value="">
-			<table border="1">
+			<table border="1" style="align-content: center;">
 				<tr>
 					<td height="15" style="padding: 5px" colspan="2" bgcolor="#DEDCDC">
 						<p align="center" style="margin-bottom: 0rem">
@@ -325,9 +325,11 @@
 						상담번호
 					
 					</td>
-					<td width="450" height="20" align="left"><b><span style="font-size: 9pt;">
-						<input type="text" id="tgcounselCode" name="counsel" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
-					</span></b></td>
+					<td width="450" height="20" align="left">
+					<p align="left"><b><span font-size: 9pt;">
+						<input type="text" id="tgcounselCode" name="counsel" size="30" value="" style=" align-content;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+					</span></b></p>
+					</td>
 				
 				</tr>
 				
@@ -337,7 +339,8 @@
 					별 점
 						
 					</td>
-					<td width="450" height="20"><b><span style="font-size: 9pt;">
+					<td width="450" height="20">
+						<p align="left"><b><span style="font-size: 9pt;">
 						<select name="star">
 							<option value="">별점선택</option>
 							<option value="1.0">★</option>
@@ -346,7 +349,8 @@
 							<option value="4.0">★★★★</option>
 							<option value="5.0">★★★★★</option>
 						</select>
-				</span></b></td>
+						</span></b></p>
+					</td>
 				</tr>
 				<tr>
 					<td width="150" height="20" style="vertical-align: center; margin: 2px;" colspan="2">

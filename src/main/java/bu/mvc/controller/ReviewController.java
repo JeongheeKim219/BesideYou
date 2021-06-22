@@ -45,8 +45,9 @@ public class ReviewController {
 		Long b= a.getCounselorCode();
 		System.out.println(b);
 		reviewService.insert(reviewStar);
+		String s = "redirect:/counsel/myCounselList?field=-1";
 		
-		return "redirect:/counsel/myCounselList?field=-1";
+		return s;
 	}
 	
 	
