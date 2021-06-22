@@ -52,6 +52,11 @@
 <!-- Main stylesheet and color file-->
 <link href="/assets/css/style.css" rel="stylesheet">
 <link href="/assets/css/custom.css" rel="stylesheet">
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 <style type="text/css">
 #testImg {
 	width: 290px;

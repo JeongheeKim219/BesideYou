@@ -15,6 +15,11 @@
         
         
 </script>
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 
 
 <meta charset="UTF-8">
