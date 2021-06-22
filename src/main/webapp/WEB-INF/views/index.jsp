@@ -144,6 +144,10 @@
 										<li><a href="${pageContext.request.contextPath}/counsel/listForCounselor?field=3">상담글 요청목록</a></li>
 									</sec:authorize>
 								</ul></li>
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<li><a href="${pageContext.request.contextPath}/admin/index">관리자메뉴</a>
+									</li>
+								</sec:authorize>
 						</ul>
 						<ul class="navbar-nav ml-lg-auto">
 							<sec:authorize access="isAnonymous()">
