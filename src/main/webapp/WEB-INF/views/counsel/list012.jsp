@@ -351,21 +351,22 @@ tbody tr:nth-child(2n+1) {
 										</c:choose>
 									</tbody>
 								</table>
-								<!-- Modal -->
-								<div class="modal" id="modal1">
-									<input type="hidden" id="tgmemberCode" name="member" size="30"
-										value=""> <input type="hidden" id="tgcounselorCode"
-										name="counselor" size="30" value="">
-									<table border="1">
-										<tr>
-											<td height="15" style="padding: 5px" colspan="2"
-												bgcolor="#DEDCDC">
-												<p align="center" style="margin-bottom: 0rem">
-													<font color="black" size="3"><b>리뷰등록</b></font>
-												</p>
-											</td>
-										</tr>
-										<!-- <tr>
+								
+
+							<!-- Modal -->
+	<div class="modal" id="modal1">
+	<input type="hidden" id="tgmemberCode" name="member" size="30" value="">
+	<input type="hidden" id="tgcounselorCode" name="counselor" size="30" value="">
+			<table border="1" style="align-content: center;">
+				<tr>
+					<td height="15" style="padding: 5px" colspan="2" bgcolor="#DEDCDC">
+						<p align="center" style="margin-bottom: 0rem">
+							<font color="black" size="3"><b>리뷰등록</b></font>
+						</p>
+					</td>
+				</tr>
+				<!-- <tr>
+
 					<td width="150" height="20" style="vertical-align: center;">
 					작성자
 						
@@ -387,60 +388,6 @@ tbody tr:nth-child(2n+1) {
 				
 				</tr> -->
 
-
-										<tr>
-											<td width="150" height="20"
-												style="vertical-align: center; margin: 2px;">상담번호</td>
-											<td width="450" height="20" align="left"><b><span
-													style="font-size: 9pt;"> <input type="text"
-														id="tgcounselCode" name="counsel" size="30" value=""
-														style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;">
-												</span></b></td>
-
-										</tr>
-
-
-										<tr>
-											<td width="150" height="20"
-												style="vertical-align: center; margin: 2px;">별 점</td>
-											<td width="450" height="20"><b><span
-													style="font-size: 9pt;"> <select name="star">
-															<option value="">별점선택</option>
-															<option value="1.0">★</option>
-															<option value="2.0">★★</option>
-															<option value="3.0">★★★</option>
-															<option value="4.0">★★★★</option>
-															<option value="5.0">★★★★★</option>
-													</select>
-												</span></b></td>
-										</tr>
-										<tr>
-											<td width="150" height="20"
-												style="vertical-align: center; margin: 2px;" colspan="2">
-												리뷰 내용</td>
-										</tr>
-										<tr>
-											<td width="450" height="20" colspan="2"><b><span
-													style="font-size: 9pt; margin: 2px;"> <textarea
-															cols="55" rows="5" name="reviewContent"></textarea>
-
-												</span></b></td>
-										</tr>
-										<tr>
-											<td width="450" height="20" colspan="2" align="center">
-												<b> <span style="font-size: 9pt;"> <input
-														type="button" id="reviewBtn" value=리뷰등록> <input
-														type="button" id="backBtn" value="돌아가기">
-												</span>
-											</b>
-											</td>
-										</tr>
-									</table>
-								</div>
-
-							</form>
-
-
 							<c:if test="${!empty pageList.content}">
 								<nav class="font-1 mt-5" aria-label="Page navigation example">
 									<ul class="pagination pagination justify-content-center">
@@ -461,6 +408,67 @@ tbody tr:nth-child(2n+1) {
 									</ul>
 								</nav>
 							</c:if>
+				
+				
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
+						상담번호
+					
+					</td>
+					<td width="450" height="20" align="left">
+					<p align="left"><b><span font-size: 9pt;">
+						<input type="text" id="tgcounselCode" name="counsel" size="30" value="" style=" align-content;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+					</span></b></p>
+					</td>
+				
+				</tr>
+				
+				
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;">
+					별 점
+						
+					</td>
+					<td width="450" height="20">
+						<p align="left"><b><span style="font-size: 9pt;">
+						<select name="star">
+							<option value="">별점선택</option>
+							<option value="1.0">★</option>
+							<option value="2.0">★★</option>
+							<option value="3.0">★★★</option>
+							<option value="4.0">★★★★</option>
+							<option value="5.0">★★★★★</option>
+						</select>
+						</span></b></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="150" height="20" style="vertical-align: center; margin: 2px;" colspan="2">
+					리뷰 내용
+						
+					</td>
+				</tr>
+				<tr>
+					<td width="450" height="20" colspan="2"><b><span style="font-size: 9pt; margin: 2px;">
+								<textarea cols="55" rows="5"  name="reviewContent"></textarea>
+								
+						</span></b></td>
+				</tr>
+				<tr>
+					<td width="450" height="20" colspan="2" align="center">
+						<b>
+						<span style="font-size: 9pt;">
+						<input type="button" id="reviewBtn" value=리뷰등록 >
+						<input type="button" id="backBtn" value="돌아가기">
+						</span>
+						</b>
+					</td>
+				</tr>
+			</table>
+		</div>	
+							
+	</form>
+							
 						</div>
 					</div>
 				</div>

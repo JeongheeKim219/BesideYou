@@ -33,7 +33,10 @@ import lombok.RequiredArgsConstructor;
 public class CounselController {
 
 	private final CounselService counselService;
-	
+
+	@Autowired
+	private ReviewService reviewService;
+
 	/**
 	 * 신청 폼 이동 (* 연결할 때 input param 필요
 	 * */
@@ -218,10 +221,15 @@ public class CounselController {
 		Counselor counselor = counselService.getCounselor(counselorCode);
 		List<Tag> tagList = counselService.getTag(counselor);
 		List<Speciality> speList = counselService.getSpecialities(counselor);
+
+		System.out.println("counselorCOde : " + counselorCode);
+		List<ReviewStar> review = reviewService.selectByCounselorCode(counselorCode, pageable);
 		mv.setViewName("/counsel/profile");
 		mv.addObject("counselor", counselor);
 		mv.addObject("tagList", tagList);
 		mv.addObject("speList", speList);
+		mv.addObject("review", review); // 리뷰 리스트 가져오기
+
 		return mv;
 	}
 	

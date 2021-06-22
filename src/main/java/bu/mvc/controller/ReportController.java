@@ -1,5 +1,7 @@
 package bu.mvc.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Member;
 import bu.mvc.domain.Report;
 import bu.mvc.domain.ReviewStar;
 import bu.mvc.service.ReportService;
@@ -32,12 +35,24 @@ public class ReportController {
 	
 	
 	@RequestMapping("/report/insert")
-	public String insert(Report report ) {
+	public String insert(Report report, HttpServletRequest req) {
 		
+		ReviewStar reviewStar = new ReviewStar();
+		Member member = new Member();
+		
+		member.setMemberCode(Long.parseLong(req.getParameter("memberCode")));
+		report.setMember(member);
+		
+		reviewStar.setReviewCode(Long.parseLong(req.getParameter("reviewCode")));
+		report.setReviewStar(reviewStar);
+		
+		//report.setReportOption(req.getParameter("reportOption"));
+		
+		report.setReviewContent(req.getParameter("reviewContent"));
 		reportService.insert(report);
-		Counselor cs = report.getReviewStar().getCounselor();
-		Long a = cs.getCounselorCode();
-		return "redirect:/review/reviewByCode/"+a;		
+		System.out.println("req.getParameter(\"counselor\")" + req.getParameter("counselor"));
+		return "redirect:/counsel/profile?counselorCode="+req.getParameter("counselor");		
+
 	}
 	
 
