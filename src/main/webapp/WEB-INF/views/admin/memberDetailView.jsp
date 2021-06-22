@@ -324,22 +324,6 @@ $(function(){
 								<div class="main-card mb-3 card">
 									<div class="card-body">
 										<form class="">
-											<h5 class="card-title">상담권 사용내역</h5>
-											<c:forEach items="${ticketLines}" var="ticketLines"
-												varStatus="status">
-												${status.count} <p>상담권 사용일자 :
-													${ticketLines.ticketLinesDate} / 상담권 구매일 :
-													<%-- ${ticketLines.ticket.ticketDate}
-												<p>상담권 종류 : ${ticketLines.ticket.ticketField} / 상담권 총가격
-													: ${ticketLines.ticket.ticketPrice} --%>
-												<p>
-											</c:forEach>
-									</div>
-									</form>
-								</div>
-								<div class="main-card mb-3 card">
-									<div class="card-body">
-										<form class="">
 											<h5 class="card-title">상담내역</h5>
 											<c:forEach items="${counsel.content}" var="counsel"
 												varStatus="status">
@@ -602,78 +586,6 @@ $(function(){
 													</c:otherwise>
 												</c:choose>
 											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="main-card lg-6-card">
-									<div class="card-body">
-										<h5 class="card-title">상담권 사용내역</h5>
-										<div class="table-responsive">
-											<table class="mb-0 table table-hover">
-												<thead>
-													<tr>
-														<th>사용내역 코드</th>
-														<th>사용자</th>
-														<th>잔여량</th>
-														<th>상담권 사용일</th>
-													</tr>
-												</thead>
-												<c:choose>
-													<c:when test="${fn:length(ticketLines.content) == 0}">
-														<tr>
-															<td colspan="5"><p align="center">결제내역이 없습니다.</p></td>
-														</tr>
-													</c:when>
-												
-													<c:otherwise>
-														<c:forEach items="${requestScope.ticketLines}" var="tlList">
-															<tbody>
-																<tr>
-																	<th scope="row">${tlList.ticketLinesCode}</th>
-																	<td>${tlList.ticket.member.id}</td>
-																	<td>${tlList.ticket.ticketRemain}</td>
-
-																	<fmt:parseDate var="parseDate"
-																		pattern="yyyy-MM-dd'T'HH:mm"
-																		value="${tlList.ticketLinesDate}" type="both" />
-																	<td><fmt:formatDate value="${parseDate}"
-																			pattern="yyyy-MM-dd HH:mm" /></td>
-																</tr>
-														</c:forEach>
-													</c:otherwise>
-												</c:choose>
-											</table>
-											<c:choose>
-												<c:when test="${fn:length(ticketLines.content) == 0}">
-													<ul class="pagination">
-														<li class="page-item"><a href="javascript:void(0);"
-															class="page-link" aria-label="Previous"><span
-																aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-														<c:forEach begin="0" end="${tlList.totalPages-1}"
-															var="i">
-															<c:choose>
-																<c:when test="${tlList.number==i}">
-																	<li class="page-item active"><a
-																		href="${pageContext.request.contextPath}/admin/memberDetailView/${member.memberCode}?nowReviewPage=${i}"
-																		class="page-link">${i+1}</a></li>
-																</c:when>
-																<c:otherwise>
-																	<li class="page-item"><a
-																		href="${pageContext.request.contextPath}admin/memberDetailView/${member.memberCode}?nowReviewPage=${i}"
-																		class="page-link">${i+1}</a></li>
-																</c:otherwise>
-															</c:choose>
-														</c:forEach>
-														<li class="page-item"><a href="javascript:void(0);"
-															class="page-link" aria-label="Next"><span
-																aria-hidden="true">»</span><span class="sr-only">이후</span></a></li>
-													</ul>
-												</c:when>
-											</c:choose>
 										</div>
 									</div>
 								</div>

@@ -157,6 +157,13 @@
 						</div>
 					</div>
 				</div>
+				<div style="visibility: hidden;">
+				<table class="mb-0 table table-bordered">
+					<tr>
+						<td>test</td>
+					</tr>
+				</table>
+				</div>
 				<div class="col-lg-12">
 					<div class="main-card mb-3 card">
 						<div class="card-header" style="justify-content: flex-end;">
@@ -269,7 +276,7 @@
 										<li class="page-item"><a href="javascript:void(0);"
 											class="page-link" aria-label="Previous"><span
 												aria-hidden="false">«</span><span class="sr-only">이전</span></a></li>
-										<c:forEach begin="0" end="${tkList.totalPages-1}" var="i">
+										<c:forEach begin="0" end="${tkList.totalPages}" var="i">
 											<c:choose>
 												<c:when test="${tkList.number==i}">
 													<li class="page-item active"><a

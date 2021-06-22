@@ -346,7 +346,7 @@
 				<!-- 상담사 등록 상태 위젯 끝 -->
 				<!-- 일별 신규 가입회원 차트 시작 -->
 				<div class="row">
-					<div class="col-md-12 col-lg-6">
+					<div class="col-md-6">
 					<div class="main-card mb-6 card">
 						<div class="mb-6 card">
 							<div
@@ -363,8 +363,10 @@
 							</div>
 						</div>
 						</div>
+						</div>
 						<!-- 일별 신규 가입회원 차트 끝 -->
 						<!-- 상담사별 순위 조회 -->
+						<div class="col-md-6">
 						<div class="main-card mb-6 card">
 						<div class="mb-6 card">
 							<div
@@ -383,7 +385,7 @@
 											id="rank-table">
 											<!-- Ajax로 구현될 영역-->
 
-											<!-- ----------------- -->
+											
 											<c:forEach var="counselor"
 												items="${requestScope.counselorList}">
 												<li class="list-group-item">
@@ -417,11 +419,36 @@
 								</div>
 							</div>
 						</div>
-						</div>
 					</div>
+				</div>
 					<!-- 상담사별 순위 조회 끝 -->
 					<!-- 월별 상담/ 상담신청 건수 차트 시작 -->
-					<div class="col-md-12 col-lg-6">
+				<div class="col-md-6">
+					<div class="main-card mb-6 card">
+						<div class="mb-12 card">
+							<div class="card-header-tab card-header">
+								<div class="card-header-title">
+									<i
+										class="header-icon lnr-rocket icon-gradient bg-tempting-azure">
+									</i> 월별 상담/ 상담신청 건수
+								</div>
+							</div>
+							<div class="tab-content">
+								<div class="tab-pane fade active show" id="tab-eg-55">
+									<div class="widget-chart p-3">
+										<div>
+											<canvas id="newCounselByMonth"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 월별 상담/ 상담신청 건수 차트 끝 -->
+				<!-- 상담타입별 매출 차지 비중-->
+				<div class="col-md-6">
+					<div class="main-card mb-6 card">
 						<div class="mb-12 card">
 							<div class="card-header-tab card-header">
 								<div class="card-header-title">
