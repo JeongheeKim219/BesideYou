@@ -363,10 +363,6 @@ public class AdminService {
 		 	}
 		 	
 		 	
-		 	
-		 	
-		 	starCountList.add(starCount.size());
-		 	
 		 	int gap = 0;
 		 	
 		 	counselorNameList.add(name);
