@@ -125,7 +125,7 @@
                 </div>
             </div>
             <section class="text-center py">
-                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/배경화면21.jpg);">
+                <div class="background-holder overlay overlay-1" style="background-image:url(/assets/images/배경화면21.jpg); padding-bottom: 0px;padding-top: 0px;height: 1000;height: 1500px;">
                 </div>
                 <!--/.background-holder-->
                 <div class="container">
