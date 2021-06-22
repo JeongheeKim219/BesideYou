@@ -70,10 +70,10 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-
-	})
+<script>
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
 </script>
 
 <style>
