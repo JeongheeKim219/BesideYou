@@ -224,7 +224,7 @@
 									data-inertia='{"weight":1.5}'>
 									<div class="col-sm-8 col-lg-7 px-5 px-sm-3">
 										<div class="overflow-hidden">
-											<h1 class="fs-4 fs-md-5 zopacity" data-zanim='{"delay":0}' style="color: #FFFFFF">내가 내 마음을 모른다면</h1>
+											<h1 class="fs-4 fs-md-5 zopacity" data-zanim='{"delay":0}' style="color: #FFFFFF">내 마음을 모른다면</h1>
 										</div>
 										<div class="overflow-hidden">
 											<h5 data-zanim='{"delay":0}' style="color: #FFFFFF">간단하게 진행되는 무료 테스트를 해보세요.</h5>

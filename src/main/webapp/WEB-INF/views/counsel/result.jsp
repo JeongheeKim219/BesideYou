@@ -45,12 +45,12 @@
                 </div>
             </div>
             <section class="text-center py-0">
-                <div class="background-holder overlay overlay-elixir" style="background-image:url(${pageContext.request.contextPath}/assets/images/background-14.jpg);">
+                <div class="background-holder overlay overlay-elixir" style="background-image:url(${pageContext.request.contextPath}/assets/images/indexBG.jpg);">
                 </div>
                 <!--/.background-holder-->
                 <div class="container">
                     <div class="row h-full align-items-center color-white">
-                        <div class="col" data-zanim-timeline="{}" data-zanim-trigger="scroll"><a href="index.html" data-zanim='{"delay":0}'><img src="${pageContext.request.contextPath}/assets/images/BUlogo_nobg2.png" alt="" data-zanim='{"delay":0.1}' style="width: 300px; height: 300px"/></a>
+                        <div class="col" data-zanim-timeline="{}" data-zanim-trigger="scroll"><a href="index.html" data-zanim='{"delay":0}'><img src="${pageContext.request.contextPath}/assets/images/BUlogo_nobg5.png" alt="" data-zanim='{"delay":0.1}' style="width: 300px; height: 300px"/></a>
                             <h5 class="text-uppercase mt-5 ls color-white fs-0 fs-md-1" data-zanim='{"delay":0.2}'>${message}</h5>
                             <div data-zanim='{"delay":0.4}'><a class="btn btn-lg btn-info btn-capsule mt-4" href="${pageContext.request.contextPath}/counsel/myCounselList?field=-1">예약내역 확인하기</a></div>
                         </div>
