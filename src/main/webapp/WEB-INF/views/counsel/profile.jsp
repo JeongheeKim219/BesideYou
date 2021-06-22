@@ -351,12 +351,15 @@
 			</div>
 			<!--/.container-->
 		</section>
-	<form name="requestForm" method="get" id="requestForm">
+	<form name="requestForm" method="post" id="requestForm">
+	<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+		<input type="hidden" id="memberCode" name="memberCode" value="<sec:authentication property="principal.memberCode" />" />
 		<input type="hidden" id="reviewCode" name="reviewCode" value=""/>
-		<input type="hidden" id="memberCode" name="memberCode" value=""/>
-		<input type="hidden" id ="reviewContent" name="reviewContent" value=""/>
-		<input type="hidden" id ="counselor" name="counselor" value=""/>
-		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+		<input type="hidden" id="reviewContent" name="reviewContent" value=""/>
+		<input type="hidden" id="counselor" name="counselor" value=""/>
+		<input type="hidden" id="counsel" name="counsel" value=""/>
+		<input type="hidden" id="reportOption" name="reportOption" value=""/>
+		<input type="hidden" id="star" name="star" value=""/>
 		
 		<section class="background-11" style="padding-top: 10px !important">
 			<div class="container">
@@ -409,12 +412,13 @@
 															<input type="button" id="btn_${num.index}" name="btn" value="신고하기" > 
 															<sec:authorize access="isAuthenticated()">
 															<input type="button" id="reviewDelete_${num.index}" name="reviewDelete" value="리뷰삭제"> 
-															<input type="button" id="reviewChange_${num.index}" name=reviewChange value="리뷰수정"> 
+															<%-- <input type="button" id="reviewChange_${num.index}" name=reviewChange value="리뷰수정">  --%>
 															</sec:authorize>
 															<input type="hidden" id="reviewCode_${num.index}" value="${review.reviewCode}">
 															<input type="hidden" id="reviewContent_${num.index}" value="${review.reviewContent}">
-															<input type="hidden" id="counselor_${num.index}" name="counselor" value="${review.counselor.counselorCode}">
-															<input type="hidden" id="memberCode_${num.index}" name="memberCode" value="${review.member.id}">
+															<input type="hidden" id="counselor_${num.index}" value="${review.counselor.counselorCode}">
+															<input type="hidden" id="counsel_${num.index}" value="${review.counsel.counselCode}">
+															<input type="hidden" id="memberCode_${num.index}" value="${review.member.memberCode}">
 														</td>
 													</tr>
 												</table>
@@ -451,7 +455,7 @@
 					신고자
 					</td>
 					<td width="150" height="20" align="left"><b><span style="font-size: 9pt; margin: 2px;">
-								<input id="member" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+								<input id="tgrmember" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 						</span></b></td>
 				</tr>
 				
@@ -460,7 +464,7 @@
 						리뷰번호
 					</td>
 					<td width="150" height="20"><b><span style="font-size: 9pt;">
-						<input type="text" id="tgReviewNo" name="reviewStar" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+						<input type="text" id="tgReviewNo" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 					</span></b></td>
 				</tr>
 				
@@ -470,7 +474,7 @@
 						
 					</td>
 					<td width="150" height="20"><b><span style="font-size: 9pt;">
-								<select name="reportOption" id="reportOption" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+								<select name="srcReportOption" id="srcReportOption" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 									<option value="">신고사유 선택</option>
 									<option value="스팸홍보도배글">스팸홍보도배글</option>
 									<option value="음란물">음란물</option>
@@ -511,7 +515,7 @@
 					작성자
 					</td>
 					<td width="150" height="20"><b><span style="font-size: 9pt; margin: 2px;">
-						<input id="m2Member" name="member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+						<input id="m2Member" size="30" value="" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 						</span></b></td>
 				</tr>
 				
@@ -531,7 +535,7 @@
 						</p>
 					</td>
 					<td width="150" height="20"><b><span style="font-size: 9pt;">
-							<select name="star" id="star">
+							<select name="srcStar" id="srcStar">
 								<option value="1.0">★</option>
 								<option value="2.0">★★</option>
 								<option value="3.0">★★★</option>
@@ -549,6 +553,7 @@
 				
 				<tr>
 					<td width="150" height="20" colspan="2"><b><span style="font-size: 9pt; margin: 2px;">
+						<!-- <textarea cols="55" rows="5" id="tgreviewContent" name="reviewContent"></textarea> -->
 						<textarea cols="55" rows="5" id="tgreviewContent" name="reviewContent22"></textarea>
 					</span></b></td>
 				</tr>
@@ -634,6 +639,7 @@
 				$('#reviewContent').val($('#reviewContent_'+ s).val());
 				$('#counselor').val($('#counselor_'+ s).val());
 				$('#tgReviewNo').val($('#reviewCode').val());
+				$('#tgrmember').val($('#memberCode').val());
 				
 				$('#modal1').fadeIn();
 			});
@@ -644,8 +650,8 @@
 				var s = $("input[name='reviewDelete']").index(this);
 				
 				$('#reviewCode').val($('#reviewCode_'+ s).val());
-				$('#reviewContent').val($('#reviewContent_'+ s).val());
-				$('#counselor').val($('#counselor_'+ s).val());
+				/* $('#reviewContent').val($('#reviewContent_'+ s).val());*/
+				$('#counselor').val($('#counselor_'+ s).val()); 
 				alert($('#reviewCode').val());
 				
 				 var param = document.getElementById('requestForm');
@@ -658,51 +664,48 @@
 			
 			$("#reportBtn").click(function() {
 				var param = document.getElementById('requestForm');
-				if(requestForm.reportOption.value ==""){
+				
+				$('#reviewCode').val($('#tgReviewNo').val());
+				$('#memberCode').val($('#tgrmember').val());
+				$('#reportOption').val($("#srcReportOption option:selected").text());
+				
+				if($('#reportOption').val() == ''){
 					alert("신고 사유를 선택하세요");
 					return false;
-					}
+				}
+				
 				param.method = "POST";
 				param.action = "${pageContext.request.contextPath}/report/insert";
 			    param.submit(); 
-				$('.modal').fadeOut();
-			
 				
 			}); 
 					
 			$("input[name='reviewChange']").click(function() {
 				var s = $("input[name='reviewChange']").index(this);
-				
-				
-				
-				//$('#reviewCode').val($('#reviewCode_'+ s).val());
-				//$('#reviewCode').val($('#reviewCode_'+ s).val());
-				$('#reviewContent').val($('#reviewContent_'+ s).val());
+				$('#tgreviewCode').val($('#reviewCode_'+ s).val());
+				$('#tgreviewContent').val($('#reviewContent_'+ s).val());
 				$('#memberCode').val($('#memberCode_'+s).val());
 				$('#counselor').val($('#counselor_'+ s).val());
-				$('#m2Member').val($('#memberCode').val());
-				//$('#tgreviewCode').val($('#reviewCode').val());
-				alert($('#m2Member').val());
-				$('#tgreviewContent').val($('#reviewContent').val());
+				$('#counsel').val($('#counsel_'+ s).val());
+				$('#reviewCode').val($('#tgreviewCode').val());
+				$('#reviewContent').val($('#tgreviewContent').val());
 				
-				$('#reviewContent').val("");
+				
+				$('#m2Member').val($('#memberCode').val());
+				/* $('#reviewContent').val("");  */
 				$('#modal2').fadeIn();
-				alert(1)
 			});
 			
 			$("#reviewBtn2").click(function() {
 				alert(2)
 				var param = document.getElementById('requestForm');
-				alert("33 ="+$('#tgreviewContent').val()+"/")
-				alert('param.reviewContent22.value'+param.reviewContent22)
-				alert("before:param.reviewContent22.value="+param.reviewContent22.value)
+				alert("33 ="+$('#reviewContent').val()+"/");
+				$('#star').val($("#srcStar option:selected").val());
 				
-				param.reviewContent22.value = $('#tgreviewContent').val();
-				
-				alert("after:param.reviewContent22.value="+param.reviewContent22.value +"/")
 				param.method = "POST";
 				param.action = "${pageContext.request.contextPath}/review/reviewUpdate";
 				param.submit(); 
+				$('.modal').fadeOut();
 	
 			});
 			

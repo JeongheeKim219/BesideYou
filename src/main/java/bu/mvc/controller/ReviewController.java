@@ -2,6 +2,9 @@ package bu.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bu.mvc.domain.Counselor;
+import bu.mvc.domain.Member;
 import bu.mvc.domain.ReviewStar;
 import bu.mvc.service.ReviewService;
 
@@ -39,8 +43,7 @@ public class ReviewController {
 	 * */
 	@RequestMapping("/review/insert")
 	public String insert(ReviewStar reviewStar) {
-		System.out.println(reviewStar.toString());
-		System.out.println(reviewStar.getMember().toString());
+		
 		Counselor a = reviewStar.getCounselor();
 		Long b= a.getCounselorCode();
 		System.out.println(b);
@@ -104,20 +107,36 @@ public class ReviewController {
 	 * 리뷰코드에 해당하는 리뷰 수정
 	 * */
 		@RequestMapping("/review/reviewUpdate")
-		public String updateReview(ReviewStar review , String reviewContent22) {//reviewContent
-			String content = review.getReviewContent();
+		public String updateReview(ReviewStar review, HttpServletRequest req) {//reviewContent, String reviewContent22
 			
-			review.setReviewContent(reviewContent22);
+			Member member = new Member();
 			
-			System.out.println("content :: "+ content);
-			System.out.println("reviewContent22 :: "+ reviewContent22);
+			member.setMemberCode(Long.parseLong(req.getParameter("memberCode")));
+			review.setMember(member);
 			
-			Counselor cs = review.getCounselor();
-			Long cscode = cs.getCounselorCode();
+			review.setReviewCode(Long.parseLong(req.getParameter("reviewCode")));
+			review.setReviewContent(req.getParameter("reviewContent"));
+			System.out.println(req.getParameter("star"));
+			review.setStar(Double.parseDouble(req.getParameter("star")));
+			
+			
+			//String content = review.getReviewContent();
+			
+//			review.setReviewContent(reviewContent22);
+			
+			//System.out.println("content : "+ content);
+			//System.out.println("reviewContent22 :: "+ reviewContent22);
+			
+//			Counselor cs = review.getCounselor();
+//			Long cscode = cs.getCounselorCode();
 			
 			reviewService.update(review);
-			return "redirect:/review/reviewByCode/"+cscode;
+			return "";
 		}
+		
+		
+		
+
 		
 		
 		
