@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,9 +23,11 @@ import bu.mvc.domain.Counsel;
 import bu.mvc.domain.Counselor;
 import bu.mvc.domain.Member;
 import bu.mvc.domain.Requests;
+import bu.mvc.domain.ReviewStar;
 import bu.mvc.domain.Speciality;
 import bu.mvc.domain.Tag;
 import bu.mvc.service.CounselService;
+import bu.mvc.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -216,14 +219,14 @@ public class CounselController {
 	}
 	
 	@RequestMapping("/profile")
-	public ModelAndView profile(Long counselorCode) {
+	public ModelAndView profile(Long counselorCode, @RequestParam(defaultValue = "0")int currentPage ) {
 		ModelAndView mv = new ModelAndView();
 		Counselor counselor = counselService.getCounselor(counselorCode);
 		List<Tag> tagList = counselService.getTag(counselor);
 		List<Speciality> speList = counselService.getSpecialities(counselor);
 
 		System.out.println("counselorCOde : " + counselorCode);
-		List<ReviewStar> review = reviewService.selectByCounselorCode(counselorCode, pageable);
+		List<ReviewStar> review = reviewService.selectByCounselorCode(counselorCode, currentPage);
 		mv.setViewName("/counsel/profile");
 		mv.addObject("counselor", counselor);
 		mv.addObject("tagList", tagList);
