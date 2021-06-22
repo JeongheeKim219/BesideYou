@@ -428,249 +428,28 @@
 			</div>
 			<!--/.container-->
 		</section>
+		
 		<section class=" background-primary py-6">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-md">
-						<h4 class="color-white mb-0">
-							If you have any query related investment... <br class="d-md-none" />we
-							are available 24/7
-						</h4>
-					</div>
-					<div class="col-md-auto mt-md-0 mt-4">
-						<a class="btn btn-white btn-capsule" href="contact.html">Contact
-							Us</a>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
-		<section class=" background-white">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="owl-carousel owl-theme owl-dot-round"
-							data-options='{"nav":true,"dots":false,"loop":true,"autoplay":true,"autoplayHoverPause":true,"items":1}'>
-							<div class="row px-lg-8">
-								<div class="col-4 col-md-3 mx-auto">
-									<img class="radius-secondary mx-auto"
-										src="${pageContext.request.contextPath}/assets/images/client1.png"
-										alt="Member" style="width: auto" />
-								</div>
-								<div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-									<p class="lead fw-400">Their work on our website and
-										Internet marketing has made a significant different to our
-										business. We’ve seen a 425% increase in quote requests from
-										the website which has been pretty remarkable – but I’d always
-										like to see more!</p>
-									<h6 class="fs-0 mb-1 mt-4">Michael Clarke</h6>
-									<p class="mb-0 color-7">CEO, A.E.T Institute</p>
-								</div>
-							</div>
-							<div class="row px-lg-8">
-								<div class="col-4 col-md-3 mx-auto">
-									<img class="radius-secondary mx-auto"
-										src="${pageContext.request.contextPath}/assets/images/client2.png"
-										alt="Member" style="width: auto" />
-								</div>
-								<div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-									<p class="lead fw-400">Writing case studies was a daunting
-										task for us. We didn’t know where to begin or what questions
-										to ask, and clients never seemed to follow through when we
-										asked. Elixir team did everything – with almost no time or
-										effort for me!</p>
-									<h6 class="fs-0 mb-1 mt-4">Maria Sharapova</h6>
-									<p class="mb-0 color-7">Managing Director, Themewagon Inc.</p>
-								</div>
-							</div>
-							<div class="row px-lg-8">
-								<div class="col-4 col-md-3 mx-auto">
-									<img class="radius-secondary mx-auto"
-										src="${pageContext.request.contextPath}/assets/images/client3.png"
-										alt="Member" style="width: auto" />
-								</div>
-								<div class="col-md-9 ml-auto mt-4 mt-md-0 px-4 px-sm-3">
-									<p class="lead fw-400">As a sales gamification company, we
-										were skeptical to work with a consultant to optimize our sales
-										emails, but Elixir was highly recommended by many other
-										Y-Combinator startups we knew. Elixir helped us run a ~6 week
-										email campaign.</p>
-									<h6 class="fs-0 mb-1 mt-4">David Beckham</h6>
-									<p class="mb-0 color-7">Chairman, Harmony Corporation</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
-		<section class="background-10 py-6">
-			<div class="container">
-				<div class="row align-items-center" data-zanim-timeline="{}"
-					data-zanim-trigger="scroll">
-					<div class="col-4 col-md-2 my-3 overflow-hidden">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/partner/logo2.png"
-							alt="" data-zanim="{}" />
-					</div>
-					<div class="col-4 col-md-2 my-3 overflow-hidden">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/partner/logo1.png"
-							alt="" data-zanim="{}" />
-					</div>
-					<div class="col-4 col-md-2 my-3 overflow-hidden">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/partner/logo6.png"
-							alt="" data-zanim="{}" />
-					</div>
-					<div class="col-4 col-md-2 my-3 overflow-hidden">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/partner/logo3.png"
-							alt="" data-zanim="{}" />
-					</div>
-					<div class="col-4 col-md-2 my-3 overflow-hidden">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/partner/logo5.png"
-							alt="" data-zanim="{}" />
-					</div>
-					<div class="col-4 col-md-2 my-3 overflow-hidden">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/partner/logo4.png"
-							alt="" data-zanim="{}" />
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
-		<section style="background-color: #3D4C6F">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-6">
-						<div
-							class="background-primary color-white p-5 p-lg-6 radius-secondary">
-							<h4 class="color-white fs-1 fs-lg-2 mb-1">Sign up for email
-								alerts</h4>
-							<p class="color-white">Stay current with our latest insights</p>
-							<form class="mt-4">
-								<div class="row align-items-center">
-									<div class="col-md-7 pr-md-0">
-										<div class="input-group">
-											<input class="form-control" type="email"
-												placeholder="Enter Email Here" />
-										</div>
-									</div>
-									<div class="col-md-5 mt-3 mt-md-0">
-										<button class="btn btn-warning btn-block" type="submit">
-											<span class="color-primary fw-600">Submit</span>
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="col-lg-6 mt-4 mt-lg-0">
-						<div class="row">
-							<div class="col-6 col-lg-4 color-white ml-lg-auto">
-								<ul class="list-unstyled">
-									<li class="mb-3"><a class="color-white" href="#">Contact
-											Us</a></li>
-									<li class="mb-3"><a class="color-white" href="#">FAQ</a></li>
-									<li class="mb-3"><a class="color-white" href="#">Privacy
-											Policy</a></li>
-									<li class="mb-3"><a class="color-white" href="#">Terms
-											of Use</a></li>
-									<li class="mb-3"><a class="color-white" href="#">Global
-											Office</a></li>
-									<li class="mb-3"><a class="color-white" href="#">Local
-											Office</a></li>
-								</ul>
-							</div>
-							<div class="col-6 col-sm-5 ml-sm-auto">
-								<a href="#">
-									<div class="row mb-3 align-items-center no-gutters">
-										<div class="col-auto">
-											<div
-												class="background-primary text-center d-flex align-items-center radius-primary"
-												style="height: 40px; width: 40px;">
-												<span class="w-100 fa fa-linkedin color-white"></span>
-											</div>
-										</div>
-										<div class="col-6 pl-3">
-											<h5 class="fs-0 color-white mb-0 d-inline-block">Linkedin</h5>
-										</div>
-									</div>
-								</a><a href="#">
-									<div class="row mb-3 align-items-center no-gutters">
-										<div class="col-auto">
-											<div
-												class="background-primary text-center d-flex align-items-center radius-primary"
-												style="height: 40px; width: 40px;">
-												<span class="w-100 fa fa-twitter color-white"></span>
-											</div>
-										</div>
-										<div class="col-6 pl-3">
-											<h5 class="fs-0 color-white mb-0 d-inline-block">Twitter</h5>
-										</div>
-									</div>
-								</a><a href="#">
-									<div class="row mb-3 align-items-center no-gutters">
-										<div class="col-auto">
-											<div
-												class="background-primary text-center d-flex align-items-center radius-primary"
-												style="height: 40px; width: 40px;">
-												<span class="w-100 fa fa-facebook color-white"></span>
-											</div>
-										</div>
-										<div class="col-6 pl-3">
-											<h5 class="fs-0 color-white mb-0 d-inline-block">Facebook</h5>
-										</div>
-									</div>
-								</a><a href="#">
-									<div class="row mb-3 align-items-center no-gutters">
-										<div class="col-auto">
-											<div
-												class="background-primary text-center d-flex align-items-center radius-primary"
-												style="height: 40px; width: 40px;">
-												<span class="w-100 fa fa-google-plus color-white"></span>
-											</div>
-										</div>
-										<div class="col-6 pl-3">
-											<h5 class="fs-0 color-white mb-0 d-inline-block">Google+</h5>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
-		<section class="background-primary text-center py-4">
-			<div class="container">
-				<div class="row align-items-center" style="opacity: 0.85">
-					<div class="col-sm-3 text-sm-left">
-						<a href="index.html"><img src="assets/images/logo-light.png"
-							alt="" /></a>
-					</div>
-					<div class="col-sm-6 mt-3 mt-sm-0">
-						<p class="color-white lh-6 mb-0 fw-600">&copy; Copyright 2018
-							Elixir Inc.</p>
-					</div>
-					<div class="col text-sm-right mt-3 mt-sm-0">
-						<a class="color-white" href="https://themewagon.com/"
-							target="_blank"> Designed by Themewagon</a>
-					</div>
-				</div>
-				<!--/.row-->
-			</div>
-			<!--/.container-->
-		</section>
+         <div class="container">
+            <div class="row align-items-center">
+               <div class="col-md">
+                  <h3 class="color-white mb-0">
+                     슬프고 우울한 날에도 당신의 곁에 Beside-U
+                  </h3>
+               </div>
+            </div>
+            <!--/.row-->
+            <br>
+            <div>
+               <h6 style="color: #949494">상호명:(주)BU | 대표:박기현</h6>
+               <h6 style="color: #949494">사업장소재지:(13637) 경기도 성남시 분당구 성남대로 34 6층(구미동 하나프라자빌딩)</h6>
+               <h6 style="color: #949494">사업자등록번호:199-4082-3</h6>
+               <h6 style="color: #949494">대표메일:mooyaho@kosta.com</h6>
+               <h6 style="color: #949494">© BU All rights reserved.</h6>
+            </div>
+         </div>
+         <!--/.container-->
+      </section>
 	</main>
 	<!--  -->
 	<!--    JavaScripts-->

@@ -39,10 +39,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/review/**").authenticated()
 		.antMatchers("/report/**").authenticated()
 		.antMatchers("/psy/lo/**").authenticated()
-
+		
 		//.antMatchers("/member/*").authenticated()
 
 		.antMatchers("/contact/**").access("hasRole('ROLE_MEMBER')")
+		
+		//동현
+		.antMatchers("/ticket/mylist/**").authenticated()
+		.antMatchers("/payment/**").authenticated()
+		.antMatchers("/refund/list/**").access("hasRole('ROLE_ADMIN')")
 
 		.and()
 		//.csrf().disable()

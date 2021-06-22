@@ -114,15 +114,8 @@ public class TicketController {
 	 * 상담권 구매 완료 (결제 성공시)
 	 * */
 	@RequestMapping("/buy")
-	public ModelAndView buyTicket(HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		int ticketField = (int)session.getAttribute("ticketField");
-		Long counselorCode = (Long)session.getAttribute("counselorCode");
-		int ticketAmount = (int)session.getAttribute("ticketAmount");
-		int ticketRemain = (int)session.getAttribute("ticketRemain");
-		Long discountCode = (Long)session.getAttribute("discountCode");
-		int ticketPrice = (int)session.getAttribute("ticketPrice");
+	public ModelAndView buyTicket(HttpServletRequest request, int ticketField, Long counselorCode, int ticketAmount, 
+			int ticketRemain, Long discountCode, int ticketPrice) {
 		
 		System.out.println("ticketField : "+ticketField);
 		System.out.println("counselorCode : "+counselorCode);
@@ -147,7 +140,7 @@ public class TicketController {
 		ticketService.insert(ticket);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("counsel/apply012");
+		mv.setViewName("payment/success");
 		mv.addObject("counselorCode", counselor.getCounselorCode());
 		mv.addObject("couselCategory", ticketField);
 		
