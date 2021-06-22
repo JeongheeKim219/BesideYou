@@ -62,7 +62,10 @@
 </HEAD>
 <body>
 	<%@include file="./header.jsp"%>
+	<div class="app-main">
 	<%@include file="./menu.jsp"%>
+	<div class="app-main__outer">
+			<div class="app-main__inner">
 
 	<div class="main-card mb-3 card"
 		style="width: 700px; margin: 0 auto; top: 100px;">
@@ -135,6 +138,10 @@
 		</div>
 		
 	</div>
+	</div>
+	</div>
+	</div>
+	
 
 
 
