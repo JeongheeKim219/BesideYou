@@ -17,10 +17,10 @@
 
 
 
-|----------------------|---------------------------|
-| **WAS**              | [![Apache Tomcat 9.0](https://img.shields.io/badge/WAS-Apache%20Tomcat%209.0-blue)](http://tomcat.apache.org/)         |
-| **데이터베이스 서버** | [![AWS RDS](https://img.shields.io/badge/Database%20Server-AWS%20RDS-orange)](https://aws.amazon.com/rds/)                   |
-| **DBMS**             | [![Oracle 11g](https://img.shields.io/badge/DBMS-Oracle%2011g-red)](https://www.oracle.com/database/technologies/)         |
+
+| **WAS**              | **데이터베이스 서버**    | **DBMS**             |
+|----------------------|------------------------|--------------------------|
+|[![Apache Tomcat 9.0](https://img.shields.io/badge/WAS-Apache%20Tomcat%209.0-blue)](http://tomcat.apache.org/)  | [![AWS RDS](https://img.shields.io/badge/Database%20Server-AWS%20RDS-orange)](https://aws.amazon.com/rds/) | [![Oracle 11g](https://img.shields.io/badge/DBMS-Oracle%2011g-red)](https://www.oracle.com/database/technologies/) |
 
 ## 화면 구성
 
